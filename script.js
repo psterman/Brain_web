@@ -31,19 +31,22 @@ const faqItems = document.querySelectorAll('.faq-item');
 faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
     
-    question.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
-        
-        // 关闭所有其他FAQ项
-        faqItems.forEach(otherItem => {
-            if (otherItem !== item) {
-                otherItem.classList.remove('active');
-            }
+    // 确保question元素存在
+    if (question) {
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // 关闭所有其他FAQ项
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // 切换当前FAQ项
+            item.classList.toggle('active', !isActive);
         });
-        
-        // 切换当前FAQ项
-        item.classList.toggle('active', !isActive);
-    });
+    }
 });
 
 // 平滑滚动导航
@@ -206,15 +209,23 @@ if (window.matchMedia) {
 
 // 星辰神经动画系统 - 完整科技版
 function createBrainStarSystem() {
-    console.log('初始化完整星辰神经动画系统...');
+    console.log('==========================================');
+    console.log('🧠 初始化完整星辰神经动画系统...');
+    
     const neuralBg = document.querySelector('.neural-bg');
     
     if (!neuralBg) {
-        console.error('找不到 .neural-bg 元素');
+        console.error('❌ 找不到 .neural-bg 元素');
         return;
     }
     
-    console.log('找到neural-bg元素，开始创建科技动画...');
+    console.log('✅ 找到neural-bg元素！');
+    console.log('   - 尺寸:', neuralBg.offsetWidth, 'x', neuralBg.offsetHeight);
+    console.log('   - z-index:', getComputedStyle(neuralBg).zIndex);
+    console.log('   - position:', getComputedStyle(neuralBg).position);
+    console.log('   - opacity:', getComputedStyle(neuralBg).opacity);
+    console.log('🚀 开始创建科技动画...');
+    console.log('==========================================');
     
     // 精确的俯瞰大脑区域坐标定义（左右半球分明）
     const brainRegions = {
@@ -586,16 +597,37 @@ function createBrainStarSystem() {
 
 // 初始化动画系统
 function initializeAnimations() {
-    console.log('准备初始化完整动画系统...');
+    console.log('==========================================');
+    console.log('🚀 准备初始化完整动画系统...');
+    console.log('DOM状态:', document.readyState);
+    
+    // 检查neural-bg容器是否存在
+    const neuralBg = document.querySelector('.neural-bg');
+    if (neuralBg) {
+        console.log('✅ 找到neural-bg容器，尺寸:', neuralBg.offsetWidth, 'x', neuralBg.offsetHeight);
+        console.log('✅ neural-bg z-index:', getComputedStyle(neuralBg).zIndex);
+    } else {
+        console.error('❌ 未找到neural-bg容器!');
+    }
     
     // 确保DOM已加载
     if (document.readyState === 'loading') {
+        console.log('⏳ DOM仍在加载中，等待DOMContentLoaded事件...');
         document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(createBrainStarSystem, 800);
+            console.log('📋 DOMContentLoaded事件触发，800ms后启动动画...');
+            setTimeout(() => {
+                console.log('🎬 开始启动动画系统!');
+                createBrainStarSystem();
+            }, 800);
         });
     } else {
-        setTimeout(createBrainStarSystem, 800);
+        console.log('📋 DOM已就绪，800ms后启动动画...');
+        setTimeout(() => {
+            console.log('🎬 开始启动动画系统!');
+            createBrainStarSystem();
+        }, 800);
     }
+    console.log('==========================================');
 }
 
 // 立即执行初始化
