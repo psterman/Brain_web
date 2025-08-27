@@ -1,0 +1,332 @@
+/* 暗色主题样式 - 完整版 */
+:root {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-tertiary: #374151;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --border-color: #4b5563;
+    --accent-green: #10b981;
+}
+
+/* 确保动画元素不受暗色主题影响 */
+.neural-bg,
+.neural-bg *,
+.star,
+.meteor,
+.constellation,
+.brain-container,
+.brain-region,
+.star-connection,
+.bright-star {
+    /* 保护动画元素的关键属性 */
+    position: absolute !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+/* 保护星辰的视觉效果 */
+.star {
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.bright-star {
+    background: rgba(59, 130, 246, 0.8) !important;
+}
+
+.constellation .star {
+    background: rgba(168, 85, 247, 0.9) !important;
+}
+
+body.dark-theme {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* 通用文字颜色适配 */
+.dark-theme .text-gray-900 {
+    color: var(--text-primary) !important;
+}
+
+.dark-theme .text-gray-800 {
+    color: var(--text-primary) !important;
+}
+
+.dark-theme .text-gray-700 {
+    color: var(--text-secondary) !important;
+}
+
+.dark-theme .text-gray-600 {
+    color: var(--text-muted) !important;
+}
+
+.dark-theme .text-gray-500 {
+    color: var(--text-muted) !important;
+}
+
+.dark-theme .text-gray-400 {
+    color: #6b7280 !important;
+}
+
+.dark-theme .text-gray-300 {
+    color: var(--text-secondary) !important;
+}
+
+.dark-theme .text-gray-200 {
+    color: var(--text-primary) !important;
+}
+
+.dark-theme .text-gray-100 {
+    color: var(--text-primary) !important;
+}
+
+/* 主色调适配 */
+.dark-theme .text-primary-600 {
+    color: #22d3ee !important;
+}
+
+.dark-theme .text-primary-500 {
+    color: var(--accent-green) !important;
+}
+
+.dark-theme .text-primary-400 {
+    color: #34d399 !important;
+}
+
+.dark-theme .text-primary-800 {
+    color: #a7f3d0 !important;
+}
+
+.dark-theme .text-primary-100 {
+    color: #d1fae5 !important;
+}
+
+.dark-theme .text-primary-200 {
+    color: #a7f3d0 !important;
+}
+
+/* 导航栏暗色样式 */
+.dark-theme nav {
+    background: rgba(31, 41, 55, 0.8);
+    border-bottom-color: var(--border-color);
+}
+
+.dark-theme nav a {
+    color: var(--text-secondary);
+}
+
+.dark-theme nav a:hover {
+    color: var(--accent-green);
+}
+
+/* Hero区域暗色样式 */
+.dark-theme .hero-bg {
+    background: linear-gradient(135deg, 
+        #111827 0%, 
+        #1f2937 25%, 
+        #374151 50%, 
+        #1f2937 75%, 
+        #111827 100%);
+}
+
+.dark-theme h1, .dark-theme h2, .dark-theme h3, .dark-theme h4 {
+    color: var(--text-primary) !important;
+}
+
+.dark-theme p {
+    color: var(--text-secondary) !important;
+}
+
+/* 背景颜色适配 */
+.dark-theme .bg-white {
+    background: var(--bg-secondary) !important;
+}
+
+.dark-theme .bg-gray-50 {
+    background: var(--bg-primary) !important;
+}
+
+.dark-theme .bg-gray-100 {
+    background: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+}
+
+.dark-theme .bg-gray-200 {
+    background: var(--bg-tertiary) !important;
+}
+
+.dark-theme .hover\:bg-gray-100:hover {
+    background: var(--bg-tertiary) !important;
+}
+
+.dark-theme .hover\:bg-gray-200:hover {
+    background: #4b5563 !important;
+}
+
+/* 卡片暗色样式 */
+.dark-theme .card-apple {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .card-apple:hover {
+    background: var(--bg-tertiary) !important;
+}
+
+.dark-theme .card-apple h3 {
+    color: var(--text-primary) !important;
+}
+
+.dark-theme .card-apple p {
+    color: var(--text-secondary) !important;
+}
+
+/* 按钮暗色样式 */
+.dark-theme .btn-primary {
+    background: linear-gradient(135deg, var(--accent-green), #059669) !important;
+}
+
+.dark-theme .hover\:text-primary-600:hover {
+    color: var(--accent-green) !important;
+}
+
+/* 边框颜色适配 */
+.dark-theme .border-gray-100 {
+    border-color: var(--border-color) !important;
+}
+
+.dark-theme .border-gray-200 {
+    border-color: var(--border-color) !important;
+}
+
+.dark-theme .border-t {
+    border-top-color: var(--border-color) !important;
+}
+
+.dark-theme .border-b {
+    border-bottom-color: var(--border-color) !important;
+}
+
+/* 页脚暗色样式 */
+.dark-theme footer {
+    background: var(--bg-secondary) !important;
+    border-top-color: var(--border-color);
+}
+
+.dark-theme footer a {
+    color: var(--text-muted) !important;
+}
+
+.dark-theme footer a:hover {
+    color: var(--accent-green) !important;
+}
+
+/* 特殊背景适配 */
+.dark-theme .from-gray-50 {
+    --tw-gradient-from: var(--bg-primary) !important;
+}
+
+.dark-theme .to-white {
+    --tw-gradient-to: var(--bg-secondary) !important;
+}
+
+.dark-theme .from-primary-50 {
+    --tw-gradient-from: #064e3b !important;
+}
+
+.dark-theme .to-primary-100 {
+    --tw-gradient-to: #047857 !important;
+}
+
+/* 神经背景适配暗色 */
+.dark-theme .neural-bg {
+    background: radial-gradient(ellipse at 50% 45%, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+}
+
+/* 星辰在暗色背景下更亮 */
+.dark-theme .star {
+    opacity: 1.2;
+}
+
+.dark-theme .constellation .star {
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.8), 0 0 18px rgba(168, 85, 247, 0.5), 0 0 30px rgba(96, 165, 250, 0.4);
+}
+
+/* 功能特色区域 */
+.dark-theme #features {
+    background: var(--bg-secondary) !important;
+}
+
+/* 用户指南区域 */
+.dark-theme #guide {
+    background: var(--bg-primary) !important;
+}
+
+/* FAQ区域 */
+.dark-theme #faq {
+    background: var(--bg-secondary) !important;
+}
+
+/* 下载区域 */
+.dark-theme #download {
+    background: linear-gradient(135deg, #065f46, #047857) !important;
+}
+
+/* SVG图标颜色适配 */
+.dark-theme svg {
+    color: inherit;
+}
+
+.dark-theme .text-primary-600 svg {
+    color: var(--accent-green);
+}
+
+/* 功能图标背景适配 */
+.dark-theme .feature-icon {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 95, 70, 0.3)) !important;
+}
+
+/* 阴影适配 */
+.dark-theme .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark-theme .shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 渐变文字适配 */
+.dark-theme .text-gradient {
+    background: linear-gradient(135deg, #22d3ee, #10b981) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* FAQ和Guide区域特殊样式 */
+.dark-theme .bg-primary-50 {
+    background: rgba(6, 95, 70, 0.1) !important;
+}
+
+.dark-theme .border-primary-400 {
+    border-color: var(--accent-green) !important;
+}
+
+.dark-theme .bg-blue-50 {
+    background: rgba(30, 58, 138, 0.1) !important;
+}
+
+.dark-theme .to-blue-100 {
+    --tw-gradient-to: rgba(30, 58, 138, 0.2) !important;
+}
+
+.dark-theme .bg-green-50 {
+    background: rgba(6, 95, 70, 0.1) !important;
+}
+
+.dark-theme .to-green-100 {
+    --tw-gradient-to: rgba(6, 95, 70, 0.2) !important;
+}

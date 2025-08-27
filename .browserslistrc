@@ -1,0 +1,8 @@
+# 支持的浏览器版本
+defaults
+not IE 11
+safari >= 11
+ios >= 11
+chrome >= 60
+firefox >= 60
+edge >= 79 

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safari兼容性测试 - 小脑</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="dark-theme.css">
+    <link rel="stylesheet" href="safari-fix.css">
+    <script src="theme-toggle.js"></script>
+    <script src="safari-compatibility.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .card-apple {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f3f4f6;
+            transition: all 0.3s ease;
+        }
+        
+        .card-apple:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-section {
+            min-height: 300px;
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- 测试导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 relative">
+                        <img src="assets/images/brain-logo.png" alt="小脑浏览器" class="w-full h-full object-contain" />
+                    </div>
+                    <span class="text-xl font-semibold text-gray-900">小脑 Safari测试</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#test1" class="text-gray-600 hover:text-primary-600 transition-colors">测试区域1</a>
+                    <a href="#test2" class="text-gray-600 hover:text-primary-600 transition-colors">测试区域2</a>
+                    <a href="#test3" class="text-gray-600 hover:text-primary-600 transition-colors">测试区域3</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-20">
+        <!-- 测试区域1：基础文字和背景 -->
+        <section id="test1" class="test-section bg-white">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl font-bold text-gray-900 mb-6">Safari兼容性测试区域</h1>
+                <p class="text-lg text-gray-600 mb-8">
+                    这个页面用于测试Safari浏览器下的主题切换功能。请确保在切换亮色/暗色模式时，
+                    所有文字和背景颜色都能正确显示。
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card-apple">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">测试卡片1</h3>
+                        <p class="text-gray-600">
+                            这是一个测试卡片，用于验证卡片元素的背景和文字颜色是否正确显示。
+                            在Safari的亮色模式下，背景应该是白色，文字应该是深色。
+                        </p>
+                    </div>
+                    
+                    <div class="card-apple">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">测试卡片2</h3>
+                        <p class="text-gray-600">
+                            另一个测试卡片，包含更多的文字内容。请确保所有文字都清晰可见，
+                            没有出现白色文字在白色背景上的情况。
+                        </p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="text-gray-600">• 列表项目1</li>
+                            <li class="text-gray-600">• 列表项目2</li>
+                            <li class="text-gray-600">• 列表项目3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 测试区域2：不同背景颜色 -->
+        <section id="test2" class="test-section bg-gray-50">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">不同背景测试</h2>
+                <p class="text-gray-600 mb-6">这个区域使用bg-gray-50背景，测试不同背景下的显示效果。</p>
+                
+                <div class="space-y-6">
+                    <div class="card-apple bg-white">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">白色背景卡片</h4>
+                        <p class="text-gray-600">明确设置为白色背景的卡片测试。</p>
+                    </div>
+                    
+                    <div class="card-apple bg-gray-100">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">灰色背景卡片</h4>
+                        <p class="text-gray-600">使用bg-gray-100背景的卡片测试。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 测试区域3：文字颜色测试 -->
+        <section id="test3" class="test-section bg-white">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">文字颜色测试</h2>
+                
+                <div class="card-apple">
+                    <div class="space-y-4">
+                        <h1 class="text-gray-900">H1标题 - text-gray-900</h1>
+                        <h2 class="text-gray-800">H2标题 - text-gray-800</h2>
+                        <h3 class="text-gray-700">H3标题 - text-gray-700</h3>
+                        <h4 class="text-gray-600">H4标题 - text-gray-600</h4>
+                        <p class="text-gray-600">段落文字 - text-gray-600</p>
+                        <p class="text-gray-500">辅助文字 - text-gray-500</p>
+                        <span class="text-primary-600">主色调文字 - text-primary-600</span>
+                    </div>
+                </div>
+                
+                <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Safari问题诊断</h3>
+                    <div class="space-y-2 text-sm">
+                        <p><strong>问题现象：</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>整体背景色还是暗色（应该是白色）</li>
+                            <li>卡片元素中的文字背景色也是暗色（应该是白色）</li>
+                            <li>文字颜色也是亮色（应该是深色）</li>
+                        </ul>
+                        
+                        <p class="mt-4"><strong>预期效果：</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>整体背景：白色 (#ffffff)</li>
+                            <li>卡片背景：白色 (#ffffff)</li>
+                            <li>标题文字：深灰色 (#111827)</li>
+                            <li>正文文字：中灰色 (#4b5563)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-8">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-gray-600">Safari兼容性测试页面 - 小脑浏览器</p>
+            <p class="text-sm text-gray-500 mt-2">
+                请在Safari浏览器中测试主题切换功能，确保所有颜色显示正确
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 页面加载完成后的额外检查
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Safari测试页面加载完成');
+            console.log('User Agent:', navigator.userAgent);
+            console.log('是否Safari:', /^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+            
+            // 检查当前主题
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            console.log('当前主题:', currentTheme);
+            
+            // 检查body类名
+            console.log('Body类名:', document.body.className);
+            
+            // 检查计算样式
+            const bodyStyle = window.getComputedStyle(document.body);
+            console.log('Body背景颜色:', bodyStyle.backgroundColor);
+            console.log('Body文字颜色:', bodyStyle.color);
+        });
+    </script>
+</body>
+</html>

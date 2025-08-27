@@ -1,0 +1,482 @@
+/* Safari兼容性修复 - 动画保护版 */
+
+/* 确保动画元素不受任何样式覆盖影响 */
+.neural-bg,
+.neural-bg *,
+.star,
+.meteor,
+.constellation,
+.brain-container,
+.brain-region,
+.star-connection,
+.bright-star {
+    /* 保护动画元素的关键属性 */
+    position: absolute !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+.star,
+.meteor,
+.constellation .star,
+.bright-star {
+    /* 保护星辰的视觉效果 */
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.bright-star {
+    background: rgba(59, 130, 246, 0.8) !important;
+}
+
+.constellation .star {
+    background: rgba(168, 85, 247, 0.9) !important;
+}
+
+/* 仅在Safari中应用的亮色模式修复 */
+@supports (-webkit-appearance: none) {
+    /* Safari专用：强制根元素亮色模式 */
+    html:not(.dark-theme),
+    html:not(.dark-theme) body {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #111827 !important;
+    }
+    
+    /* Safari专用：卡片元素修复（排除动画元素） */
+    body:not(.dark-theme) .card-apple {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #111827 !important;
+        border: 1px solid #f3f4f6 !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    body:not(.dark-theme) .card-apple:hover {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #111827 !important;
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Safari专用：文字颜色修复 */
+    body:not(.dark-theme) .text-gray-900,
+    body:not(.dark-theme) h1,
+    body:not(.dark-theme) h2,
+    body:not(.dark-theme) h3,
+    body:not(.dark-theme) h4,
+    body:not(.dark-theme) h5,
+    body:not(.dark-theme) h6 {
+        color: #111827 !important;
+    }
+    
+    body:not(.dark-theme) .text-gray-600,
+    body:not(.dark-theme) p {
+        color: #4b5563 !important;
+    }
+    
+    /* Safari专用：背景颜色修复 */
+    body:not(.dark-theme) .bg-white {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+    }
+    
+    body:not(.dark-theme) .bg-gray-50 {
+        background: #f9fafb !important;
+        background-color: #f9fafb !important;
+    }
+    
+    /* Safari专用：区域背景修复 */
+    body:not(.dark-theme) #features {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+    }
+    
+    body:not(.dark-theme) #guide {
+        background: #f9fafb !important;
+        background-color: #f9fafb !important;
+    }
+    
+    body:not(.dark-theme) #faq {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+    }
+    
+    body:not(.dark-theme) footer {
+        background: #f9fafb !important;
+        background-color: #f9fafb !important;
+    }
+}
+@supports (-webkit-appearance: none) {
+    /* 超强制亮色模式的根元素 */
+    html:not(.dark-theme),
+    html:not(.dark-theme) body,
+    body:not(.dark-theme),
+    body:not(.dark-theme):before,
+    body:not(.dark-theme):after {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #111827 !important;
+        border-color: #e5e7eb !important;
+    }
+    
+    /* 强制所有子元素继承亮色模式 */
+    body:not(.dark-theme) *,
+    body:not(.dark-theme) *:before,
+    body:not(.dark-theme) *:after {
+        color: inherit !important;
+        background: inherit !important;
+    }
+    
+    /* 超强制覆盖所有可能的暗色样式 */
+    body:not(.dark-theme) div,
+    body:not(.dark-theme) section,
+    body:not(.dark-theme) article,
+    body:not(.dark-theme) aside,
+    body:not(.dark-theme) main,
+    body:not(.dark-theme) header,
+    body:not(.dark-theme) footer {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+    
+    /* 强制覆盖所有可能的暗色背景 */
+    body:not(.dark-theme),
+    body:not(.dark-theme) html,
+    body:not(.dark-theme) #root {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+    }
+    
+    /* 导航栏亮色修复 */
+    body:not(.dark-theme) nav {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(12px) !important;
+        border-bottom-color: #e5e7eb !important;
+    }
+    
+    body:not(.dark-theme) nav a {
+        color: #374151 !important;
+    }
+    
+    body:not(.dark-theme) nav a:hover {
+        color: #16a34a !important;
+    }
+    
+    body:not(.dark-theme) nav .text-primary-600,
+    body:not(.dark-theme) nav .text-primary-400 {
+        color: #16a34a !important;
+    }
+    
+    body:not(.dark-theme) nav .text-gray-300,
+    body:not(.dark-theme) nav .text-gray-200,
+    body:not(.dark-theme) nav .text-gray-100 {
+        color: #374151 !important;
+    }
+    
+    /* Hero区域亮色修复 */
+    body:not(.dark-theme) .hero-bg {
+        background: linear-gradient(135deg, 
+            #f8fafc 0%, 
+            #f1f5f9 25%, 
+            #e2e8f0 50%, 
+            #f0f9ff 75%, 
+            #ffffff 100%) !important;
+    }
+    
+    /* 所有标题强制亮色模式颜色 */
+    body:not(.dark-theme) h1,
+    body:not(.dark-theme) h2,
+    body:not(.dark-theme) h3,
+    body:not(.dark-theme) h4,
+    body:not(.dark-theme) h5,
+    body:not(.dark-theme) h6 {
+        color: #111827 !important;
+    }
+    
+    /* 所有段落和文本强制亮色模式颜色 */
+    body:not(.dark-theme) p,
+    body:not(.dark-theme) span,
+    body:not(.dark-theme) div {
+        color: #4b5563 !important;
+    }
+    
+    /* 强制覆盖Tailwind灰色类 */
+    body:not(.dark-theme) .text-gray-900,
+    body:not(.dark-theme) .text-gray-800 {
+        color: #111827 !important;
+    }
+    
+    body:not(.dark-theme) .text-gray-700 {
+        color: #374151 !important;
+    }
+    
+    body:not(.dark-theme) .text-gray-600 {
+        color: #4b5563 !important;
+    }
+    
+    body:not(.dark-theme) .text-gray-500 {
+        color: #6b7280 !important;
+    }
+    
+    body:not(.dark-theme) .text-gray-400 {
+        color: #9ca3af !important;
+    }
+    
+    body:not(.dark-theme) .text-gray-300,
+    body:not(.dark-theme) .text-gray-200,
+    body:not(.dark-theme) .text-gray-100 {
+        color: #374151 !important;
+    }
+    
+    /* 卡片元素超强制亮色修复 - 排除动画元素 */
+    body:not(.dark-theme) .card-apple:not(.neural-bg):not(.star):not(.meteor):not(.constellation),
+    body:not(.dark-theme) .card-apple *:not(.star):not(.meteor):not(.constellation):not(.brain-container):not(.brain-region):not(.star-connection),
+    body:not(.dark-theme) .card-apple:before,
+    body:not(.dark-theme) .card-apple:after {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #111827 !important;
+        border: 1px solid #f3f4f6 !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    body:not(.dark-theme) .card-apple:hover,
+    body:not(.dark-theme) .card-apple:hover * {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #111827 !important;
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* 卡片内所有元素强制修复 */
+    body:not(.dark-theme) .card-apple div,
+    body:not(.dark-theme) .card-apple span,
+    body:not(.dark-theme) .card-apple p,
+    body:not(.dark-theme) .card-apple h1,
+    body:not(.dark-theme) .card-apple h2,
+    body:not(.dark-theme) .card-apple h3,
+    body:not(.dark-theme) .card-apple h4,
+    body:not(.dark-theme) .card-apple h5,
+    body:not(.dark-theme) .card-apple ul,
+    body:not(.dark-theme) .card-apple li {
+        background: transparent !important;
+        background-color: transparent !important;
+        color: #111827 !important;
+    }
+    
+    body:not(.dark-theme) .card-apple h3,
+    body:not(.dark-theme) .card-apple h4 {
+        color: #111827 !important;
+    }
+    
+    body:not(.dark-theme) .card-apple p {
+        color: #4b5563 !important;
+    }
+    
+    /* 背景颜色强制修复 */
+    body:not(.dark-theme) .bg-white {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+    }
+    
+    body:not(.dark-theme) .bg-gray-50 {
+        background: #f9fafb !important;
+        background-color: #f9fafb !important;
+    }
+    
+    body:not(.dark-theme) .bg-gray-100 {
+        background: #f3f4f6 !important;
+        background-color: #f3f4f6 !important;
+        color: #111827 !important;
+    }
+    
+    body:not(.dark-theme) .bg-gray-200 {
+        background: #e5e7eb !important;
+        background-color: #e5e7eb !important;
+    }
+    
+    /* Hover状态修复 */
+    body:not(.dark-theme) .hover\:bg-gray-100:hover {
+        background: #f3f4f6 !important;
+        background-color: #f3f4f6 !important;
+    }
+    
+    body:not(.dark-theme) .hover\:bg-gray-200:hover {
+        background: #e5e7eb !important;
+        background-color: #e5e7eb !important;
+    }
+    
+    /* 区域背景超强制修复 */
+    html:not(.dark-theme) #features,
+    body:not(.dark-theme) #features,
+    body:not(.dark-theme) #features * {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #111827 !important;
+    }
+    
+    html:not(.dark-theme) #guide,
+    body:not(.dark-theme) #guide,
+    body:not(.dark-theme) #guide * {
+        background: #f9fafb !important;
+        background-color: #f9fafb !important;
+        color: #111827 !important;
+    }
+    
+    html:not(.dark-theme) #faq,
+    body:not(.dark-theme) #faq,
+    body:not(.dark-theme) #faq * {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #111827 !important;
+    }
+    
+    html:not(.dark-theme) #download,
+    body:not(.dark-theme) #download,
+    body:not(.dark-theme) #download * {
+        background: linear-gradient(135deg, #f0fdf4, #dcfce7) !important;
+        color: #111827 !important;
+    }
+    
+    /* 页脚强制修复 */
+    body:not(.dark-theme) footer {
+        background: #f9fafb !important;
+        background-color: #f9fafb !important;
+        border-top-color: #e5e7eb !important;
+    }
+    
+    body:not(.dark-theme) footer * {
+        color: inherit !important;
+    }
+    
+    body:not(.dark-theme) footer a {
+        color: #6b7280 !important;
+    }
+    
+    body:not(.dark-theme) footer a:hover {
+        color: #16a34a !important;
+    }
+    
+    body:not(.dark-theme) footer h3 {
+        color: #111827 !important;
+    }
+    
+    body:not(.dark-theme) footer p,
+    body:not(.dark-theme) footer span {
+        color: #6b7280 !important;
+    }
+    
+    /* 主色调修复 */
+    body:not(.dark-theme) .text-primary-600,
+    body:not(.dark-theme) .text-primary-500 {
+        color: #16a34a !important;
+    }
+    
+    body:not(.dark-theme) .text-primary-400 {
+        color: #22c55e !important;
+    }
+    
+    body:not(.dark-theme) .hover\:text-primary-600:hover,
+    body:not(.dark-theme) .hover\:text-primary-400:hover {
+        color: #16a34a !important;
+    }
+    
+    /* 渐变文字修复 */
+    body:not(.dark-theme) .text-gradient {
+        background: linear-gradient(135deg, #22c55e, #4ade80) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+    }
+    
+    /* 功能图标背景修复 */
+    body:not(.dark-theme) .feature-icon {
+        background: linear-gradient(135deg, #dcfce7, #bbf7d0) !important;
+    }
+    
+    /* 边框颜色修复 */
+    body:not(.dark-theme) .border-gray-100 {
+        border-color: #f3f4f6 !important;
+    }
+    
+    body:not(.dark-theme) .border-gray-200 {
+        border-color: #e5e7eb !important;
+    }
+    
+    body:not(.dark-theme) .border-t {
+        border-top-color: #e5e7eb !important;
+    }
+    
+    body:not(.dark-theme) .border-b {
+        border-bottom-color: #e5e7eb !important;
+    }
+    
+    /* 特殊背景修复 */
+    body:not(.dark-theme) .bg-primary-50 {
+        background: #f0fdf4 !important;
+        background-color: #f0fdf4 !important;
+    }
+    
+    body:not(.dark-theme) .border-primary-400 {
+        border-color: #4ade80 !important;
+    }
+    
+    body:not(.dark-theme) .text-primary-800 {
+        color: #166534 !important;
+    }
+    
+    body:not(.dark-theme) .bg-blue-50 {
+        background: #eff6ff !important;
+        background-color: #eff6ff !important;
+    }
+    
+    body:not(.dark-theme) .bg-green-50 {
+        background: #f0fdf4 !important;
+        background-color: #f0fdf4 !important;
+    }
+    
+    /* 阴影修复 */
+    body:not(.dark-theme) .shadow-lg {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    body:not(.dark-theme) .shadow-2xl {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    }
+    
+    /* 按钮修复 */
+    body:not(.dark-theme) .btn-primary {
+        background: linear-gradient(135deg, #16a34a, #22c55e) !important;
+        color: #ffffff !important;
+    }
+    
+    /* Logo和图片修复 */
+    body:not(.dark-theme) img {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        object-fit: contain;
+        -webkit-object-fit: contain;
+    }
+    
+    /* 动画元素性能优化 */
+    .star,
+    .meteor,
+    .constellation {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    /* 强制移除所有可能的暗色class影响 */
+    body:not(.dark-theme) .dark\:bg-gray-800,
+    body:not(.dark-theme) .dark\:bg-gray-900,
+    body:not(.dark-theme) .dark\:text-gray-100,
+    body:not(.dark-theme) .dark\:text-gray-200 {
+        background: inherit !important;
+        color: inherit !important;
+    }
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小脑浏览器 - 智能移动浏览体验</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="brain-pulse-animations.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">小脑浏览器</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#features">功能</a></li>
+                <li><a href="#guide">指南</a></li>
+                <li><a href="#faq">问答</a></li>
+                <li><a href="#download">下载</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 首页 -->
+    <section id="home" class="hero">
+        <!-- 星辰神经动画背景 -->
+        <div class="neural-bg" id="neuralBg"></div>
+        <div class="hero-container">
+            <h1 class="hero-title">小脑浏览器</h1>
+            <p class="hero-subtitle">为 iOS 设计的智能浏览器</p>
+            <p class="hero-description">体验前所未有的移动浏览，智能、快速、安全</p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">立即下载</a>
+                <a href="#features" class="btn btn-secondary">了解更多</a>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="browser-ui">
+                            <div class="address-bar"></div>
+                            <div class="content-area"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能 -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">强大功能</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>极速浏览</h3>
+                    <p>优化的渲染引擎，页面加载速度提升 50%</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>隐私保护</h3>
+                    <p>内置广告拦截和追踪保护，守护您的隐私</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>个性定制</h3>
+                    <p>丰富的主题和布局选项，打造专属浏览体验</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>云端同步</h3>
+                    <p>书签、历史记录跨设备无缝同步</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>智能搜索</h3>
+                    <p>AI 驱动的搜索建议，快速找到所需内容</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>手势操作</h3>
+                    <p>直观的手势控制，单手操作更便捷</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 指南 -->
+    <section id="guide" class="guide">
+        <div class="container">
+            <h2 class="section-title">使用指南</h2>
+            <div class="guide-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>下载安装</h3>
+                        <p>从 App Store 下载小脑浏览器，支持 iOS 14.0 及以上版本</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>个性设置</h3>
+                        <p>根据喜好调整主题、搜索引擎和隐私设置</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>开始浏览</h3>
+                        <p>享受快速、安全、智能的移动浏览体验</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 问答 -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">常见问题</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>小脑浏览器是否免费？</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>是的，小脑浏览器完全免费下载和使用，无内购项目。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>支持哪些 iOS 版本？</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>小脑浏览器支持 iOS 14.0 及以上版本，兼容 iPhone 和 iPad。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>如何导入其他浏览器的书签？</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>在设置中选择"导入数据"，可以从 Safari、Chrome 等浏览器导入书签和密码。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>数据安全如何保障？</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>我们采用端到端加密技术，所有数据在本地加密后再同步到云端，确保隐私安全。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载 -->
+    <section id="download" class="download">
+        <div class="container">
+            <h2 class="section-title">立即下载</h2>
+            <div class="download-content">
+                <div class="download-info">
+                    <h3>小脑浏览器</h3>
+                    <p class="download-description">智能、快速、安全的 iOS 浏览器</p>
+                    <div class="download-features">
+                        <div class="download-feature">
+                            <span class="feature-check">✓</span>
+                            <span>免费下载</span>
+                        </div>
+                        <div class="download-feature">
+                            <span class="feature-check">✓</span>
+                            <span>无广告干扰</span>
+                        </div>
+                        <div class="download-feature">
+                            <span class="feature-check">✓</span>
+                            <span>隐私保护</span>
+                        </div>
+                    </div>
+                    <div class="download-buttons">
+                        <a href="#" class="app-store-btn">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMTIwIDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQwIiByeD0iNiIgZmlsbD0iIzAwMCIvPgo8dGV4dCB4PSI2MCIgeT0iMjQiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BcHAgU3RvcmUg5LiL6L29PC90ZXh0Pgo8L3N2Zz4K" alt="App Store 下载">
+                        </a>
+                    </div>
+                </div>
+                <div class="download-qr">
+                    <div class="qr-code">
+                        <div class="qr-placeholder">
+                            <span>📱</span>
+                            <p>扫码下载</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-icon">🧠</span>
+                    <span class="logo-text">小脑浏览器</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">隐私政策</a>
+                    <a href="#">服务条款</a>
+                    <a href="#">联系我们</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 小脑浏览器. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

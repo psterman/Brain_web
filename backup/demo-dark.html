@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小脑 - 智能浏览的新时代（暗色版）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #22c55e, #4ade80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.3);
+        }
+        
+        .card-apple {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f3f4f6;
+            transition: all 0.3s ease;
+        }
+        
+        .card-apple:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, 
+                #f8fafc 0%, 
+                #f1f5f9 25%, 
+                #e2e8f0 50%, 
+                #f0f9ff 75%, 
+                #ffffff 100%);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        
+        /* 宇宙星辰动画 - 模拟脑神经运动（升级版） */
+        .neural-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 0.6;
+            pointer-events: none;
+            background: radial-gradient(ellipse at 50% 45%, rgba(30, 30, 60, 0.03) 0%, transparent 70%);
+        }
+        
+        /* 大脑形状容器 - 俯瞰大脑形态 */
+        .brain-container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 600px;
+            height: 400px;
+            transform: translate(-50%, -50%);
+            /* 使用更精确的大脑俯瞰形状 */
+            clip-path: polygon(
+                20% 30%,   /* 左额叶前端 */
+                5% 45%,    /* 左颞叶 */
+                8% 65%,    /* 左颞叶下端 */
+                25% 85%,   /* 左枕叶 */
+                45% 95%,   /* 后脑勺底部 */
+                50% 90%,   /* 大脑纵裂后端 */
+                55% 95%,   /* 后脑勺底部右侧 */
+                75% 85%,   /* 右枕叶 */
+                92% 65%,   /* 右颞叶下端 */
+                95% 45%,   /* 右颞叶 */
+                80% 30%,   /* 右额叶前端 */
+                50% 15%    /* 大脑纵裂前端 */
+            );
+            border: 2px solid rgba(96, 165, 250, 0.2);
+            background: linear-gradient(45deg, 
+                rgba(96, 165, 250, 0.05) 0%, 
+                rgba(168, 85, 247, 0.03) 50%, 
+                rgba(96, 165, 250, 0.05) 100%);
+        }
+        
+        /* 大脑区域标识 - 左右半球强化 */
+        .brain-region {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.4) 0%, transparent 70%);
+            animation: brain-pulse 8s ease-in-out infinite;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+        }
+        
+        .brain-region.left-hemisphere {
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(96, 165, 250, 0.2) 50%, transparent 80%);
+            box-shadow: -5px 0 15px rgba(59, 130, 246, 0.2);
+        }
+        
+        .brain-region.right-hemisphere {
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, rgba(147, 51, 234, 0.2) 50%, transparent 80%);
+            box-shadow: 5px 0 15px rgba(168, 85, 247, 0.2);
+        }
+        
+        /* 随机大小的星辰（代表神经元）- 增强随机性 */
+        .star {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            animation: random-twinkle 4s ease-in-out infinite;
+        }
+        
+        .star.size-1 {
+            width: 1px;
+            height: 1px;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.6), 0 0 8px rgba(96, 165, 250, 0.3);
+        }
+        
+        .star.size-2 {
+            width: 2px;
+            height: 2px;
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.7), 0 0 10px rgba(96, 165, 250, 0.4), 0 0 15px rgba(168, 85, 247, 0.2);
+        }
+        
+        .star.size-3 {
+            width: 3px;
+            height: 3px;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 12px rgba(96, 165, 250, 0.5), 0 0 18px rgba(168, 85, 247, 0.3), 0 0 25px rgba(59, 130, 246, 0.2);
+        }
+        
+        .star.size-4 {
+            width: 4px;
+            height: 4px;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 16px rgba(96, 165, 250, 0.6), 0 0 20px rgba(168, 85, 247, 0.4), 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .star.size-5 {
+            width: 5px;
+            height: 5px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 20px rgba(96, 165, 250, 0.7), 0 0 25px rgba(168, 85, 247, 0.5), 0 0 35px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* 亮星（重要神经节点） */
+        .bright-star {
+            background: rgba(59, 130, 246, 0.8);
+            width: 4px;
+            height: 4px;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 25px rgba(59, 130, 246, 0.5), 0 0 35px rgba(96, 165, 250, 0.3);
+            animation: bright-pulse 5s ease-in-out infinite;
+        }
+        
+        /* 星座样式 - 19个星座系统 */
+        .constellation {
+            position: absolute;
+            opacity: 0;
+            transform-origin: center;
+        }
+        
+        .constellation.aries { animation: constellation-aries 20s ease-in-out infinite; }
+        .constellation.taurus { animation: constellation-taurus 22s ease-in-out infinite 2s; }
+        .constellation.gemini { animation: constellation-gemini 24s ease-in-out infinite 4s; }
+        .constellation.cancer { animation: constellation-cancer 18s ease-in-out infinite 6s; }
+        .constellation.leo { animation: constellation-leo 25s ease-in-out infinite 8s; }
+        .constellation.virgo { animation: constellation-virgo 21s ease-in-out infinite 10s; }
+        .constellation.libra { animation: constellation-libra 23s ease-in-out infinite 12s; }
+        .constellation.scorpio { animation: constellation-scorpio 19s ease-in-out infinite 14s; }
+        .constellation.sagittarius { animation: constellation-sagittarius 26s ease-in-out infinite 16s; }
+        .constellation.capricorn { animation: constellation-capricorn 20s ease-in-out infinite 18s; }
+        .constellation.aquarius { animation: constellation-aquarius 24s ease-in-out infinite 20s; }
+        .constellation.pisces { animation: constellation-pisces 22s ease-in-out infinite 22s; }
+        .constellation.ursa-major { animation: constellation-ursa-major 28s ease-in-out infinite 1s; }
+        .constellation.orion { animation: constellation-orion 30s ease-in-out infinite 3s; }
+        .constellation.cygnus { animation: constellation-cygnus 25s ease-in-out infinite 5s; }
+        .constellation.andromeda { animation: constellation-andromeda 27s ease-in-out infinite 7s; }
+        .constellation.perseus { animation: constellation-perseus 23s ease-in-out infinite 9s; }
+        .constellation.aquila { animation: constellation-aquila 21s ease-in-out infinite 11s; }
+        .constellation.crux { animation: constellation-crux 18s ease-in-out infinite 13s; }
+        
+        .constellation .star {
+            background: rgba(168, 85, 247, 0.9);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.7), 0 0 15px rgba(168, 85, 247, 0.4), 0 0 25px rgba(96, 165, 250, 0.3);
+        }
+        
+        /* 真实流星效果 - 模拟真实天体运动 */
+        .meteor {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 1) 0%, 
+                rgba(96, 165, 250, 0.9) 20%, 
+                rgba(168, 85, 247, 0.7) 50%, 
+                transparent 100%);
+            box-shadow: 
+                0 0 6px rgba(255, 255, 255, 1),
+                0 0 12px rgba(96, 165, 250, 0.8),
+                0 0 18px rgba(168, 85, 247, 0.6);
+            opacity: 0;
+        }
+        
+        .meteor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 20%,
+                rgba(96, 165, 250, 0.6) 40%,
+                rgba(168, 85, 247, 0.8) 60%,
+                rgba(255, 255, 255, 1) 100%);
+            transform: translateY(-50%) translateX(-100%);
+            border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+        }
+        
+        /* 星际连接（神经连接） - 增强可见性 */
+        .star-connection {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(59, 130, 246, 0.4) 20%, 
+                rgba(168, 85, 247, 0.6) 50%, 
+                rgba(59, 130, 246, 0.4) 80%, 
+                transparent 100%);
+            transform-origin: left center;
+            animation: connection-pulse 6s ease-in-out infinite;
+            box-shadow: 0 0 2px rgba(96, 165, 250, 0.3);
+        }
+        
+        /* 活跃连接线 - 更强的关联性 */
+        .active-connection {
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(59, 130, 246, 0.7) 20%, 
+                rgba(168, 85, 247, 0.9) 50%, 
+                rgba(59, 130, 246, 0.7) 80%, 
+                transparent 100%);
+            box-shadow: 0 0 4px rgba(96, 165, 250, 0.5), 0 0 8px rgba(168, 85, 247, 0.3);
+            animation: active-pulse 3s ease-in-out infinite;
+        }
+        
+        /* 随机闪烁动画 - 增强随机性 */
+        @keyframes random-twinkle {
+            0%, 100% { 
+                opacity: 0.2;
+                transform: scale(0.8) rotate(0deg);
+                filter: brightness(0.8);
+            }
+            20% {
+                opacity: 0.6;
+                transform: scale(1.2) rotate(45deg);
+                filter: brightness(1.2);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.8) rotate(90deg);
+                filter: brightness(1.6);
+            }
+            80% {
+                opacity: 0.7;
+                transform: scale(1.3) rotate(135deg);
+                filter: brightness(1.1);
+            }
+        }
+        
+        /* 大脑区域脉冲 */
+        @keyframes brain-pulse {
+            0%, 100% { 
+                opacity: 0.05;
+                transform: scale(0.9);
+            }
+            50% { 
+                opacity: 0.15;
+                transform: scale(1.1);
+            }
+        }
+        
+        /* 真实流星轨迹动画 */
+        @keyframes realistic-meteor-1 {
+            0% {
+                opacity: 0;
+                transform: translate(-200px, -100px) scale(0.5);
+                filter: brightness(0.5);
+            }
+            5% {
+                opacity: 1;
+                transform: translate(-180px, -80px) scale(0.8);
+                filter: brightness(1.2);
+            }
+            20% {
+                opacity: 1;
+                transform: translate(-100px, -20px) scale(1);
+                filter: brightness(1.8);
+            }
+            60% {
+                opacity: 0.8;
+                transform: translate(100px, 80px) scale(1.2);
+                filter: brightness(1.5);
+            }
+            85% {
+                opacity: 0.3;
+                transform: translate(250px, 150px) scale(1);
+                filter: brightness(0.8);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(350px, 200px) scale(0.3);
+                filter: brightness(0.2);
+            }
+        }
+        
+        @keyframes realistic-meteor-2 {
+            0% {
+                opacity: 0;
+                transform: translate(200px, -150px) scale(0.3);
+                filter: brightness(0.3);
+            }
+            8% {
+                opacity: 1;
+                transform: translate(150px, -100px) scale(0.9);
+                filter: brightness(1.5);
+            }
+            25% {
+                opacity: 1;
+                transform: translate(50px, -20px) scale(1.1);
+                filter: brightness(2);
+            }
+            70% {
+                opacity: 0.7;
+                transform: translate(-150px, 120px) scale(1);
+                filter: brightness(1.2);
+            }
+            90% {
+                opacity: 0.2;
+                transform: translate(-280px, 200px) scale(0.6);
+                filter: brightness(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-350px, 250px) scale(0.2);
+                filter: brightness(0.1);
+            }
+        }
+        
+        @keyframes realistic-meteor-3 {
+            0% {
+                opacity: 0;
+                transform: translate(-100px, 200px) scale(0.4);
+                filter: brightness(0.4);
+            }
+            10% {
+                opacity: 0.8;
+                transform: translate(-50px, 150px) scale(0.8);
+                filter: brightness(1.3);
+            }
+            30% {
+                opacity: 1;
+                transform: translate(50px, 50px) scale(1.2);
+                filter: brightness(1.8);
+            }
+            75% {
+                opacity: 0.6;
+                transform: translate(200px, -100px) scale(0.9);
+                filter: brightness(1);
+            }
+            95% {
+                opacity: 0.1;
+                transform: translate(300px, -180px) scale(0.4);
+                filter: brightness(0.3);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(350px, -220px) scale(0.1);
+                filter: brightness(0.1);
+            }
+        }
+        
+        @keyframes realistic-meteor-4 {
+            0% {
+                opacity: 0;
+                transform: translate(100px, 250px) scale(0.6);
+                filter: brightness(0.6);
+            }
+            7% {
+                opacity: 1;
+                transform: translate(80px, 180px) scale(1);
+                filter: brightness(1.6);
+            }
+            35% {
+                opacity: 1;
+                transform: translate(-20px, 80px) scale(1.3);
+                filter: brightness(2.2);
+            }
+            80% {
+                opacity: 0.4;
+                transform: translate(-200px, -50px) scale(0.8);
+                filter: brightness(0.9);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-320px, -150px) scale(0.2);
+                filter: brightness(0.2);
+            }
+        }
+        
+        /* 流星尾迹效果 */
+        @keyframes meteor-trail {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        @keyframes bright-pulse {
+            0%, 100% { 
+                opacity: 0.7;
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(2);
+                filter: brightness(1.8);
+            }
+        }
+        
+        /* 流星尾巴动画 */
+        @keyframes meteor-tail {
+            0% {
+                width: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 30px;
+                opacity: 0;
+            }
+        }
+        /* 星座动画关键帧 */
+        @keyframes constellation-aries {
+            0%, 90%, 100% { opacity: 0; transform: rotate(0deg) scale(0.8); }
+            20%, 70% { opacity: 0.8; transform: rotate(15deg) scale(1.1); }
+            45% { opacity: 1; transform: rotate(30deg) scale(1.2); }
+        }
+        
+        @keyframes constellation-taurus {
+            0%, 85%, 100% { opacity: 0; transform: rotate(0deg) scale(0.7); }
+            25%, 60% { opacity: 0.9; transform: rotate(-20deg) scale(1.2); }
+            42% { opacity: 1; transform: rotate(-35deg) scale(1.3); }
+        }
+        
+        @keyframes constellation-gemini {
+            0%, 88%, 100% { opacity: 0; transform: rotate(0deg) scale(0.9); }
+            15%, 73% { opacity: 0.7; transform: rotate(25deg) scale(1.0); }
+            44% { opacity: 1; transform: rotate(45deg) scale(1.15); }
+        }
+        
+        @keyframes constellation-cancer {
+            0%, 92%, 100% { opacity: 0; transform: rotate(0deg) scale(0.6); }
+            18%, 74% { opacity: 0.8; transform: rotate(-15deg) scale(1.1); }
+            46% { opacity: 1; transform: rotate(-28deg) scale(1.25); }
+        }
+        
+        @keyframes constellation-leo {
+            0%, 87%, 100% { opacity: 0; transform: rotate(0deg) scale(0.8); }
+            22%, 65% { opacity: 0.9; transform: rotate(20deg) scale(1.2); }
+            43% { opacity: 1; transform: rotate(38deg) scale(1.35); }
+        }
+        
+        @keyframes constellation-virgo {
+            0%, 89%, 100% { opacity: 0; transform: rotate(0deg) scale(0.7); }
+            19%, 70% { opacity: 0.8; transform: rotate(-18deg) scale(1.0); }
+            44% { opacity: 1; transform: rotate(-32deg) scale(1.18); }
+        }
+        
+        @keyframes constellation-libra {
+            0%, 91%, 100% { opacity: 0; transform: rotate(0deg) scale(0.9); }
+            16%, 75% { opacity: 0.7; transform: rotate(22deg) scale(1.1); }
+            45% { opacity: 1; transform: rotate(40deg) scale(1.22); }
+        }
+        
+        @keyframes constellation-scorpio {
+            0%, 86%, 100% { opacity: 0; transform: rotate(0deg) scale(0.8); }
+            24%, 62% { opacity: 0.9; transform: rotate(-25deg) scale(1.3); }
+            43% { opacity: 1; transform: rotate(-45deg) scale(1.4); }
+        }
+        
+        @keyframes constellation-sagittarius {
+            0%, 88%, 100% { opacity: 0; transform: rotate(0deg) scale(0.7); }
+            17%, 71% { opacity: 0.8; transform: rotate(28deg) scale(1.1); }
+            44% { opacity: 1; transform: rotate(50deg) scale(1.28); }
+        }
+        
+        @keyframes constellation-capricorn {
+            0%, 90%, 100% { opacity: 0; transform: rotate(0deg) scale(0.9); }
+            20%, 70% { opacity: 0.7; transform: rotate(-20deg) scale(1.0); }
+            45% { opacity: 1; transform: rotate(-35deg) scale(1.15); }
+        }
+        
+        @keyframes constellation-aquarius {
+            0%, 85%, 100% { opacity: 0; transform: rotate(0deg) scale(0.8); }
+            23%, 62% { opacity: 0.9; transform: rotate(25deg) scale(1.2); }
+            42% { opacity: 1; transform: rotate(42deg) scale(1.3); }
+        }
+        
+        @keyframes constellation-pisces {
+            0%, 87%, 100% { opacity: 0; transform: rotate(0deg) scale(0.6); }
+            21%, 66% { opacity: 0.8; transform: rotate(-22deg) scale(1.1); }
+            43% { opacity: 1; transform: rotate(-40deg) scale(1.25); }
+        }
+        
+        @keyframes constellation-ursa-major {
+            0%, 84%, 100% { opacity: 0; transform: rotate(0deg) scale(0.9); }
+            26%, 58% { opacity: 1; transform: rotate(18deg) scale(1.4); }
+            42% { opacity: 1; transform: rotate(32deg) scale(1.5); }
+        }
+        
+        @keyframes constellation-orion {
+            0%, 82%, 100% { opacity: 0; transform: rotate(0deg) scale(0.8); }
+            28%, 54% { opacity: 1; transform: rotate(-20deg) scale(1.3); }
+            41% { opacity: 1; transform: rotate(-38deg) scale(1.45); }
+        }
+        
+        @keyframes constellation-cygnus {
+            0%, 89%, 100% { opacity: 0; transform: rotate(0deg) scale(0.7); }
+            19%, 70% { opacity: 0.9; transform: rotate(24deg) scale(1.2); }
+            44% { opacity: 1; transform: rotate(44deg) scale(1.32); }
+        }
+        
+        @keyframes constellation-andromeda {
+            0%, 86%, 100% { opacity: 0; transform: rotate(0deg) scale(0.8); }
+            25%, 59% { opacity: 0.8; transform: rotate(-26deg) scale(1.1); }
+            42% { opacity: 1; transform: rotate(-48deg) scale(1.28); }
+        }
+        
+        @keyframes constellation-perseus {
+            0%, 88%, 100% { opacity: 0; transform: rotate(0deg) scale(0.9); }
+            18%, 70% { opacity: 0.7; transform: rotate(21deg) scale(1.0); }
+            44% { opacity: 1; transform: rotate(39deg) scale(1.19); }
+        }
+        
+        @keyframes constellation-aquila {
+            0%, 91%, 100% { opacity: 0; transform: rotate(0deg) scale(0.6); }
+            15%, 76% { opacity: 0.9; transform: rotate(-19deg) scale(1.3); }
+            45% { opacity: 1; transform: rotate(-34deg) scale(1.38); }
+        }
+        
+        @keyframes constellation-crux {
+            0%, 87%, 100% { opacity: 0; transform: rotate(0deg) scale(0.8); }
+            22%, 65% { opacity: 0.8; transform: rotate(27deg) scale(1.1); }
+            43% { opacity: 1; transform: rotate(48deg) scale(1.24); }
+        }
+        
+        @keyframes enhanced-twinkle {
+            0%, 100% { 
+                opacity: 0.5;
+                transform: scale(1);
+                box-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 12px rgba(96, 165, 250, 0.4);
+            }
+            25% {
+                opacity: 0.8;
+                transform: scale(1.3);
+                box-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 16px rgba(96, 165, 250, 0.6);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.6);
+                box-shadow: 0 0 16px rgba(255, 255, 255, 1), 0 0 20px rgba(96, 165, 250, 0.8), 0 0 24px rgba(168, 85, 247, 0.4);
+            }
+            75% {
+                opacity: 0.9;
+                transform: scale(1.2);
+                box-shadow: 0 0 14px rgba(255, 255, 255, 0.9), 0 0 18px rgba(96, 165, 250, 0.7);
+            }
+        }
+        
+        @keyframes bright-twinkle {
+            0%, 100% { 
+                opacity: 0.6;
+                transform: scale(1);
+                box-shadow: 0 0 12px rgba(59, 130, 246, 0.7), 0 0 18px rgba(59, 130, 246, 0.4), 0 0 24px rgba(96, 165, 250, 0.3);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(2.2);
+                box-shadow: 0 0 20px rgba(59, 130, 246, 1), 0 0 30px rgba(59, 130, 246, 0.8), 0 0 40px rgba(96, 165, 250, 0.6), 0 0 50px rgba(168, 85, 247, 0.4);
+            }
+        }
+        
+        /* 星辰组合脉冲 - 增强关联性 */
+        @keyframes group-pulse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                filter: brightness(1);
+            }
+            25% {
+                transform: scale(1.1) rotate(5deg);
+                filter: brightness(1.3);
+            }
+            50% {
+                transform: scale(1.15) rotate(10deg);
+                filter: brightness(1.5);
+            }
+            75% {
+                transform: scale(1.05) rotate(5deg);
+                filter: brightness(1.2);
+            }
+        }
+        
+        /* 星座淡入淡出 - 更长周期更强效果 */
+        @keyframes constellation-fade {
+            0%, 85%, 100% {
+                opacity: 0;
+                transform: rotate(0deg) scale(0.7);
+                filter: brightness(0.5);
+            }
+            10%, 75% {
+                opacity: 0.8;
+                transform: rotate(20deg) scale(1.1);
+                filter: brightness(1.3);
+            }
+            35%, 50% {
+                opacity: 1;
+                transform: rotate(40deg) scale(1.2);
+                filter: brightness(1.6);
+            }
+        }
+        
+        /* 连接脉冲 - 增强可见性 */
+        @keyframes connection-pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scaleY(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scaleY(1.5);
+            }
+        }
+        
+        /* 活跃连接脉冲 */
+        @keyframes active-pulse {
+            0%, 100% {
+                opacity: 0.6;
+                transform: scaleY(1) scaleX(1);
+                filter: brightness(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scaleY(2) scaleX(1.1);
+                filter: brightness(1.5);
+            }
+        }
+        
+
+
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="scroll-smooth bg-gray-900 text-gray-100">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-800/80 backdrop-blur-md border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <!-- Logo图标 -->
+                    <div class="w-10 h-10 relative">
+                        <img src="assets/images/brain-logo.png" alt="小脑浏览器" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" />
+                    </div>
+                    <!-- 品牌名称 -->
+                    <span class="text-xl font-semibold text-gray-100">小脑</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium text-primary-400">首页</a>
+                    <a href="#features" class="text-sm font-medium text-gray-300 hover:text-primary-400 transition-colors">功能特色</a>
+                    <a href="#guide" class="text-sm font-medium text-gray-300 hover:text-primary-400 transition-colors">用户指南</a>
+                    <a href="#faq" class="text-sm font-medium text-gray-300 hover:text-primary-400 transition-colors">常见问题</a>
+                    <a href="#download" class="text-sm font-medium text-gray-300 hover:text-primary-400 transition-colors">下载</a>
+                </div>
+                
+                <button class="md:hidden p-2 rounded-lg text-gray-400 hover:text-gray-200 hover:bg-gray-700 transition-colors">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg pt-32 pb-20 min-h-screen flex items-center relative">
+        <!-- 宇宙星辰动画背景 - 模拟大脑神经运动 -->
+        <div class="neural-bg">
+            <!-- 大脑形状星辰区域 -->
+            <div class="brain-container">
+                <!-- 左脑逐辑区（理性思维） -->
+                <div class="constellation leo" style="left: 15%; top: 20%;">
+                    <div class="star size-3" style="left: 0; top: 0;"></div>
+                    <div class="star size-2" style="left: 20px; top: 8px;"></div>
+                    <div class="star size-3" style="left: 35px; top: -5px;"></div>
+                    <div class="star size-4" style="left: 50px; top: 12px;"></div>
+                    <div class="star size-2" style="left: 70px; top: 3px;"></div>
+                </div>
+                
+                <div class="constellation orion" style="left: 65%; top: 15%;">
+                    <div class="star size-4" style="left: 0; top: 0;"></div>
+                    <div class="star size-3" style="left: 15px; top: 18px;"></div>
+                    <div class="star size-2" style="left: 30px; top: 8px;"></div>
+                    <div class="star size-4" style="left: 45px; top: 20px;"></div>
+                    <div class="star size-3" style="left: 25px; top: -8px;"></div>
+                    <div class="star size-2" style="left: 55px; top: 2px;"></div>
+                    <div class="star size-3" style="left: 70px; top: 15px;"></div>
+                </div>
+                
+                <!-- 中央核心区（海马体） -->
+                <div class="constellation ursa-major" style="left: 35%; top: 35%;">
+                    <div class="star bright-star" style="left: 0; top: 0;"></div>
+                    <div class="star size-4" style="left: 18px; top: 5px;"></div>
+                    <div class="star bright-star" style="left: 35px; top: -3px;"></div>
+                    <div class="star size-3" style="left: 50px; top: 8px;"></div>
+                    <div class="star size-4" style="left: 65px; top: 2px;"></div>
+                    <div class="star size-3" style="left: 80px; top: 12px;"></div>
+                    <div class="star bright-star" style="left: 95px; top: 6px;"></div>
+                </div>
+                
+                <!-- 右脑创意区（艺术思维） -->
+                <div class="constellation andromeda" style="left: 70%; top: 45%;">
+                    <div class="star size-3" style="left: 0; top: 0;"></div>
+                    <div class="star size-2" style="left: 12px; top: 15px;"></div>
+                    <div class="star size-4" style="left: 28px; top: 5px;"></div>
+                    <div class="star size-3" style="left: 45px; top: 18px;"></div>
+                    <div class="star size-2" style="left: 60px; top: 8px;"></div>
+                </div>
+            </div>
+            
+            <!-- 外围星辰（神经网络分支） -->
+            <div class="constellation aries" style="left: 10%; top: 25%;">
+                <div class="star size-2" style="left: 0; top: 0;"></div>
+                <div class="star size-1" style="left: 15px; top: 8px;"></div>
+                <div class="star size-2" style="left: 25px; top: -3px;"></div>
+                <div class="star size-1" style="left: 40px; top: 10px;"></div>
+            </div>
+            
+            <div class="constellation taurus" style="left: 80%; top: 20%;">
+                <div class="star size-2" style="left: 0; top: 0;"></div>
+                <div class="star size-3" style="left: 12px; top: 12px;"></div>
+                <div class="star size-1" style="left: 25px; top: 3px;"></div>
+                <div class="star size-2" style="left: 38px; top: 15px;"></div>
+                <div class="star size-1" style="left: 50px; top: 5px;"></div>
+            </div>
+            
+            <div class="constellation gemini" style="left: 15%; top: 65%;">
+                <div class="star size-1" style="left: 0; top: 0;"></div>
+                <div class="star size-2" style="left: 18px; top: -5px;"></div>
+                <div class="star size-3" style="left: 35px; top: 8px;"></div>
+                <div class="star size-2" style="left: 50px; top: 2px;"></div>
+            </div>
+            
+            <div class="constellation cancer" style="left: 75%; top: 70%;">
+                <div class="star size-2" style="left: 0; top: 0;"></div>
+                <div class="star size-1" style="left: 15px; top: 10px;"></div>
+                <div class="star size-2" style="left: 30px; top: -2px;"></div>
+                <div class="star size-3" style="left: 45px; top: 12px;"></div>
+            </div>
+            
+            <!-- 更多星座 -->
+            <div class="constellation virgo" style="left: 5%; top: 45%;">
+                <div class="star size-1" style="left: 0; top: 0;"></div>
+                <div class="star size-2" style="left: 20px; top: 8px;"></div>
+                <div class="star size-1" style="left: 35px; top: -5px;"></div>
+            </div>
+            
+            <div class="constellation libra" style="left: 85%; top: 50%;">
+                <div class="star size-2" style="left: 0; top: 0;"></div>
+                <div class="star size-1" style="left: 18px; top: 12px;"></div>
+                <div class="star size-2" style="left: 32px; top: 3px;"></div>
+            </div>
+            
+            <div class="constellation scorpio" style="left: 25%; top: 10%;">
+                <div class="star size-1" style="left: 0; top: 0;"></div>
+                <div class="star size-3" style="left: 15px; top: 15px;"></div>
+                <div class="star size-2" style="left: 30px; top: 5px;"></div>
+                <div class="star size-1" style="left: 45px; top: 18px;"></div>
+            </div>
+            
+            <div class="constellation sagittarius" style="left: 60%; top: 75%;">
+                <div class="star size-2" style="left: 0; top: 0;"></div>
+                <div class="star size-1" style="left: 22px; top: -8px;"></div>
+                <div class="star size-3" style="left: 40px; top: 10px;"></div>
+                <div class="star size-2" style="left: 55px; top: 2px;"></div>
+            </div>
+            
+            <div class="constellation capricorn" style="left: 8%; top: 75%;">
+                <div class="star size-1" style="left: 0; top: 0;"></div>
+                <div class="star size-2" style="left: 20px; top: 8px;"></div>
+                <div class="star size-1" style="left: 38px; top: -3px;"></div>
+            </div>
+            
+            <div class="constellation aquarius" style="left: 90%; top: 35%;">
+                <div class="star size-2" style="left: 0; top: 0;"></div>
+                <div class="star size-1" style="left: 12px; top: 15px;"></div>
+                <div class="star size-2" style="left: 28px; top: 5px;"></div>
+            </div>
+            
+            <div class="constellation pisces" style="left: 45%; top: 5%;">
+                <div class="star size-1" style="left: 0; top: 0;"></div>
+                <div class="star size-2" style="left: 25px; top: 8px;"></div>
+                <div class="star size-1" style="left: 45px; top: -2px;"></div>
+            </div>
+            
+            <div class="constellation cygnus" style="left: 35%; top: 80%;">
+                <div class="star size-2" style="left: 0; top: 0;"></div>
+                <div class="star size-3" style="left: 18px; top: 12px;"></div>
+                <div class="star size-1" style="left: 35px; top: 3px;"></div>
+                <div class="star size-2" style="left: 50px; top: 15px;"></div>
+            </div>
+            
+            <div class="constellation perseus" style="left: 12%; top: 8%;">
+                <div class="star size-1" style="left: 0; top: 0;"></div>
+                <div class="star size-2" style="left: 20px; top: 10px;"></div>
+                <div class="star size-1" style="left: 35px; top: 2px;"></div>
+            </div>
+            
+            <div class="constellation aquila" style="left: 88%; top: 75%;">
+                <div class="star size-2" style="left: 0; top: 0;"></div>
+                <div class="star size-1" style="left: 15px; top: 12px;"></div>
+                <div class="star size-2" style="left: 30px; top: -5px;"></div>
+            </div>
+            
+            <div class="constellation crux" style="left: 70%; top: 8%;">
+                <div class="star size-1" style="left: 0; top: 0;"></div>
+                <div class="star size-2" style="left: 12px; top: 8px;"></div>
+                <div class="star size-1" style="left: 8px; top: 16px;"></div>
+                <div class="star size-1" style="left: 20px; top: 4px;"></div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto fade-in">
+                <!-- Hero Logo（可选） -->
+                <div class="flex justify-center mb-8">
+                    <div class="w-20 h-20 relative p-2">
+                        <img src="assets/images/brain-logo.png" alt="小脑浏览器" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300 filter drop-shadow-lg" />
+                    </div>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+                    智能搜索
+                    <span class="text-gradient block">新时代</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed">
+                    为你找寻一切线索<br>
+                    
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#download" class="btn-primary text-white text-lg px-8 py-4 rounded-2xl font-medium">
+                        立即下载
+                    </a>
+                    <a href="#guide" class="bg-gray-100 hover:bg-gray-200 text-gray-900 text-lg px-8 py-4 rounded-2xl font-medium transition-all">
+                        了解更多
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    重新定义浏览体验
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    六大核心功能，打造前所未有的智能浏览体验
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-apple text-center group">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">AI智能助手</h3>
+                    <p class="text-gray-600 leading-relaxed">内置强大的AI助手，让浏览更智能，搜索更精准</p>
+                </div>
+
+                <div class="card-apple text-center group">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">对话式管理</h3>
+                    <p class="text-gray-600 leading-relaxed">通过自然对话管理书签、历史记录和收藏夹</p>
+                </div>
+
+                <div class="card-apple text-center group">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">手势管理</h3>
+                    <p class="text-gray-600 leading-relaxed">直观的手势操作，让浏览体验更加流畅便捷</p>
+                </div>
+
+                <div class="card-apple text-center group">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">多平台聚合</h3>
+                    <p class="text-gray-600 leading-relaxed">整合多个平台内容，一站式获取所需信息</p>
+                </div>
+
+                <div class="card-apple text-center group">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">快速查询</h3>
+                    <p class="text-gray-600 leading-relaxed">毫秒级搜索响应，找到你想要的一切</p>
+                </div>
+
+                <div class="card-apple text-center group">
+                    <div class="w-16 h-16 feature-icon rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">小组件查询</h3>
+                    <p class="text-gray-600 leading-relaxed">桌面小组件，一键快速查询和访问常用功能</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <a href="#guide" class="btn-primary text-white text-lg px-8 py-4 rounded-2xl font-medium">
+                    探索所有功能
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Guide Section -->
+    <section id="guide" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    🧠 小脑软件用户指南
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    欢迎来到你的数字大脑！嘿，朋友！👋 想象一下，如果你的手机有一颗聪明的大脑，能帮你搜索全网、和AI聊天、管理应用，还能变身超级浏览器，那会是什么样？恭喜你，"小脑"就是这样一个神奇的存在！
+                </p>
+            </div>
+
+            <!-- Feature Guides -->
+            <div class="space-y-16">
+                <!-- 聚合搜索 -->
+                <div class="card-apple">
+                    <div class="flex items-center mb-6">
+                        <div class="text-4xl mr-4">🔍</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">功能一：聚合搜索神器</h3>
+                            <p class="text-primary-600 font-medium">一键搜遍全网，再也不用切换App啦！</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">还在为了搜个东西要打开N个App而烦恼吗？小脑的聚合搜索功能就像是给你配了个全能助理！</p>
+                    
+                    <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                        <h4 class="font-bold text-gray-900 mb-4">🎯 怎么用：</h4>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">1.</span>在搜索框输入关键词（比如"好吃的火锅"）</li>
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">2.</span>点击搜索按钮，坐等奇迹发生</li>
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">3.</span>哇塞！B站、小红书、知乎、抖音...所有平台的结果一下子都出来了</li>
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">4.</span>看中哪个就点哪个，直接跳转到对应App</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-primary-50 border-l-4 border-primary-400 p-4">
+                        <p class="text-primary-800"><strong>💡 小贴士：</strong>想搜特定平台？没问题！点击平台图标，精准搜索更高效。就像点菜一样简单～</p>
+                    </div>
+                </div>
+
+                <!-- AI对话助手 -->
+                <div class="card-apple">
+                    <div class="flex items-center mb-6">
+                        <div class="text-4xl mr-4">🤖</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">功能二：AI智能对话助手</h3>
+                            <p class="text-primary-600 font-medium">你的贴身AI顾问团，24小时在线！</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">一个AI不够用？小脑给你准备了一整个AI天团！DeepSeek、ChatGPT、Kimi、豆包...想聊谁就聊谁！</p>
+                    
+                    <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                        <h4 class="font-bold text-gray-900 mb-4">🎯 怎么用：</h4>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">1.</span>点击AI对话tab，选择你喜欢的AI助手</li>
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">2.</span>输入问题，比如"帮我写个周报"、"推荐个好看的电影"</li>
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">3.</span>AI秒回复，而且还支持连续对话哦</li>
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">4.</span>所有聊天记录都会保存，方便回顾</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-primary-50 border-l-4 border-primary-400 p-4">
+                        <p class="text-primary-800"><strong>💡 小贴士：</strong>不同AI有不同特长，DeepSeek适合编程问题，ChatGPT擅长创意写作，选对AI事半功倍！</p>
+                    </div>
+                </div>
+
+                <!-- 其他功能简述 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-apple text-center">
+                        <div class="text-4xl mb-4">🌐</div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">内置超级浏览器</h4>
+                        <p class="text-gray-600 text-sm">告别切换App的烦恼，一站式浏览体验</p>
+                    </div>
+                    <div class="card-apple text-center">
+                        <div class="text-4xl mb-4">📱</div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">桌面小组件魔法</h4>
+                        <p class="text-gray-600 text-sm">把小脑的超能力直接放到桌面</p>
+                    </div>
+                    <div class="card-apple text-center">
+                        <div class="text-4xl mb-4">⚙️</div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">个性化设置中心</h4>
+                        <p class="text-gray-600 text-sm">让小脑更懂你的心</p>
+                    </div>
+                </div>
+
+                <!-- 开始使用 -->
+                <div class="card-apple bg-gradient-to-br from-primary-500 to-primary-600 text-white text-center">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h3 class="text-2xl font-bold mb-4">开始你的小脑之旅</h3>
+                    <p class="text-primary-100 mb-6">现在就打开小脑，试试搜索一个你感兴趣的话题，或者问问AI今天的好心情从哪里来。相信我，用过小脑后，你会发现原来手机可以这么聪明！</p>
+                    <p class="text-primary-200 text-sm">小脑团队 ❤️ 为更高效的数字生活而生</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    ❓ 常见问题 FAQ
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    查找您关心的问题解答，如果没有找到您需要的信息，欢迎联系我们的客服团队
+                </p>
+            </div>
+
+            <!-- FAQ Categories -->
+            <div class="space-y-12">
+                <!-- 搜索相关 -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <span class="text-3xl mr-3">🔍</span>搜索相关
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="card-apple">
+                            <h4 class="font-bold text-gray-900 mb-2">Q1：为什么搜索结果显示不全？</h4>
+                            <p class="text-gray-600">搜索结果取决于各个平台的内容和网络状况。如果某个平台结果较少，可能是该平台对搜索关键词的内容覆盖有限，或者网络连接不稳定。建议更换关键词或检查网络连接。</p>
+                        </div>
+                        <div class="card-apple">
+                            <h4 class="font-bold text-gray-900 mb-2">Q2：可以同时搜索海外平台吗？</h4>
+                            <p class="text-gray-600">目前小脑主要集成了国内主流平台（B站、知乎、小红书等）。海外平台的集成在我们的开发计划中，敬请期待后续版本更新。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI对话相关 -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <span class="text-3xl mr-3">🤖</span>AI对话相关
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="card-apple">
+                            <h4 class="font-bold text-gray-900 mb-2">Q4：AI助手不回复怎么办？</h4>
+                            <div class="text-gray-600">
+                                <p class="mb-2">请检查以下几点：</p>
+                                <ul class="list-disc list-inside space-y-1 ml-4">
+                                    <li>网络连接是否正常</li>
+                                    <li>是否配置了正确的API密钥</li>
+                                    <li>API服务是否有余额或使用限制</li>
+                                    <li>尝试切换到其他AI助手</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-apple">
+                            <h4 class="font-bold text-gray-900 mb-2">Q6：哪个AI助手最好用？</h4>
+                            <div class="text-gray-600">
+                                <p class="mb-2">这取决于你的具体需求：</p>
+                                <ul class="list-disc list-inside space-y-1 ml-4">
+                                    <li>DeepSeek：编程和技术问题</li>
+                                    <li>ChatGPT：创意写作和通用对话</li>
+                                    <li>Kimi：文档处理和长文本分析</li>
+                                    <li>豆包：中文对话和本土化服务</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技术问题 -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <span class="text-3xl mr-3">🔧</span>技术问题
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="card-apple">
+                            <h4 class="font-bold text-gray-900 mb-2">Q16：应用闪退怎么办？</h4>
+                            <div class="text-gray-600">
+                                <p class="mb-2">请尝试：</p>
+                                <ul class="list-disc list-inside space-y-1 ml-4">
+                                    <li>强制关闭应用重新打开</li>
+                                    <li>重启设备</li>
+                                    <li>检查iOS系统版本是否支持</li>
+                                    <li>卸载重装应用（注意备份重要数据）</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-apple">
+                            <h4 class="font-bold text-gray-900 mb-2">Q18：如何联系技术支持？</h4>
+                            <div class="text-gray-600">
+                                <p class="mb-2">如遇到问题，可通过以下方式联系我们：</p>
+                                <ul class="list-disc list-inside space-y-1 ml-4">
+                                    <li>应用内反馈功能</li>
+                                    <li>邮箱：support@brainapp.com</li>
+                                    <li>官网在线客服</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 使用技巧 -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <span class="text-3xl mr-3">💡</span>使用技巧
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card-apple bg-gradient-to-br from-blue-50 to-blue-100">
+                            <h4 class="font-bold text-gray-900 mb-2">Q19：有什么隐藏功能吗？</h4>
+                            <div class="text-gray-600 text-sm">
+                                <p class="mb-2">试试这些小技巧：</p>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>长按应用图标查看快捷操作</li>
+                                    <li>搜索框支持语音输入</li>
+                                    <li>双击可快速返回顶部</li>
+                                    <li>左滑可快速添加书签</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-apple bg-gradient-to-br from-green-50 to-green-100">
+                            <h4 class="font-bold text-gray-900 mb-2">Q20：如何提升使用效率？</h4>
+                            <div class="text-gray-600 text-sm">
+                                <p class="mb-2">建议：</p>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>配置常用的桌面小组件</li>
+                                    <li>为不同场景配置专属AI助手</li>
+                                    <li>善用书签管理常访问的网站</li>
+                                    <li>定期整理搜索历史和对话记录</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support CTA -->
+            <div class="mt-16 text-center">
+                <div class="card-apple bg-gradient-to-br from-primary-500 to-primary-600 text-white">
+                    <h3 class="text-2xl font-bold mb-4">还有其他问题？</h3>
+                    <p class="text-primary-100 mb-6">小脑团队始终致力于为用户提供更好的体验，如有其他问题欢迎随时联系我们！</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="bg-white text-primary-600 hover:bg-gray-100 font-medium py-3 px-6 rounded-2xl transition-all">
+                            联系客服
+                        </button>
+                        <button class="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-medium py-3 px-6 rounded-2xl transition-all">
+                            查看更多FAQ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="py-24 bg-gradient-to-br from-primary-50 to-primary-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    开启智能浏览之旅
+                </h2>
+                <p class="text-xl text-gray-600 mb-12 leading-relaxed">
+                    支持 iOS 和 Android 平台，让每一次浏览都充满智慧
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="btn-primary text-white text-lg px-8 py-4 rounded-2xl font-medium flex items-center space-x-2">
+                        <span>🍎</span>
+                        <span>App Store 下载</span>
+                    </button>
+                    <button class="btn-primary text-white text-lg px-8 py-4 rounded-2xl font-medium flex items-center space-x-2">
+                        <span>🤖</span>
+                        <span>Google Play 下载</span>
+                    </button>
+                </div>
+
+                <p class="text-sm text-gray-500 mt-8">
+                    免费下载，无广告，隐私保护
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2 md:col-span-1">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <!-- Logo图标 -->
+                        <div class="w-8 h-8 relative">
+                            <img src="assets/images/brain-logo.png" alt="小脑浏览器" class="w-full h-full object-contain" />
+                        </div>
+                        <span class="text-xl font-semibold text-gray-900">小脑</span>
+                    </div>
+                    <p class="text-sm text-gray-600 max-w-xs">
+                        智能浏览的新时代，我们为你找寻一切线索。
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-900 mb-4">产品</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">功能特色</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">下载</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">系统要求</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-900 mb-4">支持</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#guide" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">用户指南</a></li>
+                        <li><a href="#faq" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">常见问题</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-900 mb-4">公司</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">关于我们</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">隐私政策</a></li>
+                        <li><a href="#" class="text-sm text-gray-600 hover:text-primary-600 transition-colors">服务条款</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <div class="text-center text-sm text-gray-500">
+                    © 2024 小脑浏览器. 保留所有权利.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // 观察所有卡片元素
+        document.querySelectorAll('.card-apple').forEach(card => {
+            observer.observe(card);
+        });
+        
+        // 大脑形星辰系统 - 完全重构版
+        function createBrainStarSystem() {
+            const neuralBg = document.querySelector('.neural-bg');
+            if (!neuralBg) return;
+            
+            // 精确的俯瞰大脑区域坐标定义（左右半球分明）
+            const brainRegions = {
+                // 左半球（逻辑思维区域）
+                leftFrontal: { x: 0.25, y: 0.35, radius: 0.12, hemisphere: 'left', name: '左额叶逻辑区' },
+                leftParietal: { x: 0.20, y: 0.50, radius: 0.10, hemisphere: 'left', name: '左顶叶感知区' },
+                leftTemporal: { x: 0.15, y: 0.65, radius: 0.09, hemisphere: 'left', name: '左颞叶语言区' },
+                leftOccipital: { x: 0.30, y: 0.75, radius: 0.08, hemisphere: 'left', name: '左枕叶视觉区' },
+                leftMotor: { x: 0.35, y: 0.40, radius: 0.07, hemisphere: 'left', name: '左运动皮质' },
+                
+                // 右半球（创意思维区域）
+                rightFrontal: { x: 0.75, y: 0.35, radius: 0.12, hemisphere: 'right', name: '右额叶创意区' },
+                rightParietal: { x: 0.80, y: 0.50, radius: 0.10, hemisphere: 'right', name: '右顶叶空间区' },
+                rightTemporal: { x: 0.85, y: 0.65, radius: 0.09, hemisphere: 'right', name: '右颞叶艺术区' },
+                rightOccipital: { x: 0.70, y: 0.75, radius: 0.08, hemisphere: 'right', name: '右枕叶形状区' },
+                rightMotor: { x: 0.65, y: 0.40, radius: 0.07, hemisphere: 'right', name: '右运动皮质' },
+                
+                // 中心区域（连接左右半球）
+                corpus: { x: 0.50, y: 0.45, radius: 0.06, hemisphere: 'center', name: '脑梁连接区' },
+                hippocampus: { x: 0.50, y: 0.55, radius: 0.08, hemisphere: 'center', name: '海马体记忆中心' },
+                thalamus: { x: 0.50, y: 0.35, radius: 0.05, hemisphere: 'center', name: '丘脑中继站' },
+                
+                // 后部区域
+                cerebellum: { x: 0.50, y: 0.80, radius: 0.12, hemisphere: 'center', name: '小脑平衡中心' }
+            };
+            
+            // 创建大脑区域标识
+            Object.entries(brainRegions).forEach(([key, region]) => {
+                const regionDiv = document.createElement('div');
+                regionDiv.className = 'brain-region';
+                
+                // 根据半球添加不同样式
+                if (region.hemisphere === 'left') {
+                    regionDiv.classList.add('left-hemisphere');
+                } else if (region.hemisphere === 'right') {
+                    regionDiv.classList.add('right-hemisphere');
+                }
+                
+                regionDiv.style.left = (region.x * 100) + '%';
+                regionDiv.style.top = (region.y * 100) + '%';
+                regionDiv.style.width = (region.radius * 200) + 'px';
+                regionDiv.style.height = (region.radius * 200) + 'px';
+                regionDiv.style.marginLeft = -(region.radius * 100) + 'px';
+                regionDiv.style.marginTop = -(region.radius * 100) + 'px';
+                regionDiv.style.animationDelay = (Math.random() * 8) + 's';
+                regionDiv.title = region.name; // 添加提示信息
+                neuralBg.appendChild(regionDiv);
+            });
+            
+            // 智能随机星辰生成（强化左右半球差异）
+            function createIntelligentStar() {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // 85%概率在大脑区域内，15%在外围
+                let x, y, hemisphere = null;
+                
+                if (Math.random() < 0.85) {
+                    // 大脑区域内
+                    const regions = Object.values(brainRegions);
+                    const region = regions[Math.floor(Math.random() * regions.length)];
+                    
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = Math.random() * region.radius * 0.85;
+                    x = (region.x + Math.cos(angle) * distance) * 100;
+                    y = (region.y + Math.sin(angle) * distance) * 100;
+                    hemisphere = region.hemisphere;
+                } else {
+                    // 外围星辰（但仍遵循大脑轮廓）
+                    x = Math.random() * 100;
+                    y = Math.random() * 100;
+                    
+                    // 判断在哪个半球
+                    if (x < 45) hemisphere = 'left';
+                    else if (x > 55) hemisphere = 'right';
+                    else hemisphere = 'center';
+                }
+                
+                // 根据半球设置不同的星辰特性
+                let starClass = 'star';
+                if (hemisphere === 'left') {
+                    // 左半球：蓝色调，表示逻辑思维
+                    star.style.background = 'rgba(59, 130, 246, 0.9)';
+                    star.style.boxShadow = '0 0 8px rgba(59, 130, 246, 0.8), 0 0 15px rgba(96, 165, 250, 0.5)';
+                } else if (hemisphere === 'right') {
+                    // 右半球：紫色调，表示创意思维
+                    star.style.background = 'rgba(168, 85, 247, 0.9)';
+                    star.style.boxShadow = '0 0 8px rgba(168, 85, 247, 0.8), 0 0 15px rgba(147, 51, 234, 0.5)';
+                } else {
+                    // 中心区域：白色，表示连接区
+                    star.style.background = 'rgba(255, 255, 255, 0.95)';
+                    star.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.8), 0 0 18px rgba(200, 200, 255, 0.4)';
+                }
+                
+                // 随机大小（增加size-5）
+                const sizes = ['size-1', 'size-2', 'size-3', 'size-4', 'size-5'];
+                const weights = [0.25, 0.25, 0.2, 0.15, 0.15]; // 更均匀的大小分布
+                const random = Math.random();
+                let size = sizes[0];
+                let cumulative = 0;
+                
+                for (let i = 0; i < weights.length; i++) {
+                    cumulative += weights[i];
+                    if (random < cumulative) {
+                        size = sizes[i];
+                        break;
+                    }
+                }
+                
+                star.classList.add(size);
+                
+                // 大脑区域内的星辰更亮
+                if (hemisphere && hemisphere !== 'center' && Math.random() < 0.4) {
+                    star.classList.add('bright-star');
+                }
+                
+                // 随机闪烁延迟和周期
+                const twinkleDelay = Math.random() * 6;
+                const twinkleDuration = 3 + Math.random() * 4;
+                
+                star.style.left = x + '%';
+                star.style.top = y + '%';
+                star.style.animationDelay = twinkleDelay + 's';
+                star.style.animationDuration = twinkleDuration + 's';
+                star.style.opacity = '0';
+                star.style.transition = 'opacity 3s ease-in-out';
+                star.dataset.hemisphere = hemisphere || 'none';
+                
+                neuralBg.appendChild(star);
+                
+                // 淡入效果
+                setTimeout(() => {
+                    star.style.opacity = '1';
+                }, 200);
+                
+                // 生命周期：10-20秒（更长一些）
+                const lifetime = Math.random() * 10000 + 10000;
+                setTimeout(() => {
+                    star.style.opacity = '0';
+                    setTimeout(() => {
+                        if (star.parentNode) {
+                            star.parentNode.removeChild(star);
+                        }
+                    }, 3000);
+                }, lifetime);
+            }
+            
+            // 真实流星系统 - 模拟真实天体运动
+            function createRealisticMeteor() {
+                const meteor = document.createElement('div');
+                meteor.className = 'meteor';
+                
+                // 随机选择四种不同的轨迹动画
+                const animations = [
+                    'realistic-meteor-1 4s ease-out forwards',
+                    'realistic-meteor-2 4.5s ease-out forwards', 
+                    'realistic-meteor-3 3.8s ease-out forwards',
+                    'realistic-meteor-4 4.2s ease-out forwards'
+                ];
+                
+                const selectedAnimation = animations[Math.floor(Math.random() * animations.length)];
+                
+                // 随机起始位置（在屏幕边缘）
+                const startPositions = [
+                    { x: -50, y: Math.random() * window.innerHeight * 0.3 }, // 左上
+                    { x: window.innerWidth + 50, y: Math.random() * window.innerHeight * 0.3 }, // 右上
+                    { x: Math.random() * window.innerWidth * 0.3, y: -50 }, // 上左
+                    { x: Math.random() * window.innerWidth * 0.7 + window.innerWidth * 0.3, y: window.innerHeight + 50 } // 下右
+                ];
+                
+                const startPos = startPositions[Math.floor(Math.random() * startPositions.length)];
+                
+                meteor.style.left = startPos.x + 'px';
+                meteor.style.top = startPos.y + 'px';
+                meteor.style.animation = selectedAnimation;
+                
+                // 添加尾迹效果
+                meteor.addEventListener('animationstart', () => {
+                    meteor.style.opacity = '1';
+                    if (meteor.querySelector('::after')) {
+                        meteor.style.setProperty('--tail-opacity', '1');
+                    }
+                });
+                
+                neuralBg.appendChild(meteor);
+                
+                // 4.5秒后移除
+                setTimeout(() => {
+                    if (meteor.parentNode) {
+                        meteor.parentNode.removeChild(meteor);
+                    }
+                }, 4500);
+            }
+            
+            // 智能神经脉冲系统
+            function createIntelligentNeuralPulse() {
+                const regions = Object.entries(brainRegions);
+                const [regionName, region] = regions[Math.floor(Math.random() * regions.length)];
+                
+                // 激活该区域的所有星辰
+                const stars = document.querySelectorAll('.star');
+                const regionStars = [];
+                
+                stars.forEach(star => {
+                    const rect = star.getBoundingClientRect();
+                    const parentRect = neuralBg.getBoundingClientRect();
+                    const starX = (rect.left - parentRect.left) / parentRect.width;
+                    const starY = (rect.top - parentRect.top) / parentRect.height;
+                    
+                    const distance = Math.sqrt(Math.pow(starX - region.x, 2) + Math.pow(starY - region.y, 2));
+                    
+                    if (distance < region.radius * 1.2) {
+                        regionStars.push(star);
+                    }
+                });
+                
+                // 逐个激活星辰
+                regionStars.forEach((star, index) => {
+                    setTimeout(() => {
+                        star.style.filter = 'brightness(4) drop-shadow(0 0 15px rgba(96, 165, 250, 1)) drop-shadow(0 0 25px rgba(168, 85, 247, 0.8))';
+                        star.style.transform = 'scale(3.5) rotate(180deg)';
+                        star.style.zIndex = '100';
+                        
+                        setTimeout(() => {
+                            star.style.filter = '';
+                            star.style.transform = '';
+                            star.style.zIndex = '';
+                        }, 2000);
+                    }, index * 150);
+                });
+                
+                // 区域脉冲效果
+                const brainRegionDivs = document.querySelectorAll('.brain-region');
+                brainRegionDivs.forEach((regionDiv, index) => {
+                    if (index < regions.length) {
+                        regionDiv.style.opacity = '0.3';
+                        regionDiv.style.background = 'radial-gradient(circle, rgba(96, 165, 250, 0.6) 0%, rgba(168, 85, 247, 0.4) 50%, transparent 80%)';
+                        regionDiv.style.transform = 'scale(1.8)';
+                        
+                        setTimeout(() => {
+                            regionDiv.style.opacity = '0.1';
+                            regionDiv.style.background = 'radial-gradient(circle, rgba(96, 165, 250, 0.3) 0%, transparent 70%)';
+                            regionDiv.style.transform = 'scale(1)';
+                        }, 3000);
+                    }
+                });
+            }
+            
+            // 智能星座联动系统
+            function createAdvancedConstellationSync() {
+                const constellations = document.querySelectorAll('.constellation');
+                const brainConstellations = ['leo', 'orion', 'ursa-major', 'andromeda'];
+                const allConstellations = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces', 'ursa-major', 'orion', 'cygnus', 'andromeda', 'perseus', 'aquila', 'crux'];
+                
+                // 随机选择一个主要星座
+                const mainConstellation = allConstellations[Math.floor(Math.random() * allConstellations.length)];
+                
+                constellations.forEach(constellation => {
+                    if (constellation.classList.contains(mainConstellation)) {
+                        // 主星座激活
+                        constellation.style.filter = 'brightness(3) drop-shadow(0 0 20px rgba(168, 85, 247, 1)) drop-shadow(0 0 40px rgba(96, 165, 250, 0.8))';
+                        constellation.style.transform = 'scale(1.5) rotate(45deg)';
+                        constellation.style.zIndex = '200';
+                        
+                        // 关联激活其他星座
+                        setTimeout(() => {
+                            const relatedConstellations = Array.from(constellations).filter(c => 
+                                c !== constellation && Math.random() < 0.4
+                            );
+                            
+                            relatedConstellations.forEach((related, index) => {
+                                setTimeout(() => {
+                                    related.style.filter = 'brightness(2) drop-shadow(0 0 15px rgba(168, 85, 247, 0.7))';
+                                    related.style.transform = 'scale(1.2) rotate(-30deg)';
+                                    
+                                    setTimeout(() => {
+                                        related.style.filter = '';
+                                        related.style.transform = '';
+                                    }, 1800);
+                                }, index * 300);
+                            });
+                        }, 500);
+                        
+                        setTimeout(() => {
+                            constellation.style.filter = '';
+                            constellation.style.transform = '';
+                            constellation.style.zIndex = '';
+                        }, 3000);
+                    }
+                });
+            }
+            
+            // 初始化更多星辰以强化大脑形状
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => createIntelligentStar(), i * 300);
+            }
+            
+            // 定时执行各种效果 - 优化时间间隔
+            const starInterval = setInterval(createIntelligentStar, 2000); // 更频繁的星辰生成
+            const meteorInterval = setInterval(createRealisticMeteor, 8000); // 真实流星
+            const pulseInterval = setInterval(createIntelligentNeuralPulse, 8000); // 神经脉冲
+            const constellationInterval = setInterval(createAdvancedConstellationSync, 10000); // 星座联动
+            
+            // 初始化延迟执行
+            setTimeout(createRealisticMeteor, 2000);
+            setTimeout(createIntelligentNeuralPulse, 4000);
+            setTimeout(createAdvancedConstellationSync, 6000);
+            
+            // 返回清理函数
+            return () => {
+                clearInterval(starInterval);
+                clearInterval(meteorInterval);
+                clearInterval(pulseInterval);
+                clearInterval(constellationInterval);
+            };
+        }
+        
+        // 初始化大脑星辰系统
+        createBrainStarSystem();
+    </script>
+</body>
+</html>
