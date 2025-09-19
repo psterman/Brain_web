@@ -1,0 +1,383 @@
+/* 动画演示样式 */
+
+/* 动画演示容器 */
+.animation-demo-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, 
+        rgba(var(--primary-rgb), 0.05) 0%, 
+        rgba(var(--secondary-rgb), 0.05) 100%);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 20px 0;
+    border: 1px solid rgba(var(--primary-rgb), 0.1);
+}
+
+[data-theme="dark"] .animation-demo-container {
+    background: linear-gradient(135deg, 
+        rgba(var(--primary-rgb), 0.08) 0%, 
+        rgba(var(--secondary-rgb), 0.08) 100%);
+    border-color: rgba(var(--primary-rgb), 0.15);
+}
+
+/* 动画场景 */
+.animation-scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animation-scene.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 动画元素 */
+.animation-element {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    margin: 8px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateX(-50px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .animation-element {
+    background: rgba(30, 30, 30, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.animation-element.animate-in {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.animation-element-icon {
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+}
+
+.animation-element-content {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+/* 特殊动画效果 */
+
+/* 打字机效果 */
+.typewriter-effect {
+    overflow: hidden;
+    border-right: 2px solid var(--primary-color);
+    white-space: nowrap;
+    animation: typewriter 1s steps(20) forwards, blink-cursor 1s infinite;
+}
+
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-cursor {
+    0%, 50% { border-color: var(--primary-color); }
+    51%, 100% { border-color: transparent; }
+}
+
+/* 思考点点效果 */
+.thinking-dots {
+    position: relative;
+}
+
+.thinking-dots::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: thinking-dots 1.5s infinite;
+}
+
+@keyframes thinking-dots {
+    0%, 20% {
+        box-shadow: 0 0 0 var(--primary-color), 8px 0 0 transparent, 16px 0 0 transparent;
+    }
+    40% {
+        box-shadow: 0 0 0 transparent, 8px 0 0 var(--primary-color), 16px 0 0 transparent;
+    }
+    60%, 100% {
+        box-shadow: 0 0 0 transparent, 8px 0 0 transparent, 16px 0 0 var(--primary-color);
+    }
+}
+
+/* 脉冲效果 */
+.pulse-effect {
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(var(--primary-rgb), 0);
+        transform: scale(1.05);
+    }
+}
+
+/* 网格出现效果 */
+.grid-appear {
+    animation: grid-appear 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes grid-appear {
+    from {
+        transform: scale(0.8) rotateY(90deg);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+/* 滑入效果 */
+.slide-in-effect {
+    animation: slide-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* 弹跳效果 */
+.bounce-in-effect {
+    animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes bounce-in {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 扫描效果 */
+.scan-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.scan-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(var(--primary-rgb), 0.3), 
+        transparent);
+    animation: scan-line 2s infinite;
+}
+
+@keyframes scan-line {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* 高亮选择效果 */
+.highlight-selection {
+    position: relative;
+    animation: highlight-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes highlight-pulse {
+    from {
+        box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4);
+    }
+    to {
+        box-shadow: 0 0 0 8px rgba(var(--primary-rgb), 0.1);
+    }
+}
+
+/* 并行线条效果 */
+.parallel-lines {
+    position: relative;
+}
+
+.parallel-lines::before,
+.parallel-lines::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background: var(--primary-color);
+    animation: parallel-move 1s infinite;
+}
+
+.parallel-lines::before {
+    left: -40px;
+    animation-delay: 0s;
+}
+
+.parallel-lines::after {
+    right: -40px;
+    animation-delay: 0.5s;
+}
+
+@keyframes parallel-move {
+    0%, 100% { transform: translateY(-50%) scaleX(0); }
+    50% { transform: translateY(-50%) scaleX(1); }
+}
+
+/* 数据可视化效果 */
+.data-visualization {
+    position: relative;
+}
+
+.data-visualization::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--primary-color) 0%, 
+        var(--secondary-color) 50%, 
+        var(--primary-color) 100%);
+    border-radius: 2px;
+    animation: data-flow 2s infinite;
+}
+
+@keyframes data-flow {
+    0%, 100% { opacity: 0.3; transform: translateX(-50%) scaleX(0.5); }
+    50% { opacity: 1; transform: translateX(-50%) scaleX(1); }
+}
+
+/* 启动效果 */
+.launch-effect {
+    animation: launch-rocket 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes launch-rocket {
+    0% {
+        transform: scale(1) translateY(0);
+    }
+    50% {
+        transform: scale(1.1) translateY(-5px);
+    }
+    100% {
+        transform: scale(0.9) translateY(-20px);
+        opacity: 0.7;
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .animation-demo-container {
+        height: 160px;
+        margin: 16px 0;
+    }
+    
+    .animation-element {
+        padding: 10px 16px;
+        gap: 10px;
+        margin: 6px 0;
+    }
+    
+    .animation-element-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 18px;
+    }
+    
+    .animation-element-content {
+        font-size: 13px;
+    }
+}
+
+/* 暂停/播放控制 */
+.animation-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.animation-control-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.animation-control-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+}
+
+[data-theme="dark"] .animation-control-btn {
+    background: rgba(30, 30, 30, 0.9);
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .animation-control-btn:hover {
+    background: rgba(30, 30, 30, 1);
+}
