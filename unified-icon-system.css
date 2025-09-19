@@ -1,0 +1,358 @@
+/**
+ * 统一图标系统 - 终极解决方案
+ * 替代所有冲突的图标CSS文件
+ * 解决DeepSeek图标问题和样式优先级混乱
+ */
+
+/* ===== 基础重置和清理 ===== */
+.ai-avatar,
+.ai-platform-icon,
+.ai-tab-icon,
+.phone-tab-icon,
+.app-icon,
+.engine-icon {
+    /* 清除所有可能的干扰内容 */
+    font-size: 0;
+    text-indent: -9999px;
+    overflow: hidden;
+    color: transparent;
+    line-height: 0;
+    
+    /* 清除内部元素和伪元素 */
+    position: relative;
+}
+
+/* 强制隐藏所有内部元素（排除手机tab图标） */
+.ai-avatar *,
+.ai-platform-icon *,
+.ai-tab-icon *,
+.app-icon *,
+.engine-icon * {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+}
+
+/* 手机tab图标需要显示内容，不应用隐藏规则 */
+.phone-tab-icon {
+    font-size: 16px !important;
+    text-indent: 0 !important;
+    color: inherit !important;
+    line-height: 1 !important;
+    overflow: visible !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 清除所有伪元素 */
+.ai-avatar::before,
+.ai-avatar::after,
+.ai-platform-icon::before,
+.ai-platform-icon::after,
+.ai-tab-icon::before,
+.ai-tab-icon::after {
+    display: none;
+    content: none;
+}
+
+/* 特别处理ai-brain-icon元素 */
+.ai-avatar .ai-brain-icon,
+.ai-platform-icon .ai-brain-icon,
+.ai-tab-icon .ai-brain-icon {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    z-index: -1;
+}
+
+/* ===== AI头像基础样式 ===== */
+.ai-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.ai-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== AI平台图标基础样式 ===== */
+.ai-platform-icon,
+.ai-tab-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 8px;
+    transition: transform 0.2s ease;
+}
+
+.ai-platform-icon:hover,
+.ai-tab-icon:hover {
+    transform: scale(1.1);
+}
+
+/* ===== 手机标签页图标 ===== */
+.phone-tab-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* ===== DeepSeek图标 - 统一解决方案 ===== */
+.deepseek-avatar,
+.ai-avatar.deepseek-avatar,
+.ai-platform-icon.deepseek-icon,
+.ai-platform-icon.deepseek,
+.ai-tab-icon.deepseek,
+.phone-tab-icon.deepseek {
+    background-color: #1a1a1a;
+    background-image: url('https://www.google.com/s2/favicons?domain=chat.deepseek.com&sz=64');
+}
+
+/* DeepSeek备用方案 */
+.ai-avatar.deepseek-avatar.fallback,
+.ai-platform-icon.deepseek-icon.fallback,
+.ai-tab-icon.deepseek.fallback {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"%3E%3Ccircle cx="12" cy="12" r="2"/%3E%3Ccircle cx="6" cy="6" r="1.5"/%3E%3Ccircle cx="18" cy="6" r="1.5"/%3E%3Ccircle cx="6" cy="18" r="1.5"/%3E%3Ccircle cx="18" cy="18" r="1.5"/%3E%3Cline x1="7.5" y1="7.5" x2="10" y2="10" stroke="white" stroke-width="1.5"/%3E%3Cline x1="16.5" y1="7.5" x2="14" y2="10" stroke="white" stroke-width="1.5"/%3E%3Cline x1="7.5" y1="16.5" x2="10" y2="14" stroke="white" stroke-width="1.5"/%3E%3Cline x1="16.5" y1="16.5" x2="14" y2="14" stroke="white" stroke-width="1.5"/%3E%3C/svg%3E');
+}
+
+/* ===== Kimi图标 ===== */
+.kimi-avatar,
+.ai-avatar.kimi-avatar,
+.ai-platform-icon.kimi-icon,
+.ai-platform-icon.kimi,
+.ai-tab-icon.kimi,
+.phone-tab-icon.kimi {
+    background-color: #4a90e2;
+    background-image: url('https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=64');
+}
+
+.ai-avatar.kimi-avatar.fallback,
+.ai-platform-icon.kimi-icon.fallback,
+.ai-tab-icon.kimi.fallback {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"%3E%3Cpath d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79Z"/%3E%3Ccircle cx="16" cy="8" r="1"/%3E%3Ccircle cx="14" cy="10" r="0.5"/%3E%3C/svg%3E');
+}
+
+/* ===== ChatGPT图标 ===== */
+.chatgpt-avatar,
+.ai-avatar.chatgpt-avatar,
+.ai-platform-icon.chatgpt-icon,
+.ai-platform-icon.chatgpt,
+.ai-tab-icon.chatgpt,
+.phone-tab-icon.chatgpt {
+    background-color: #10a37f;
+    background-image: url('https://www.google.com/s2/favicons?domain=chat.openai.com&sz=64');
+}
+
+.ai-avatar.chatgpt-avatar.fallback,
+.ai-platform-icon.chatgpt-icon.fallback,
+.ai-tab-icon.chatgpt.fallback {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"%3E%3Cpath d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.078 6.078 0 0 0 6.525 2.9 5.973 5.973 0 0 0 4.233.956 6.066 6.066 0 0 0 6.273-2.035 5.985 5.985 0 0 0 3.997-2.9 6.046 6.046 0 0 0-.743-7.098z"/%3E%3C/svg%3E');
+}
+
+/* ===== 智谱清言图标 ===== */
+.zhipu-avatar,
+.ai-avatar.zhipu-avatar,
+.ai-platform-icon.zhipu-icon,
+.ai-platform-icon.zhipu,
+.ai-tab-icon.zhipu,
+.phone-tab-icon.zhipu {
+    background-color: #6366f1;
+    background-image: url('https://www.google.com/s2/favicons?domain=chatglm.cn&sz=64');
+}
+
+.ai-avatar.zhipu-avatar.fallback,
+.ai-platform-icon.zhipu-icon.fallback,
+.ai-tab-icon.zhipu.fallback {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"%3E%3Cpath d="M12 2L13.09 8.26L20 9L13.09 15.74L12 22L10.91 15.74L4 9L10.91 8.26L12 2Z"/%3E%3C/svg%3E');
+}
+
+/* ===== 豆包图标 ===== */
+.doubao-avatar,
+.ai-avatar.doubao-avatar,
+.ai-platform-icon.doubao-icon,
+.ai-platform-icon.doubao,
+.ai-tab-icon.doubao,
+.phone-tab-icon.doubao {
+    background-color: #ea580c;
+    background-image: url('https://www.google.com/s2/favicons?domain=doubao.com&sz=64');
+}
+
+.ai-avatar.doubao-avatar.fallback,
+.ai-platform-icon.doubao-icon.fallback,
+.ai-tab-icon.doubao.fallback {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"%3E%3Cellipse cx="12" cy="12" rx="6" ry="9"/%3E%3Cpath d="M12 6C14.761 6 17 8.686 17 12S14.761 18 12 18C9.239 18 7 15.314 7 12S9.239 6 12 6Z"/%3E%3Cellipse cx="12" cy="12" rx="2" ry="4"/%3E%3C/svg%3E');
+}
+
+/* ===== Claude图标 ===== */
+.claude-avatar,
+.ai-avatar.claude-avatar,
+.ai-platform-icon.claude-icon,
+.ai-platform-icon.claude,
+.ai-tab-icon.claude,
+.phone-tab-icon.claude {
+    background-color: #f59e0b;
+    background-image: url('https://www.google.com/s2/favicons?domain=claude.ai&sz=64');
+}
+
+.ai-avatar.claude-avatar.fallback,
+.ai-platform-icon.claude-icon.fallback,
+.ai-tab-icon.claude.fallback {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"%3E%3Crect x="6" y="4" width="12" height="16" rx="4"/%3E%3Ccircle cx="10" cy="10" r="1.5"/%3E%3Ccircle cx="14" cy="10" r="1.5"/%3E%3Cpath d="M9 14H15C15 15.6569 13.6569 17 12 17C10.3431 17 9 15.6569 9 14Z"/%3E%3C/svg%3E');
+}
+
+/* ===== 加载状态 ===== */
+.ai-avatar.loading,
+.ai-platform-icon.loading,
+.ai-tab-icon.loading {
+    background-image: none;
+    background-color: #f3f4f6;
+    position: relative;
+}
+
+.ai-avatar.loading::after,
+.ai-platform-icon.loading::after,
+.ai-tab-icon.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #e5e7eb;
+    border-top: 2px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes iconPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* ===== 错误状态 ===== */
+.ai-avatar.error,
+.ai-platform-icon.error,
+.ai-tab-icon.error {
+    background-image: none;
+    background-color: #fef2f2;
+    border-color: #fca5a5;
+}
+
+.ai-avatar.error::after,
+.ai-platform-icon.error::after,
+.ai-tab-icon.error::after {
+    content: '⚠';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ef4444;
+    font-size: 16px;
+}
+
+/* ===== 响应式设计 ===== */
+@media (max-width: 768px) {
+    .ai-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .ai-platform-icon,
+    .ai-tab-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 6px;
+    }
+    
+    .phone-tab-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* ===== 暗色主题适配 ===== */
+[data-theme="dark"] .ai-avatar,
+[data-theme="dark"] .ai-platform-icon,
+[data-theme="dark"] .ai-tab-icon {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== 特殊场景适配 ===== */
+.phone-ai-assistants .ai-avatar,
+.ai-chat-demo .ai-avatar,
+.hero-phone-demo .ai-avatar {
+    width: 36px;
+    height: 36px;
+}
+
+.phone-tabs .phone-tab-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* ===== 图标加载失败处理 ===== */
+.ai-avatar[style*="background-image"]:not([style*="data:"]):not([style*="http"]),
+.ai-platform-icon[style*="background-image"]:not([style*="data:"]):not([style*="http"]),
+.ai-tab-icon[style*="background-image"]:not([style*="data:"]):not([style*="http"]) {
+    background-image: none;
+}
+
+/* ===== 性能优化 ===== */
+.ai-avatar,
+.ai-platform-icon,
+.ai-tab-icon {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* ===== 调试模式 ===== */
+.debug-icons .ai-avatar::after,
+.debug-icons .ai-platform-icon::after,
+.debug-icons .ai-tab-icon::after {
+    content: attr(class);
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    font-size: 10px;
+    color: #666;
+    white-space: nowrap;
+    pointer-events: none;
+}

@@ -1,0 +1,391 @@
+/* 修复版图标系统 - 解决拼接和大小问题 */
+
+/* 重置所有图标样式 */
+.app-icon, .engine-icon, .ai-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background-size: 32px 32px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.app-icon:hover, .engine-icon:hover, .ai-avatar:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 清除所有文字和其他元素 */
+.app-icon *, .engine-icon *, .ai-avatar * {
+    display: none !important;
+}
+
+.app-icon::before, .engine-icon::before, .ai-avatar::before,
+.app-icon::after, .engine-icon::after, .ai-avatar::after {
+    display: none !important;
+}
+
+/* 淘宝图标 */
+.app-icon.taobao {
+    background-image: url('https://img.icons8.com/fluency/48/taobao.png') !important;
+    background-color: #ff6a00 !important;
+}
+
+/* 天猫图标 */
+.app-icon.tmall {
+    background-image: url('https://img.icons8.com/fluency/48/tmall.png') !important;
+    background-color: #ff0036 !important;
+}
+
+/* 拼多多图标 */
+.app-icon.pinduoduo {
+    background-image: url('https://img.icons8.com/fluency/48/pinduoduo.png') !important;
+    background-color: #ff5722 !important;
+}
+
+/* 京东图标 */
+.app-icon.jd {
+    background-image: url('https://img.icons8.com/fluency/48/jd.png') !important;
+    background-color: #e60012 !important;
+}
+
+/* 闲鱼图标 - 使用阿里巴巴相关图标 */
+.app-icon.xianyu {
+    background-image: url('https://img.icons8.com/fluency/48/alibaba.png') !important;
+    background-color: #ffb300 !important;
+}
+
+/* 知乎图标 */
+.app-icon.zhihu {
+    background-image: url('https://img.icons8.com/fluency/48/zhihu.png') !important;
+    background-color: #0084ff !important;
+}
+
+/* 微博图标 */
+.app-icon.weibo {
+    background-image: url('https://img.icons8.com/fluency/48/weibo.png') !important;
+    background-color: #e6162d !important;
+}
+
+/* 微信图标 */
+.app-icon.wechat {
+    background-image: url('https://img.icons8.com/fluency/48/wechat.png') !important;
+    background-color: #07c160 !important;
+}
+
+/* 小红书图标 - 使用相似的社交图标 */
+.app-icon.xiaohongshu {
+    background-image: url('https://img.icons8.com/fluency/48/instagram-new.png') !important;
+    background-color: #ff2442 !important;
+}
+
+/* QQ音乐图标 */
+.app-icon.qq-music {
+    background-image: url('https://img.icons8.com/fluency/48/qq.png') !important;
+    background-color: #31c27c !important;
+}
+
+/* 网易云音乐图标 */
+.app-icon.netease-music {
+    background-image: url('https://img.icons8.com/fluency/48/spotify.png') !important;
+    background-color: #d33a31 !important;
+}
+
+/* 酷我音乐图标 */
+.app-icon.kuwo-music {
+    background-image: url('https://img.icons8.com/fluency/48/music.png') !important;
+    background-color: #ff6b35 !important;
+}
+
+/* 美团图标 */
+.app-icon.meituan {
+    background-image: url('https://img.icons8.com/fluency/48/restaurant.png') !important;
+    background-color: #ffc107 !important;
+}
+
+/* 饿了么图标 */
+.app-icon.eleme {
+    background-image: url('https://img.icons8.com/fluency/48/food-delivery.png') !important;
+    background-color: #0078ff !important;
+}
+
+/* 大众点评图标 */
+.app-icon.dianping {
+    background-image: url('https://img.icons8.com/fluency/48/yelp.png') !important;
+    background-color: #ffb300 !important;
+}
+
+/* B站图标 */
+.app-icon.bilibili {
+    background-image: url('https://img.icons8.com/fluency/48/youtube-play.png') !important;
+    background-color: #fb7299 !important;
+}
+
+/* 抖音图标 */
+.app-icon.douyin {
+    background-image: url('https://img.icons8.com/fluency/48/tiktok.png') !important;
+    background-color: #000000 !important;
+}
+
+/* 搜索引擎图标 */
+
+/* 百度图标 */
+.engine-icon.baidu {
+    background-image: url('https://img.icons8.com/fluency/48/baidu.png') !important;
+    background-color: #2932e1 !important;
+}
+
+/* 搜狗图标 */
+.engine-icon.sogou {
+    background-image: url('https://img.icons8.com/fluency/48/search.png') !important;
+    background-color: #fb6c2c !important;
+}
+
+/* 360搜索图标 */
+.engine-icon.qihoo360 {
+    background-image: url('https://img.icons8.com/fluency/48/360-degrees.png') !important;
+    background-color: #4caf50 !important;
+}
+
+/* 神马搜索图标 */
+.engine-icon.shenma {
+    background-image: url('https://img.icons8.com/fluency/48/search-more.png') !important;
+    background-color: #9c27b0 !important;
+}
+
+/* 中国搜索图标 */
+.engine-icon.chinaso {
+    background-image: url('https://img.icons8.com/fluency/48/china.png') !important;
+    background-color: #f44336 !important;
+}
+
+/* 好搜图标 */
+.engine-icon.haosou {
+    background-image: url('https://img.icons8.com/fluency/48/search-property.png') !important;
+    background-color: #00bcd4 !important;
+}
+
+/* Google图标 */
+.engine-icon.google {
+    background-image: url('https://img.icons8.com/fluency/48/google-logo.png') !important;
+    background-color: #4285f4 !important;
+}
+
+/* Bing图标 */
+.engine-icon.bing {
+    background-image: url('https://img.icons8.com/fluency/48/bing.png') !important;
+    background-color: #0078d4 !important;
+}
+
+/* AI助手图标 - 使用机器人和AI相关图标 */
+
+/* DeepSeek图标 */
+.ai-avatar.deepseek {
+    background-image: url('https://img.icons8.com/fluency/48/brain.png') !important;
+    background-color: #667eea !important;
+}
+
+/* Kimi图标 */
+.ai-avatar.kimi {
+    background-image: url('https://img.icons8.com/fluency/48/robot-2.png') !important;
+    background-color: #f093fb !important;
+}
+
+/* 智谱清言图标 */
+.ai-avatar.zhipu {
+    background-image: url('https://img.icons8.com/fluency/48/artificial-intelligence.png') !important;
+    background-color: #4facfe !important;
+}
+
+/* ChatGPT图标 */
+.ai-avatar.chatgpt {
+    background-image: url('https://img.icons8.com/fluency/48/chatgpt.png') !important;
+    background-color: #10a37f !important;
+}
+
+/* Claude图标 */
+.ai-avatar.claude {
+    background-image: url('https://img.icons8.com/fluency/48/bot.png') !important;
+    background-color: #d97706 !important;
+}
+
+/* 通义千问图标 */
+.ai-avatar.tongyi {
+    background-image: url('https://img.icons8.com/fluency/48/chat-bot.png') !important;
+    background-color: #ff6b35 !important;
+}
+
+/* 文心一言图标 */
+.ai-avatar.wenxin {
+    background-image: url('https://img.icons8.com/fluency/48/assistant.png') !important;
+    background-color: #2932e1 !important;
+}
+
+/* 加载状态 */
+.app-icon.loading, .engine-icon.loading, .ai-avatar.loading {
+    background-image: none !important;
+    background-color: #f0f0f0 !important;
+}
+
+.app-icon.loading::after, .engine-icon.loading::after, .ai-avatar.loading::after {
+    content: '' !important;
+    display: block !important;
+    width: 20px !important;
+    height: 20px !important;
+    border: 2px solid #ddd !important;
+    border-top: 2px solid #666 !important;
+    border-radius: 50% !important;
+    animation: spin 1s linear infinite !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* 错误状态 - 显示备用文字 */
+.app-icon.error, .engine-icon.error, .ai-avatar.error {
+    background-image: none !important;
+    font-weight: 900 !important;
+    color: white !important;
+    font-size: 14px !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.app-icon.error::after, .engine-icon.error::after, .ai-avatar.error::after {
+    display: block !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 10 !important;
+}
+
+/* 错误状态的备用文字 */
+.app-icon.taobao.error::after { content: '淘' !important; }
+.app-icon.tmall.error::after { content: '天' !important; }
+.app-icon.pinduoduo.error::after { content: '拼' !important; }
+.app-icon.jd.error::after { content: '京' !important; }
+.app-icon.xianyu.error::after { content: '闲' !important; }
+.app-icon.zhihu.error::after { content: '知' !important; }
+.app-icon.weibo.error::after { content: '微' !important; }
+.app-icon.wechat.error::after { content: '微' !important; }
+.app-icon.xiaohongshu.error::after { content: '小' !important; }
+.app-icon.qq-music.error::after { content: 'QQ' !important; font-size: 12px !important; }
+.app-icon.netease-music.error::after { content: '网' !important; }
+.app-icon.kuwo-music.error::after { content: '酷' !important; }
+.app-icon.meituan.error::after { content: '美' !important; }
+.app-icon.eleme.error::after { content: '饿' !important; }
+.app-icon.dianping.error::after { content: '大' !important; }
+.app-icon.bilibili.error::after { content: 'B' !important; }
+.app-icon.douyin.error::after { content: '抖' !important; }
+
+.engine-icon.baidu.error::after { content: '百' !important; }
+.engine-icon.sogou.error::after { content: '搜' !important; }
+.engine-icon.qihoo360.error::after { content: '360' !important; font-size: 10px !important; }
+.engine-icon.shenma.error::after { content: '神' !important; }
+.engine-icon.chinaso.error::after { content: '中' !important; }
+.engine-icon.haosou.error::after { content: '好' !important; }
+.engine-icon.google.error::after { content: 'G' !important; }
+.engine-icon.bing.error::after { content: 'B' !important; }
+
+.ai-avatar.deepseek.error::after { content: 'DS' !important; font-size: 10px !important; }
+.ai-avatar.kimi.error::after { content: 'K' !important; }
+.ai-avatar.zhipu.error::after { content: '智' !important; }
+.ai-avatar.chatgpt.error::after { content: 'GPT' !important; font-size: 9px !important; }
+.ai-avatar.claude.error::after { content: 'C' !important; }
+.ai-avatar.tongyi.error::after { content: '通' !important; }
+.ai-avatar.wenxin.error::after { content: '文' !important; }
+
+/* 成功加载状态 */
+.app-icon.loaded, .engine-icon.loaded, .ai-avatar.loaded {
+    animation: iconLoaded 0.3s ease-in-out;
+}
+
+@keyframes iconLoaded {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .app-icon, .engine-icon, .ai-avatar {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 8px !important;
+        background-size: 28px 28px !important;
+    }
+    
+    .app-icon.error, .engine-icon.error, .ai-avatar.error {
+        font-size: 12px !important;
+    }
+    
+    .app-icon.qq-music.error::after {
+        font-size: 10px !important;
+    }
+    
+    .engine-icon.qihoo360.error::after {
+        font-size: 8px !important;
+    }
+    
+    .ai-avatar.deepseek.error::after {
+        font-size: 8px !important;
+    }
+    
+    .ai-avatar.chatgpt.error::after {
+        font-size: 7px !important;
+    }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .app-icon, .engine-icon, .ai-avatar {
+        background-color: #2d2d2d !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .app-icon:hover, .engine-icon:hover, .ai-avatar:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+    }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+    .app-icon, .engine-icon, .ai-avatar {
+        border: 2px solid rgba(0, 0, 0, 0.8) !important;
+    }
+    
+    .app-icon.error::after, .engine-icon.error::after, .ai-avatar.error::after {
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.8) !important;
+    }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+    .app-icon, .engine-icon, .ai-avatar {
+        transition: none !important;
+    }
+    
+    .app-icon:hover, .engine-icon:hover, .ai-avatar:hover {
+        transform: none !important;
+    }
+    
+    .app-icon.loaded, .engine-icon.loaded, .ai-avatar.loaded {
+        animation: none !important;
+    }
+}

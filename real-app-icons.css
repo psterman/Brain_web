@@ -1,0 +1,328 @@
+/* 真实应用图标系统 - 使用品牌色彩和设计 */
+
+/* 基础图标容器 */
+.app-icon, .engine-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.app-icon:hover, .engine-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 淘宝 - 橙色渐变 */
+.app-icon.taobao {
+    background: linear-gradient(135deg, #ff6a00 0%, #ff4400 100%);
+}
+
+.app-icon.taobao::before {
+    content: "淘";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 天猫 - 红色渐变 */
+.app-icon.tmall {
+    background: linear-gradient(135deg, #ff0036 0%, #d50027 100%);
+}
+
+.app-icon.tmall::before {
+    content: "天";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 拼多多 - 橙红渐变 */
+.app-icon.pinduoduo {
+    background: linear-gradient(135deg, #ff5722 0%, #e91e63 100%);
+}
+
+.app-icon.pinduoduo::before {
+    content: "拼";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 京东 - 红色渐变 */
+.app-icon.jd {
+    background: linear-gradient(135deg, #e60012 0%, #c5000f 100%);
+}
+
+.app-icon.jd::before {
+    content: "京";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 闲鱼 - 黄色渐变 */
+.app-icon.xianyu {
+    background: linear-gradient(135deg, #ffb300 0%, #ff8f00 100%);
+}
+
+.app-icon.xianyu::before {
+    content: "闲";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 知乎 - 蓝色渐变 */
+.app-icon.zhihu {
+    background: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);
+}
+
+.app-icon.zhihu::before {
+    content: "知";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 微博 - 红色渐变 */
+.app-icon.weibo {
+    background: linear-gradient(135deg, #e6162d 0%, #c41230 100%);
+}
+
+.app-icon.weibo::before {
+    content: "微";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* QQ音乐 - 绿色渐变 */
+.app-icon.qq-music {
+    background: linear-gradient(135deg, #31c27c 0%, #2ba471 100%);
+}
+
+.app-icon.qq-music::before {
+    content: "QQ";
+    font-size: 12px;
+    font-weight: 900;
+}
+
+/* 网易云音乐 - 红色渐变 */
+.app-icon.netease-music {
+    background: linear-gradient(135deg, #d33a31 0%, #b8312a 100%);
+}
+
+.app-icon.netease-music::before {
+    content: "网";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 美团 - 黄色渐变 */
+.app-icon.meituan {
+    background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+}
+
+.app-icon.meituan::before {
+    content: "美";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 饿了么 - 蓝色渐变 */
+.app-icon.eleme {
+    background: linear-gradient(135deg, #0078ff 0%, #0066e0 100%);
+}
+
+.app-icon.eleme::before {
+    content: "饿";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 大众点评 - 橙色渐变 */
+.app-icon.dianping {
+    background: linear-gradient(135deg, #ffb300 0%, #ff9800 100%);
+}
+
+.app-icon.dianping::before {
+    content: "大";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 搜索引擎图标 */
+/* 百度 - 蓝色渐变 */
+.engine-icon.baidu {
+    background: linear-gradient(135deg, #2932e1 0%, #1e28cc 100%);
+}
+
+.engine-icon.baidu::before {
+    content: "百";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 搜狗 - 橙色渐变 */
+.engine-icon.sogou {
+    background: linear-gradient(135deg, #fb6c2c 0%, #e55a26 100%);
+}
+
+.engine-icon.sogou::before {
+    content: "搜";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 360搜索 - 绿色渐变 */
+.engine-icon.qihoo360 {
+    background: linear-gradient(135deg, #4caf50 0%, #43a047 100%);
+}
+
+.engine-icon.qihoo360::before {
+    content: "360";
+    font-size: 10px;
+    font-weight: 900;
+}
+
+/* 神马搜索 - 紫色渐变 */
+.engine-icon.shenma {
+    background: linear-gradient(135deg, #9c27b0 0%, #8e24aa 100%);
+}
+
+.engine-icon.shenma::before {
+    content: "神";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 中国搜索 - 红色渐变 */
+.engine-icon.chinaso {
+    background: linear-gradient(135deg, #f44336 0%, #e53935 100%);
+}
+
+.engine-icon.chinaso::before {
+    content: "中";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* 好搜 - 青色渐变 */
+.engine-icon.haosou {
+    background: linear-gradient(135deg, #00bcd4 0%, #00acc1 100%);
+}
+
+.engine-icon.haosou::before {
+    content: "好";
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* AI助手头像增强 */
+.ai-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.ai-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.ai-avatar.deepseek-avatar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.ai-avatar.kimi-avatar {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border: 2px solid rgba(240, 147, 251, 0.3);
+}
+
+.ai-avatar.zhipu-avatar {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border: 2px solid rgba(79, 172, 254, 0.3);
+}
+
+.ai-avatar.chatgpt-avatar {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    border: 2px solid rgba(116, 185, 255, 0.3);
+}
+
+.ai-avatar.doubao-avatar {
+    background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+    border: 2px solid rgba(253, 121, 168, 0.3);
+}
+
+/* 添加光泽效果 */
+.app-icon::after, .engine-icon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+    border-radius: 10px 10px 0 0;
+    pointer-events: none;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .app-icon, .engine-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+    
+    .ai-avatar {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .app-icon, .engine-icon, .ai-avatar {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .app-icon:hover, .engine-icon:hover, .ai-avatar:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+    .app-icon, .engine-icon {
+        border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+    
+    .app-icon::before, .engine-icon::before {
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+    .app-icon, .engine-icon, .ai-avatar {
+        transition: none;
+    }
+    
+    .app-icon:hover, .engine-icon:hover, .ai-avatar:hover {
+        transform: none;
+    }
+}

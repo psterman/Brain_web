@@ -1,0 +1,158 @@
+/* 修复Hero区域AI图标 - 针对ai-browser-tabs中的图标 */
+
+/* AI浏览器标签页图标基础样式 */
+.ai-browser-tab .ai-tab-icon {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 8px !important;
+    background-size: 20px 20px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: #f5f5f5 !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ChatGPT图标 */
+.ai-tab-icon.chatgpt {
+    background-image: url('https://img.icons8.com/fluency/48/chatgpt.png') !important;
+    background-color: #10a37f !important;
+}
+
+/* DeepSeek图标 */
+.ai-tab-icon.deepseek {
+    background-image: url('https://img.icons8.com/fluency/48/neural-network.png') !important;
+    background-color: #1e40af !important;
+}
+
+/* Kimi图标 */
+.ai-tab-icon.kimi {
+    background-image: url('https://img.icons8.com/fluency/48/crescent-moon.png') !important;
+    background-color: #8b5cf6 !important;
+}
+
+/* 豆包图标 */
+.ai-tab-icon.doubao {
+    background-image: url('https://img.icons8.com/fluency/48/coffee-beans.png') !important;
+    background-color: #f97316 !important;
+}
+
+/* Claude图标 */
+.ai-tab-icon.claude {
+    background-image: url('https://img.icons8.com/fluency/48/bot.png') !important;
+    background-color: #fbbf24 !important;
+}
+
+/* 清除所有文字内容 */
+.ai-tab-icon::before,
+.ai-tab-icon::after {
+    display: none !important;
+}
+
+/* 错误状态 - 使用自定义SVG */
+.ai-tab-icon.chatgpt.error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiMxMGEzN2YiLz4KPHN2ZyB4PSI2IiB5PSI2IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMlM2LjQ4IDIyIDEyIDIyUzIyIDE3LjUyIDIyIDEyUzE3LjUyIDIgMTIgMlpNMTMgMTdIMTFWMTVIMTNWMTdaTTEzIDEzSDExVjdIMTNWMTNaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+') !important;
+}
+
+.ai-tab-icon.deepseek.error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiMxZTQwYWYiLz4KPHN2ZyB4PSI2IiB5PSI2IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0xMiAyTDEzLjA5IDguMjZMMjAgOUwxMy4wOSAxNS43NEwxMiAyMkwxMC45MSAxNS43NEw0IDlMMTAuOTEgOC4yNkwxMiAyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPg==') !important;
+}
+
+.ai-tab-icon.kimi.error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiM4YjVjZjYiLz4KPHN2ZyB4PSI2IiB5PSI2IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0xMiAyQzEzLjMxIDIgMTQuMzggMi44MyAxNC43MSA0SDE1QzE3Ljc2IDQgMTkuOTkgNi4yNCAxOS45OSA5VjEwQzE5Ljk5IDEyLjc2IDE3Ljc2IDE1IDE1IDE1SDE0VjE5QzE0IDIwLjEgMTMuMSAyMSAxMiAyMVMxMCAyMC4xIDEwIDE5VjE1SDlDNi4yNCAxNSA0IDEyLjc2IDQgMTBWOUM0IDYuMjQgNi4yNCA0IDkgNEg5LjI5QzkuNjIgMi44MyAxMC42OSAyIDEyIDJaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+') !important;
+}
+
+.ai-tab-icon.doubao.error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiNmOTczMTYiLz4KPHN2ZyB4PSI2IiB5PSI2IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0xMiAyQzE3LjUyIDIgMjIgNi40OCAyMiAxMlMxNy41MiAyMiAxMiAyMlM2LjQ4IDIyIDIgMTJTNi40OCAyIDEyIDJaTTEyIDRDNy41OCA0IDQgNy41OCA0IDEyUzcuNTggMjAgMTIgMjBTMjAgMTYuNDIgMjAgMTJTMTYuNDIgNCAxMiA0WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPg==') !important;
+}
+
+.ai-tab-icon.claude.error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiNmYmJmMjQiLz4KPHN2ZyB4PSI2IiB5PSI2IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0xMiAyQzE3LjUyIDIgMjIgNi40OCAyMiAxMlMxNy41MiAyMiAxMiAyMlM2LjQ4IDIyIDIgMTJTNi40OCAyIDEyIDJaTTEyIDRDNy41OCA0IDQgNy41OCA0IDEyUzcuNTggMjAgMTIgMjBTMjAgMTYuNDIgMjAgMTJTMTYuNDIgNCAxMiA0WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPg==') !important;
+}
+
+/* 对话界面中的AI头像修复 */
+.ai-avatar.deepseek-avatar,
+.ai-avatar.kimi-avatar,
+.ai-avatar.zhipu-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-size: 32px 32px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: #f5f5f5 !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 清除对话界面AI头像中的脑图标 */
+.ai-avatar.deepseek-avatar .ai-brain-icon,
+.ai-avatar.kimi-avatar .ai-brain-icon,
+.ai-avatar.zhipu-avatar .ai-brain-icon {
+    display: none !important;
+}
+
+/* DeepSeek对话头像 */
+.ai-avatar.deepseek-avatar {
+    background-image: url('https://img.icons8.com/fluency/48/neural-network.png') !important;
+    background-color: #667eea !important;
+}
+
+/* Kimi对话头像 */
+.ai-avatar.kimi-avatar {
+    background-image: url('https://img.icons8.com/fluency/48/crescent-moon.png') !important;
+    background-color: #f093fb !important;
+}
+
+/* 智谱清言对话头像 */
+.ai-avatar.zhipu-avatar {
+    background-image: url('https://img.icons8.com/fluency/48/speech-bubble-with-dots.png') !important;
+    background-color: #4facfe !important;
+}
+
+/* 如果图标加载失败，使用自定义SVG */
+.ai-avatar.deepseek-avatar.error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIGZpbGw9IiM2NjdlZWEiLz4KPHN2ZyB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+') !important;
+}
+
+.ai-avatar.kimi-avatar.error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIGZpbGw9IiNmMDkzZmIiLz4KPHN2ZyB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTEyIDJDMTMuMzEgMiAxNC4zOCAyLjgzIDE0LjcxIDRIMTVDMTcuNzYgNCAxOS45OSA2LjI0IDE5Ljk5IDlWMTBDMTkuOTkgMTIuNzYgMTcuNzYgMTUgMTUgMTVIMTRWMTlDMTQgMjAuMSAxMy4xIDIxIDEyIDIxUzEwIDIwLjEgMTAgMTlWMTVIOUM2LjI0IDE1IDQgMTIuNzYgNCAxMFY5QzQgNi4yNCA2LjI0IDQgOSA0SDkuMjlDOS42MiAyLjgzIDEwLjY5IDIgMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo8L3N2Zz4=') !important;
+}
+
+.ai-avatar.zhipu-avatar.error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIGZpbGw9IiM0ZmFjZmUiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0yMCAySDRDMyAyIDIgMyAyIDRWMjJMMiAyMEwyMCAyMEMyMSAyMCAyMiAxOSAyMiAxOFY0QzIyIDMgMjEgMiAyMCAyWk02IDlIOVY3SDE1VjlIMThWMTFIMTVWMTNIOVYxMUg2VjlaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+') !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .ai-browser-tab .ai-tab-icon {
+        width: 20px !important;
+        height: 20px !important;
+        background-size: 16px 16px !important;
+        margin-right: 6px !important;
+    }
+    
+    .ai-avatar.deepseek-avatar,
+    .ai-avatar.kimi-avatar,
+    .ai-avatar.zhipu-avatar {
+        width: 36px !important;
+        height: 36px !important;
+        background-size: 28px 28px !important;
+    }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .ai-browser-tab .ai-tab-icon,
+    .ai-avatar.deepseek-avatar,
+    .ai-avatar.kimi-avatar,
+    .ai-avatar.zhipu-avatar {
+        background-color: #2d2d2d !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+}

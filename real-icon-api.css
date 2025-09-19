@@ -1,0 +1,311 @@
+/* 真实图标API系统 - 使用第三方服务获取真实应用图标 */
+
+/* 基础图标容器样式 */
+.app-icon, .engine-icon {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: #f5f5f5 !important;
+}
+
+.app-icon:hover, .engine-icon:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 清除所有文字内容 */
+.app-icon::before, .engine-icon::before {
+    display: none !important;
+}
+
+.app-icon::after, .engine-icon::after {
+    display: none !important;
+}
+
+/* 淘宝图标 - 使用多个图标源 */
+.app-icon.taobao {
+    background-image: url('https://img.icons8.com/color/48/taobao.png'), 
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/taobao.png'),
+                      url('https://logo.clearbit.com/taobao.com'),
+                      url('https://www.google.com/s2/favicons?domain=taobao.com&sz=64') !important;
+}
+
+/* 天猫图标 */
+.app-icon.tmall {
+    background-image: url('https://img.icons8.com/color/48/tmall.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tmall.png'),
+                      url('https://logo.clearbit.com/tmall.com'),
+                      url('https://www.google.com/s2/favicons?domain=tmall.com&sz=64') !important;
+}
+
+/* 拼多多图标 */
+.app-icon.pinduoduo {
+    background-image: url('https://img.icons8.com/color/48/pinduoduo.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pinduoduo.png'),
+                      url('https://logo.clearbit.com/pinduoduo.com'),
+                      url('https://www.google.com/s2/favicons?domain=pinduoduo.com&sz=64') !important;
+}
+
+/* 京东图标 */
+.app-icon.jd {
+    background-image: url('https://img.icons8.com/color/48/jd.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jd.png'),
+                      url('https://logo.clearbit.com/jd.com'),
+                      url('https://www.google.com/s2/favicons?domain=jd.com&sz=64') !important;
+}
+
+/* 闲鱼图标 */
+.app-icon.xianyu {
+    background-image: url('https://img.icons8.com/color/48/xianyu.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/xianyu.png'),
+                      url('https://logo.clearbit.com/xianyu.com'),
+                      url('https://www.google.com/s2/favicons?domain=2.taobao.com&sz=64') !important;
+}
+
+/* 知乎图标 */
+.app-icon.zhihu {
+    background-image: url('https://img.icons8.com/color/48/zhihu.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/zhihu.png'),
+                      url('https://logo.clearbit.com/zhihu.com'),
+                      url('https://www.google.com/s2/favicons?domain=zhihu.com&sz=64') !important;
+}
+
+/* 微博图标 */
+.app-icon.weibo {
+    background-image: url('https://img.icons8.com/color/48/weibo.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/weibo.png'),
+                      url('https://logo.clearbit.com/weibo.com'),
+                      url('https://www.google.com/s2/favicons?domain=weibo.com&sz=64') !important;
+}
+
+/* 微信图标 */
+.app-icon.wechat {
+    background-image: url('https://img.icons8.com/color/48/wechat.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wechat.png'),
+                      url('https://logo.clearbit.com/wechat.com'),
+                      url('https://www.google.com/s2/favicons?domain=weixin.qq.com&sz=64') !important;
+}
+
+/* 小红书图标 */
+.app-icon.xiaohongshu {
+    background-image: url('https://img.icons8.com/color/48/xiaohongshu.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/xiaohongshu.png'),
+                      url('https://logo.clearbit.com/xiaohongshu.com'),
+                      url('https://www.google.com/s2/favicons?domain=xiaohongshu.com&sz=64') !important;
+}
+
+/* QQ音乐图标 */
+.app-icon.qq-music {
+    background-image: url('https://img.icons8.com/color/48/qq-music.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/qqmusic.png'),
+                      url('https://logo.clearbit.com/y.qq.com'),
+                      url('https://www.google.com/s2/favicons?domain=y.qq.com&sz=64') !important;
+}
+
+/* 网易云音乐图标 */
+.app-icon.netease-music {
+    background-image: url('https://img.icons8.com/color/48/netease-cloud-music.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/netease-cloud-music.png'),
+                      url('https://logo.clearbit.com/music.163.com'),
+                      url('https://www.google.com/s2/favicons?domain=music.163.com&sz=64') !important;
+}
+
+/* 酷我音乐图标 */
+.app-icon.kuwo-music {
+    background-image: url('https://img.icons8.com/color/48/kuwo.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/kuwo.png'),
+                      url('https://logo.clearbit.com/kuwo.cn'),
+                      url('https://www.google.com/s2/favicons?domain=kuwo.cn&sz=64') !important;
+}
+
+/* 美团图标 */
+.app-icon.meituan {
+    background-image: url('https://img.icons8.com/color/48/meituan.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/meituan.png'),
+                      url('https://logo.clearbit.com/meituan.com'),
+                      url('https://www.google.com/s2/favicons?domain=meituan.com&sz=64') !important;
+}
+
+/* 饿了么图标 */
+.app-icon.eleme {
+    background-image: url('https://img.icons8.com/color/48/eleme.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/eleme.png'),
+                      url('https://logo.clearbit.com/ele.me'),
+                      url('https://www.google.com/s2/favicons?domain=ele.me&sz=64') !important;
+}
+
+/* 大众点评图标 */
+.app-icon.dianping {
+    background-image: url('https://img.icons8.com/color/48/dianping.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/dianping.png'),
+                      url('https://logo.clearbit.com/dianping.com'),
+                      url('https://www.google.com/s2/favicons?domain=dianping.com&sz=64') !important;
+}
+
+/* B站图标 */
+.app-icon.bilibili {
+    background-image: url('https://img.icons8.com/color/48/bilibili.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/bilibili.png'),
+                      url('https://logo.clearbit.com/bilibili.com'),
+                      url('https://www.google.com/s2/favicons?domain=bilibili.com&sz=64') !important;
+}
+
+/* 抖音图标 */
+.app-icon.douyin {
+    background-image: url('https://img.icons8.com/color/48/tiktok.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tiktok.png'),
+                      url('https://logo.clearbit.com/douyin.com'),
+                      url('https://www.google.com/s2/favicons?domain=douyin.com&sz=64') !important;
+}
+
+/* 搜索引擎图标 */
+
+/* 百度图标 */
+.engine-icon.baidu {
+    background-image: url('https://img.icons8.com/color/48/baidu.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/baidu.png'),
+                      url('https://logo.clearbit.com/baidu.com'),
+                      url('https://www.google.com/s2/favicons?domain=baidu.com&sz=64') !important;
+}
+
+/* 搜狗图标 */
+.engine-icon.sogou {
+    background-image: url('https://img.icons8.com/color/48/sogou.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/sogou.png'),
+                      url('https://logo.clearbit.com/sogou.com'),
+                      url('https://www.google.com/s2/favicons?domain=sogou.com&sz=64') !important;
+}
+
+/* 360搜索图标 */
+.engine-icon.qihoo360 {
+    background-image: url('https://img.icons8.com/color/48/360.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/360.png'),
+                      url('https://logo.clearbit.com/so.com'),
+                      url('https://www.google.com/s2/favicons?domain=so.com&sz=64') !important;
+}
+
+/* 神马搜索图标 */
+.engine-icon.shenma {
+    background-image: url('https://img.icons8.com/color/48/shenma.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/shenma.png'),
+                      url('https://logo.clearbit.com/sm.cn'),
+                      url('https://www.google.com/s2/favicons?domain=sm.cn&sz=64') !important;
+}
+
+/* 中国搜索图标 */
+.engine-icon.chinaso {
+    background-image: url('https://img.icons8.com/color/48/chinaso.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/chinaso.png'),
+                      url('https://logo.clearbit.com/chinaso.com'),
+                      url('https://www.google.com/s2/favicons?domain=chinaso.com&sz=64') !important;
+}
+
+/* 好搜图标 */
+.engine-icon.haosou {
+    background-image: url('https://img.icons8.com/color/48/haosou.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/haosou.png'),
+                      url('https://logo.clearbit.com/haosou.com'),
+                      url('https://www.google.com/s2/favicons?domain=haosou.com&sz=64') !important;
+}
+
+/* Google图标 */
+.engine-icon.google {
+    background-image: url('https://img.icons8.com/color/48/google-logo.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/google.png'),
+                      url('https://logo.clearbit.com/google.com'),
+                      url('https://www.google.com/s2/favicons?domain=google.com&sz=64') !important;
+}
+
+/* Bing图标 */
+.engine-icon.bing {
+    background-image: url('https://img.icons8.com/color/48/bing.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/bing.png'),
+                      url('https://logo.clearbit.com/bing.com'),
+                      url('https://www.google.com/s2/favicons?domain=bing.com&sz=64') !important;
+}
+
+/* AI助手图标 */
+
+/* DeepSeek图标 */
+.ai-avatar.deepseek {
+    background-image: url('https://img.icons8.com/color/48/artificial-intelligence.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/deepseek.png'),
+                      url('https://logo.clearbit.com/deepseek.com'),
+                      url('https://www.google.com/s2/favicons?domain=deepseek.com&sz=64') !important;
+}
+
+/* Kimi图标 */
+.ai-avatar.kimi {
+    background-image: url('https://img.icons8.com/color/48/robot.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/kimi.png'),
+                      url('https://logo.clearbit.com/kimi.ai'),
+                      url('https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=64') !important;
+}
+
+/* 智谱清言图标 */
+.ai-avatar.zhipu {
+    background-image: url('https://img.icons8.com/color/48/chatgpt.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/zhipu.png'),
+                      url('https://logo.clearbit.com/zhipuai.cn'),
+                      url('https://www.google.com/s2/favicons?domain=chatglm.cn&sz=64') !important;
+}
+
+/* ChatGPT图标 */
+.ai-avatar.chatgpt {
+    background-image: url('https://img.icons8.com/color/48/chatgpt.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/openai.png'),
+                      url('https://logo.clearbit.com/openai.com'),
+                      url('https://www.google.com/s2/favicons?domain=chat.openai.com&sz=64') !important;
+}
+
+/* Claude图标 */
+.ai-avatar.claude {
+    background-image: url('https://img.icons8.com/color/48/claude.png'),
+                      url('https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/claude.png'),
+                      url('https://logo.clearbit.com/anthropic.com'),
+                      url('https://www.google.com/s2/favicons?domain=claude.ai&sz=64') !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .app-icon, .engine-icon, .ai-avatar {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 8px !important;
+    }
+}
+
+/* 加载状态 */
+.app-icon.loading, .engine-icon.loading, .ai-avatar.loading {
+    background-color: #f0f0f0 !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJWNk0xMiAxOFYyMk02IDEySDJNMjIgMTJIMThNMTkuMDcgMTkuMDdMMTYuMjQgMTYuMjRNNy43NiA3Ljc2TDQuOTMgNC45M00xOS4wNyA0LjkzTDE2LjI0IDcuNzZNNy43NiAxNi4yNEw0LjkzIDE5LjA3IiBzdHJva2U9IiNjY2MiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KPGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSI+CjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjAgMTIgMTI7MzYwIDEyIDEyIiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgo8L2F0dHJpYnV0ZU5hbWU+CjwvcGF0aD4KPC9zdmc+') !important;
+    background-size: 20px 20px !important;
+}
+
+/* 错误状态 */
+.app-icon.error, .engine-icon.error, .ai-avatar.error {
+    background-color: #f5f5f5 !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMjIgMjBIMkwxMiAyWiIgZmlsbD0iI2ZmYzEwNyIvPgo8cGF0aCBkPSJNMTIgOVYxM00xMiAxN0gxMi4wMSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4=') !important;
+    background-size: 20px 20px !important;
+}
+
+/* 成功加载状态 */
+.app-icon.loaded, .engine-icon.loaded, .ai-avatar.loaded {
+    animation: iconLoaded 0.3s ease-in-out;
+}
+
+@keyframes iconLoaded {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}

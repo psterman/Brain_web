@@ -1,0 +1,245 @@
+/* 真实应用图标系统 - 使用实际的应用图标URL */
+
+/* 基础图标样式 */
+.app-icon, .engine-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.app-icon:hover, .engine-icon:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 淘宝图标 */
+.app-icon.taobao {
+    background-image: url('https://img.alicdn.com/imgextra/i4/O1CN01Z5paLz1O0zuCC7osS_!!6000000001644-55-tps-83-83.svg');
+    background-color: #ff6a00;
+}
+
+/* 天猫图标 */
+.app-icon.tmall {
+    background-image: url('https://img.alicdn.com/tfs/TB1Ly5oS3HqK1RjSZFPXXcwapXa-238-238.png');
+    background-color: #ff0036;
+}
+
+/* 拼多多图标 */
+.app-icon.pinduoduo {
+    background-image: url('https://commimg.pddpic.com/pdd_h5/favicon.ico');
+    background-color: #ff5722;
+}
+
+/* 京东图标 */
+.app-icon.jd {
+    background-image: url('https://www.jd.com/favicon.ico');
+    background-color: #e60012;
+}
+
+/* 闲鱼图标 */
+.app-icon.xianyu {
+    background-image: url('https://gw.alicdn.com/imgextra/i2/O1CN01qzGaWx1dQFQFzBJVL_!!6000000003726-2-tps-180-180.png');
+    background-color: #ffb300;
+}
+
+/* 知乎图标 */
+.app-icon.zhihu {
+    background-image: url('https://static.zhihu.com/heifetz/favicon.ico');
+    background-color: #0084ff;
+}
+
+/* 微博图标 */
+.app-icon.weibo {
+    background-image: url('https://weibo.com/favicon.ico');
+    background-color: #e6162d;
+}
+
+/* QQ音乐图标 */
+.app-icon.qq-music {
+    background-image: url('https://y.qq.com/favicon.ico');
+    background-color: #31c27c;
+}
+
+/* 网易云音乐图标 */
+.app-icon.netease-music {
+    background-image: url('https://s1.music.126.net/style/favicon.ico');
+    background-color: #d33a31;
+}
+
+/* 美团图标 */
+.app-icon.meituan {
+    background-image: url('https://www.meituan.com/favicon.ico');
+    background-color: #ffc107;
+}
+
+/* 饿了么图标 */
+.app-icon.eleme {
+    background-image: url('https://fuss10.elemecdn.com/9/cd/95de8c7b85c7c233db531a7c4d3e7jpeg.jpeg');
+    background-color: #0078ff;
+}
+
+/* 大众点评图标 */
+.app-icon.dianping {
+    background-image: url('https://www.dianping.com/favicon.ico');
+    background-color: #ffb300;
+}
+
+/* 搜索引擎图标 */
+
+/* 百度图标 */
+.engine-icon.baidu {
+    background-image: url('https://www.baidu.com/favicon.ico');
+    background-color: #2932e1;
+}
+
+/* 搜狗图标 */
+.engine-icon.sogou {
+    background-image: url('https://www.sogou.com/favicon.ico');
+    background-color: #fb6c2c;
+}
+
+/* 360搜索图标 */
+.engine-icon.qihoo360 {
+    background-image: url('https://www.so.com/favicon.ico');
+    background-color: #4caf50;
+}
+
+/* 神马搜索图标 */
+.engine-icon.shenma {
+    background-image: url('https://m.sm.cn/favicon.ico');
+    background-color: #9c27b0;
+}
+
+/* 中国搜索图标 */
+.engine-icon.chinaso {
+    background-image: url('https://www.chinaso.com/favicon.ico');
+    background-color: #f44336;
+}
+
+/* 好搜图标 */
+.engine-icon.haosou {
+    background-image: url('https://www.haosou.com/favicon.ico');
+    background-color: #00bcd4;
+}
+
+/* 备用方案：如果图标加载失败，显示文字 */
+.app-icon.taobao::after { content: "淘"; }
+.app-icon.tmall::after { content: "天"; }
+.app-icon.pinduoduo::after { content: "拼"; }
+.app-icon.jd::after { content: "京"; }
+.app-icon.xianyu::after { content: "闲"; }
+.app-icon.zhihu::after { content: "知"; }
+.app-icon.weibo::after { content: "微"; }
+.app-icon.qq-music::after { content: "QQ"; }
+.app-icon.netease-music::after { content: "网"; }
+.app-icon.meituan::after { content: "美"; }
+.app-icon.eleme::after { content: "饿"; }
+.app-icon.dianping::after { content: "大"; }
+
+.engine-icon.baidu::after { content: "百"; }
+.engine-icon.sogou::after { content: "搜"; }
+.engine-icon.qihoo360::after { content: "360"; }
+.engine-icon.shenma::after { content: "神"; }
+.engine-icon.chinaso::after { content: "中"; }
+.engine-icon.haosou::after { content: "好"; }
+
+/* 备用文字样式 */
+.app-icon::after,
+.engine-icon::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* 当图标加载失败时显示文字 */
+.app-icon:not([style*="background-image"])::after,
+.engine-icon:not([style*="background-image"])::after {
+    opacity: 1;
+}
+
+/* 移除原有的文字内容 */
+.app-icon::before,
+.engine-icon::before {
+    display: none;
+}
+
+/* 图标加载错误处理 */
+.app-icon,
+.engine-icon {
+    background-blend-mode: overlay;
+}
+
+/* 当图标无法加载时的样式 */
+.app-icon[data-fallback="true"],
+.engine-icon[data-fallback="true"] {
+    background-image: none !important;
+}
+
+.app-icon[data-fallback="true"]::after,
+.engine-icon[data-fallback="true"]::after {
+    opacity: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .app-icon, .engine-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+    }
+    
+    .app-icon::after,
+    .engine-icon::after {
+        font-size: 12px;
+    }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .app-icon, .engine-icon {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .app-icon:hover, .engine-icon:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+    .app-icon, .engine-icon {
+        border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+    
+    .app-icon::after, .engine-icon::after {
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+    .app-icon, .engine-icon {
+        transition: none;
+    }
+    
+    .app-icon:hover, .engine-icon:hover {
+        transform: none;
+    }
+}

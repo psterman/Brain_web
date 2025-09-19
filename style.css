@@ -2,12 +2,15 @@
 :root {
     /* 亮色主题 */
     --primary-color: #34C759;
+    --primary-rgb: 52, 199, 89;
     --secondary-color: #007AFF;
+    --secondary-rgb: 0, 122, 255;
     --background-color: #FFFFFF;
     --surface-color: #F2F2F7;
     --text-primary: #000000;
     --text-secondary: #8E8E93;
     --border-color: #D1D1D6;
+    --border-rgb: 209, 209, 214;
     --shadow: rgba(0, 0, 0, 0.1);
     --gradient: linear-gradient(135deg, #34C759 0%, #30D158 100%);
 }
@@ -15,12 +18,15 @@
 [data-theme="dark"] {
     /* 暗色主题 */
     --primary-color: #30D158;
+    --primary-rgb: 48, 209, 88;
     --secondary-color: #0A84FF;
+    --secondary-rgb: 10, 132, 255;
     --background-color: #000000;
     --surface-color: #1C1C1E;
     --text-primary: #FFFFFF;
     --text-secondary: #8E8E93;
     --border-color: #38383A;
+    --border-rgb: 56, 56, 58;
     --shadow: rgba(255, 255, 255, 0.1);
     --gradient: linear-gradient(135deg, #30D158 0%, #34C759 100%);
 }
@@ -150,7 +156,7 @@ body {
 .hero-description {
     font-size: 1.1rem;
     color: var(--text-secondary);
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -160,6 +166,7 @@ body {
     display: flex;
     gap: 20px;
     justify-content: center;
+    margin-top: 20px;
     margin-bottom: 60px;
 }
 
@@ -224,12 +231,7 @@ body {
     gap: 20px;
 }
 
-.address-bar {
-    height: 40px;
-    background: var(--background-color);
-    border-radius: 20px;
-    border: 1px solid var(--border-color);
-}
+/* 地址栏样式已移除 */
 
 .content-area {
     flex: 1;
@@ -440,68 +442,7 @@ body {
     line-height: 1.6;
 }
 
-/* 下载区块 */
-.download {
-    padding: 80px 0;
-    background: var(--background-color);
-}
-
-.download-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.download-info h3 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: var(--text-primary);
-}
-
-.download-description {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 30px;
-}
-
-.download-features {
-    margin-bottom: 40px;
-}
-
-.download-feature {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.feature-check {
-    color: var(--primary-color);
-    font-weight: 700;
-}
-
-.app-store-btn {
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.app-store-btn:hover {
-    transform: scale(1.05);
-}
-
-.app-store-btn img {
-    height: 60px;
-    border-radius: 8px;
-}
-
-.download-qr {
-    display: flex;
-    justify-content: center;
-}
+/* 下载区块样式已移除 */
 
 .qr-code {
     width: 200px;

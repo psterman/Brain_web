@@ -1,0 +1,119 @@
+/* 修复AI助手图标 - 使用更准确的图标 */
+
+/* DeepSeek图标 - 使用深度学习相关图标 */
+.ai-avatar.deepseek {
+    background-image: url('https://img.icons8.com/fluency/48/neural-network.png') !important;
+    background-color: #667eea !important;
+}
+
+/* 如果上面的图标不可用，使用备用图标 */
+.ai-avatar.deepseek {
+    background-image: url('https://img.icons8.com/fluency/48/neural-network.png'),
+                      url('https://img.icons8.com/fluency/48/deep-learning.png'),
+                      url('https://img.icons8.com/fluency/48/machine-learning.png'),
+                      url('https://img.icons8.com/fluency/48/artificial-intelligence.png') !important;
+}
+
+/* Kimi图标 - 使用月亮相关图标（Kimi来自Moonshot AI） */
+.ai-avatar.kimi {
+    background-image: url('https://img.icons8.com/fluency/48/crescent-moon.png') !important;
+    background-color: #f093fb !important;
+}
+
+/* 如果月亮图标不可用，使用备用图标 */
+.ai-avatar.kimi {
+    background-image: url('https://img.icons8.com/fluency/48/crescent-moon.png'),
+                      url('https://img.icons8.com/fluency/48/moon-symbol.png'),
+                      url('https://img.icons8.com/fluency/48/new-moon.png'),
+                      url('https://img.icons8.com/fluency/48/assistant.png') !important;
+}
+
+/* 智谱清言图标 - 使用对话气泡或智能相关图标 */
+.ai-avatar.zhipu {
+    background-image: url('https://img.icons8.com/fluency/48/speech-bubble-with-dots.png') !important;
+    background-color: #4facfe !important;
+}
+
+/* 如果对话图标不可用，使用备用图标 */
+.ai-avatar.zhipu {
+    background-image: url('https://img.icons8.com/fluency/48/speech-bubble-with-dots.png'),
+                      url('https://img.icons8.com/fluency/48/chat-message.png'),
+                      url('https://img.icons8.com/fluency/48/conversation.png'),
+                      url('https://img.icons8.com/fluency/48/artificial-intelligence.png') !important;
+}
+
+/* 如果所有图标都加载失败，创建自定义SVG图标 */
+
+/* DeepSeek自定义SVG图标 */
+.ai-avatar.deepseek.error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjAiIGZpbGw9IiM2NjdlZWEiLz4KPHN2ZyB4PSIxMiIgeT0iMTIiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+') !important;
+    background-color: #667eea !important;
+}
+
+/* Kimi自定义SVG图标 */
+.ai-avatar.kimi.error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjAiIGZpbGw9IiNmMDkzZmIiLz4KPHN2ZyB4PSIxMiIgeT0iMTIiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTEyIDJDMTMuMzEgMiAxNC4zOCAyLjgzIDE0LjcxIDRIMTVDMTcuNzYgNCAxOS45OSA2LjI0IDE5Ljk5IDlWMTBDMTkuOTkgMTIuNzYgMTcuNzYgMTUgMTUgMTVIMTRWMTlDMTQgMjAuMSAxMy4xIDIxIDEyIDIxUzEwIDIwLjEgMTAgMTlWMTVIOUM2LjI0IDE1IDQgMTIuNzYgNCAxMFY5QzQgNi4yNCA2LjI0IDQgOSA0SDkuMjlDOS42MiAyLjgzIDEwLjY5IDIgMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvdmc+Cjwvc3ZnPg==') !important;
+    background-color: #f093fb !important;
+}
+
+/* 智谱清言自定义SVG图标 */
+.ai-avatar.zhipu.error {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjAiIGZpbGw9IiM0ZmFjZmUiLz4KPHN2ZyB4PSIxMCIgeT0iMTAiIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTIwIDJINEMzIDIgMiAzIDIgNFYyMkwyIDIwTDIwIDIwQzIxIDIwIDIyIDE5IDIyIDE4VjRDMjIgMyAyMSAyIDIwIDJaTTYgOUg5VjdIMTVWOUgxOFYxMUgxNVYxM0g5VjExSDZWOVoiIGZpbGw9IndoaXRlIi8+Cjwvdmc+Cjwvc3ZnPg==') !important;
+    background-color: #4facfe !important;
+}
+
+/* 覆盖错误状态的文字显示 */
+.ai-avatar.deepseek.error::after {
+    display: none !important;
+}
+
+.ai-avatar.kimi.error::after {
+    display: none !important;
+}
+
+.ai-avatar.zhipu.error::after {
+    display: none !important;
+}
+
+/* 如果自定义SVG也失败了，才显示文字 */
+.ai-avatar.deepseek.fallback::after {
+    content: 'DS' !important;
+    display: block !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: white !important;
+    font-weight: 900 !important;
+    font-size: 10px !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+    z-index: 10 !important;
+}
+
+.ai-avatar.kimi.fallback::after {
+    content: 'K' !important;
+    display: block !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: white !important;
+    font-weight: 900 !important;
+    font-size: 14px !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+    z-index: 10 !important;
+}
+
+.ai-avatar.zhipu.fallback::after {
+    content: '智' !important;
+    display: block !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: white !important;
+    font-weight: 900 !important;
+    font-size: 14px !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+    z-index: 10 !important;
+}

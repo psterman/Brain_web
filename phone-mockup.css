@@ -1,0 +1,202 @@
+/* 手机模型样式 */
+.phone-mockup {
+    width: 300px;
+    height: 600px;
+    background: #1C1C1E;
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin: 40px auto;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+[data-theme="dark"] .phone-mockup {
+    background: #000;
+    box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
+}
+
+.phone-mockup:hover {
+    transform: scale(1.05) rotateY(5deg);
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+}
+
+[data-theme="dark"] .phone-screen {
+    background: #1C1C1E;
+}
+
+/* 浏览器UI */
+.browser-ui {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 地址栏样式已移除 */
+
+.content-area {
+    flex: 1;
+    background: #fff;
+    padding: 10px;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .content-area {
+    background: #1C1C1E;
+}
+
+/* 手机AI聊天界面 */
+.phone-ai-chat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #f5f5f7;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .phone-ai-chat {
+    background: #2C2C2E;
+}
+
+.phone-ai-header {
+    padding: 12px;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.phone-ai-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.phone-ai-message {
+    max-width: 85%;
+    padding: 8px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    line-height: 1.4;
+    animation: messageAppear 0.3s ease-out;
+}
+
+.phone-ai-message.user {
+    align-self: flex-end;
+    background: var(--secondary-color);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.phone-ai-message.ai {
+    align-self: flex-start;
+    background: white;
+    color: #000;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .phone-ai-message.ai {
+    background: #3A3A3C;
+    color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.ai-icon {
+    font-size: 10px;
+}
+
+.phone-ai-message.chatgpt .message-header {
+    color: #10A37F;
+}
+
+.phone-ai-message.deepseek .message-header {
+    color: #0077FF;
+}
+
+.phone-ai-input {
+    display: flex;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .phone-ai-input {
+    background: rgba(60, 60, 60, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.phone-ai-input input {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: white;
+    font-size: 12px;
+}
+
+[data-theme="dark"] .phone-ai-input input {
+    background: #3A3A3C;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.phone-ai-send {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+/* 动画效果 */
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .phone-mockup {
+        width: 250px;
+        height: 500px;
+        margin: 30px auto;
+    }
+}

@@ -1,0 +1,159 @@
+/* 最终图标修复 - 直接解决所有图标问题 */
+
+/* 重置所有图标样式，确保优先级最高 */
+.ai-tab-icon,
+.ai-avatar,
+.app-icon {
+    background-image: none !important;
+    background-color: transparent !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    text-indent: -9999px !important;
+    overflow: hidden !important;
+}
+
+/* 清除所有伪元素内容 */
+.ai-tab-icon::before,
+.ai-tab-icon::after,
+.ai-avatar::before,
+.ai-avatar::after,
+.app-icon::before,
+.app-icon::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Hero区域AI标签页图标 */
+.ai-tab-icon {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 6px !important;
+    display: inline-block !important;
+    margin-right: 8px !important;
+    background-size: 20px 20px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    position: relative !important;
+}
+
+/* ChatGPT图标 */
+.ai-tab-icon.chatgpt {
+    background: linear-gradient(135deg, #10a37f 0%, #0d8f6b 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuOSIvPgo8cGF0aCBkPSJNOSA5SDE1VjEwSDlWOVpNOSAxMUgxNVYxMkg5VjExWk05IDEzSDEzVjE0SDlWMTNaIiBmaWxsPSIjMTBhMzdmIi8+Cjwvc3ZnPg=='), linear-gradient(135deg, #10a37f 0%, #0d8f6b 100%) !important;
+}
+
+/* DeepSeek图标 */
+.ai-tab-icon.deepseek {
+    background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuOSIvPgo8cGF0aCBkPSJNMTIgNEw4IDhMMTIgMTJMMTYgOEwxMiA0WiIgZmlsbD0iIzFlNDBhZiIvPgo8cGF0aCBkPSJNMTIgMTJMOCAxNkwxMiAyMEwxNiAxNkwxMiAxMloiIGZpbGw9IiMxZTQwYWYiLz4KPC9zdmc+'), linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%) !important;
+}
+
+/* Kimi图标 */
+.ai-tab-icon.kimi {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuOSIvPgo8cGF0aCBkPSJNMTIgNEMxNiA0IDE5IDcgMTkgMTFDMTkgMTMgMTggMTUgMTYgMTZIMTJWMjBDOCAyMCA1IDE3IDUgMTNDNSAxMSA2IDkgOCA4SDEyVjRaIiBmaWxsPSIjOGI1Y2Y2Ii8+Cjwvc3ZnPg=='), linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%) !important;
+}
+
+/* 豆包图标 */
+.ai-tab-icon.doubao {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuOSIvPgo8ZWxsaXBzZSBjeD0iMTAiIGN5PSIxMCIgcng9IjMiIHJ5PSI0IiBmaWxsPSIjZjk3MzE2Ii8+CjxlbGxpcHNlIGN4PSIxNCIgY3k9IjE0IiByeD0iMiIgcnk9IjMiIGZpbGw9IiNmOTczMTYiLz4KPC9zdmc+'), linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+}
+
+/* Claude图标 */
+.ai-tab-icon.claude {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuOSIvPgo8Y2lyY2xlIGN4PSI5IiBjeT0iOSIgcj0iMiIgZmlsbD0iI2ZiYmYyNCIvPgo8Y2lyY2xlIGN4PSIxNSIgY3k9IjkiIHI9IjIiIGZpbGw9IiNmYmJmMjQiLz4KPHBhdGggZD0iTTggMTVRMTIgMTggMTYgMTUiIHN0cm9rZT0iI2ZiYmYyNCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+'), linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+}
+
+/* 对话界面AI头像 */
+.ai-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-size: 32px 32px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    position: relative !important;
+}
+
+/* DeepSeek对话头像 */
+.ai-avatar.deepseek-avatar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuOSIvPgo8cGF0aCBkPSJNMjAgOEwxMiAxNkwyMCAyNEwyOCAxNkwyMCA4WiIgZmlsbD0iIzY2N2VlYSIvPgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSI0IiBmaWxsPSIjNjY3ZWVhIi8+Cjwvc3ZnPg=='), linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+/* Kimi对话头像 */
+.ai-avatar.kimi-avatar {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuOSIvPgo8cGF0aCBkPSJNMjAgOEMzMCA4IDM2IDE0IDM2IDIyQzM2IDI2IDM0IDMwIDMwIDMySDIwVjQwQzEwIDQwIDQgMzQgNCAyNkM0IDIyIDYgMTggMTAgMTZIMjBWOFoiIGZpbGw9IiNmMDkzZmIiLz4KPC9zdmc+'), linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+}
+
+/* 智谱清言对话头像 */
+.ai-avatar.zhipu-avatar {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuOSIvPgo8cGF0aCBkPSJNMzIgMTJIOEM2IDEyIDQgMTQgNCAxNlYzMkw0IDMwTDMyIDMwQzM0IDMwIDM2IDI4IDM2IDI2VjE2QzM2IDE0IDM0IDEyIDMyIDEyWk0xMiAyMEgxNlYxOEgyNFYyMEgyOFYyMkgyNFYyNEgxNlYyMkgxMlYyMFoiIGZpbGw9IiM0ZmFjZmUiLz4KPC9zdmc+'), linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+}
+
+/* 清除所有可能的文字内容 */
+.ai-tab-icon *,
+.ai-avatar * {
+    display: none !important;
+}
+
+/* 应用图标修复 */
+.app-icon {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-size: 32px 32px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    position: relative !important;
+}
+
+/* 淘宝图标 */
+.app-icon.taobao {
+    background: linear-gradient(135deg, #ff6a00 0%, #ff4400 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuOSIvPgo8dGV4dCB4PSIyMCIgeT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmNmEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5reYPC90ZXh0Pgo8L3N2Zz4='), linear-gradient(135deg, #ff6a00 0%, #ff4400 100%) !important;
+}
+
+/* 天猫图标 */
+.app-icon.tmall {
+    background: linear-gradient(135deg, #ff0036 0%, #d50027 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuOSIvPgo8dGV4dCB4PSIyMCIgeT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI2ZmMDAzNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5aSpPC90ZXh0Pgo8L3N2Zz4='), linear-gradient(135deg, #ff0036 0%, #d50027 100%) !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .ai-tab-icon {
+        width: 20px !important;
+        height: 20px !important;
+        background-size: 16px 16px !important;
+        margin-right: 6px !important;
+    }
+    
+    .ai-avatar {
+        width: 36px !important;
+        height: 36px !important;
+        background-size: 28px 28px !important;
+    }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .ai-tab-icon,
+    .ai-avatar,
+    .app-icon {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+}

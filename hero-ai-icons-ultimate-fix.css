@@ -1,0 +1,114 @@
+/* Hero区域AI标签页图标终极修复方案 */
+
+/* 重置所有AI标签页图标的基础样式 */
+.phone-tabs .phone-tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 60px;
+    height: 50px;
+}
+
+/* AI标签页图标容器 */
+.phone-tab .phone-tab-icon {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 4px !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    font-size: 0 !important; /* 隐藏emoji */
+    overflow: hidden !important;
+}
+
+/* ChatGPT - 保持现有正确样式 */
+.phone-tab[data-tab="ai-chat"] .phone-tab-icon,
+.phone-tab.chatgpt .phone-tab-icon {
+    background: linear-gradient(135deg, #10a37f 0%, #1a7f64 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIyLjI4MTkgOS44MjE3M0MyMi42MDA2IDguNzY0MzYgMjIuNjAwNiA3LjYzNTY0IDIyLjI4MTkgNi41NzgyN0MyMS45NjMxIDUuNTIwOSAyMS4zNDA2IDQuNTc5MDEgMjAuNDg1MyAzLjg0MzE1QzE5LjYzIDMuMTA3MjkgMTguNTc2IDIuNjA3NzEgMTcuNDUzMSAyLjM5NjQ4QzE2LjMzMDMgMi4xODUyNSAxNS4xNzk3IDIuMjcxOTUgMTQuMTAzMSAyLjY0NjQ4QzEzLjAyNjYgMy4wMjEwMSAxMi4wNzQxIDMuNjY5MzYgMTEuMzQzOCA0LjUyNDY1QzEwLjYxMzQgNS4zNzk5NCAxMC4xMzM4IDYuNDA5MDEgOS45NTMxMiA3LjUwMDAxQzkuNzcyNDQgOC41OTA5OSA5Ljg5NjQ4IDkuNzA2OTkgMTAuMzEyNSAxMC43MzQ0QzEwLjcyODUgMTEuNzYxOCAxMS40MTg4IDEyLjY2MDIgMTIuMzEyNSAxMy4zMjgxQzEzLjIwNjMgMTMuOTk2MSAxNC4yNjU2IDE0LjQwNjMgMTUuMzc1IDE0LjUxNTZDMTYuNDg0NCAxNC42MjUgMTcuNjA5NCAxNC40Mjk3IDE4LjYyNSAxMy45NTMxQzE5LjY0MDYgMTMuNDc2NiAyMC41MDc4IDEyLjczNDQgMjEuMTI1IDExLjgxMjVDMjEuNzQyMiAxMC44OTA2IDIyLjA4NTkgOS44MTI1IDIyLjEyNSA4LjcxODc1QzIyLjE2NDEgNy42MjUgMjEuODk4NCA2LjU0Njg4IDIxLjM1OTQgNS42MDk0QzIwLjgyMDMgNC42NzE4OCAyMC4wMzEzIDMuOTE0MDYgMTkuMDkzOCAzLjQwNjI1QzE4LjE1NjMgMi44OTg0NCAxNy4xMDk0IDIuNjU2MjUgMTYuMDYyNSAyLjcwMzEzQzE1LjAxNTYgMi43NSAxMy45OTIyIDMuMDg1OTQgMTMuMTA5NCAzLjY3MTg4QzEyLjIyNjYgNC4yNTc4MSAxMS41MTU2IDUuMDcwMzEgMTEuMDQ2OSA2LjAzMTI1QzEwLjU3ODEgNi45OTIxOSAxMC4zNzUgOC4wNjI1IDEwLjQ1MzEgOS4xNDA2M0MxMC41MzEzIDEwLjIxODggMTAuODg2NyAxMS4yNTc4IDExLjQ4NDQgMTIuMTU2M0MxMi4wODIgMTMuMDU0NyAxMi44OTg0IDEzLjc4MTMgMTMuODU5NCAxNC4yNjU2QzE0LjgyMDMgMTQuNzUgMTUuODkwNiAxNC45NzY2IDE2Ljk2ODggMTQuOTI5N0MxOC4wNDY5IDE0Ljg4MjggMTkuMDkzOCAxNC41NjI1IDIwLjAxNTYgMTMuOTk2MUMyMC45Mzc1IDEzLjQyOTcgMjEuNzAzMSAxMi42MzI4IDIyLjIzNDQgMTEuNjg3NUMyMi43NjU2IDEwLjc0MjIgMjMuMDM5MSA5LjY4NzUgMjMuMDMxMyA4LjYyNUMyMy4wMjM0IDcuNTYyNSAyMi43MzQ0IDYuNTExNzIgMjIuMTg3NSA1LjU3ODEzQzIxLjY0MDYgNC42NDQ1MyAyMC44NTU1IDMuODYzMjggMTkuOTA2MyAzLjMxMjVDMTguOTU3IDIuNzYxNzIgMTcuODc1IDIuNDYwOTQgMTYuNzgxMyAyLjQzNzVDMTUuNjg3NSAyLjQxNDA2IDE0LjU5MzggMi42Njc5NyAxMy42MjUgMy4xNzE4OEMxMi42NTYzIDMuNjc1NzggMTEuODQ3NyA0LjQxMDE2IDExLjI4MTMgNS4zMTI1QzEwLjcxNDggNi4yMTQ4NCAxMC40MDYzIDcuMjUgMTAuMzgyOCA4LjMxMjVDMTAuMzU5NCA5LjM3NSAxMC42MjExIDEwLjQyNTggMTEuMTQwNiAxMS4zNTk0QzExLjY2MDIgMTIuMjkyOSAxMi40MTQxIDEzLjA3ODEgMTMuMzI4MSAxMy42NDA2QzE0LjI0MjIgMTQuMjAzMSAxNS4yODUyIDE0LjUyMzQgMTYuMzU5NCAxNC41NzAzQzE3LjQzMzYgMTQuNjE3MiAxOC41IDE0LjM4NjcgMTkuNDUzMSAxMy45MDYzQzIwLjQwNjMgMTMuNDI1OCAyMS4yMTg4IDEyLjcxMDkgMjEuODEyNSAxMS44MjgxQzIyLjQwNjMgMTAuOTQ1MyAyMi43NTc4IDkuOTI1NzggMjIuODM1OSA4Ljg3NUMyMi45MTQxIDcuODI0MjIgMjIuNzE0OCA2Ljc3MzQ0IDIyLjI1NzggNS44MjAzMUMyMS44MDA4IDQuODY3MTkgMjEuMTAxNiA0LjA0Mjk3IDIwLjIzNDQgMy40MjE4OEMxOS4zNjcyIDIuODAwNzggMTguMzYzMyAyLjQwNjI1IDE3LjMxMjUgMi4yNzM0NEMxNi4yNjE3IDIuMTQwNjMgMTUuMTk1MyAyLjI3MzQ0IDE0LjIwMzEgMi42NjAxNkMxMy4yMTA5IDMuMDQ2ODggMTIuMzI0MiAzLjY3NTc4IDExLjYyNSA0LjQ4NDM4QzEwLjkyNTggNS4yOTI5NyAxMC40Mzc1IDYuMjUzOTEgMTAuMjAzMSA3LjI4OTA2QzkuOTY4NzUgOC4zMjQyMiAxMC4wMDM5IDkuNDAyMzQgMTAuMzA0NyAxMC40MjE5QzEwLjYwNTUgMTEuNDQxNCAxMS4xNjAyIDEyLjM3MTEgMTEuOTIxOSAxMy4xMzI4QzEyLjY4MzYgMTMuODk0NSAxMy42MjUgMTQuNDY0OCAxNC42NzE5IDE0Ljc4OTFDMTUuNzE4OCAxNS4xMTMzIDE2LjgzMjggMTUuMTc5NyAxNy45MDYzIDE1LjAwMzlDMTguOTc5NyAxNC44MjgxIDIwLjAwMzkgMTQuNDE0MSAyMC44OTA2IDEzLjc5NjlDMjEuNzc3MyAxMy4xNzk3IDIyLjUgMTIuMzczNCAyMi45OTYxIDExLjQzNzVDMjMuNDkyMiAxMC41MDE2IDIzLjc0NjEgOS40NjA5NCAyMy43MzgzIDguNDA2MjVDMjMuNzMwNSA3LjM1MTU2IDIzLjQ2MDkgNi4zMTI1IDIyLjk1MzEgNS4zOTA2M0MyMi40NDUzIDQuNDY4NzUgMjEuNzE0OCAzLjY4NzUgMjAuODI4MSAzLjEwOTM4QzE5Ljk0MTQgMi41MzEyNSAxOC45MjU4IDIuMTc1NzggMTcuODc1IDIuMDcwMzFDMTYuODI0MiAxLjk2NDg0IDE1Ljc2NTYgMi4xMTMyOCAxNC43ODkxIDIuNTA3ODFDMTMuODEyNSAyLjkwMjM0IDEyLjk0OTIgMy41MzEyNSAxMi4yNjU2IDQuMzM1OTRDMTEuNTgyIDUuMTQwNjMgMTEuMDk3NyA2LjA5NzY2IDEwLjg1MTYgNy4xMzI4MUMxMC42MDU1IDguMTY3OTcgMTAuNjA1NSA5LjI0NjA5IDEwLjg1MTYgMTAuMjgxM0MxMS4wOTc3IDExLjMxNjQgMTEuNTgyIDEyLjI3MzQgMTIuMjY1NiAxMy4wNzgxQzEyLjk0OTIgMTMuODgyOCAxMy44MTI1IDE0LjUxMTcgMTQuNzg5MSAxNC45MDYzQzE1Ljc2NTYgMTUuMzAwOCAxNi44MjQyIDE1LjQ0OTIgMTcuODc1IDE1LjM0MzhDMTguOTI1OCAxNS4yMzgzIDE5Ljk0MTQgMTQuODgyOCAyMC44MjgxIDE0LjMwNDdDMjEuNzE0OCAxMy43MjY2IDIyLjQ0NTMgMTIuOTQ1MyAyMi45NTMxIDEyLjAyMzRDMjMuNDYwOSAxMS4xMDE2IDIzLjczMDUgMTAuMDYyNSAyMy43MzgzIDkuMDA3ODFDMjMuNzQ2MSA3Ljk1MzEzIDIzLjQ5MjIgNi45MTQwNiAyMi45OTYxIDUuOTc2NTZDMjIuNSA1LjAzOTA2IDIxLjc3NzMgNC4yMzI4MSAyMC44OTA2IDMuNjE3MTlDMjAuMDAzOSAzLjAwMTU2IDE4Ljk3OTcgMi41ODk4NCAxNy45MDYzIDIuNDE0MDZDMTYuODMyOCAyLjIzODI4IDE1LjcxODggMi4zMDQ2OSAxNC42NzE5IDIuNjI4OTFDMTMuNjI1IDIuOTUzMTMgMTIuNjgzNiAzLjUyMzQ0IDExLjkyMTkgNC4yODUxNkMxMS4xNjAyIDUuMDQ2ODggMTAuNjA1NSA1Ljk3NjU2IDEwLjMwNDcgNi45OTYwOUMxMC4wMDM5IDguMDE1NjMgOS45Njg3NSA5LjA5Mzc1IDEwLjIwMzEgMTAuMTI4OUMxMC40Mzc1IDExLjE2NDEgMTAuOTI1OCAxMi4xMjUgMTEuNjI1IDEyLjkzMzZDMTIuMzI0MiAxMy43NDIyIDEzLjIxMDkgMTQuMzcxMSAxNC4yMDMxIDE0Ljc1NzhDMTUuMTk1MyAxNS4xNDQ1IDE2LjI2MTcgMTUuMjc3MyAxNy4zMTI1IDE1LjE0NDVDMTguMzYzMyAxNS4wMTE3IDE5LjM2NzIgMTQuNjE3MiAyMC4yMzQ0IDE0LjAwMDFDMjEuMTAxNiAxMy4zODI4IDIxLjgwMDggMTIuNTU4NiAyMi4yNTc4IDExLjYwNTVDMjIuNzE0OCAxMC42NTIzIDIyLjkxNDEgOS42MDE1NiAyMi44MzU5IDguNTUwNzhDMjIuNzU3OCA3LjUgMjIuNDA2MyA2LjQ4MDQ3IDIxLjgxMjUgNS41OTc2NkMyMS4yMTg4IDQuNzE0ODQgMjAuNDA2MyA0IDIwLjQwNjMgNFoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=') !important;
+}
+
+/* DeepSeek - 深蓝色渐变 + 神经网络图标 */
+.phone-tab.deepseek .phone-tab-icon,
+.phone-tab[data-tab*="deepseek"] .phone-tab-icon {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #1e1b4b 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iNiIgY3k9IjYiIHI9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjkiLz4KPGNpcmNsZSBjeD0iMTgiIGN5PSI2IiByPSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45Ii8+CjxjaXJjbGUgY3g9IjYiIGN5PSIxOCIgcj0iMiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOSIvPgo8Y2lyY2xlIGN4PSIxOCIgY3k9IjE4IiByPSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45Ii8+CjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9IndoaXRlIi8+CjxsaW5lIHgxPSI4IiB5MT0iNiIgeDI9IjEwIiB5Mj0iMTAiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjciLz4KPGxpbmUgeDE9IjE2IiB5MT0iNiIgeDI9IjE0IiB5Mj0iMTAiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjciLz4KPGxpbmUgeDE9IjgiIHkxPSIxOCIgeDI9IjEwIiB5Mj0iMTQiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjciLz4KPGxpbmUgeDE9IjE2IiB5MT0iMTgiIHgyPSIxNCIgeTI9IjE0IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC43Ii8+Cjwvc3ZnPgo=') !important;
+}
+
+/* Kimi - 紫色渐变 + 月亮图标 */
+.phone-tab.kimi .phone-tab-icon,
+.phone-tab[data-tab*="kimi"] .phone-tab-icon {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c084fc 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIxIDEyLjc5QTkgOSAwIDEgMSAxMS4yMSAzIDcgNyAwIDAgMCAyMSAxMi43OXoiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjkiLz4KPGNpcmNsZSBjeD0iMTAiIGN5PSI4IiByPSIxLjUiIGZpbGw9IiM3YzNhZWQiIG9wYWNpdHk9IjAuNiIvPgo8Y2lyY2xlIGN4PSIxNCIgY3k9IjEwIiByPSIxIiBmaWxsPSIjN2MzYWVkIiBvcGFjaXR5PSIwLjQiLz4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxNCIgcj0iMC41IiBmaWxsPSIjN2MzYWVkIiBvcGFjaXR5PSIwLjMiLz4KPC9zdmc+Cg==') !important;
+}
+
+/* 豆包 - 橙色渐变 + 咖啡豆图标 */
+.phone-tab.doubao .phone-tab-icon,
+.phone-tab[data-tab*="doubao"] .phone-tab-icon,
+.phone-tab[data-tab*="豆包"] .phone-tab-icon {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 50%, #fb923c 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGVsbGlwc2UgY3g9IjEyIiBjeT0iMTIiIHJ4PSI2IiByeT0iOSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOSIvPgo8ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjMiIHJ5PSI3IiBmaWxsPSIjZWE1ODBjIiBvcGFjaXR5PSIwLjMiLz4KPGVsbGlwc2UgY3g9IjEyIiBjeT0iOSIgcng9IjEuNSIgcnk9IjIiIGZpbGw9IiNlYTU4MGMiIG9wYWNpdHk9IjAuNSIvPgo8ZWxsaXBzZSBjeD0iMTIiIGN5PSIxNSIgcng9IjEuNSIgcnk9IjIiIGZpbGw9IiNlYTU4MGMiIG9wYWNpdHk9IjAuNSIvPgo8L3N2Zz4K') !important;
+}
+
+/* Claude - 黄橙色渐变 + 机器人图标 */
+.phone-tab.claude .phone-tab-icon,
+.phone-tab[data-tab*="claude"] .phone-tab-icon {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #ea580c 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iNiIgeT0iNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE2IiByeD0iNCIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOSIvPgo8Y2lyY2xlIGN4PSI5IiBjeT0iOSIgcj0iMS41IiBmaWxsPSIjZjU5ZTBiIi8+CjxjaXJjbGUgY3g9IjE1IiBjeT0iOSIgcj0iMS41IiBmaWxsPSIjZjU5ZTBiIi8+CjxyZWN0IHg9IjkiIHk9IjEzIiB3aWR0aD0iNiIgaGVpZ2h0PSIyIiByeD0iMSIgZmlsbD0iI2Y1OWUwYiIgb3BhY2l0eT0iMC43Ii8+CjxyZWN0IHg9IjgiIHk9IjE3IiB3aWR0aD0iOCIgaGVpZ2h0PSIxIiByeD0iMC41IiBmaWxsPSIjZjU5ZTBiIiBvcGFjaXR5PSIwLjUiLz4KPC9zdmc+Cg==') !important;
+}
+
+/* 激活状态样式 */
+.phone-tab.active {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 标签页文字样式 */
+.phone-tab div:last-child {
+    font-size: 11px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500 !important;
+    margin-top: 2px !important;
+}
+
+/* 悬停效果 */
+.phone-tab:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* 确保图标在所有情况下都显示 */
+.phone-tab .phone-tab-icon::before {
+    content: '' !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* 强制隐藏emoji文字 */
+.phone-tab .phone-tab-icon * {
+    display: none !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .phone-tab .phone-tab-icon {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    .phone-tab div:last-child {
+        font-size: 10px !important;
+    }
+}

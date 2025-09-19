@@ -1,0 +1,207 @@
+/* 手机屏幕动画效果 */
+
+/* 浏览器URL加载动画 */
+.phone-browser-url.loading {
+    background: linear-gradient(90deg, 
+        rgba(var(--primary-rgb), 0.1), 
+        rgba(var(--primary-rgb), 0.2), 
+        rgba(var(--primary-rgb), 0.1)
+    );
+    background-size: 200% 100%;
+    animation: loading-pulse 1.5s infinite;
+}
+
+@keyframes loading-pulse {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+/* 网站点击效果 */
+.phone-browser-site.clicked {
+    transform: scale(0.98);
+    opacity: 0.8;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* App启动动画 */
+.phone-app-item.launching .phone-app-icon {
+    transform: scale(0.9);
+    opacity: 0.8;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.phone-app-item.launching {
+    position: relative;
+}
+
+.phone-app-item.launching::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--primary-rgb), 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.7;
+    animation: app-launch-ripple 0.8s ease-out;
+}
+
+@keyframes app-launch-ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* App跳转过渡动画 */
+.phone-screen.app-transition::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 10;
+    animation: app-transition-flash 0.3s ease-out;
+}
+
+[data-theme="dark"] .phone-screen.app-transition::before {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+@keyframes app-transition-flash {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* 小组件交互动画 */
+.phone-widget.interacting {
+    transform: scale(0.98);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.phone-widget.interacting::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--primary-rgb), 0.1);
+    border-radius: 12px;
+    animation: widget-pulse 0.5s ease-out;
+}
+
+@keyframes widget-pulse {
+    0% { opacity: 0.5; }
+    100% { opacity: 0; }
+}
+
+/* 标签页切换动画 */
+.phone-tab {
+    position: relative;
+    overflow: hidden;
+}
+
+.phone-tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--primary-rgb), 0.1);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.phone-tab:active::before {
+    transform: translateY(0);
+}
+
+/* 底部导航栏动画 */
+.phone-nav-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.phone-nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--primary-rgb), 0.1);
+    transform: scale(0);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.phone-nav-item:active::before {
+    transform: scale(1.5);
+}
+
+.phone-nav-icon {
+    transition: transform 0.2s ease;
+}
+
+.phone-nav-item:active .phone-nav-icon {
+    transform: scale(1.2);
+}
+
+.phone-nav-item.active .phone-nav-icon {
+    animation: nav-bounce 0.5s ease;
+}
+
+@keyframes nav-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+
+/* 内容切换动画 */
+.phone-screen-content {
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    transform: translateX(10px);
+}
+
+.phone-screen-content.active {
+    transform: translateX(0);
+}
+
+/* 搜索小组件动画 */
+.phone-widget-search {
+    position: relative;
+    overflow: hidden;
+}
+
+.phone-widget-search:active {
+    transform: scale(0.98);
+}
+
+.phone-widget-search::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--primary-rgb), 0.1);
+    border-radius: 8px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.phone-widget-search:active::after {
+    transform: scaleX(1);
+}

@@ -1,0 +1,201 @@
+/* 手机标签页动画效果 */
+
+/* 标签页高亮动画 */
+@keyframes tab-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.tab-highlight {
+    animation: tab-pulse 1s ease;
+}
+
+.tab-highlight::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--primary-rgb), 0.2);
+    border-radius: 4px;
+    animation: tab-glow 1s ease;
+}
+
+@keyframes tab-glow {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* 内容区域高亮动画 */
+.content-highlight {
+    animation: content-fade 1s ease;
+}
+
+@keyframes content-fade {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+/* 底部导航点击效果 */
+.phone-nav-item.clicked {
+    transform: scale(0.95);
+    transition: transform 0.2s ease;
+}
+
+.phone-nav-item.clicked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--primary-rgb), 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.7;
+    animation: nav-ripple 0.5s ease-out;
+}
+
+@keyframes nav-ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* 设置提示样式 */
+.phone-settings-toast {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 16px;
+    font-size: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+    white-space: nowrap;
+}
+
+[data-theme="dark"] .phone-settings-toast {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.phone-settings-toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 标签页内容切换动画增强 */
+.phone-screen-content {
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    transform: translateX(10px);
+    will-change: transform, opacity;
+}
+
+.phone-screen-content.active {
+    transform: translateX(0);
+    animation: content-enter 0.3s ease;
+}
+
+@keyframes content-enter {
+    0% { transform: translateX(10px); opacity: 0.5; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+/* 标签指示器动画 */
+.phone-tab.active::after {
+    animation: indicator-grow 0.3s ease;
+}
+
+@keyframes indicator-grow {
+    0% { width: 0; }
+    100% { width: 70%; }
+}
+
+/* 底部导航激活状态动画 */
+.phone-nav-item.active .phone-nav-icon {
+    animation: nav-bounce 0.5s ease;
+}
+
+/* 标签页图标悬停效果 */
+.phone-tab:hover .phone-tab-icon {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
+.phone-tab:not(:hover) .phone-tab-icon {
+    transform: translateY(0);
+    transition: transform 0.2s ease;
+}
+
+/* 内容刷新动画 */
+.content-refresh {
+    animation: refresh-pulse 0.5s ease;
+}
+
+@keyframes refresh-pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+/* 应用高亮动画 */
+.app-highlight .phone-app-icon {
+    animation: app-highlight-pulse 1s ease infinite;
+}
+
+@keyframes app-highlight-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* 输入框打字动画 */
+.phone-ai-input input.typing {
+    background: rgba(var(--primary-rgb), 0.1);
+    animation: typing-pulse 0.8s ease infinite;
+}
+
+@keyframes typing-pulse {
+    0% { background: rgba(var(--primary-rgb), 0.05); }
+    50% { background: rgba(var(--primary-rgb), 0.15); }
+    100% { background: rgba(var(--primary-rgb), 0.05); }
+}
+
+/* 浏览器网站刷新动画 */
+.phone-browser-site.content-refresh {
+    animation: site-refresh 0.5s ease;
+}
+
+@keyframes site-refresh {
+    0% { transform: translateY(5px); opacity: 0.7; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* 标签内容区域刷新动画 */
+#ai-chat-content.content-refresh,
+#browser-content.content-refresh,
+#app-jump-content.content-refresh,
+#widgets-content.content-refresh {
+    animation: tab-content-refresh 0.5s ease;
+}
+
+@keyframes tab-content-refresh {
+    0% { filter: brightness(0.9); }
+    50% { filter: brightness(1.05); }
+    100% { filter: brightness(1); }
+}

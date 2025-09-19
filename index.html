@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="brain-pulse-animations.css">
     <link rel="stylesheet" href="backup-content-styles.css">
+    <link rel="stylesheet" href="ai-browser-proxy.css">
+    <link rel="stylesheet" href="phone-mockup.css">
+    <link rel="stylesheet" href="hero-layout.css">
+    <link rel="stylesheet" href="phone-tabs.css">
+    <link rel="stylesheet" href="phone-animations.css">
+    <link rel="stylesheet" href="phone-tabs-animations.css">
+    <link rel="stylesheet" href="phone-redesign.css">
+    <!-- 统一图标系统 - 终极解决方案 -->
+    <link rel="stylesheet" href="unified-icon-system.css">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -33,24 +42,433 @@
     <section id="home" class="hero">
         <!-- 星辰神经动画背景 -->
         <div class="neural-bg" id="neuralBg"></div>
+        <!-- 装饰元素 -->
+        <div class="hero-decoration circle-1"></div>
+        <div class="hero-decoration circle-2"></div>
+        
         <div class="hero-container">
-            <h1 class="hero-title">
-                小脑浏览器
+            <h1 class="hero-title fade-in">
                 <span class="text-gradient block">AI赋能的智能浏览器</span>
             </h1>
-            <p class="hero-subtitle">一个App，搜遍全网</p>
-            <p class="hero-description">聚合搜索 · AI对话 · 智能管理</p>
-            <div class="hero-buttons">
-                <a href="#download" class="btn btn-primary">立即下载</a>
-                <a href="#features" class="btn btn-secondary">了解更多</a>
+            <p class="hero-subtitle fade-in fade-in-delay-1">一个App，搜遍全网</p>
+            <p class="hero-description fade-in fade-in-delay-2">聚合搜索 · AI对话 · 智能管理</p>
+            
+            <div class="hero-content-wrapper">
+                
+                <div class="hero-right-column fade-in fade-in-delay-3">
+                    <!-- 手机模型展示 -->
+                    <div class="hero-phone-demo">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="browser-ui">
+                                    <!-- 地址栏已移除 -->
 
-            </div>
-            <div class="hero-image">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="browser-ui">
-                            <div class="address-bar"></div>
-                            <div class="content-area"></div>
+                                    
+                                    <div class="content-area">
+                                        <!-- AI聊天界面 -->
+                                        <div class="phone-screen-content active" id="ai-chat-content">
+                                            <div class="phone-ai-chat">
+                                                <!-- 顶部输入区域 -->
+                                                <div class="phone-ai-input-header">
+                                                    <div class="ai-input-container">
+                                                        <div class="ai-brain-icon">🧠</div>
+                                                        <input type="text" placeholder="输入问题，向所有 AI 提问..." class="ai-main-input">
+                                                        <div class="ai-actions">
+                                                            <button class="ai-action-btn">📄</button>
+                                                            <button class="ai-action-btn">📤</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ai-detail-info">
+                                                        <span class="detail-text">详细信息</span>
+                                                        <span class="settings-icon">⚙️ 设置</span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- AI助手列表 -->
+                                                <div class="phone-ai-assistants">
+                                                    <div class="ai-assistant-item">
+                                                        <div class="ai-avatar deepseek-avatar">
+                                                        </div>
+                                                        <div class="ai-info">
+                                                            <div class="ai-name">DeepSeek</div>
+                                                            <div class="ai-status">你好！请问有什么可以帮助你...</div>
+                                                        </div>
+                                                        <div class="ai-status-indicators">
+                                                            <div class="online-dot"></div>
+                                                            <div class="config-badge">✓ 已配置</div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="ai-assistant-item">
+                                                        <div class="ai-avatar kimi-avatar">
+                                                        </div>
+                                                        <div class="ai-info">
+                                                            <div class="ai-name">Kimi</div>
+                                                            <div class="ai-status">您好！看起来您可能只发送了...</div>
+                                                        </div>
+                                                        <div class="ai-status-indicators">
+                                                            <div class="online-dot"></div>
+                                                            <div class="config-badge">✓ 已配置</div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="ai-assistant-item">
+                                                        <div class="ai-avatar zhipu-avatar">
+                                                        </div>
+                                                        <div class="ai-info">
+                                                            <div class="ai-name">智谱清言</div>
+                                                            <div class="ai-status">暂无对话</div>
+                                                        </div>
+                                                        <div class="ai-status-indicators">
+                                                            <div class="online-dot"></div>
+                                                            <div class="config-badge">✓ 已配置</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 浏览网页界面 -->
+                                        <div class="phone-screen-content" id="browser-content">
+                                            <div class="phone-browser">
+                                                <!-- 搜索栏 -->
+                                                <div class="browser-search-bar">
+                                                    <div class="search-input-container">
+                                                        <div class="search-icon">🔍</div>
+                                                        <input type="text" placeholder="请输入..." class="browser-search-input">
+                                                        <div class="search-actions">
+                                                            <button class="search-action-btn green">📄</button>
+                                                            <button class="search-action-btn">🔗</button>
+                                                            <button class="search-action-btn">🧠</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- 导航按钮已移除 -->
+                                                
+                                                <!-- 功能卡片 -->
+                                                <div class="browser-feature-cards">
+                                                    <div class="feature-card">
+                                                        <div class="feature-icon green-bg">
+                                                            <div class="icon-circle">👤</div>
+                                                        </div>
+                                                        <div class="feature-title">助手</div>
+                                                        <div class="feature-subtitle">选择助手</div>
+                                                    </div>
+                                                    
+                                                    <div class="feature-card">
+                                                        <div class="feature-icon green-bg">
+                                                            <div class="icon-circle">👥</div>
+                                                        </div>
+                                                        <div class="feature-title">身份</div>
+                                                        <div class="feature-subtitle">选择身份</div>
+                                                    </div>
+                                                    
+                                                    <div class="feature-card">
+                                                        <div class="feature-icon green-bg">
+                                                            <div class="icon-circle">💬</div>
+                                                        </div>
+                                                        <div class="feature-title">回复样式</div>
+                                                        <div class="feature-subtitle">选择样式</div>
+                                                    </div>
+                                                    
+                                                    <div class="feature-card">
+                                                        <div class="feature-icon green-bg">
+                                                            <div class="icon-circle">Aa</div>
+                                                        </div>
+                                                        <div class="feature-title">文风风格</div>
+                                                        <div class="feature-subtitle">选择风格</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- App跳转界面 -->
+                                        <div class="phone-screen-content" id="app-jump-content">
+                                            <div class="phone-app-jump">
+                                                <!-- 标题 -->
+                                                <div class="app-jump-header">
+                                                    <h2 class="app-jump-title">应用搜索</h2>
+                                                </div>
+                                                
+                                                <div class="app-jump-container">
+                                                    <!-- 左侧分类菜单 -->
+                                                    <div class="app-categories">
+                                                        <div class="category-header">
+                                                            <span class="category-title">分类</span>
+                                                            <span class="category-icon">☰</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item starred">
+                                                            <span class="category-icon">⭐</span>
+                                                            <span class="category-name">自定义</span>
+                                                            <span class="category-count">0个</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item active">
+                                                            <span class="category-icon">⬛</span>
+                                                            <span class="category-name">全部</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">🛍</span>
+                                                            <span class="category-name">购物</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">💬</span>
+                                                            <span class="category-name">社交</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">📺</span>
+                                                            <span class="category-name">视频</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">🎵</span>
+                                                            <span class="category-name">音乐</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">🏠</span>
+                                                            <span class="category-name">生活</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">🗺</span>
+                                                            <span class="category-name">地图</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">🌐</span>
+                                                            <span class="category-name">浏览器</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">💰</span>
+                                                            <span class="category-name">金融</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">🚗</span>
+                                                            <span class="category-name">出行</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">💼</span>
+                                                            <span class="category-name">招聘</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">📚</span>
+                                                            <span class="category-name">教育</span>
+                                                        </div>
+                                                        
+                                                        <div class="category-item">
+                                                            <span class="category-icon green">📰</span>
+                                                            <span class="category-name">新闻</span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- 右侧应用区域 -->
+                                                    <div class="app-content">
+                                                        <!-- 搜索框 -->
+                                                        <div class="app-search-container">
+                                                            <div class="app-search-input">
+                                                                <span class="search-icon">🔍</span>
+                                                                <input type="text" placeholder="输入搜索关键词">
+                                                            </div>
+                                                            <div class="app-search-tip">选择应用进行搜索</div>
+                                                        </div>
+                                                        
+                                                        <!-- 应用网格 -->
+                                                        <div class="app-grid">
+                                                            <!-- 第一行 -->
+                                                            <div class="app-item">
+                                                                <div class="app-icon taobao"></div>
+                                                                <div class="app-name">淘宝</div>
+                                                            </div>
+                                                            <div class="app-item">
+                                                                <div class="app-icon tmall"></div>
+                                                                <div class="app-name">天猫</div>
+                                                            </div>
+                                                            <div class="app-item">
+                                                                <div class="app-icon pinduoduo"></div>
+                                                                <div class="app-name">拼多多</div>
+                                                            </div>
+                                                            
+                                                            <!-- 第二行 -->
+                                                            <div class="app-item">
+                                                                <div class="app-icon jd"></div>
+                                                                <div class="app-name">京东</div>
+                                                            </div>
+                                                            <div class="app-item">
+                                                                <div class="app-icon xianyu"></div>
+                                                                <div class="app-name">闲鱼</div>
+                                                            </div>
+                                                            <div class="app-item">
+                                                                <div class="app-icon zhihu"></div>
+                                                                <div class="app-name">知乎</div>
+                                                            </div>
+                                                            
+                                                            <!-- 第三行 -->
+                                                            <div class="app-item">
+                                                                <div class="app-icon weibo"></div>
+                                                                <div class="app-name">微博</div>
+                                                            </div>
+                                                            <div class="app-item">
+                                                                <div class="app-icon qq-music"></div>
+                                                                <div class="app-name">QQ音乐</div>
+                                                            </div>
+                                                            <div class="app-item">
+                                                                <div class="app-icon netease-music"></div>
+                                                                <div class="app-name">网易云音乐</div>
+                                                            </div>
+                                                            
+                                                            <!-- 第四行 -->
+                                                            <div class="app-item">
+                                                                <div class="app-icon meituan"></div>
+                                                                <div class="app-name">美团</div>
+                                                            </div>
+                                                            <div class="app-item">
+                                                                <div class="app-icon eleme"></div>
+                                                                <div class="app-name">饿了么</div>
+                                                            </div>
+                                                            <div class="app-item">
+                                                                <div class="app-icon dianping"></div>
+                                                                <div class="app-name">大众点评</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 小组件界面 -->
+                                        <div class="phone-screen-content" id="widgets-content">
+                                            <div class="phone-widgets">
+                                                <!-- 标题栏 -->
+                                                <div class="widgets-header">
+                                                    <h2 class="widgets-title">小组件配置</h2>
+                                                    <div class="widgets-actions">
+                                                        <button class="widget-action-btn green">↻ 同步小组件</button>
+                                                        <button class="widget-action-btn">💾 重置</button>
+                                                        <button class="widget-action-btn">❓</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- 功能选项卡 -->
+                                                <div class="widget-tabs">
+                                                    <div class="widget-tab active">
+                                                        <span class="tab-icon">🔍</span>
+                                                        <span class="tab-text">搜索引擎</span>
+                                                    </div>
+                                                    <div class="widget-tab">
+                                                        <span class="tab-icon">🔗</span>
+                                                        <span class="tab-text">应用选择</span>
+                                                    </div>
+                                                    <div class="widget-tab">
+                                                        <span class="tab-icon">🧠</span>
+                                                        <span class="tab-text">AI助手</span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- 搜索引擎配置 -->
+                                                <div class="search-engine-config">
+                                                    <div class="config-header">
+                                                        <h3 class="config-title">搜索引擎</h3>
+                                                        <div class="config-status">
+                                                            <span class="status-indicator">✓ 2</span>
+                                                            <span class="status-text">已同步</span>
+                                                        </div>
+                                                        <div class="config-tip">按分类选择</div>
+                                                    </div>
+                                                    
+                                                    <!-- 搜索引擎分类 -->
+                                                    <div class="search-categories">
+                                                        <button class="search-category-btn">AI搜索</button>
+                                                        <button class="search-category-btn">专业搜索</button>
+                                                        <button class="search-category-btn active">国内搜索</button>
+                                                        <button class="search-category-btn">国际搜索</button>
+                                                    </div>
+                                                    
+                                                    <!-- 搜索引擎网格 -->
+                                                    <div class="search-engines-grid">
+                                                        <!-- 百度 - 已选中 -->
+                                                        <div class="search-engine-item selected">
+                                                            <div class="engine-icon baidu"></div>
+                                                            <div class="engine-name">百度</div>
+                                                            <div class="engine-checkbox checked">✓</div>
+                                                        </div>
+                                                        
+                                                        <!-- 搜狗 -->
+                                                        <div class="search-engine-item">
+                                                            <div class="engine-icon sogou"></div>
+                                                            <div class="engine-name">搜狗</div>
+                                                            <div class="engine-checkbox">○</div>
+                                                        </div>
+                                                        
+                                                        <!-- 360搜索 -->
+                                                        <div class="search-engine-item">
+                                                            <div class="engine-icon qihoo360"></div>
+                                                            <div class="engine-name">360搜索</div>
+                                                            <div class="engine-checkbox">○</div>
+                                                        </div>
+                                                        
+                                                        <!-- 神马搜索 -->
+                                                        <div class="search-engine-item">
+                                                            <div class="engine-icon shenma"></div>
+                                                            <div class="engine-name">神马搜索</div>
+                                                            <div class="engine-checkbox">○</div>
+                                                        </div>
+                                                        
+                                                        <!-- 中国搜索 -->
+                                                        <div class="search-engine-item">
+                                                            <div class="engine-icon chinaso"></div>
+                                                            <div class="engine-name">中国搜索</div>
+                                                            <div class="engine-checkbox">○</div>
+                                                        </div>
+                                                        
+                                                        <!-- 好搜 -->
+                                                        <div class="search-engine-item">
+                                                            <div class="engine-icon haosou"></div>
+                                                            <div class="engine-name">好搜</div>
+                                                            <div class="engine-checkbox">○</div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- 提示信息 -->
+                                                    <div class="config-tip-bottom">
+                                                        <span class="tip-icon">ℹ️</span>
+                                                        <span class="tip-text">最多选择 4 个搜索引擎，至少保留 1 个</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 底部导航栏 -->
+                                    <div class="phone-bottom-nav">
+                                        <div class="phone-nav-item active">
+                                            <div class="phone-nav-icon">🏠</div>
+                                            <div>首页</div>
+                                        </div>
+                                        <div class="phone-nav-item">
+                                            <div class="phone-nav-icon">🔍</div>
+                                            <div>搜索</div>
+                                        </div>
+                                        <div class="phone-nav-item">
+                                            <div class="phone-nav-icon">🤖</div>
+                                            <div>AI</div>
+                                        </div>
+                                        <div class="phone-nav-item">
+                                            <div class="phone-nav-icon">🌐</div>
+                                            <div>浏览</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -61,44 +479,33 @@
     <!-- 功能 -->
     <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title">重新定义浏览体验</h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-16 text-center">
-                六大核心功能，打造前所未有的智能浏览体验
-            </p>
+            <h2 class="section-title">重新定义搜索体验</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">✨</div>
                     <h3>AI智能助手</h3>
-                    <p>内置强大的AI助手，让浏览更智能，搜索更精准</p>
+                    <p>AI助手让浏览更智能，搜索更精准</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💬</div>
                     <h3>对话式管理</h3>
-                    <p>通过自然对话管理书签、历史记录和收藏夹</p>
+                    <p>多AI对话，一起帮你解决问题，/p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
                     <h3>手势管理</h3>
-                    <p>直观的手势操作，让浏览体验更加流畅便捷</p>
+                    <p>自定义手势操作，让使用体验更加流畅</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚙️</div>
                     <h3>多平台聚合</h3>
-                    <p>整合多个平台内容，一站式获取所需信息</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
-                    <h3>快速查询</h3>
-                    <p>毫秒级搜索响应，找到你想要的一切</p>
+                    <p>整合多个热门平台内容，一站式快捷查询</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
                     <h3>小组件查询</h3>
                     <p>桌面小组件，一键快速查询和访问常用功能</p>
                 </div>
-            </div>
-            <div class="text-center mt-16">
-                <a href="#guide" class="btn btn-primary">探索所有功能</a>
             </div>
         </div>
     </section>
@@ -109,8 +516,7 @@
             <h2 class="section-title">🧠 使用指南</h2>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-16 text-center">
                 快速上手小脑浏览器，体验智能浏览的便捷与高效
-            </p>
-            
+            </p>            
             <!-- Feature Guides -->
             <div class="space-y-16">
                 <!-- 聚合搜索 -->
@@ -119,7 +525,7 @@
                         <div class="text-4xl mr-4">🔍</div>
                         <div>
                             <h3 class="text-2xl font-bold text-gray-900">功能一：聚合搜索</h3>
-                            <p class="text-primary-600 font-medium">一键搜遍全网，告别切换App的烦恼</p>
+                            <p class="text-primary-600 font-medium">一键搜遍全网，告别信息茧房的烦恼</p>
                         </div>
                     </div>
                     <p class="text-gray-600 mb-6">同时搜索B站、小红书、知乎、抖音等平台，一次获取所有相关内容。</p>
@@ -145,7 +551,7 @@
                         <div class="text-4xl mr-4">🤖</div>
                         <div>
                             <h3 class="text-2xl font-bold text-gray-900">功能二：AI智能对话</h3>
-                            <p class="text-primary-600 font-medium">多个AI助手，随时24小时在线服务</p>
+                            <p class="text-primary-600 font-medium">多个AI助手，随时在线服务</p>
                         </div>
                     </div>
                     <p class="text-gray-600 mb-6">集成DeepSeek、ChatGPT、Kimi、豆包等多个AI助手，满足不同场景需求。</p>
@@ -153,15 +559,15 @@
                     <div class="bg-gray-50 rounded-xl p-6 mb-6">
                         <h4 class="font-bold text-gray-900 mb-4">🎯 怎么用：</h4>
                         <ul class="space-y-3 text-gray-700">
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">1.</span>选择AI助手（DeepSeek/ChatGPT/Kimi/豆包）</li>
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">2.</span>输入问题，如"帮我写个周报"</li>
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">3.</span>获取AI即时回复，支持连续对话</li>
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">4.</span>所有聊天记录自动保存，方便回顾</li>
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">1.</span>选择一个或者多个AI助手建群</li>
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">2.</span>输入问题，多个 AI 同步搜查</li>
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">3.</span>配合个性提示词，支持记忆对话</li>
+                            <li class="flex items-start"><span class="text-primary-500 mr-2">4.</span>聊天记录保存本地，方便导出整理</li>
                         </ul>
                     </div>
 
                     <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
-                        <p class="text-blue-800"><strong>💡 小贴士：</strong>不同AI有不同特长，选择合适的AI助手能事半功倍。</p>
+                        <p class="text-blue-800"><strong>💡 小贴士：</strong>AI各有所长，选择合适的AI助手能事半功倍。</p>
                     </div>
                 </div>
 
@@ -170,27 +576,19 @@
                     <div class="feature-card text-center">
                         <div class="text-4xl mb-4">🌐</div>
                         <h4 class="text-lg font-bold text-gray-900 mb-2">内置浏览器</h4>
-                        <p class="text-gray-600 text-sm">一站式浏览体验，无需切换应用</p>
+                        <p class="text-gray-600 text-sm">一站式浏览体验，手势快捷操作</p>
                     </div>
                     <div class="feature-card text-center">
                         <div class="text-4xl mb-4">📱</div>
                         <h4 class="text-lg font-bold text-gray-900 mb-2">桌面小组件</h4>
-                        <p class="text-gray-600 text-sm">快捷访问常用功能</p>
+                        <p class="text-gray-600 text-sm">一键直达，一锤定音</p>
                     </div>
                     <div class="feature-card text-center">
                         <div class="text-4xl mb-4">⚙️</div>
                         <h4 class="text-lg font-bold text-gray-900 mb-2">个性化设置</h4>
-                        <p class="text-gray-600 text-sm">定制专属的使用体验</p>
+                        <p class="text-gray-600 text-sm">定制专属AI，保护隐私</p>
                     </div>
-                </div>
-
-                <!-- 开始使用 -->
-                <div class="feature-card bg-gradient-to-br from-blue-500 to-blue-600 text-white text-center">
-                    <div class="text-4xl mb-4">🚀</div>
-                    <h3 class="text-2xl font-bold mb-4">开始体验小脑</h3>
-                    <p class="text-blue-100 mb-6">立即下载小脑浏览器，体验聚合搜索和AI对话的便捷。</p>
-                    <p class="text-blue-200 text-sm">小脑团队 ❤️ 为更高效的数字生活而生</p>
-                </div>
+                </div>         
             </div>
         </div>
     </section>
@@ -370,66 +768,12 @@
         </div>
     </section>
 
-    <!-- 下载 -->
-    <section id="download" class="download">
-        <div class="container">
-            <h2 class="section-title">下载小脑浏览器</h2>
-            <p class="text-xl text-gray-600 mb-12 leading-relaxed text-center">
-                支持 iOS 和 Android 平台，马上体验智能浏览
-            </p>
-            <div class="download-content">
-                <div class="download-info">
-                    <h3>小脑浏览器</h3>
-                    <p class="download-description">聚合搜索 + AI对话的智能浏览器</p>
-                    <div class="download-features">
-                        <div class="download-feature">
-                            <span class="feature-check">✓</span>
-                            <span>免费下载</span>
-                        </div>
-                        <div class="download-feature">
-                            <span class="feature-check">✓</span>
-                            <span>无广告干扰</span>
-                        </div>
-                        <div class="download-feature">
-                            <span class="feature-check">✓</span>
-                            <span>隐私保护</span>
-                        </div>
-                    </div>
-                    <div class="download-buttons flex flex-col sm:flex-row gap-4 justify-center">
-                        <button class="btn btn-primary flex items-center space-x-2">
-                            <span>🍎</span>
-                            <span>App Store 下载</span>
-                        </button>
-                        <button class="btn btn-primary flex items-center space-x-2">
-                            <span>🤖</span>
-                            <span>Google Play 下载</span>
-                        </button>
-                    </div>
-                    <p class="text-sm text-gray-500 mt-8 text-center">
-                        免费下载，无广告，隐私保护
-                    </p>
-                </div>
-                <div class="download-qr">
-                    <div class="qr-code">
-                        <div class="qr-placeholder">
-                            <span>📱</span>
-                            <p>扫码下载</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- 下载区域已移除 -->
 
     <!-- 页脚 -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-icon">🧠</span>
-                    <span class="logo-text">小脑</span>
-                </div>
-            </div>
+           
             <div class="footer-bottom">
                 <p>一个App，搜遍全网。</p>
                 <p>© 2024 小脑浏览器. 保留所有权利.</p>
@@ -438,5 +782,29 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="ai-browser-proxy.js"></script>
+    <script src="phone-tabs.js"></script>
+    <script src="phone-browser-demo.js"></script>
+    <script src="icon-config.js"></script>
+    <script src="icon-fallback.js"></script>
+    <script src="real-icon-loader.js"></script>
+    <script src="improved-icon-loader.js"></script>
+    <script src="ai-icon-handler.js"></script>
+    <script src="phone-redesign.js"></script>
+    <script src="icon-interactions.js"></script>
+    <!-- 智能图标解决方案 -->
+    <script src="smart-icon-loader.js"></script>
+    <script src="icon-debug-panel.js"></script>
+    <!-- Hero区域AI标签页处理器 - 最高优先级 -->
+    <script src="hero-ai-tabs-handler.js"></script>
+    
+    <!-- Google图标服务加载器 - 真实精准图标 -->
+    <script src="google-icons-loader.js"></script>
+    
+    <!-- AI聊天演示 - 核心功能 -->
+    <script src="ai-chat-demo.js"></script>
+    
+    <!-- 统一图标加载器 - 终极解决方案 -->
+    <script src="unified-icon-loader.js"></script>
 </body>
 </html>

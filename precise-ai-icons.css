@@ -1,0 +1,148 @@
+/* 精准AI图标系统 - 使用真实官方图标源 */
+
+/* 重置所有AI平台图标的基础样式 */
+.ai-platform-icon {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+    display: inline-block !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    vertical-align: middle !important;
+    margin-right: 8px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    transition: all 0.2s ease !important;
+}
+
+/* ChatGPT - 使用官方OpenAI图标 */
+.ai-platform-icon.chatgpt-icon {
+    background-image: url('https://cdn.oaistatic.com/_next/static/media/apple-touch-icon.82af6fe1.png') !important;
+    background-color: #10a37f !important;
+}
+
+/* 备用ChatGPT图标 */
+.ai-platform-icon.chatgpt-icon.fallback {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/512px-ChatGPT_logo.svg.png') !important;
+}
+
+/* DeepSeek - 使用官方图标 */
+.ai-platform-icon.deepseek-icon {
+    background-image: url('https://chat.deepseek.com/favicon.ico') !important;
+    background-color: #1a365d !important;
+    background-size: 24px 24px !important;
+}
+
+/* 备用DeepSeek图标 */
+.ai-platform-icon.deepseek-icon.fallback {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTQiIGZpbGw9IiMxZTNhOGEiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiPgo8cGF0aCBkPSJNOCA4TDE2IDE2TDggMjRNMTYgOEwyNCA4TTE2IDE2TDI0IDE2TTE2IDI0TDI0IDI0IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KPC9zdmc+Cjwvc3ZnPg==') !important;
+}
+
+/* Kimi - 使用Moonshot AI官方图标 */
+.ai-platform-icon.kimi-icon {
+    background-image: url('https://kimi.moonshot.cn/favicon.ico') !important;
+    background-color: #6366f1 !important;
+    background-size: 24px 24px !important;
+}
+
+/* 备用Kimi图标 */
+.ai-platform-icon.kimi-icon.fallback {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTQiIGZpbGw9IiM2MzY2ZjEiLz4KPHN2ZyB4PSI2IiB5PSI2IiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiPgo8cGF0aCBkPSJNMjAgMTJBOCA4IDAgMSAxIDEyIDRBNiA2IDAgMCAwIDIwIDEyWiIgZmlsbD0id2hpdGUiLz4KPHN2Zz4KPC9zdmc+') !important;
+}
+
+/* 豆包 - 使用字节跳动官方图标 */
+.ai-platform-icon.doubao-icon {
+    background-image: url('https://www.doubao.com/favicon.ico') !important;
+    background-color: #ff6b35 !important;
+    background-size: 24px 24px !important;
+}
+
+/* 备用豆包图标 */
+.ai-platform-icon.doubao-icon.fallback {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTQiIGZpbGw9IiNmZjZiMzUiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiPgo8ZWxsaXBzZSBjeD0iMTYiIGN5PSIxNiIgcng9IjYiIHJ5PSI5IiBmaWxsPSJ3aGl0ZSIvPgo8ZWxsaXBzZSBjeD0iMTYiIGN5PSIxNiIgcng9IjIiIHJ5PSI0IiBmaWxsPSIjZmY2YjM1Ii8+Cjwvc3ZnPgo8L3N2Zz4=') !important;
+}
+
+/* Claude - 使用Anthropic官方图标 */
+.ai-platform-icon.claude-icon {
+    background-image: url('https://claude.ai/favicon.ico') !important;
+    background-color: #cc785c !important;
+    background-size: 24px 24px !important;
+}
+
+/* 备用Claude图标 */
+.ai-platform-icon.claude-icon.fallback {
+    background: linear-gradient(135deg, #cc785c 0%, #d4915c 100%) !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTQiIGZpbGw9IiNjYzc4NWMiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiPgo8cGF0aCBkPSJNMTYgOEMxOC4yMDkgOCAyMCAxMC4yMzkgMjAgMTJWMjBDMjAgMjIuMjA5IDE4LjIwOSAyNCAxNiAyNEgxMkMxMC4yMzkgMjQgOCAyMi4yMDkgOCAyMFYxMkM4IDEwLjIzOSAxMC4yMzkgOCAxMiA4SDE2WiIgZmlsbD0id2hpdGUiLz4KPGNpcmNsZSBjeD0iMTMiIGN5PSIxMyIgcj0iMS41IiBmaWxsPSIjY2M3ODVjIi8+CjxjaXJjbGUgY3g9IjE5IiBjeT0iMTMiIHI9IjEuNSIgZmlsbD0iI2NjNzg1YyIvPgo8cGF0aCBkPSJNMTIgMThIMjBDMjAgMTkuNjU2OSAxOC42NTY5IDIxIDE3IDIxSDE1QzEzLjM0MzEgMjEgMTIgMTkuNjU2OSAxMiAxOFoiIGZpbGw9IiNjYzc4NWMiLz4KPC9zdmc+Cjwvc3ZnPg==') !important;
+}
+
+/* 悬停效果 */
+.ai-platform-icon:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
+}
+
+/* 加载状态 */
+.ai-platform-icon.loading {
+    opacity: 0.7 !important;
+    animation: iconPulse 1.5s ease-in-out infinite !important;
+}
+
+@keyframes iconPulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* 错误状态 */
+.ai-platform-icon.error {
+    background-color: #ef4444 !important;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTQiIGZpbGw9IiNlZjQ0NDQiLz4KPHBhdGggZD0iTTEyIDEyTDIwIDIwTTIwIDEyTDEyIDIwIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+') !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .ai-platform-icon {
+        width: 28px !important;
+        height: 28px !important;
+        margin-right: 6px !important;
+    }
+}
+
+/* Hero区域特殊样式 */
+.hero .ai-platform-icon {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2) !important;
+}
+
+/* AI响应区域样式 */
+.ai-response-platform-icon .ai-platform-icon {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 6px !important;
+    margin-right: 8px !important;
+}
+
+/* 确保图标在不同容器中的正确显示 */
+.phone-tab .ai-platform-icon,
+.ai-tab-icon .ai-platform-icon {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+}
+
+/* 修复可能的布局问题 */
+.ai-platform-icon * {
+    pointer-events: none !important;
+}
+
+/* 确保图标不被其他样式覆盖 */
+.ai-platform-icon {
+    background-blend-mode: normal !important;
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+}
