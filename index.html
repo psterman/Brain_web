@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="unified-icon-system.css">
     <!-- 动画演示样式 -->
     <link rel="stylesheet" href="animation-demo.css">
+    <!-- 手机滚动优化 -->
+    <link rel="stylesheet" href="phone-scroll-smooth.css">
+    <!-- 功能重构 Material Design 样式 -->
+    <link rel="stylesheet" href="feature-redesign.css">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -550,54 +554,289 @@
             <!-- Feature Guides -->
             <div class="space-y-16">
                 <!-- 聚合搜索 -->
-                <div class="feature-card">
-                    <div class="flex items-center mb-6">
-                        <div class="text-4xl mr-4">🔍</div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900">功能一：聚合搜索</h3>
-                            <p class="text-primary-600 font-medium">一键搜遍全网，告别信息茧房的烦恼</p>
+                <div class="feature-card-redesigned search-feature">
+                    <!-- 头部区域 -->
+                    <div class="feature-header">
+                        <div class="feature-icon-container search-icon">
+                            <div class="feature-icon-bg">
+                                <span class="feature-icon-symbol">🔍</span>
+                            </div>
+                        </div>
+                        <div class="feature-header-content">
+                            <div class="feature-badge">功能一</div>
+                            <h3 class="feature-title">聚合搜索</h3>
+                            <p class="feature-subtitle">一键搜遍全网，告别信息茧房</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6">同时搜索B站、小红书、知乎、抖音等平台，一次获取所有相关内容。</p>
 
-                    <div class="bg-gray-50 rounded-xl p-6 mb-6">
-                        <h4 class="font-bold text-gray-900 mb-4">🎯 使用方法：</h4>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">1.</span>输入关键词（如“好吃的火锅”）</li>
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">2.</span>点击搜索，等待结果</li>
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">3.</span>查看所有平台的搜索结果</li>
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">4.</span>点击感兴趣的内容，直接跳转</li>
-                        </ul>
+                    <!-- 描述区域 -->
+                    <div class="feature-description">
+                        <p>同时搜索<strong>B站、小红书、知乎、抖音</strong>等平台，一次获取所有相关内容，让信息获取更高效。</p>
                     </div>
 
-                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
-                        <p class="text-blue-800"><strong>💡 小贴士：</strong>点击平台图标可精准搜索特定平台内容。</p>
-                    </div>
-                </div>
+                    <!-- 统一移动端演示界面 -->
+                    <div class="unified-mobile-demo">
+                            <div class="mobile-phone-frame">
+                                <!-- iPhone 17 动态岛内容 -->
+                                <div class="dynamic-island-content">
+                                    <div class="dynamic-island-left">
+                                        <div class="island-camera-indicator"></div>
+                                        <div class="island-mic-indicator"></div>
+                                    </div>
+                                    <div class="dynamic-island-right">
+                                        <span>9:41</span>
+                                    </div>
+                                </div>
+                            <!-- 手机状态栏 -->
+                            <div class="mobile-status-bar">
+                                <div class="status-left">
+                                    <span class="time">9:41</span>
+                                </div>
+                                <div class="status-right">
+                                    <!-- iOS 26 信号强度 -->
+                                    <div class="signal-strength">
+                                        <div class="signal-bar"></div>
+                                        <div class="signal-bar"></div>
+                                        <div class="signal-bar"></div>
+                                        <div class="signal-bar"></div>
+                                    </div>
+                                    <!-- iOS 26 WiFi 图标 -->
+                                    <div class="wifi-icon"></div>
+                                    <!-- iPhone 17 电池 -->
+                                    <div class="battery-container">
+                                        <div class="battery-icon">
+                                            <div class="battery-level"></div>
+                                        </div>
+                                        <span class="battery-percentage">85</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 应用内容区域 -->
+                            <div class="mobile-app-content">
+                                <!-- 搜索页面 -->
+                                <div class="tab-content active" id="search-tab">
+                                    <div class="mobile-header">
+                                        <h3>聚合搜索</h3>
+                                    </div>
+                                    
+                                    <div class="mobile-search-section">
+                                        <div class="mobile-search-bar">
+                                            <span class="search-icon">🔍</span>
+                                            <span class="mobile-search-placeholder">搜索好吃的火锅</span>
+                                            <span class="voice-icon">🎤</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mobile-results-section">
+                                        <div class="platform-tabs">
+                                            <div class="platform-tab active" data-platform="bilibili">
+                                                <span class="tab-icon">📺</span>
+                                                <span>B站</span>
+                                                <span class="result-count">12</span>
+                                            </div>
+                                            <div class="platform-tab" data-platform="xiaohongshu">
+                                                <span class="tab-icon">📖</span>
+                                                <span>小红书</span>
+                                                <span class="result-count">8</span>
+                                            </div>
+                                            <div class="platform-tab" data-platform="zhihu">
+                                                <span class="tab-icon">🤔</span>
+                                                <span>知乎</span>
+                                                <span class="result-count">15</span>
+                                            </div>
+                                            <div class="platform-tab" data-platform="douyin">
+                                                <span class="tab-icon">🎵</span>
+                                                <span>抖音</span>
+                                                <span class="result-count">6</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mobile-result-preview">
+                                            <div class="result-item">
+                                                <div class="result-thumbnail"></div>
+                                                <div class="result-info">
+                                                    <div class="result-title">重庆火锅推荐...</div>
+                                                    <div class="result-meta">B站 · 2小时前</div>
+                                                </div>
+                                            </div>
+                                            <div class="result-item">
+                                                <div class="result-thumbnail"></div>
+                                                <div class="result-info">
+                                                    <div class="result-title">成都最好吃的火锅...</div>
+                                                    <div class="result-meta">B站 · 5小时前</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <!-- AI对话助手 -->
-                <div class="feature-card">
-                    <div class="flex items-center mb-6">
-                        <div class="text-4xl mr-4">🤖</div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900">功能二：AI智能对话</h3>
-                            <p class="text-primary-600 font-medium">多个AI助手，随时在线服务</p>
+                                <!-- AI聊天页面 -->
+                                <div class="tab-content" id="chat-tab">
+                                    <div class="mobile-header">
+                                        <div class="header-left">
+                                            <span class="back-btn">←</span>
+                                        </div>
+                                        <h3>AI智能对话</h3>
+                                        <div class="header-right">
+                                            <span class="more-btn">⋯</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="ai-selector">
+                                        <div class="ai-chip active">DeepSeek</div>
+                                        <div class="ai-chip">ChatGPT</div>
+                                        <div class="ai-chip">Kimi</div>
+                                        <div class="ai-chip">豆包</div>
+                                    </div>
+                                    
+                                    <div class="chat-messages">
+                                        <div class="message user-message">
+                                            <div class="message-bubble">
+                                                如何学习编程？
+                                            </div>
+                                            <div class="message-time">刚刚</div>
+                                        </div>
+                                        
+                                        <div class="message ai-message">
+                                            <div class="ai-avatar">🤖</div>
+                                            <div class="message-content">
+                                                <div class="ai-name">DeepSeek</div>
+                                                <div class="message-bubble typing">
+                                                    <div class="typing-indicator">
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="chat-input-area">
+                                        <div class="mobile-chat-input">
+                                            <span class="input-placeholder">输入消息...</span>
+                                            <div class="input-actions">
+                                                <span class="emoji-btn">😊</span>
+                                                <span class="send-btn">➤</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 发现页面 -->
+                                <div class="tab-content" id="discover-tab">
+                                    <div class="mobile-header">
+                                        <h3>发现</h3>
+                                    </div>
+                                    <div class="discover-content">
+                                        <div class="discover-item">
+                                            <div class="discover-icon">🔥</div>
+                                            <div class="discover-info">
+                                                <div class="discover-title">热门功能</div>
+                                                <div class="discover-desc">探索更多实用工具</div>
+                                            </div>
+                                        </div>
+                                        <div class="discover-item">
+                                            <div class="discover-icon">⚡</div>
+                                            <div class="discover-info">
+                                                <div class="discover-title">快速工具</div>
+                                                <div class="discover-desc">提升工作效率</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 我的页面 -->
+                                <div class="tab-content" id="profile-tab">
+                                    <div class="mobile-header">
+                                        <h3>我的</h3>
+                                    </div>
+                                    <div class="profile-content">
+                                        <div class="profile-avatar">👤</div>
+                                        <div class="profile-name">用户</div>
+                                        <div class="profile-menu">
+                                            <div class="menu-item">
+                                                <span class="menu-icon">⚙️</span>
+                                                <span class="menu-text">设置</span>
+                                            </div>
+                                            <div class="menu-item">
+                                                <span class="menu-icon">📊</span>
+                                                <span class="menu-text">使用统计</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 底部导航栏 -->
+                            <div class="mobile-bottom-nav">
+                                <div class="nav-item active" data-tab="search-tab">
+                                    <div class="nav-icon">🔍</div>
+                                    <div class="nav-label">搜索</div>
+                                </div>
+                                <div class="nav-item" data-tab="chat-tab">
+                                    <div class="nav-icon">💬</div>
+                                    <div class="nav-label">AI聊天</div>
+                                </div>
+                                <div class="nav-item" data-tab="discover-tab">
+                                    <div class="nav-icon">🔥</div>
+                                    <div class="nav-label">发现</div>
+                                </div>
+                                <div class="nav-item" data-tab="profile-tab">
+                                    <div class="nav-icon">👤</div>
+                                    <div class="nav-label">我的</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6">集成DeepSeek、ChatGPT、Kimi、豆包等多个AI助手，满足不同场景需求。</p>
-
-                    <div class="bg-gray-50 rounded-xl p-6 mb-6">
-                        <h4 class="font-bold text-gray-900 mb-4">🎯 怎么用：</h4>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">1.</span>选择一个或者多个AI助手建群</li>
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">2.</span>输入问题，多个 AI 同步搜查</li>
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">3.</span>配合个性提示词，支持记忆对话</li>
-                            <li class="flex items-start"><span class="text-primary-500 mr-2">4.</span>聊天记录保存本地，方便导出整理</li>
-                        </ul>
+                    <!-- 描述区域 -->
+                    <div class="feature-description">
+                        <p>集成<strong>DeepSeek、ChatGPT、Kimi、豆包</strong>等多个AI助手，满足不同场景需求，让智能对话更便捷。</p>
                     </div>
 
-                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
-                        <p class="text-blue-800"><strong>💡 小贴士：</strong>AI各有所长，选择合适的AI助手能事半功倍。</p>
+
+                    <!-- 使用步骤 -->
+                    <div class="feature-steps">
+                        <h4 class="steps-title">🎯 怎么用</h4>
+                        <div class="steps-grid">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h5>选择AI助手</h5>
+                                    <p>一个或多个建群</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h5>输入问题</h5>
+                                    <p>多个AI同步搜查</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h5>个性提示词</h5>
+                                    <p>支持记忆对话</p>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h5>记录保存</h5>
+                                    <p>本地导出整理</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 小贴士 -->
+                    <div class="feature-tip">
+                        <div class="tip-icon">💡</div>
+                        <div class="tip-content">
+                            <strong>小贴士：</strong>AI各有所长，选择合适的AI助手能事半功倍
+                        </div>
                     </div>
                 </div>
 
@@ -848,5 +1087,9 @@
     
     <!-- 动画演示控制器 -->
     <script src="animation-demo-controller.js"></script>
+    
+    <!-- 手机滚动体验增强器 -->
+    <script src="phone-scroll-enhancer.js"></script>
+
 </body>
 </html>

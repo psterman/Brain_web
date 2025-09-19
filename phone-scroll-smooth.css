@@ -1,0 +1,313 @@
+/* 手机内滚动条优化 - 无感滑动体验 */
+
+/* 隐藏所有手机内的滚动条 */
+.phone-ai-messages,
+.phone-browser-content,
+.app-content,
+.app-categories,
+.phone-tabs,
+.search-engine-config,
+.search-categories,
+.phone-widgets {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+}
+
+.phone-ai-messages::-webkit-scrollbar,
+.phone-browser-content::-webkit-scrollbar,
+.app-content::-webkit-scrollbar,
+.app-categories::-webkit-scrollbar,
+.phone-tabs::-webkit-scrollbar,
+.search-engine-config::-webkit-scrollbar,
+.search-categories::-webkit-scrollbar,
+.phone-widgets::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+/* AI聊天消息区域渐变遮罩 */
+.phone-ai-messages {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+    scroll-snap-type: y proximity;
+}
+
+/* 浏览器内容区域渐变遮罩 */
+.phone-browser-content {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%);
+    scroll-snap-type: y proximity;
+}
+
+/* 应用内容区域渐变遮罩 */
+.app-content {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 4%, black 96%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 4%, black 96%, transparent 100%);
+    scroll-snap-type: y proximity;
+}
+
+/* 应用分类区域渐变遮罩 */
+.app-categories {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+    scroll-snap-type: y mandatory;
+}
+
+/* 标签页水平渐变遮罩 */
+.phone-tabs {
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    scroll-snap-type: x mandatory;
+}
+
+/* 小组件配置区域渐变遮罩 */
+.search-engine-config {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%);
+    scroll-snap-type: y proximity;
+}
+
+/* 搜索分类水平渐变遮罩 */
+.search-categories {
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    scroll-snap-type: x proximity;
+}
+
+/* 小组件容器渐变遮罩 */
+.phone-widgets {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 2%, black 98%, transparent 100%);
+    scroll-snap-type: y proximity;
+}
+
+/* 滚动对齐优化 */
+.phone-ai-message {
+    scroll-snap-align: start;
+    scroll-margin-top: 10px;
+}
+
+.phone-browser-site {
+    scroll-snap-align: start;
+    scroll-margin-top: 8px;
+}
+
+.category-item {
+    scroll-snap-align: center;
+    scroll-margin: 4px 0;
+}
+
+.phone-tab {
+    scroll-snap-align: center;
+    scroll-margin-left: 4px;
+}
+
+.search-engine-item {
+    scroll-snap-align: start;
+    scroll-margin-top: 6px;
+}
+
+.search-category-btn {
+    scroll-snap-align: center;
+    scroll-margin-left: 4px;
+}
+
+.widget-tab {
+    scroll-snap-align: center;
+    scroll-margin: 2px;
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+    .phone-ai-messages,
+    .phone-browser-content,
+    .app-content,
+    .app-categories,
+    .search-engine-config,
+    .search-categories,
+    .phone-widgets {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+}
+
+/* 滚动指示器样式 */
+.scroll-indicator {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .scroll-indicator {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.scroll-indicator-top {
+    top: 8px;
+}
+
+.scroll-indicator-bottom {
+    bottom: 8px;
+}
+
+/* 滚动状态增强 */
+.scroll-enhanced.scrolling {
+    transition: all 0.1s ease;
+}
+
+/* 滚动时的微妙动画 */
+.scroll-enhanced.scrolling .scroll-indicator {
+    animation: pulse-indicator 2s infinite;
+}
+
+@keyframes pulse-indicator {
+    0%, 100% { 
+        transform: translateX(-50%) scale(1);
+        opacity: 0.7;
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+/* 内容区域的微妙阴影增强 */
+.phone-ai-messages.scroll-enhanced,
+.phone-browser-content.scroll-enhanced,
+.app-content.scroll-enhanced {
+    box-shadow: 
+        inset 0 8px 8px -8px rgba(0, 0, 0, 0.1),
+        inset 0 -8px 8px -8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .phone-ai-messages.scroll-enhanced,
+[data-theme="dark"] .phone-browser-content.scroll-enhanced,
+[data-theme="dark"] .app-content.scroll-enhanced {
+    box-shadow: 
+        inset 0 8px 8px -8px rgba(255, 255, 255, 0.05),
+        inset 0 -8px 8px -8px rgba(255, 255, 255, 0.05);
+}
+
+/* 滚动时增强阴影 */
+.phone-ai-messages.scroll-enhanced.scrolling,
+.phone-browser-content.scroll-enhanced.scrolling,
+.app-content.scroll-enhanced.scrolling,
+.search-engine-config.scroll-enhanced.scrolling,
+.phone-widgets.scroll-enhanced.scrolling {
+    box-shadow: 
+        inset 0 12px 12px -12px rgba(0, 0, 0, 0.15),
+        inset 0 -12px 12px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* 小组件特定的滚动指示器 */
+.search-engine-config {
+    position: relative;
+}
+
+.search-engine-config::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.search-engine-config.scrolling::before {
+    opacity: 1;
+}
+
+/* 搜索分类水平滚动指示器 */
+.search-categories {
+    position: relative;
+}
+
+.search-categories::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.search-categories.scrolling::after {
+    opacity: 1;
+}
+
+[data-theme="dark"] .phone-ai-messages.scroll-enhanced.scrolling,
+[data-theme="dark"] .phone-browser-content.scroll-enhanced.scrolling,
+[data-theme="dark"] .app-content.scroll-enhanced.scrolling,
+[data-theme="dark"] .search-engine-config.scroll-enhanced.scrolling,
+[data-theme="dark"] .phone-widgets.scroll-enhanced.scrolling {
+    box-shadow: 
+        inset 0 12px 12px -12px rgba(255, 255, 255, 0.1),
+        inset 0 -12px 12px -12px rgba(255, 255, 255, 0.1);
+}
+
+/* 暗色主题下的小组件滚动指示器 */
+[data-theme="dark"] .search-engine-config::before {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .search-categories::after {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 减少动画的用户偏好 */
+@media (prefers-reduced-motion: reduce) {
+    .phone-ai-messages,
+    .phone-browser-content,
+    .app-content,
+    .app-categories,
+    .phone-tabs,
+    .search-engine-config,
+    .search-categories,
+    .phone-widgets {
+        scroll-behavior: auto;
+        scroll-snap-type: none;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+    
+    .scroll-indicator {
+        animation: none;
+        transition: none;
+    }
+    
+    .search-engine-config::before,
+    .search-categories::after {
+        transition: none;
+        opacity: 0;
+    }
+}

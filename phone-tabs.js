@@ -14,38 +14,115 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initPhoneTabs() {
-    const phoneTabs = document.querySelectorAll('.phone-tab');
+    console.log('初始化手机标签页功能...');
     
-    if (!phoneTabs.length) {
-        console.warn('手机标签页元素未找到');
+    // 为底部导航项添加点击事件
+    const navItems = document.querySelectorAll('.nav-item');
+    
+    if (!navItems.length) {
+        console.warn('底部导航元素未找到');
         return;
     }
     
-    console.log('初始化手机标签页功能...');
-    
-    // 为每个标签页添加点击事件
-    phoneTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const tabId = tab.getAttribute('data-tab');
-            switchPhoneTab(tabId);
+    navItems.forEach(navItem => {
+        navItem.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tabId = navItem.getAttribute('data-tab');
+            if (tabId) {
+                switchPhoneTab(tabId);
+            }
         });
     });
     
-    // 初始化时显示第一个标签页
-    const firstTabId = phoneTabs[0].getAttribute('data-tab');
-    switchPhoneTab(firstTabId);
+    // 初始化时显示搜索标签页
+    switchPhoneTab('search-tab');
 }
 
 // 切换标签页
 function switchPhoneTab(tabId) {
     console.log(`切换到标签页: ${tabId}`);
     
-    // 验证tabId是否有效
-    const validTabs = ['ai-chat', 'browser', 'app-jump', 'widgets'];
+    // 验证tabId是否有效 - 更新为实际的tab ID
+    const validTabs = ['search-tab', 'chat-tab', 'discover-tab', 'profile-tab'];
     if (!validTabs.includes(tabId)) {
         console.error(`无效的标签页ID: ${tabId}`);
         return;
     }
+    
+    // 隐藏所有tab内容，添加退出动画
+    const allTabContents = document.querySelectorAll('.tab-content');
+    const activeContent = document.querySelector('.tab-content.active');
+    
+    // 如果有当前激活的内容，先播放退出动画
+    if (activeContent && activeContent.id !== tabId) {
+        activeContent.style.transition = 'all 0.25s cubic-bezier(0.4, 0, 1, 1)';
+        activeContent.style.opacity = '0';
+        activeContent.style.transform = 'translateY(-20px) scale(0.95)';
+        activeContent.style.filter = 'blur(3px)';
+        
+        setTimeout(() => {
+            allTabContents.forEach(content => {
+                content.style.display = 'none';
+                content.classList.remove('active');
+                // 重置样式
+                content.style.transition = '';
+                content.style.opacity = '';
+                content.style.transform = '';
+                content.style.filter = '';
+            });
+            
+            // 显示新内容
+            showNewTabContent(tabId);
+        }, 150);
+    } else {
+        // 没有当前激活内容，直接切换
+        allTabContents.forEach(content => {
+            content.style.display = 'none';
+            content.classList.remove('active');
+        });
+        showNewTabContent(tabId);
+    }
+}
+
+// 显示新tab内容的函数
+function showNewTabContent(tabId) {
+    
+    // 显示当前选中的tab内容
+    const currentTabContent = document.getElementById(tabId);
+    if (currentTabContent) {
+        currentTabContent.style.display = 'block';
+        currentTabContent.classList.add('active');
+        
+        // 添加进入动画
+        currentTabContent.style.opacity = '0';
+        currentTabContent.style.transform = 'translateY(30px) scale(0.95)';
+        currentTabContent.style.filter = 'blur(5px)';
+        
+        // 使用requestAnimationFrame确保动画流畅
+        requestAnimationFrame(() => {
+            currentTabContent.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            currentTabContent.style.opacity = '1';
+            currentTabContent.style.transform = 'translateY(0) scale(1)';
+            currentTabContent.style.filter = 'blur(0px)';
+        });
+        
+        // 添加弹性效果
+        setTimeout(() => {
+            currentTabContent.style.transform = 'translateY(-2px) scale(1.01)';
+            setTimeout(() => {
+                currentTabContent.style.transform = 'translateY(0) scale(1)';
+            }, 100);
+        }, 200);
+    }
+    
+    // 更新底部导航状态
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('data-tab') === tabId) {
+            item.classList.add('active');
+        }
+    });
     
     // 更新标签页状态
     const tabs = document.querySelectorAll('.phone-tab');

@@ -453,18 +453,96 @@ createResponseCard = function(container, platform, query) {
 document.addEventListener('DOMContentLoaded', () => {
     initAIChatDemo();
     
+    // 初始化统一移动端界面
+    initUnifiedMobileDemo();
+    
     // 添加手机模型交互效果
     const phoneMockup = document.querySelector('.phone-mockup');
     if (phoneMockup) {
-        phoneMockup.addEventListener('mouseenter', () => {
-            phoneMockup.style.transform = 'scale(1.05) rotateY(5deg)';
+        phoneMockup.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.02) rotateY(5deg)';
         });
         
-        phoneMockup.addEventListener('mouseleave', () => {
-            phoneMockup.style.transform = '';
+        phoneMockup.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotateY(0deg)';
         });
     }
 });
+
+// 初始化统一移动端界面
+function initUnifiedMobileDemo() {
+    const navItems = document.querySelectorAll('.nav-item');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    // 默认显示第一个tab（搜索）
+    if (tabContents.length > 0) {
+        tabContents[0].classList.add('active');
+    }
+    if (navItems.length > 0) {
+        navItems[0].classList.add('active');
+    }
+    
+    // 为每个导航项添加点击事件
+    navItems.forEach((navItem, index) => {
+        navItem.addEventListener('click', function() {
+            // 移除所有active状态
+            navItems.forEach(item => item.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // 添加当前项的active状态
+            this.classList.add('active');
+            if (tabContents[index]) {
+                tabContents[index].classList.add('active');
+            }
+            
+            // 添加点击反馈效果
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+    
+    // 初始化搜索页面的平台标签切换
+    initSearchPlatformTabs();
+    
+    // 初始化AI聊天页面的AI芯片切换
+    initAIChatChips();
+}
+
+// 初始化搜索页面的平台标签切换
+function initSearchPlatformTabs() {
+    const platformTabs = document.querySelectorAll('#search-tab .platform-tab');
+    
+    platformTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // 移除所有active状态
+            platformTabs.forEach(t => t.classList.remove('active'));
+            // 添加当前标签的active状态
+            this.classList.add('active');
+            
+            // 这里可以添加切换搜索结果的逻辑
+            console.log('切换到平台:', this.textContent.trim());
+        });
+    });
+}
+
+// 初始化AI聊天页面的AI芯片切换
+function initAIChatChips() {
+    const aiChips = document.querySelectorAll('#chat-tab .ai-chip');
+    
+    aiChips.forEach(chip => {
+        chip.addEventListener('click', function() {
+            // 移除所有active状态
+            aiChips.forEach(c => c.classList.remove('active'));
+            // 添加当前芯片的active状态
+            this.classList.add('active');
+            
+            // 这里可以添加切换AI模型的逻辑
+            console.log('切换到AI:', this.textContent.trim());
+        });
+    });
+}
 
 // 为了演示效果，添加一个自动触发功能
 setTimeout(() => {
