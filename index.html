@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="phone-scroll-smooth.css">
     <!-- 功能重构 Material Design 样式 -->
     <link rel="stylesheet" href="feature-redesign.css">
+    <link rel="stylesheet" href="multi-platform-search.css">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -38,9 +39,14 @@
                 <li><a href="#faq">问答</a></li>
                 <li><a href="#download">下载</a></li>
             </ul>
-            <button class="theme-toggle" id="themeToggle">
-                <span class="theme-icon">🌙</span>
-            </button>
+            <div class="nav-actions">
+                <button class="device-toggle" id="deviceToggle" title="切换到移动端">
+                    <span class="device-icon">📱</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -624,33 +630,107 @@
                                         <p class="feature-subtitle">一次搜索，全网结果</p>
                                     </div>
                                     
-                                    <!-- 搜索功能卡片 - 重构版 -->
-                                    <div class="unified-search-card">
-                                        <div class="search-card-header">
-                                            <div class="search-card-icon">🔍</div>
-                                            <div class="search-card-title">
-                                                <div class="search-badge">聚合搜索</div>
-                                                <h3 class="search-main-title">一站式聚合搜索</h3>
-                                                <p class="search-subtitle">一次搜索，全网结果</p>
+                                    <!-- 聚合搜索卡片 - 多元图标布局版 -->
+                                    <div class="multi-platform-search-card">
+                                        <div class="step-progress">步骤 1/4</div>
+                                        <!-- 卡片头部 -->
+                                        <div class="search-card-header-new">
+                                            <div class="search-main-icon">
+                                                <div class="search-icon-pulse">🔍</div>
+                                                <div class="search-icon-ring"></div>
+                                            </div>
+                                            <div class="search-header-content-new">
+                                                <div class="search-badge-new">聚合搜索</div>
+                                                <h3 class="search-title-new">智能聚合搜索</h3>
+                                                <p class="search-subtitle-new">一次搜索，全网结果</p>
+                                            </div>
+                                            <div class="search-status-indicator">
+                                                <div class="status-dot active"></div>
+                                                <span class="status-text">在线</span>
                                             </div>
                                         </div>
-                                        <div class="search-card-body">
-                                            <p class="search-description">
-                                                <span class="highlight-text">告别反复切换平台的烦恼！</span>一次输入，同时搜索B站、小红书、知乎、抖音等主流平台
-                                            </p>
-                                            <div class="search-benefits-grid">
-                                                <div class="search-benefit-item">
-                                                    <span class="benefit-icon">⚡</span>
-                                                    <span class="benefit-text">节省时间</span>
+
+                                        <!-- 平台图标网格 -->
+                                        <div class="platform-icons-grid">
+                                            <div class="platform-icon-item xiaohongshu" data-platform="xiaohongshu">
+                                                <div class="platform-icon-bg">
+                                                    <div class="platform-icon">📖</div>
+                                                    <div class="platform-name">小红书</div>
+                                                    <div class="platform-tag">生活分享</div>
                                                 </div>
-                                                <div class="search-benefit-item">
-                                                    <span class="benefit-icon">📊</span>
-                                                    <span class="benefit-text">全面覆盖</span>
+                                                <div class="platform-hover-effect"></div>
+                                                <div class="platform-active-indicator"></div>
+                                            </div>
+                                            
+                                            <div class="platform-icon-item bilibili" data-platform="bilibili">
+                                                <div class="platform-icon-bg">
+                                                    <div class="platform-icon">📺</div>
+                                                    <div class="platform-name">哔哩哔哩</div>
+                                                    <div class="platform-tag">视频内容</div>
                                                 </div>
-                                                <div class="search-benefit-item">
-                                                    <span class="benefit-icon">🎯</span>
-                                                    <span class="benefit-text">精准结果</span>
+                                                <div class="platform-hover-effect"></div>
+                                                <div class="platform-active-indicator"></div>
+                                            </div>
+                                            
+                                            <div class="platform-icon-item douyin" data-platform="douyin">
+                                                <div class="platform-icon-bg">
+                                                    <div class="platform-icon">🎵</div>
+                                                    <div class="platform-name">抖音</div>
+                                                    <div class="platform-tag">短视频</div>
                                                 </div>
+                                                <div class="platform-hover-effect"></div>
+                                                <div class="platform-active-indicator"></div>
+                                            </div>
+                                            
+                                            <div class="platform-icon-item zhihu" data-platform="zhihu">
+                                                <div class="platform-icon-bg">
+                                                    <div class="platform-icon">🤔</div>
+                                                    <div class="platform-name">知乎</div>
+                                                    <div class="platform-tag">专业问答</div>
+                                                </div>
+                                                <div class="platform-hover-effect"></div>
+                                                <div class="platform-active-indicator"></div>
+                                            </div>
+                                            
+                                            <div class="platform-icon-item weibo" data-platform="weibo">
+                                                <div class="platform-icon-bg">
+                                                    <div class="platform-icon">🐦</div>
+                                                    <div class="platform-name">微博</div>
+                                                    <div class="platform-tag">热点资讯</div>
+                                                </div>
+                                                <div class="platform-hover-effect"></div>
+                                                <div class="platform-active-indicator"></div>
+                                            </div>
+                                            
+                                            <div class="platform-icon-item more" data-platform="more">
+                                                <div class="platform-icon-bg">
+                                                    <div class="platform-icon">➕</div>
+                                                    <div class="platform-name">更多</div>
+                                                    <div class="platform-tag">扩展平台</div>
+                                                </div>
+                                                <div class="platform-hover-effect"></div>
+                                                <div class="platform-active-indicator"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 搜索功能描述 -->
+                                        <div class="search-description-new">
+                                            <div class="description-highlight">
+                                                <span class="highlight-icon">✨</span>
+                                                <span class="highlight-text">告别反复切换平台的烦恼！</span>
+                                            </div>
+                                            <p class="description-text">一次输入，同时搜索多个主流平台，获取全方位信息视角</p>
+                                        </div>
+
+                                        <!-- 交互提示区域 -->
+                                        <div class="interaction-tips">
+                                            <div class="tip-item">
+                                                <span class="tip-icon">👆</span>
+                                                <span class="tip-text">点击平台图标选择搜索范围</span>
+                                            </div>
+                                            <div class="tip-item">
+                                                <span class="tip-icon">🎯</span>
+                                                <span class="tip-text">支持多平台同时搜索</span>
                                             </div>
                                         </div>
                                     </div>
@@ -1550,6 +1630,9 @@
     
     <!-- 三个手机模拟器滑动切换功能 -->
     <script src="mobile-carousel.js"></script>
+    
+    <!-- 多元图标搜索交互 -->
+    <script src="multi-platform-search.js"></script>
 
 </body>
 </html>

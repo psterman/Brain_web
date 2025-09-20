@@ -25,6 +25,51 @@ function updateThemeIcon(theme) {
     themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 
+// 设备切换功能
+const deviceToggle = document.getElementById('deviceToggle');
+const deviceIcon = document.querySelector('.device-icon');
+
+// 检查当前设备类型
+function getCurrentDevice() {
+    return window.location.pathname.includes('mobile-index.html') ? 'mobile' : 'desktop';
+}
+
+// 更新设备图标
+function updateDeviceIcon(device) {
+    if (device === 'mobile') {
+        deviceIcon.textContent = '💻';
+        deviceToggle.title = '切换到PC端';
+    } else {
+        deviceIcon.textContent = '📱';
+        deviceToggle.title = '切换到移动端';
+    }
+}
+
+// 设备切换事件
+if (deviceToggle) {
+    deviceToggle.addEventListener('click', () => {
+        const currentDevice = getCurrentDevice();
+        
+        // 添加点击动画
+        deviceToggle.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            deviceToggle.style.transform = '';
+        }, 150);
+        
+        // 切换设备
+        if (currentDevice === 'desktop') {
+            // 切换到移动端
+            window.location.href = 'mobile-index.html';
+        } else {
+            // 切换到PC端
+            window.location.href = 'index.html';
+        }
+    });
+    
+    // 初始化设备图标
+    updateDeviceIcon(getCurrentDevice());
+}
+
 // FAQ 折叠功能
 const faqItems = document.querySelectorAll('.faq-item');
 

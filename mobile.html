@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>小脑浏览器 - 移动端</title>
+    <link rel="stylesheet" href="mobile-styles.css">
+    <link rel="stylesheet" href="multi-platform-search.css">
+</head>
+<body>
+    <!-- 移动端主容器 -->
+    <div class="mobile-app">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="time">15:42</span>
+                <button class="device-toggle" id="deviceToggle" title="切换到PC端">
+                    <span class="device-icon">💻</span>
+                </button>
+            </div>
+            <div class="status-right">
+                <span class="signal-dots">••••</span>
+                <span class="wifi-icon">📶</span>
+                <span class="battery">100</span>
+            </div>
+        </div>
+
+        <!-- 主要内容区域 -->
+        <div class="app-content">
+            <!-- AI聊天页面 -->
+            <div class="page active" id="ai-page">
+                <!-- 顶部输入区域 -->
+                <div class="chat-input-header">
+                    <div class="input-container">
+                        <div class="input-icon">🧠</div>
+                        <input type="text" placeholder="输入问题，向所有AI提问..." class="chat-input">
+                        <button class="input-action">📄</button>
+                        <button class="input-action">📤</button>
+                    </div>
+                </div>
+
+                <!-- 详细信息 -->
+                <div class="detail-info">
+                    <span class="detail-text">详细信息</span>
+                    <button class="settings-btn">⚙️ 设置</button>
+                </div>
+
+                <!-- AI助手列表 -->
+                <div class="ai-list">
+                    <div class="ai-item">
+                        <div class="ai-avatar deepseek">🧠</div>
+                        <div class="ai-info">
+                            <div class="ai-name">DeepSeek</div>
+                            <div class="ai-message">你好！请问有什么可以帮助你...</div>
+                        </div>
+                        <div class="ai-status">
+                            <div class="status-dot online"></div>
+                            <div class="config-badge">已配置</div>
+                        </div>
+                    </div>
+
+                    <div class="ai-item">
+                        <div class="ai-avatar kimi">🧠</div>
+                        <div class="ai-info">
+                            <div class="ai-name">Kimi</div>
+                            <div class="ai-message">您好！看起来您可能只发送了...</div>
+                        </div>
+                        <div class="ai-status">
+                            <div class="status-dot online"></div>
+                            <div class="config-badge">已配置</div>
+                        </div>
+                    </div>
+
+                    <div class="ai-item">
+                        <div class="ai-avatar tongyi">🧠</div>
+                        <div class="ai-info">
+                            <div class="ai-name">智谱清言</div>
+                            <div class="ai-message">暂无对话</div>
+                        </div>
+                        <div class="ai-status">
+                            <div class="status-dot online"></div>
+                            <div class="config-badge">已配置</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 浏览器页面 -->
+            <div class="page" id="browser-page">
+                <!-- 浏览器头部 -->
+                <div class="browser-header">
+                    <div class="url-bar">
+                        <button class="nav-btn">🔍</button>
+                        <input type="text" placeholder="请输入..." class="url-input">
+                        <button class="action-btn">📄</button>
+                        <button class="action-btn">🔗</button>
+                        <button class="profile-btn">🧠</button>
+                    </div>
+                    
+                    <!-- 浏览器工具栏 -->
+                    <div class="browser-toolbar">
+                        <button class="tool-btn">◀</button>
+                        <button class="tool-btn">▶</button>
+                        <button class="tool-btn">🔄</button>
+                        <button class="tool-btn">🏠</button>
+                        <button class="tool-btn">😊</button>
+                        <button class="tool-btn">⏰</button>
+                        <button class="tool-btn">⭐</button>
+                        <button class="tool-btn">📖</button>
+                        <button class="tool-btn">📤</button>
+                    </div>
+                </div>
+
+                <!-- 功能卡片 -->
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <div class="card-icon">👤</div>
+                        <div class="card-title">助手</div>
+                        <div class="card-subtitle">选择助手</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon">👥</div>
+                        <div class="card-title">身份</div>
+                        <div class="card-subtitle">选择身份</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon">📋</div>
+                        <div class="card-title">回复样式</div>
+                        <div class="card-subtitle">选择样式</div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon">Aa</div>
+                        <div class="card-title">文风风格</div>
+                        <div class="card-subtitle">选择风格</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 搜索页面 -->
+            <div class="page" id="search-page">
+                <!-- 搜索配置头部 -->
+                <div class="search-header">
+                    <h2>小组件配置</h2>
+                    <div class="header-actions">
+                        <button class="sync-btn">🔄 同步小组件</button>
+                        <button class="weight-btn">⚖️ 重置</button>
+                        <button class="help-btn">❓</button>
+                    </div>
+                </div>
+
+                <!-- 搜索引擎选择 -->
+                <div class="search-config">
+                    <div class="config-tabs">
+                        <button class="config-tab active">🔍 搜索引擎</button>
+                        <button class="config-tab">📱 应用选择</button>
+                        <button class="config-tab">🧠 AI助手</button>
+                    </div>
+
+                    <div class="search-engines">
+                        <div class="section-title">搜索引擎</div>
+                        <div class="engine-note">按分类选择</div>
+                        
+                        <div class="engine-categories">
+                            <button class="category-btn active">AI搜索</button>
+                            <button class="category-btn">专业搜索</button>
+                            <button class="category-btn selected">国内搜索</button>
+                            <button class="category-btn">国际搜索</button>
+                        </div>
+
+                        <div class="engine-grid">
+                            <div class="engine-item selected">
+                                <div class="engine-icon baidu">🔍</div>
+                                <div class="engine-name">百度</div>
+                                <div class="engine-check">✓</div>
+                            </div>
+                            
+                            <div class="engine-item">
+                                <div class="engine-icon sogou">$</div>
+                                <div class="engine-name">搜狗</div>
+                                <div class="engine-radio">○</div>
+                            </div>
+                            
+                            <div class="engine-item">
+                                <div class="engine-icon so360">🔍</div>
+                                <div class="engine-name">360搜索</div>
+                                <div class="engine-radio">○</div>
+                            </div>
+                            
+                            <div class="engine-item">
+                                <div class="engine-icon shenma">$</div>
+                                <div class="engine-name">神马搜索</div>
+                                <div class="engine-radio">○</div>
+                            </div>
+                            
+                            <div class="engine-item">
+                                <div class="engine-icon chinaso">C</div>
+                                <div class="engine-name">中国搜索</div>
+                                <div class="engine-radio">○</div>
+                            </div>
+                            
+                            <div class="engine-item">
+                                <div class="engine-icon haosou">H</div>
+                                <div class="engine-name">好搜</div>
+                                <div class="engine-radio">○</div>
+                            </div>
+                        </div>
+
+                        <div class="config-note">
+                            <span class="note-icon">ℹ️</span>
+                            最多选择4个搜索引擎，至少保留1个
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 应用页面 -->
+            <div class="page" id="apps-page">
+                <div class="apps-header">
+                    <h2>应用搜索</h2>
+                </div>
+
+                <div class="apps-layout">
+                    <!-- 左侧分类 -->
+                    <div class="app-categories">
+                        <div class="category-header">
+                            <button class="category-item">分类</button>
+                            <button class="category-item">≡</button>
+                            <button class="category-item">📖</button>
+                        </div>
+                        
+                        <div class="category-list">
+                            <div class="category-item starred">⭐ 自定义</div>
+                            <div class="category-item active">📱 全部</div>
+                            <div class="category-item">🛍️ 购物</div>
+                            <div class="category-item">👥 社交</div>
+                            <div class="category-item">📺 视频</div>
+                            <div class="category-item">🎵 音乐</div>
+                            <div class="category-item">🏠 生活</div>
+                            <div class="category-item">🗺️ 地图</div>
+                            <div class="category-item">🌐 浏览器</div>
+                            <div class="category-item">💰 金融</div>
+                            <div class="category-item">🚗 出行</div>
+                            <div class="category-item">💼 招聘</div>
+                            <div class="category-item">📚 教育</div>
+                            <div class="category-item">📰 新闻</div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧应用网格 -->
+                    <div class="apps-content">
+                        <div class="search-bar">
+                            <input type="text" placeholder="输入搜索关键词" class="app-search-input">
+                        </div>
+                        
+                        <div class="apps-subtitle">选择应用进行搜索</div>
+                        
+                        <div class="apps-grid">
+                            <div class="app-item">
+                                <div class="app-icon taobao">🛒</div>
+                                <div class="app-name">淘宝</div>
+                            </div>
+                            
+                            <div class="app-item">
+                                <div class="app-icon tmall">🏪</div>
+                                <div class="app-name">天猫</div>
+                            </div>
+                            
+                            <div class="app-item">
+                                <div class="app-icon pinduoduo">🛍️</div>
+                                <div class="app-name">拼多多</div>
+                            </div>
+                            
+                            <div class="app-item">
+                                <div class="app-icon jd">📦</div>
+                                <div class="app-name">京东</div>
+                            </div>
+                            
+                            <div class="app-item">
+                                <div class="app-icon douyin">📱</div>
+                                <div class="app-name">抖音</div>
+                            </div>
+                            
+                            <div class="app-item">
+                                <div class="app-icon zhihu">🤔</div>
+                                <div class="app-name">知乎</div>
+                            </div>
+                            
+                            <div class="app-item">
+                                <div class="app-icon wechat">💬</div>
+                                <div class="app-name">微信</div>
+                            </div>
+                            
+                            <div class="app-item">
+                                <div class="app-icon qq">🐧</div>
+                                <div class="app-name">QQ音乐</div>
+                            </div>
+                            
+                            <div class="app-item">
+                                <div class="app-icon netease">🎵</div>
+                                <div class="app-name">网易云音乐</div>
+                            </div>
+                            
+                            <div class="app-item">
+                                <div class="app-icon meituan">🍔</div>
+                                <div class="app-name">美团</div>
+                            </div>
+                            
+                            <div class="app-item">
+                                <div class="app-icon dianping">⭐</div>
+                                <div class="app-name">饿了么</div>
+                            </div>
+                            
+                            <div class="app-item">
+                                <div class="app-icon dianping">🍽️</div>
+                                <div class="app-name">大众点评</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 设置页面 -->
+            <div class="page" id="settings-page">
+                <div class="settings-header">
+                    <h2>小组件</h2>
+                </div>
+                
+                <div class="settings-content">
+                    <div class="setting-item">
+                        <div class="setting-icon">🎨</div>
+                        <div class="setting-info">
+                            <div class="setting-title">主题设置</div>
+                            <div class="setting-desc">切换明暗主题</div>
+                        </div>
+                        <div class="setting-toggle">
+                            <input type="checkbox" id="theme-toggle">
+                            <label for="theme-toggle"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-icon">🔔</div>
+                        <div class="setting-info">
+                            <div class="setting-title">通知设置</div>
+                            <div class="setting-desc">管理推送通知</div>
+                        </div>
+                        <div class="setting-arrow">></div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-icon">🔒</div>
+                        <div class="setting-info">
+                            <div class="setting-title">隐私设置</div>
+                            <div class="setting-desc">数据与隐私</div>
+                        </div>
+                        <div class="setting-arrow">></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <div class="nav-item active" data-page="ai-page">
+                <div class="nav-icon">💬</div>
+                <div class="nav-label">AI</div>
+            </div>
+            
+            <div class="nav-item" data-page="browser-page">
+                <div class="nav-icon">🔗</div>
+                <div class="nav-label">浏览</div>
+            </div>
+            
+            <div class="nav-item" data-page="search-page">
+                <div class="nav-icon">🔍</div>
+                <div class="nav-label">搜索</div>
+            </div>
+            
+            <div class="nav-item" data-page="apps-page">
+                <div class="nav-icon">📱</div>
+                <div class="nav-label">应用</div>
+            </div>
+            
+            <div class="nav-item" data-page="settings-page">
+                <div class="nav-icon">⚙️</div>
+                <div class="nav-label">设置</div>
+            </div>
+        </div>
+
+        <!-- 底部指示器 -->
+        <div class="home-indicator"></div>
+    </div>
+
+    <script src="mobile-script.js"></script>
+</body>
+</html>

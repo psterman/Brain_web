@@ -1,0 +1,553 @@
+/* 多元图标聚合搜索卡片样式 */
+.multi-platform-search-card {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(248, 250, 252, 0.9) 50%, 
+        rgba(241, 245, 249, 0.85) 100%);
+    border: 2px solid rgba(148, 163, 184, 0.2);
+    border-radius: 24px;
+    padding: 28px;
+    margin: 24px 0;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.08),
+        0 8px 16px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.multi-platform-search-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 100%);
+    border-radius: 24px 24px 0 0;
+}
+
+.multi-platform-search-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 
+        0 32px 64px rgba(0, 0, 0, 0.12),
+        0 16px 32px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: rgba(148, 163, 184, 0.3);
+}
+
+/* 卡片头部样式 */
+.search-card-header-new {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 2;
+}
+
+.search-main-icon {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.search-icon-pulse {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    box-shadow: 0 8px 24px rgba(100, 116, 139, 0.3);
+    animation: iconPulse 3s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+}
+
+.search-icon-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+    border: 2px solid rgba(100, 116, 139, 0.2);
+    border-radius: 50%;
+    animation: ringPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes ringPulse {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.6;
+    }
+}
+
+.search-header-content-new {
+    flex: 1;
+}
+
+.search-badge-new {
+    display: inline-block;
+    background: linear-gradient(135deg, #64748b, #475569);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2);
+    letter-spacing: 0.5px;
+}
+
+.search-title-new {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+    background: linear-gradient(135deg, #1e293b, #475569);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.search-subtitle-new {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.search-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(34, 197, 94, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: statusBlink 2s ease-in-out infinite;
+}
+
+.status-text {
+    font-size: 12px;
+    color: #22c55e;
+    font-weight: 600;
+}
+
+@keyframes statusBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* 平台图标网格布局 */
+.platform-icons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+    padding: 16px;
+    background: rgba(248, 250, 252, 0.8);
+    border-radius: 16px;
+    border: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.platform-icon-item {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.platform-icon-bg {
+    padding: 16px 12px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.platform-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+    transition: all 0.3s ease;
+    color: #64748b;
+}
+
+.platform-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 4px;
+    display: block;
+    line-height: 1.2;
+}
+
+.platform-tag {
+    font-size: 10px;
+    color: #94a3b8;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.platform-hover-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(248, 250, 252, 0.5);
+    border-radius: 12px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.platform-active-indicator {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #64748b;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+/* 统一的hover效果 */
+.platform-icon-item:hover .platform-icon-bg {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.platform-icon-item:hover .platform-icon {
+    color: #475569;
+    transform: scale(1.1);
+}
+
+.platform-icon-item:hover .platform-name {
+    color: #1e293b;
+}
+
+.platform-icon-item:hover .platform-tag {
+    color: #64748b;
+}
+
+.platform-icon-item.zhihu:hover .platform-name,
+.platform-icon-item.zhihu:hover .platform-tag {
+    color: white;
+}
+
+/* 微博风格 */
+.platform-icon-item.weibo:hover .platform-icon-bg {
+    background: linear-gradient(135deg, #ff8200, #ffb74d);
+    border-color: #ff8200;
+    color: white;
+}
+
+.platform-icon-item.weibo:hover .platform-name,
+.platform-icon-item.weibo:hover .platform-tag {
+    color: white;
+}
+
+/* 更多平台风格 */
+.platform-icon-item.more:hover .platform-icon-bg {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-color: #6366f1;
+    color: white;
+}
+
+.platform-icon-item.more:hover .platform-name,
+.platform-icon-item.more:hover .platform-tag {
+    color: white;
+}
+
+/* 悬停和点击效果 */
+.platform-icon-item:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+.platform-icon-item:hover .platform-hover-effect {
+    opacity: 1;
+}
+
+.platform-icon-item:hover .platform-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.platform-icon-item:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+.platform-icon-item.selected .platform-active-indicator {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.platform-icon-item.selected .platform-icon-bg {
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+}
+
+/* 搜索功能描述 */
+.search-description-new {
+    margin: 24px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.description-highlight {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.highlight-icon {
+    font-size: 20px;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(10deg); }
+}
+
+.highlight-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.description-text {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 交互提示区域 */
+.interaction-tips {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.tip-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: rgba(248, 250, 252, 0.8);
+    border-radius: 10px;
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tip-item:hover {
+    background: rgba(241, 245, 249, 0.9);
+    border-color: rgba(203, 213, 225, 0.8);
+    transform: translateY(-1px);
+}
+
+.tip-icon {
+    font-size: 16px;
+    animation: tipBounce 3s ease-in-out infinite;
+}
+
+@keyframes tipBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+
+.tip-text {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* 步骤演示相关样式 */
+.step-progress {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #666;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tip-updated {
+    animation: tipPulse 0.3s ease;
+}
+
+@keyframes tipPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.tip-icon {
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+.tip-text {
+    font-weight: 500;
+}
+
+/* 交互高亮效果 */
+.input-highlight {
+    animation: inputGlow 2s ease-in-out;
+}
+
+@keyframes inputGlow {
+    0%, 100% { box-shadow: 0 0 0 rgba(100, 116, 139, 0); }
+    50% { box-shadow: 0 0 16px rgba(100, 116, 139, 0.3); }
+}
+
+.button-highlight {
+    animation: buttonPulse 2s ease-in-out;
+}
+
+@keyframes buttonPulse {
+    0%, 100% { transform: scale(1); background: #64748b; }
+    50% { transform: scale(1.05); background: #475569; }
+}
+
+.results-preview {
+    animation: resultsShow 2.5s ease-in-out;
+}
+
+@keyframes resultsShow {
+    0% { opacity: 0.5; transform: translateY(10px); }
+    50% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0.8; transform: translateY(0); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .platform-icons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 16px;
+    }
+    
+    .platform-icon-bg {
+        padding: 16px 12px;
+    }
+    
+    .platform-icon {
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+    
+    .platform-name {
+        font-size: 12px;
+    }
+    
+    .platform-tag {
+        font-size: 10px;
+    }
+    
+    .interaction-tips {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .tip-item {
+        justify-content: center;
+    }
+    
+    .step-progress {
+        top: 8px;
+        right: 10px;
+        font-size: 11px;
+        padding: 3px 6px;
+    }
+}
+
+/* 暗色主题适配 */
+[data-theme="dark"] .multi-platform-search-card {
+    background: linear-gradient(135deg, 
+        rgba(30, 41, 59, 0.95) 0%, 
+        rgba(51, 65, 85, 0.9) 50%, 
+        rgba(71, 85, 105, 0.85) 100%);
+    border-color: rgba(148, 163, 184, 0.3);
+}
+
+[data-theme="dark"] .search-title-new {
+    color: #f1f5f9;
+    background: linear-gradient(135deg, #f1f5f9, #cbd5e1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="dark"] .search-subtitle-new {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .platform-icon-bg {
+    background: rgba(51, 65, 85, 0.8);
+    border-color: rgba(148, 163, 184, 0.2);
+}
+
+[data-theme="dark"] .platform-name {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .platform-tag {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .description-text {
+    color: #cbd5e1;
+}
