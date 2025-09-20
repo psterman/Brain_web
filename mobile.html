@@ -29,57 +29,73 @@
         <div class="app-content">
             <!-- AI聊天页面 -->
             <div class="page active" id="ai-page">
-                <!-- 顶部输入区域 -->
-                <div class="chat-input-header">
-                    <div class="input-container">
-                        <div class="input-icon">🧠</div>
-                        <input type="text" placeholder="输入问题，向所有AI提问..." class="chat-input">
-                        <button class="input-action">📄</button>
-                        <button class="input-action">📤</button>
+                <!-- AI模型选择器 -->
+                <div class="ai-selector">
+                    <div class="ai-model-tabs">
+                        <div class="ai-tab active" data-model="deepseek">
+                            <div class="ai-tab-avatar">🧠</div>
+                            <span>DeepSeek</span>
+                        </div>
+                        <div class="ai-tab" data-model="kimi">
+                            <div class="ai-tab-avatar">🤖</div>
+                            <span>Kimi</span>
+                        </div>
+                        <div class="ai-tab" data-model="zhipu">
+                            <div class="ai-tab-avatar">💭</div>
+                            <span>智谱清言</span>
+                        </div>
+                    </div>
+                    <button class="api-config-btn" id="apiConfigBtn">⚙️</button>
+                </div>
+
+                <!-- 聊天区域 -->
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- 欢迎消息 -->
+                        <div class="message ai-message">
+                            <div class="message-avatar">🧠</div>
+                            <div class="message-content">
+                                <div class="message-text">你好！我是DeepSeek，有什么可以帮助你的吗？</div>
+                                <div class="message-time">刚刚</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 详细信息 -->
-                <div class="detail-info">
-                    <span class="detail-text">详细信息</span>
-                    <button class="settings-btn">⚙️ 设置</button>
+                <!-- 输入区域 -->
+                <div class="chat-input-container">
+                    <div class="input-wrapper">
+                        <input type="text" id="messageInput" placeholder="输入消息..." class="message-input">
+                        <button id="sendButton" class="send-button">
+                            <span class="send-icon">📤</span>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- AI助手列表 -->
-                <div class="ai-list">
-                    <div class="ai-item">
-                        <div class="ai-avatar deepseek">🧠</div>
-                        <div class="ai-info">
-                            <div class="ai-name">DeepSeek</div>
-                            <div class="ai-message">你好！请问有什么可以帮助你...</div>
+                <!-- API配置弹窗 -->
+                <div class="api-config-modal" id="apiConfigModal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>API配置</h3>
+                            <button class="close-btn" id="closeConfigBtn">×</button>
                         </div>
-                        <div class="ai-status">
-                            <div class="status-dot online"></div>
-                            <div class="config-badge">已配置</div>
-                        </div>
-                    </div>
-
-                    <div class="ai-item">
-                        <div class="ai-avatar kimi">🧠</div>
-                        <div class="ai-info">
-                            <div class="ai-name">Kimi</div>
-                            <div class="ai-message">您好！看起来您可能只发送了...</div>
-                        </div>
-                        <div class="ai-status">
-                            <div class="status-dot online"></div>
-                            <div class="config-badge">已配置</div>
-                        </div>
-                    </div>
-
-                    <div class="ai-item">
-                        <div class="ai-avatar tongyi">🧠</div>
-                        <div class="ai-info">
-                            <div class="ai-name">智谱清言</div>
-                            <div class="ai-message">暂无对话</div>
-                        </div>
-                        <div class="ai-status">
-                            <div class="status-dot online"></div>
-                            <div class="config-badge">已配置</div>
+                        <div class="modal-body">
+                            <div class="config-section">
+                                <label>DeepSeek API Key:</label>
+                                <input type="password" id="deepseekApiKey" placeholder="输入DeepSeek API Key">
+                            </div>
+                            <div class="config-section">
+                                <label>Kimi API Key:</label>
+                                <input type="password" id="kimiApiKey" placeholder="输入Kimi API Key">
+                            </div>
+                            <div class="config-section">
+                                <label>智谱清言 API Key:</label>
+                                <input type="password" id="zhipuApiKey" placeholder="输入智谱清言 API Key">
+                            </div>
+                            <div class="config-actions">
+                                <button id="saveConfigBtn" class="save-btn">保存配置</button>
+                                <button id="testConnectionBtn" class="test-btn">测试连接</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -99,20 +115,28 @@
                     
                     <!-- 浏览器工具栏 -->
                     <div class="browser-toolbar">
-                        <button class="tool-btn">◀</button>
-                        <button class="tool-btn">▶</button>
-                        <button class="tool-btn">🔄</button>
-                        <button class="tool-btn">🏠</button>
-                        <button class="tool-btn">😊</button>
-                        <button class="tool-btn">⏰</button>
-                        <button class="tool-btn">⭐</button>
-                        <button class="tool-btn">📖</button>
-                        <button class="tool-btn">📤</button>
+                        <button class="tool-btn" id="backBtn" title="后退">◀</button>
+                        <button class="tool-btn" id="forwardBtn" title="前进">▶</button>
+                        <button class="tool-btn" id="refreshBtn" title="刷新">🔄</button>
+                        <button class="tool-btn" id="homeBtn" title="主页">🏠</button>
+                        <button class="tool-btn" id="bookmarkBtn" title="收藏">⭐</button>
+                        <button class="tool-btn" id="historyBtn" title="历史">⏰</button>
+                        <button class="tool-btn" id="downloadBtn" title="下载">📖</button>
+                        <button class="tool-btn" id="shareBtn" title="转发">📤</button>
+                    </div>
+                </div>
+
+                <!-- 浏览器内容区域 -->
+                <div class="browser-content" id="browserContent">
+                    <iframe id="browserFrame" src="https://www.baidu.com"></iframe>
+                    <!-- 加载状态 -->
+                    <div class="browser-loading" id="browserLoading">
+                        <div class="loading-spinner"></div>
                     </div>
                 </div>
 
                 <!-- 功能卡片 -->
-                <div class="feature-cards">
+                <div class="feature-cards" style="display: none;">
                     <div class="feature-card">
                         <div class="card-icon">👤</div>
                         <div class="card-title">助手</div>
@@ -395,5 +419,7 @@
     </div>
 
     <script src="mobile-script.js"></script>
+    <script src="ai-chat.js"></script>
+    <script src="browser-functionality.js"></script>
 </body>
 </html>

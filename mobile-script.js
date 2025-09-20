@@ -510,18 +510,8 @@ class MobileApp {
                 this.showPage('ai');
             }
             
-            // 数字键快速切换页面
-            const pageMap = {
-                '1': 'ai',
-                '2': 'browser', 
-                '3': 'search',
-                '4': 'apps',
-                '5': 'settings'
-            };
-            
-            if (pageMap[e.key]) {
-                this.showPage(pageMap[e.key]);
-            }
+            // 移除数字键快速切换功能，避免用户误操作
+            // 用户可以通过导航栏或滑动手势切换页面
         });
     }
 }
