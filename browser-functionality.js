@@ -7,18 +7,104 @@ class BrowserManager {
         this.bookmarks = this.loadBookmarks();
         this.downloads = [];
         this.homeUrl = 'https://www.baidu.com';
+        this.currentSearchEngine = 'baidu';
+        this.currentAiModel = 'chatgpt';
+        
+        // 搜索引擎配置
+        this.searchEngines = {
+            baidu: { name: '百度', url: 'https://www.baidu.com/s?wd=', icon: '🔍' },
+            google: { name: '谷歌', url: 'https://www.google.com/search?q=', icon: '🌐' },
+            douyin: { name: '抖音', url: 'https://www.douyin.com/search/', icon: '🎵' },
+            bing: { name: '必应', url: 'https://www.bing.com/search?q=', icon: '🔎' },
+            sogou: { name: '搜狗', url: 'https://www.sogou.com/web?query=', icon: '🐕' },
+            toutiao: { name: '头条搜索', url: 'https://so.toutiao.com/search?keyword=', icon: '📰' },
+            so360: { name: '360搜索', url: 'https://www.so.com/s?q=', icon: '🛡️' },
+            shenma: { name: '神马搜索', url: 'https://m.sm.cn/s?q=', icon: '🐎' },
+            duckduckgo: { name: 'DuckDuckGo', url: 'https://duckduckgo.com/?q=', icon: '🦆' },
+            yandex: { name: 'Yandex', url: 'https://yandex.com/search/?text=', icon: '🇷🇺' }
+        };
+        
+        // AI模型配置
+        this.aiModels = {
+            deepseek: { name: 'DeepSeek', url: 'https://chat.deepseek.com/', icon: '🧠' },
+            kimi: { name: 'Kimi', url: 'https://kimi.moonshot.cn/', icon: '🌙' },
+            doubao: { name: '豆包', url: 'https://www.doubao.com/', icon: '🫘' },
+            wenxin: { name: '文心一言', url: 'https://yiyan.baidu.com/', icon: '📝' },
+            yuanbao: { name: '元宝', url: 'https://yuanbao.tencent.com/', icon: '💰' },
+            zhipu: { name: '智谱清言', url: 'https://chatglm.cn/', icon: '🎯' },
+            tongyi: { name: '通义', url: 'https://tongyi.aliyun.com/', icon: '🔮' },
+            claude: { name: 'Claude', url: 'https://claude.ai/', icon: '🤖' },
+            chatgpt: { name: 'ChatGPT', url: 'https://chat.openai.com/', icon: '💬' },
+            perplexity: { name: 'Perplexity', url: 'https://www.perplexity.ai/', icon: '🔍' },
+            quark: { name: '夸克', url: 'https://quark.sm.cn/', icon: '⚛️' },
+            keling: { name: '可灵', url: 'https://klingai.kuaishou.com/', icon: '🎨' },
+            metaso: { name: '秘塔', url: 'https://metaso.cn/', icon: '🗼' },
+            nano: { name: '纳米搜索', url: 'https://nano.so/', icon: '🔬' },
+            you: { name: 'You', url: 'https://you.com/', icon: '👤' },
+            copilot: { name: 'Copilot', url: 'https://copilot.microsoft.com/', icon: '🚁' }
+        };
         
         this.init();
     }
     
     init() {
+        // 加载保存的设置
+        this.loadSettings();
+        
         this.bindEvents();
         this.updateNavigationButtons();
         this.setupIframeEvents();
+        this.updateSearchEngineButton();
+        this.updateAiModelButton();
+    }
+    
+    // 加载设置
+    loadSettings() {
+        const savedSearchEngine = localStorage.getItem('currentSearchEngine');
+        if (savedSearchEngine && this.searchEngines[savedSearchEngine]) {
+            this.currentSearchEngine = savedSearchEngine;
+        }
+        
+        const savedAiModel = localStorage.getItem('currentAiModel');
+        if (savedAiModel && this.aiModels[savedAiModel]) {
+            this.currentAiModel = savedAiModel;
+        }
+    }
+    
+    // 更新搜索引擎按钮
+    updateSearchEngineButton() {
+        const btn = document.getElementById('searchEngineBtn');
+        if (btn) {
+            const engine = this.searchEngines[this.currentSearchEngine];
+            btn.innerHTML = engine.icon;
+            btn.title = `当前搜索引擎: ${engine.name}`;
+        }
+    }
+    
+    // 更新AI模型按钮
+    updateAiModelButton() {
+        const btn = document.getElementById('aiModelBtn');
+        if (btn) {
+            const model = this.aiModels[this.currentAiModel];
+            btn.innerHTML = model.icon;
+            btn.title = `当前AI模型: ${model.name}`;
+        }
     }
     
     // 绑定事件
     bindEvents() {
+        // 搜索引擎按钮
+        const searchEngineBtn = document.getElementById('searchEngineBtn');
+        if (searchEngineBtn) {
+            searchEngineBtn.addEventListener('click', () => this.showSearchEngines());
+        }
+        
+        // AI模型按钮
+        const aiModelBtn = document.getElementById('aiModelBtn');
+        if (aiModelBtn) {
+            aiModelBtn.addEventListener('click', () => this.showAiModels());
+        }
+        
         // 后退按钮
         const backBtn = document.getElementById('backBtn');
         if (backBtn) {
@@ -49,16 +135,16 @@ class BrowserManager {
             bookmarkBtn.addEventListener('click', () => this.toggleBookmark());
         }
         
+        // 收藏夹列表按钮
+        const bookmarkListBtn = document.getElementById('bookmarkListBtn');
+        if (bookmarkListBtn) {
+            bookmarkListBtn.addEventListener('click', () => this.showBookmarks());
+        }
+        
         // 历史按钮
         const historyBtn = document.getElementById('historyBtn');
         if (historyBtn) {
             historyBtn.addEventListener('click', () => this.showHistory());
-        }
-        
-        // 下载按钮
-        const downloadBtn = document.getElementById('downloadBtn');
-        if (downloadBtn) {
-            downloadBtn.addEventListener('click', () => this.showDownloads());
         }
         
         // 转发按钮
@@ -72,7 +158,7 @@ class BrowserManager {
         if (urlInput) {
             urlInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    this.navigateToUrl(urlInput.value);
+                    this.handleUrlInput(urlInput.value);
                 }
             });
             
@@ -114,17 +200,34 @@ class BrowserManager {
         }
     }
     
+    // 处理URL输入
+    handleUrlInput(input) {
+        if (!input) return;
+        
+        // 检查是否是搜索词
+        if (!input.includes('.') || input.includes(' ')) {
+            // 使用当前选择的搜索引擎进行搜索
+            const searchEngine = this.searchEngines[this.currentSearchEngine];
+            const searchUrl = searchEngine.url + encodeURIComponent(input);
+            this.navigateToUrl(searchUrl);
+        } else {
+            // 作为URL处理
+            this.navigateToUrl(input);
+        }
+    }
+    
     // 导航到指定URL
     navigateToUrl(url) {
         if (!url) return;
         
         // 简单的URL格式化
         if (!url.startsWith('http://') && !url.startsWith('https://')) {
-            // 如果看起来像搜索词，使用百度搜索
-            if (!url.includes('.') || url.includes(' ')) {
-                url = `https://www.baidu.com/s?wd=${encodeURIComponent(url)}`;
-            } else {
+            if (url.includes('.')) {
                 url = 'https://' + url;
+            } else {
+                // 如果不是URL，则作为搜索词处理
+                const searchEngine = this.searchEngines[this.currentSearchEngine];
+                url = searchEngine.url + encodeURIComponent(url);
             }
         }
         
@@ -137,6 +240,95 @@ class BrowserManager {
             this.addToHistory(url);
             this.updateNavigationButtons();
         }
+    }
+    
+    // 显示搜索引擎列表
+    showSearchEngines() {
+        this.hideAllLists();
+        
+        const listHtml = `
+            <div class="dropdown-list" id="searchEngineList">
+                <div class="list-header">选择搜索引擎</div>
+                ${Object.entries(this.searchEngines).map(([key, engine]) => `
+                    <div class="list-item ${key === this.currentSearchEngine ? 'active' : ''}" 
+                         onclick="browserManager.selectSearchEngine('${key}')">
+                        <span class="item-icon">${engine.icon}</span>
+                        <span class="item-name">${engine.name}</span>
+                        ${key === this.currentSearchEngine ? '<span class="item-check">✓</span>' : ''}
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', listHtml);
+        
+        // 点击外部关闭列表
+        setTimeout(() => {
+            document.addEventListener('click', this.closeListOnOutsideClick.bind(this), { once: true });
+        }, 100);
+    }
+    
+    // 显示AI模型列表
+    showAiModels() {
+        this.hideAllLists();
+        
+        const listHtml = `
+            <div class="dropdown-list" id="aiModelList">
+                <div class="list-header">选择AI模型</div>
+                ${Object.entries(this.aiModels).map(([key, model]) => `
+                    <div class="list-item ${key === this.currentAiModel ? 'active' : ''}" 
+                         onclick="browserManager.selectAiModel('${key}')">
+                        <span class="item-icon">${model.icon}</span>
+                        <span class="item-name">${model.name}</span>
+                        ${key === this.currentAiModel ? '<span class="item-check">✓</span>' : ''}
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', listHtml);
+        
+        // 点击外部关闭列表
+        setTimeout(() => {
+            document.addEventListener('click', this.closeListOnOutsideClick.bind(this), { once: true });
+        }, 100);
+    }
+    
+    // 选择搜索引擎
+    selectSearchEngine(engineKey) {
+        this.currentSearchEngine = engineKey;
+        this.hideAllLists();
+        
+        // 更新按钮显示
+        const btn = document.getElementById('searchEngineBtn');
+        if (btn) {
+            const engine = this.searchEngines[engineKey];
+            btn.innerHTML = `${engine.icon}`;
+            btn.title = `当前搜索引擎: ${engine.name}`;
+        }
+        
+        // 保存到本地存储
+        localStorage.setItem('currentSearchEngine', engineKey);
+    }
+    
+    // 选择AI模型
+    selectAiModel(modelKey) {
+        this.currentAiModel = modelKey;
+        this.hideAllLists();
+        
+        // 更新按钮显示
+        const btn = document.getElementById('aiModelBtn');
+        if (btn) {
+            const model = this.aiModels[modelKey];
+            btn.innerHTML = `${model.icon}`;
+            btn.title = `当前AI模型: ${model.name}`;
+        }
+        
+        // 保存到本地存储
+        localStorage.setItem('currentAiModel', modelKey);
+        
+        // 导航到AI模型首页
+        this.navigateToUrl(this.aiModels[modelKey].url);
     }
     
     // 后退
@@ -200,6 +392,38 @@ class BrowserManager {
         }
         
         this.updateBookmarkButton();
+    }
+    
+    // 显示收藏夹
+    showBookmarks() {
+        this.hideAllLists();
+        
+        const bookmarksHtml = this.bookmarks.length > 0 
+            ? this.bookmarks.map((bookmark, index) => `
+                <div class="list-item" onclick="browserManager.navigateToUrl('${bookmark.url}')">
+                    <span class="item-icon">⭐</span>
+                    <div class="item-content">
+                        <div class="item-name">${bookmark.title}</div>
+                        <div class="item-url">${bookmark.url}</div>
+                    </div>
+                    <button class="item-delete" onclick="event.stopPropagation(); browserManager.removeBookmarkByIndex(${index})" title="删除收藏">×</button>
+                </div>
+            `).join('')
+            : '<div class="empty-state">暂无收藏</div>';
+        
+        const listHtml = `
+            <div class="dropdown-list" id="bookmarksList">
+                <div class="list-header">收藏夹</div>
+                ${bookmarksHtml}
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', listHtml);
+        
+        // 点击外部关闭列表
+        setTimeout(() => {
+            document.addEventListener('click', this.closeListOnOutsideClick.bind(this), { once: true });
+        }, 100);
     }
     
     // 显示历史记录
@@ -339,6 +563,31 @@ class BrowserManager {
     removeBookmark(url) {
         this.bookmarks = this.bookmarks.filter(bookmark => bookmark.url !== url);
         this.saveBookmarks();
+    }
+    
+    // 通过索引删除收藏
+    removeBookmarkByIndex(index) {
+        this.bookmarks.splice(index, 1);
+        this.saveBookmarks();
+        this.updateBookmarkButton();
+        
+        // 重新显示收藏夹列表
+        this.hideAllLists();
+        setTimeout(() => this.showBookmarks(), 100);
+    }
+    
+    // 隐藏所有下拉列表
+    hideAllLists() {
+        const lists = document.querySelectorAll('.dropdown-list');
+        lists.forEach(list => list.remove());
+    }
+    
+    // 点击外部关闭列表
+    closeListOnOutsideClick(event) {
+        const list = document.querySelector('.dropdown-list');
+        if (list && !list.contains(event.target)) {
+            this.hideAllLists();
+        }
     }
     
     loadBookmarks() {

@@ -265,12 +265,17 @@ body {
 /* 浏览器页面 */
 #browser-page {
     background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    z-index: 1;
 }
 
 .browser-header {
     background: white;
     padding: 16px 20px;
     border-bottom: 1px solid #e9ecef;
+    flex-shrink: 0;
 }
 
 .url-bar {
@@ -345,6 +350,7 @@ body {
     position: relative;
     background: #fff;
     overflow: hidden;
+    min-height: 0;
 }
 
 #browserFrame {
@@ -352,6 +358,7 @@ body {
     height: 100%;
     border: none;
     background: #fff;
+    display: block;
 }
 
 /* 浏览器加载状态 */
@@ -395,6 +402,117 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* 下拉列表样式 */
+.dropdown-list {
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 350px;
+    max-height: 400px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow: hidden;
+    animation: dropdownSlideIn 0.3s ease-out;
+}
+
+@keyframes dropdownSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.list-header {
+    padding: 16px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    font-weight: 600;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.list-item:hover {
+    background-color: #f8f9fa;
+}
+
+.list-item.active {
+    background-color: #e3f2fd;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.item-icon {
+    font-size: 20px;
+    margin-right: 12px;
+    width: 24px;
+    text-align: center;
+}
+
+.item-name {
+    flex: 1;
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+}
+
+.item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-url {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item-check {
+    color: #007AFF;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.item-delete {
+    background: none;
+    border: none;
+    color: #ff4444;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.item-delete:hover {
+    background-color: #ffebee;
 }
 
 /* 浏览器模态框 */
