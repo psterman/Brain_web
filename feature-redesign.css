@@ -1,20 +1,42 @@
-/* Material Design 重构样式 - 功能一和功能二 */
+/* Material Design 3.0 风格重构样式 */
 
-/* 基础重构卡片样式 */
+/* 基础重构卡片样式 - Material Design 3 */
 .feature-card-redesigned {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 24px;
-    padding: 32px;
-    margin-bottom: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 40px;
+    margin-bottom: 40px;
     box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.08),
-        0 4px 16px rgba(0, 0, 0, 0.04),
-        inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        0 1px 3px rgba(0, 0, 0, 0.12),
+        0 1px 2px rgba(0, 0, 0, 0.24),
+        0 0 0 1px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+}
+
+.feature-card-redesigned::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.feature-card-redesigned:hover {
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.16),
+        0 4px 8px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.feature-card-redesigned:hover::before {
+    transform: scaleX(1);
 }
 
 .feature-card-redesigned::before {
@@ -143,16 +165,34 @@
     color: #f5576c;
 }
 
-/* 描述区域 */
+/* 描述区域 - Material Design 3 文本层次 */
 .feature-description {
     margin-bottom: 28px;
 }
 
 .feature-description p {
     font-size: 16px;
-    color: #4a5568;
-    line-height: 1.6;
+    color: #1a202c;
+    line-height: 1.7;
     margin: 0;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+.feature-description .highlight-text {
+    font-weight: 600;
+    color: #2d3748;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ai-feature .feature-description .highlight-text {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* 统一移动端演示样式 - iPhone风格 */
@@ -181,6 +221,676 @@
     display: flex;
     flex-direction: column;
     transform: scale(0.75);
+}
+
+/* 功能副标题样式 - Material Design 3 文本层次 */
+.feature-subtitle {
+    font-size: 14px;
+    color: #4a5568;
+    margin: 0;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+}
+
+/* 功能介绍卡片样式 - Material Design 3 高对比度 */
+.feature-intro-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 28px;
+    margin: 24px 0;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.feature-intro-card:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.feature-intro-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.feature-intro-card p {
+    font-size: 15px;
+    color: #2d3748;
+    line-height: 1.7;
+    margin: 0;
+    font-weight: 400;
+}
+
+.feature-intro-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.feature-intro-tag {
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.intro-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.intro-content h4 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.intro-content p {
+    margin: 0;
+    font-size: 12px;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+/* AI能力标签样式 */
+.ai-capabilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.capability-tag, .feature-tag {
+    background: rgba(74, 144, 226, 0.2);
+    color: #4a90e2;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 500;
+    border: 1px solid rgba(74, 144, 226, 0.3);
+}
+
+/* 搜索功能卡片 - 重构版 */
+.unified-search-card {
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(53, 122, 189, 0.05));
+    border: 2px solid rgba(74, 144, 226, 0.2);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.unified-search-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #4a90e2, #357abd, #2a5a8c);
+    opacity: 0.8;
+}
+
+.unified-search-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(74, 144, 226, 0.15);
+    border-color: rgba(74, 144, 226, 0.4);
+}
+
+.search-card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.search-feature-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    box-shadow: 0 8px 24px rgba(74, 144, 226, 0.3);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.search-feature-icon:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 32px rgba(74, 144, 226, 0.4);
+}
+
+.search-header-content {
+    flex: 1;
+}
+
+.search-feature-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.25);
+    letter-spacing: 0.5px;
+}
+
+.search-feature-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 6px 0;
+    line-height: 1.3;
+    background: linear-gradient(135deg, #fff, #e8f2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.search-feature-subtitle {
+    font-size: 14px;
+    color: #a8c7ff;
+    margin: 0;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.search-card-body {
+    position: relative;
+    z-index: 2;
+}
+
+.search-feature-description {
+    font-size: 14px;
+    color: #d0e0ff;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.search-highlight-text {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+    display: inline;
+}
+
+.search-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.search-benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.search-benefit-item:hover {
+    background: rgba(74, 144, 226, 0.1);
+    border-color: rgba(74, 144, 226, 0.3);
+    transform: translateY(-2px);
+}
+
+.search-benefit-icon {
+    font-size: 16px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.search-benefit-text {
+    font-size: 13px;
+    color: #e8f2ff;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* 使用步骤指南样式 - 重构版 */
+.search-usage-guide {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 16px 0;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.search-usage-guide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #4a90e2, transparent);
+}
+
+.search-guide-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.search-guide-icon {
+    font-size: 20px;
+    color: #4a90e2;
+    filter: drop-shadow(0 2px 4px rgba(74, 144, 226, 0.3));
+    margin-top: 2px;
+}
+
+.search-guide-title-group {
+    flex: 1;
+}
+
+.search-guide-title {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #fff, #e8f2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.search-guide-subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: #a8c7ff;
+    opacity: 0.9;
+}
+
+.search-guide-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.search-step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.search-step-item:hover {
+    background: rgba(74, 144, 226, 0.08);
+    border-color: rgba(74, 144, 226, 0.2);
+    transform: translateX(4px);
+}
+
+.search-step-item.step-1 {
+    border-left: 3px solid #4a90e2;
+}
+
+.search-step-item.step-2 {
+    border-left: 3px solid #357abd;
+}
+
+.search-step-item.step-3 {
+    border-left: 3px solid #2a5a8c;
+}
+
+.search-step-number {
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+    margin-top: 2px;
+}
+
+.search-step-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.search-step-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.search-step-desc {
+    font-size: 12px;
+    color: #a8c7ff;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.search-step-demo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.search-demo-text {
+    background: rgba(74, 144, 226, 0.15);
+    color: #e8f2ff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid rgba(74, 144, 226, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.search-demo-platform {
+    background: rgba(255, 255, 255, 0.08);
+    color: #d0e0ff;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 11px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.search-demo-platform.active {
+    background: rgba(74, 144, 226, 0.2);
+    color: #fff;
+    border-color: rgba(74, 144, 226, 0.4);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+}
+
+.search-demo-result {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 237, 78, 0.15));
+    color: #ffd700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.search-guide-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 12px;
+    background: rgba(255, 215, 0, 0.08);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+}
+
+.search-tip-icon {
+    font-size: 16px;
+    color: #ffd700;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.search-tip-text {
+    font-size: 12px;
+    color: #ffd700;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
+/* AI选择器样式优化 */
+.selector-title {
+    font-size: 12px;
+    color: #ccc;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.ai-chips-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ai-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-chip:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(74, 144, 226, 0.3);
+}
+
+.ai-chip.active {
+    background: rgba(74, 144, 226, 0.2);
+    border-color: rgba(74, 144, 226, 0.5);
+}
+
+.chip-icon {
+    font-size: 16px;
+}
+
+.chip-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.chip-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.chip-desc {
+    font-size: 10px;
+    color: #aaa;
+}
+
+/* 使用提示样式 */
+.usage-tips {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tips-title {
+    font-size: 12px;
+    color: #ccc;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.tip-examples {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tip-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    color: #bbb;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tip-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+/* 发现页面样式优化 */
+.discovery-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.content-section {
+    margin-bottom: 16px;
+}
+
+.section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.discover-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.discover-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(74, 144, 226, 0.3);
+    transform: translateY(-1px);
+}
+
+.discover-item.featured {
+    border-color: rgba(255, 193, 7, 0.5);
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.discover-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.discover-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.discover-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.discover-desc {
+    font-size: 10px;
+    color: #aaa;
+    line-height: 1.3;
+}
+
+.discover-stats {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.stat-item {
+    font-size: 9px;
+    color: #888;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.discover-tags {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.tag {
+    font-size: 9px;
+    color: #4a90e2;
+    background: rgba(74, 144, 226, 0.2);
+    padding: 2px 6px;
+    border-radius: 6px;
+    border: 1px solid rgba(74, 144, 226, 0.3);
+}
+
+.discover-action {
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.discover-action:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
 }
 
 /* iPhone 17 Home Indicator 小横条 */
@@ -725,6 +1435,220 @@
     margin-left: 2px;
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
     letter-spacing: -0.2px;
+}
+
+/* 现代化三个并排手机模拟器布局 */
+.triple-mobile-demo {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    position: relative;
+    perspective: 1200px;
+    overflow: hidden;
+}
+
+.mobile-carousel-container {
+    width: 100%;
+    overflow: visible;
+    border-radius: 24px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.mobile-carousel {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 40px;
+    padding: 0 60px;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.mobile-carousel .mobile-phone-frame {
+    flex: 0 0 calc(33.333% - 26px);
+    min-width: 300px;
+    max-width: 360px;
+    margin: 0 auto;
+    transform: scale(0.92) rotateY(0deg) translateZ(0px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: grab;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    filter: brightness(1) blur(0px);
+    box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.12),
+        0 12px 32px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* 中心卡片效果 */
+.mobile-carousel .mobile-phone-frame[data-position="center"] {
+    transform: scale(1) rotateY(0deg) translateZ(50px);
+    filter: brightness(1) blur(0px);
+    z-index: 10;
+    box-shadow: 
+        0 40px 120px rgba(0, 0, 0, 0.2),
+        0 20px 48px rgba(0, 0, 0, 0.12),
+        0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* 左侧卡片效果 */
+.mobile-carousel .mobile-phone-frame[data-position="left"] {
+    transform: scale(0.85) rotateY(25deg) translateZ(-30px) translateX(20px);
+    filter: brightness(0.8) blur(1px);
+    z-index: 5;
+    opacity: 0.7;
+}
+
+/* 右侧卡片效果 */
+.mobile-carousel .mobile-phone-frame[data-position="right"] {
+    transform: scale(0.85) rotateY(-25deg) translateZ(-30px) translateX(-20px);
+    filter: brightness(0.8) blur(1px);
+    z-index: 5;
+    opacity: 0.7;
+}
+
+.mobile-carousel .mobile-phone-frame:hover {
+    transform: scale(1.02) rotateY(0deg) translateZ(60px);
+    box-shadow: 
+        0 50px 140px rgba(0, 0, 0, 0.25),
+        0 25px 60px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.1);
+    filter: brightness(1.05) blur(0px);
+}
+
+.mobile-carousel .mobile-phone-frame:active {
+    cursor: grabbing;
+    transform: scale(0.98) rotateY(0deg) translateZ(40px);
+}
+
+/* 响应式布局 */
+@media (max-width: 1024px) {
+    .mobile-carousel .mobile-phone-frame {
+        flex: 0 0 calc(50% - 15px);
+        min-width: 260px;
+        max-width: 300px;
+    }
+    
+    .mobile-carousel {
+        gap: 20px;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .triple-mobile-demo {
+        padding: 30px 15px;
+    }
+    
+    .mobile-carousel .mobile-phone-frame {
+        flex: 0 0 calc(80% - 10px);
+        min-width: 240px;
+        max-width: 280px;
+        transform: scale(0.9);
+    }
+    
+    .mobile-carousel .mobile-phone-frame:hover {
+        transform: scale(0.95);
+    }
+    
+    .mobile-carousel {
+        gap: 15px;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-carousel .mobile-phone-frame {
+        flex: 0 0 calc(90% - 5px);
+        min-width: 220px;
+        max-width: 260px;
+        transform: scale(0.85);
+    }
+    
+    .mobile-carousel .mobile-phone-frame:hover {
+        transform: scale(0.9);
+    }
+    
+    .mobile-carousel {
+        gap: 10px;
+        padding: 0 5px;
+    }
+    
+    .carousel-indicators {
+        margin-top: 20px;
+        gap: 8px;
+    }
+    
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* 现代化滑动指示器 */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 50px;
+    padding: 20px;
+    position: relative;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.indicator.active {
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+    transform: scale(1.4);
+    width: 24px;
+    border-radius: 12px;
+    box-shadow: 
+        0 8px 24px rgba(0, 122, 255, 0.3),
+        0 4px 12px rgba(0, 122, 255, 0.2);
+}
+
+.indicator.active::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+.indicator:hover {
+    background: rgba(0, 122, 255, 0.4);
+    transform: scale(1.2);
+    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.2);
+}
+
+.indicator:hover::before {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.2);
 }
 
 .mobile-app-content {
