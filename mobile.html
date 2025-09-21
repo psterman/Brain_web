@@ -6,6 +6,12 @@
     <title>小脑浏览器 - 移动端</title>
     <link rel="stylesheet" href="mobile-styles.css">
     <link rel="stylesheet" href="multi-platform-search.css">
+    <link rel="stylesheet" href="mobile-browser-enhancements.css">
+    <link rel="stylesheet" href="enhanced-browser-v3.css">
+    <link rel="stylesheet" href="browser-page-styles.css">
+    <link rel="stylesheet" href="mobile-dark-mode.css">
+    <link rel="stylesheet" href="mobile-center-fix.css">
+    <link rel="stylesheet" href="mobile-app-search.css">
 </head>
 <body>
     <!-- 移动端主容器 -->
@@ -107,20 +113,63 @@
                 <div class="browser-header">
                     <div class="url-bar">
                         <button class="nav-btn" id="searchEngineBtn" title="搜索引擎">🔍</button>
-                        <input type="text" placeholder="请输入网址或搜索内容..." class="url-input">
+                        <div class="url-input-container">
+                            <input type="text" placeholder="请输入网址或搜索内容..." class="url-input">
+                            <div class="url-actions">
+                                <button class="url-action-btn" id="pasteBtn" title="粘贴">📋</button>
+                                <button class="url-action-btn" id="clearBtn" title="清空">✕</button>
+                            </div>
+                        </div>
                         <button class="action-btn" id="aiModelBtn" title="AI模型">🤖</button>
                     </div>
                     
                     <!-- 浏览器工具栏 -->
                     <div class="browser-toolbar">
-                        <button class="tool-btn" id="backBtn" title="后退">◀</button>
-                        <button class="tool-btn" id="forwardBtn" title="前进">▶</button>
-                        <button class="tool-btn" id="refreshBtn" title="刷新">🔄</button>
-                        <button class="tool-btn" id="homeBtn" title="主页">🏠</button>
-                        <button class="tool-btn" id="bookmarkBtn" title="收藏">⭐</button>
-                        <button class="tool-btn" id="bookmarkListBtn" title="收藏夹">📚</button>
-                        <button class="tool-btn" id="historyBtn" title="历史">⏰</button>
-                        <button class="tool-btn" id="shareBtn" title="转发">📤</button>
+                        <button class="tool-btn" id="backBtn" title="后退">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" id="forwardBtn" title="前进">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" id="refreshBtn" title="刷新">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" id="homeBtn" title="主页">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" id="bookmarkBtn" title="收藏">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" id="bookmarkListBtn" title="收藏夹">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" id="tabsBtn" title="标签页">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" id="historyBtn" title="历史">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13,3A9,9 0 0,0 4,12H1L4.89,15.89L4.96,16.03L9,12H6A7,7 0 0,1 13,5A7,7 0 0,1 20,12A7,7 0 0,1 13,19C11.07,19 9.32,18.21 8.06,16.94L6.64,18.36C8.27,20 10.5,21 13,21A9,9 0 0,0 22,12A9,9 0 0,0 13,3M12,8V13L16.28,15.54L17,14.33L13.5,12.25V8H12Z"/>
+                            </svg>
+                        </button>
+                        <button class="tool-btn" id="shareBtn" title="分享">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19C20.92,17.39 19.61,16.08 18,16.08M18,4A1,1 0 0,1 19,5A1,1 0 0,1 18,6A1,1 0 0,1 17,5A1,1 0 0,1 18,4M6,13A1,1 0 0,1 7,12A1,1 0 0,1 6,11A1,1 0 0,1 5,12A1,1 0 0,1 6,13M18,20C17.45,20 17,19.55 17,19C17,18.45 17.45,18 18,18C18.55,18 19,18.45 19,19C19,19.55 18.55,20 18,20Z"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
 
@@ -244,103 +293,86 @@
                     <h2>应用搜索</h2>
                 </div>
 
-                <div class="apps-layout">
-                    <!-- 左侧分类 -->
-                    <div class="app-categories">
-                        <div class="category-header">
-                            <button class="category-item">分类</button>
-                            <button class="category-item">≡</button>
-                            <button class="category-item">📖</button>
+                <!-- 顶部搜索框 -->
+                <div class="top-search-bar">
+                    <div class="search-icon-container">
+                        <div class="selected-app-icon" id="selectedAppIcon" data-app="xiaohongshu">
+                            <div class="app-letter" style="background: linear-gradient(135deg, #ff2442 0%, #ff1744 100%); color: white;">小</div>
                         </div>
-                        
-                        <div class="category-list">
-                            <div class="category-item starred">⭐ 自定义</div>
-                            <div class="category-item active">📱 全部</div>
-                            <div class="category-item">🛍️ 购物</div>
-                            <div class="category-item">👥 社交</div>
-                            <div class="category-item">📺 视频</div>
-                            <div class="category-item">🎵 音乐</div>
-                            <div class="category-item">🏠 生活</div>
-                            <div class="category-item">🗺️ 地图</div>
-                            <div class="category-item">🌐 浏览器</div>
-                            <div class="category-item">💰 金融</div>
-                            <div class="category-item">🚗 出行</div>
-                            <div class="category-item">💼 招聘</div>
-                            <div class="category-item">📚 教育</div>
-                            <div class="category-item">📰 新闻</div>
+                        <div class="dropdown-arrow">▼</div>
+                        <div class="recent-apps-dropdown" id="recentAppsDropdown" style="display: none;">
+                            <div class="recent-apps-header">近期选择</div>
+                            <div class="recent-apps-list" id="recentAppsList">
+                                <!-- 近期选择的应用图标将在这里显示 -->
+                            </div>
                         </div>
                     </div>
+                    <input type="text" placeholder="输入关键词，选择app搜索" class="app-search-input">
+                    <button class="clear-btn" id="app-search-clear-btn" title="清空">×</button>
+                </div>
 
-                    <!-- 右侧应用网格 -->
-                    <div class="apps-content">
-                        <div class="search-bar">
-                            <input type="text" placeholder="输入搜索关键词" class="app-search-input">
+                <div class="apps-layout">
+                    <div class="categories-and-apps">
+                        <!-- 左侧分类 -->
+                        <div class="app-categories">
+                            <div class="category-list" id="category-list">
+                                <div class="category-item starred" data-category="custom">⭐ 自定义</div>
+                                <div class="category-item active" data-category="all">📱 全部</div>
+                                <div class="category-item" data-category="shopping">🛍️ 购物</div>
+                                <div class="category-item" data-category="social">👥 社交</div>
+                                <div class="category-item" data-category="video">📺 视频</div>
+                                <div class="category-item" data-category="music">🎵 音乐</div>
+                                <div class="category-item" data-category="life">🏠 生活</div>
+                                <div class="category-item" data-category="map">🗺️ 地图</div>
+                            </div>
                         </div>
-                        
-                        <div class="apps-subtitle">选择应用进行搜索</div>
-                        
-                        <div class="apps-grid">
-                            <div class="app-item">
-                                <div class="app-icon taobao">🛒</div>
-                                <div class="app-name">淘宝</div>
-                            </div>
-                            
-                            <div class="app-item">
-                                <div class="app-icon tmall">🏪</div>
-                                <div class="app-name">天猫</div>
-                            </div>
-                            
-                            <div class="app-item">
-                                <div class="app-icon pinduoduo">🛍️</div>
-                                <div class="app-name">拼多多</div>
-                            </div>
-                            
-                            <div class="app-item">
-                                <div class="app-icon jd">📦</div>
-                                <div class="app-name">京东</div>
-                            </div>
-                            
-                            <div class="app-item">
-                                <div class="app-icon douyin">📱</div>
-                                <div class="app-name">抖音</div>
-                            </div>
-                            
-                            <div class="app-item">
-                                <div class="app-icon zhihu">🤔</div>
-                                <div class="app-name">知乎</div>
-                            </div>
-                            
-                            <div class="app-item">
-                                <div class="app-icon wechat">💬</div>
-                                <div class="app-name">微信</div>
-                            </div>
-                            
-                            <div class="app-item">
-                                <div class="app-icon qq">🐧</div>
-                                <div class="app-name">QQ音乐</div>
-                            </div>
-                            
-                            <div class="app-item">
-                                <div class="app-icon netease">🎵</div>
-                                <div class="app-name">网易云音乐</div>
-                            </div>
-                            
-                            <div class="app-item">
-                                <div class="app-icon meituan">🍔</div>
-                                <div class="app-name">美团</div>
-                            </div>
-                            
-                            <div class="app-item">
-                                <div class="app-icon dianping">⭐</div>
-                                <div class="app-name">饿了么</div>
-                            </div>
-                            
-                            <div class="app-item">
-                                <div class="app-icon dianping">🍽️</div>
-                                <div class="app-name">大众点评</div>
+
+                        <!-- 右侧应用网格 -->
+                        <div class="apps-content">
+                            <div class="apps-grid" id="apps-grid">
+                                <!-- 应用图标将通过JavaScript动态生成 -->
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- 浏览器页面 -->
+            <div class="page" id="browser-page">
+                <!-- 浏览器地址栏 -->
+                <div class="browser-address-bar">
+                    <div class="address-controls">
+                        <button class="nav-btn" id="backBtn" title="后退">◀️</button>
+                        <button class="nav-btn" id="forwardBtn" title="前进">▶️</button>
+                        <button class="nav-btn" id="refreshBtn" title="刷新">🔄</button>
+                    </div>
+                    
+                    <div class="url-container">
+                        <button class="search-engine-btn" id="searchEngineBtn" title="搜索引擎">🔍</button>
+                        <input type="text" class="url-input" placeholder="搜索或输入网址" value="https://m.baidu.com">
+                        <div class="url-action-buttons">
+                            <button class="url-action-btn paste-btn" title="粘贴">📋</button>
+                            <button class="url-action-btn clear-btn" title="清空">✕</button>
+                        </div>
+                        <button class="ai-model-btn" id="aiModelBtn" title="AI模型">🤖</button>
+                    </div>
+                </div>
+                
+                <!-- 浏览器工具栏 -->
+                <div class="browser-toolbar">
+                    <button class="tool-btn" id="homeBtn" title="主页">🏠</button>
+                    <button class="tool-btn" id="bookmarkBtn" title="收藏">⭐</button>
+                    <button class="tool-btn" id="bookmarkListBtn" title="收藏夹">📚</button>
+                    <button class="tool-btn" id="tabsBtn" title="标签页">📄</button>
+                    <button class="tool-btn" id="historyBtn" title="历史">🕒</button>
+                    <button class="tool-btn" id="downloadBtn" title="下载">⬇️</button>
+                    <button class="tool-btn" id="shareBtn" title="分享">📤</button>
+                </div>
+                
+                <!-- 浏览器内容区域 -->
+                <div class="browser-content">
+                    <div class="browser-loading" id="browserLoading"></div>
+                    <iframe id="browserFrame" src="https://m.baidu.com" frameborder="0"></iframe>
                 </div>
             </div>
 
@@ -416,8 +448,28 @@
         <div class="home-indicator"></div>
     </div>
 
+    <!-- 分类长按菜单 -->
+    <div class="category-context-menu" id="categoryContextMenu" style="display: none;">
+        <div class="context-menu-item" data-action="set-default">
+            <span class="menu-icon">⭐</span>
+            <span class="menu-text">设置默认图标</span>
+        </div>
+        <div class="context-menu-item" data-action="move-to-category">
+            <span class="menu-icon">📁</span>
+            <span class="menu-text">移动到分类</span>
+        </div>
+        <div class="context-menu-item" data-action="direct-search">
+            <span class="menu-icon">🔍</span>
+            <span class="menu-text">直接搜索</span>
+        </div>
+    </div>
+
+    <script src="iphone-user-agent.js"></script>
+    <script src="mobile-force-optimizer.js"></script>
+    <script src="icon-config.js"></script>
+    <script src="mobile-app-search.js"></script>
     <script src="mobile-script.js"></script>
     <script src="ai-chat.js"></script>
-    <script src="browser-functionality.js"></script>
+    <script src="enhanced-browser-v3.js"></script>
 </body>
 </html>

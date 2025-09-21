@@ -1,0 +1,668 @@
+/* 移动端应用搜索样式 */
+
+/* 顶部搜索栏样式 */
+.top-search-bar {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 搜索图标容器 */
+.search-icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* 清空按钮样式 */
+.top-search-bar .clear-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #6c757d;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 5;
+}
+
+.top-search-bar .clear-btn:hover {
+    background: #f8f9fa;
+    color: #495057;
+}
+
+.top-search-bar .clear-btn.show {
+    display: flex;
+}
+
+.selected-app-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.selected-app-icon .app-letter {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.dropdown-arrow {
+    margin-left: 4px;
+    font-size: 10px;
+    color: #666;
+    transition: transform 0.2s ease;
+}
+
+.search-icon-container:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* 近期应用下拉列表 */
+.recent-apps-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    min-width: 150px;
+    width: auto;
+}
+
+.recent-apps-list {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.recent-app-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    gap: 12px;
+}
+
+.recent-app-item:hover {
+    background-color: #f5f5f5;
+}
+
+.recent-app-item .app-icon {
+    flex-shrink: 0;
+}
+
+.recent-app-item .app-letter {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.recent-app-item .app-name {
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+}
+
+/* 空状态样式 */
+.recent-apps-empty {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+
+.recent-apps-empty .empty-message {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #999;
+}
+
+.recent-apps-empty .empty-tip {
+    font-size: 12px;
+    color: #bbb;
+}
+
+/* 应用图标样式 */
+.app-item {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease, opacity 0.2s;
+    border-radius: 12px;
+    padding: 8px;
+    user-select: none;
+}
+
+.app-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+.app-item.selected {
+    background: rgba(0, 123, 255, 0.1);
+    border: 2px solid #007bff;
+    transform: scale(0.95);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.app-icon {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 8px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.app-icon-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+}
+
+.app-name {
+    text-align: center;
+    font-size: 12px;
+    color: #333;
+    font-weight: 500;
+    line-height: 1.2;
+    max-width: 80px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 搜索栏增强 */
+.app-search-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.app-search-input:focus {
+    border-color: #007bff;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.app-search-input::placeholder {
+    color: #999;
+}
+
+/* 分类选择增强 */
+.category-item {
+    transition: all 0.3s ease, opacity 0.2s;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 2px 0;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    text-align: left;
+    width: 100%;
+    font-size: 14px;
+    user-select: none;
+}
+
+.category-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.category-item.active {
+    background: #007bff;
+    color: white;
+    font-weight: 600;
+}
+
+.category-item.starred {
+    color: #ffc107;
+    font-weight: 600;
+}
+
+.category-item.default-category {
+    position: relative;
+}
+
+.category-item.default-category::after {
+    content: '⭐';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+/* Toast 提示样式 */
+.app-search-toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 10000;
+    opacity: 0;
+    transition: all 0.3s ease;
+    max-width: 280px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.app-search-toast.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.app-search-toast.fallback {
+    background: white;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.toast-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.fallback-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.fallback-btn:hover {
+    background: #0056b3;
+}
+
+/* 应用页面布局 - 修改为水平布局 */
+.apps-layout {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 120px);
+    gap: 0;
+}
+
+/* 分类和图标的水平布局容器 */
+.categories-and-apps {
+    display: flex;
+    height: 100%;
+    gap: 0;
+}
+
+.app-categories {
+    width: 120px;
+    background: #f8f9fa;
+    border-right: 1px solid #e9ecef;
+    overflow-y: auto;
+    flex-shrink: 0;
+    height: 100%;
+}
+
+.apps-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: white;
+    height: 100%;
+}
+
+/* 应用网格响应式 */
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 16px;
+    padding: 16px 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* 滚动条样式 */
+.apps-grid::-webkit-scrollbar {
+    width: 4px;
+}
+
+.apps-grid::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+.apps-grid::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 2px;
+}
+
+.apps-grid::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+/* 空状态样式已删除 */
+
+/* 加载状态 */
+.app-icon.loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* 应用选项菜单 */
+.app-options-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.app-options-menu.show {
+    opacity: 1;
+}
+
+.options-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.options-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.app-options-menu.show .options-content {
+    transform: translateY(0);
+}
+
+.options-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.app-icon-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.app-name-small {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.options-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option-btn {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+
+.option-btn:hover {
+    background: #e9ecef;
+    border-color: #007bff;
+}
+
+.option-btn:active {
+    transform: scale(0.98);
+}
+
+/* 拖拽相关样式 */
+.category-item.drag-over {
+    background-color: #e3f2fd !important;
+    border: 2px dashed #2196F3;
+}
+
+.app-item[draggable="true"] {
+    cursor: grab;
+}
+
+.app-item[draggable="true"]:active {
+    cursor: grabbing;
+}
+
+/* 分类长按菜单样式 */
+.category-context-menu {
+    position: fixed;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    min-width: 160px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.context-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    gap: 12px;
+}
+
+.context-menu-item:hover {
+    background-color: #f5f5f5;
+}
+
+.context-menu-item:active {
+    background-color: #e0e0e0;
+}
+
+.context-menu-item .menu-icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.context-menu-item .menu-text {
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.drag-toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 10000;
+    animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+}
+
+/* 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+    .app-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .app-item.selected {
+        background: rgba(0, 123, 255, 0.2);
+    }
+    
+    .app-name {
+        color: #fff;
+    }
+    
+    .app-search-input {
+        background: #2c2c2c;
+        border-color: #444;
+        color: white;
+    }
+    
+    .app-search-input:focus {
+        background: #333;
+        border-color: #007bff;
+    }
+    
+    .category-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .apps-grid::-webkit-scrollbar-track {
+        background: #333;
+    }
+    
+    .apps-grid::-webkit-scrollbar-thumb {
+        background: #666;
+    }
+
+    .options-content {
+        background: #2c2c2c;
+    }
+
+    .options-header {
+        border-bottom-color: #444;
+    }
+
+    .app-name-small {
+        color: #fff;
+    }
+
+    .option-btn {
+        background: #3c3c3c;
+        border-color: #555;
+        color: #fff;
+    }
+
+    .option-btn:hover {
+        background: #4c4c4c;
+        border-color: #007bff;
+    }
+}

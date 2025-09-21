@@ -201,9 +201,109 @@ function initAppJumpFeatures() {
             const query = e.target.value.trim();
             if (query) {
                 simulateAppSearch(query);
+            } else {
+                // 清空搜索时，移除所有高亮
+                const appItems = document.querySelectorAll('.app-item');
+                appItems.forEach(item => {
+                    item.classList.remove('search-highlight');
+                });
+            }
+        });
+        
+        // 添加回车键搜索功能
+        appSearchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = e.target.value.trim();
+                if (query) {
+                    // 查找第一个高亮的应用
+                    const highlightedApp = document.querySelector('.app-item.search-highlight');
+                    if (highlightedApp) {
+                        const appName = highlightedApp.querySelector('.app-name').textContent.trim();
+                        jumpToAppSearch(appName, query);
+                    } else {
+                        // 如果没有高亮应用，显示提示
+                        const toast = createToast('请先输入关键词匹配应用，或点击应用图标进行搜索');
+                        showToast(toast);
+                    }
+                }
             }
         });
     }
+}
+
+// 跳转到应用搜索
+function jumpToAppSearch(appName, query) {
+    console.log(`跳转到 ${appName} 搜索: ${query}`);
+    
+    // 获取应用配置
+    const appConfig = findAppConfigByName(appName);
+    if (!appConfig) {
+        const toast = createToast(`未找到 ${appName} 的配置信息`);
+        showToast(toast);
+        return;
+    }
+    
+    // 构建搜索URL
+    const searchUrl = appConfig.searchUrl ? appConfig.searchUrl + encodeURIComponent(query) : null;
+    const appSearchUrl = appConfig.appSearchUrl ? appConfig.appSearchUrl + encodeURIComponent(query) : null;
+    
+    // 显示跳转提示
+    const toast = createToast(`正在跳转到 ${appName} 搜索"${query}"...`);
+    showToast(toast);
+    
+    // 尝试打开应用内搜索
+    if (appSearchUrl) {
+        try {
+            // 创建隐藏的链接来尝试打开应用
+            const link = document.createElement('a');
+            link.href = appSearchUrl;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // 延迟后检查是否成功打开应用，如果没有则打开网页版
+            setTimeout(() => {
+                if (searchUrl) {
+                    window.open(searchUrl, '_blank');
+                    const successToast = createToast(`已在新标签页打开 ${appName} 搜索结果`);
+                    showToast(successToast);
+                }
+            }, 1000);
+        } catch (error) {
+            console.log('应用跳转失败，尝试网页版:', error);
+            if (searchUrl) {
+                window.open(searchUrl, '_blank');
+                const successToast = createToast(`已在新标签页打开 ${appName} 搜索结果`);
+                showToast(successToast);
+            }
+        }
+    } else if (searchUrl) {
+        // 只有网页版搜索URL
+        window.open(searchUrl, '_blank');
+        const successToast = createToast(`已在新标签页打开 ${appName} 搜索结果`);
+        showToast(successToast);
+    } else {
+        const errorToast = createToast(`${appName} 暂不支持搜索功能`);
+        showToast(errorToast);
+    }
+}
+
+// 根据应用名称查找配置
+function findAppConfigByName(appName) {
+    if (typeof IconConfig === 'undefined') {
+        console.error('IconConfig 未加载');
+        return null;
+    }
+    
+    // 遍历所有应用配置
+    for (const [key, config] of Object.entries(IconConfig.apps)) {
+        if (config.name === appName) {
+            return config;
+        }
+    }
+    
+    return null;
 }
 
 // 模拟分类切换
@@ -238,16 +338,49 @@ function simulateAppLaunch(appName) {
 function simulateAppSearch(query) {
     console.log(`搜索应用: ${query}`);
     
+    if (!query.trim()) {
+        // 清空搜索时，移除所有高亮
+        const appItems = document.querySelectorAll('.app-item');
+        appItems.forEach(item => {
+            item.classList.remove('search-highlight');
+        });
+        return;
+    }
+    
     // 高亮匹配的应用
     const appItems = document.querySelectorAll('.app-item');
+    let hasMatches = false;
+    
     appItems.forEach(item => {
         const appName = item.querySelector('.app-name').textContent.toLowerCase();
         if (appName.includes(query.toLowerCase())) {
             item.classList.add('search-highlight');
+            hasMatches = true;
+            
+            // 为匹配的应用添加点击事件，支持搜索跳转
+            const clickHandler = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                jumpToAppSearch(appName.trim(), query);
+                item.removeEventListener('click', clickHandler);
+            };
+            
+            // 移除之前的事件监听器，避免重复绑定
+            item.removeEventListener('click', clickHandler);
+            item.addEventListener('click', clickHandler);
         } else {
             item.classList.remove('search-highlight');
         }
     });
+    
+    // 显示搜索结果提示
+    if (hasMatches) {
+        const toast = createToast(`找到匹配应用，点击应用图标可直接搜索"${query}"`);
+        showToast(toast);
+    } else {
+        const toast = createToast(`未找到匹配的应用`);
+        showToast(toast);
+    }
 }
 
 // 小组件功能

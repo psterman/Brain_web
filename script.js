@@ -31,7 +31,7 @@ const deviceIcon = document.querySelector('.device-icon');
 
 // 检查当前设备类型
 function getCurrentDevice() {
-    return window.location.pathname.includes('mobile-index.html') ? 'mobile' : 'desktop';
+    return window.location.pathname.includes('mobile.html') ? 'mobile' : 'desktop';
 }
 
 // 更新设备图标
@@ -59,7 +59,7 @@ if (deviceToggle) {
         // 切换设备
         if (currentDevice === 'desktop') {
             // 切换到移动端
-            window.location.href = 'mobile-index.html';
+            window.location.href = 'mobile.html';
         } else {
             // 切换到PC端
             window.location.href = 'index.html';

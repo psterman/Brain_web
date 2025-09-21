@@ -18,6 +18,7 @@ class MobileApp {
         this.setupPageInteractions();
         this.setupDeviceToggle();
         this.initializePages();
+        this.setupTimeSync();
         
         // 设置初始页面
         this.showPage('ai');
@@ -81,16 +82,22 @@ class MobileApp {
         
         this.isTransitioning = true;
         
-        // 隐藏当前页面
+        // 添加滑出动画到当前页面
         const currentPageElement = document.getElementById(`${this.currentPage}-page`);
-        if (currentPageElement) {
-            currentPageElement.classList.remove('active');
+        if (currentPageElement && currentPageElement.classList.contains('active')) {
+            currentPageElement.classList.add('slide-out');
         }
+        
+        // 隐藏所有页面
+        const allPages = document.querySelectorAll('.page');
+        allPages.forEach(page => {
+            page.classList.remove('active', 'slide-out');
+        });
         
         // 更新导航状态
         this.updateNavigation(pageId);
         
-        // 显示新页面
+        // 显示新页面（苹果风格动画）
         setTimeout(() => {
             const newPageElement = document.getElementById(`${pageId}-page`);
             if (newPageElement) {
@@ -102,7 +109,7 @@ class MobileApp {
             
             // 触发页面特定的初始化
             this.initializePage(pageId);
-        }, 150);
+        }, 100);
     }
 
     updateNavigation(activePageId) {
@@ -421,11 +428,8 @@ class MobileApp {
     }
 
     toggleDeviceMode() {
-        const container = document.querySelector('.mobile-app');
-        if (container) {
-            container.classList.toggle('tablet-mode');
-            this.showToast('切换设备模式');
-        }
+        // 切换到PC端
+        window.location.href = 'index.html';
     }
 
     // 工具方法
@@ -499,6 +503,26 @@ class MobileApp {
             container.classList.add('tablet-mode');
         } else {
             container.classList.remove('tablet-mode');
+        }
+    }
+
+    // 设置时间同步
+    setupTimeSync() {
+        this.updateTime();
+        // 每秒更新时间
+        setInterval(() => {
+            this.updateTime();
+        }, 1000);
+    }
+    
+    // 更新时间显示
+    updateTime() {
+        const timeElement = document.querySelector('.time');
+        if (timeElement) {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            timeElement.textContent = `${hours}:${minutes}`;
         }
     }
 
