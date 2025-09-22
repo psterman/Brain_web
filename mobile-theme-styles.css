@@ -1,0 +1,511 @@
+/* 移动端主题样式 - 支持亮色和暗色模式 */
+
+/* 基础主题变量 */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --text-primary: #1c1c1e;
+    --text-secondary: #8e8e93;
+    --text-tertiary: #c7c7cc;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --accent-color: #007AFF;
+    --accent-hover: #0056b3;
+}
+
+/* 暗色模式变量 */
+[data-theme="dark"], 
+.dark-theme {
+    --bg-primary: #000000;
+    --bg-secondary: #1c1c1e;
+    --bg-tertiary: #2c2c2e;
+    --text-primary: #ffffff;
+    --text-secondary: #8e8e93;
+    --text-tertiary: #6d6d70;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --accent-color: #0A84FF;
+    --accent-hover: #64d2ff;
+}
+
+/* 移动端主容器 */
+.mobile-app {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+/* 状态栏 */
+.status-bar {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.status-bar .time {
+    color: var(--text-primary);
+}
+
+.status-bar .signal-dots,
+.status-bar .wifi-icon,
+.status-bar .battery {
+    color: var(--text-secondary);
+}
+
+/* 设备切换按钮 */
+.device-toggle {
+    background: rgba(var(--accent-color), 0.1);
+    color: var(--accent-color);
+    border: 1px solid var(--border-color);
+}
+
+.device-toggle:hover {
+    background: rgba(var(--accent-color), 0.2);
+}
+
+/* 页面内容 */
+.page {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* AI页面样式 */
+.ai-selector {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ai-model-tabs {
+    background: var(--bg-secondary);
+}
+
+.ai-tab {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.ai-tab.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+.ai-tab:hover {
+    background: var(--accent-hover);
+}
+
+/* 聊天区域 */
+.chat-container {
+    background: var(--bg-primary);
+}
+
+.chat-messages {
+    background: var(--bg-primary);
+}
+
+.message {
+    color: var(--text-primary);
+}
+
+.ai-message .message-content {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.user-message .message-content {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* 输入区域 */
+.chat-input-container {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.message-input {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.message-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.send-button {
+    background: var(--accent-color);
+    color: white;
+}
+
+.send-button:hover {
+    background: var(--accent-hover);
+}
+
+/* 浏览器页面 */
+.browser-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.url-bar {
+    background: var(--bg-secondary);
+}
+
+.url-input {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.url-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.nav-btn, .action-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.nav-btn:hover, .action-btn:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* 浏览器工具栏 */
+.browser-toolbar {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.tool-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.tool-btn:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* 搜索页面 */
+.search-header {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.search-config {
+    background: var(--bg-primary);
+}
+
+.config-tabs {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.config-tab {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.config-tab.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* 搜索引擎网格 */
+.engine-grid {
+    background: var(--bg-primary);
+}
+
+.engine-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.engine-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.engine-item.selected {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* 应用页面 */
+.apps-header {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.top-search-bar {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.app-search-input {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.app-search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+/* 应用分类 */
+.app-categories {
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+}
+
+.category-item {
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.category-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.category-item.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+.category-item.starred {
+    background: var(--bg-tertiary);
+}
+
+/* 应用网格 */
+.apps-content {
+    background: var(--bg-primary);
+}
+
+.apps-grid {
+    background: var(--bg-primary);
+}
+
+.app-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.app-item:hover {
+    background: var(--bg-tertiary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.app-name {
+    color: var(--text-primary);
+}
+
+/* 设置页面 */
+.settings-header {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.settings-content {
+    background: var(--bg-primary);
+}
+
+.setting-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.setting-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.setting-title {
+    color: var(--text-primary);
+}
+
+.setting-desc {
+    color: var(--text-secondary);
+}
+
+/* 底部导航 */
+.bottom-nav {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.nav-item {
+    color: var(--text-secondary);
+}
+
+.nav-item.active {
+    color: var(--accent-color);
+}
+
+.nav-item:hover {
+    color: var(--accent-hover);
+}
+
+/* 模态框和弹窗 */
+.api-config-modal {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.modal-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-body {
+    background: var(--bg-primary);
+}
+
+.config-section label {
+    color: var(--text-primary);
+}
+
+.config-section input {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.config-section input::placeholder {
+    color: var(--text-secondary);
+}
+
+/* 按钮样式 */
+.save-btn, .test-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+}
+
+.save-btn:hover, .test-btn:hover {
+    background: var(--accent-hover);
+}
+
+.close-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.close-btn:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* 上下文菜单 */
+.category-context-menu {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.context-menu-item {
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.context-menu-item:hover {
+    background: var(--bg-tertiary);
+}
+
+/* 主页指示器 */
+.home-indicator {
+    background: var(--text-tertiary);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .mobile-app {
+        font-size: 14px;
+    }
+    
+    .status-bar {
+        padding: 8px 16px;
+    }
+    
+    .bottom-nav {
+        padding: 8px 0;
+    }
+}
+
+/* 动画和过渡效果 */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-tertiary);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* 选择文本样式 */
+::selection {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* 焦点样式 */
+input:focus, 
+textarea:focus, 
+button:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* 禁用状态 */
+button:disabled,
+input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 加载状态 */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* 错误状态 */
+.error {
+    border-color: #ff3b30 !important;
+    background: rgba(255, 59, 48, 0.1) !important;
+}
+
+/* 成功状态 */
+.success {
+    border-color: #34c759 !important;
+    background: rgba(52, 199, 89, 0.1) !important;
+}

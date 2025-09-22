@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="mobile-dark-mode.css">
     <link rel="stylesheet" href="mobile-center-fix.css">
     <link rel="stylesheet" href="mobile-app-search.css">
+    <link rel="stylesheet" href="mobile-theme-styles.css">
 </head>
 <body>
     <!-- 移动端主容器 -->
@@ -25,6 +26,9 @@
                 </button>
             </div>
             <div class="status-right">
+                <button class="theme-toggle" id="themeToggle" title="切换主题">
+                    <span class="theme-icon">🌙</span>
+                </button>
                 <span class="signal-dots">••••</span>
                 <span class="wifi-icon">📶</span>
                 <span class="battery">100</span>
@@ -296,18 +300,175 @@
                 <!-- 顶部搜索框 -->
                 <div class="top-search-bar">
                     <div class="search-icon-container">
+                        <button class="recent-search-btn" id="recentSearchBtn" title="近期搜索和应用首字母">
+                            <span class="recent-icon">🕒</span>
+                        </button>
                         <div class="selected-app-icon" id="selectedAppIcon" data-app="xiaohongshu">
                             <div class="app-letter" style="background: linear-gradient(135deg, #ff2442 0%, #ff1744 100%); color: white;">小</div>
                         </div>
                         <div class="dropdown-arrow">▼</div>
-                        <div class="recent-apps-dropdown" id="recentAppsDropdown" style="display: none;">
-                            <div class="recent-apps-header">近期选择</div>
-                            <div class="recent-apps-list" id="recentAppsList">
-                                <!-- 近期选择的应用图标将在这里显示 -->
+                        
+                        <!-- 近期搜索和应用首字母下拉菜单 -->
+                        <div class="recent-search-dropdown" id="recentSearchDropdown" style="display: none;">
+                            <div class="dropdown-tabs">
+                                <button class="dropdown-tab active" data-tab="recent">近期搜索</button>
+                                <button class="dropdown-tab" data-tab="letters">应用首字母</button>
+                            </div>
+                            
+                            <!-- 近期搜索内容 -->
+                            <div class="dropdown-content active" id="recent-content">
+                                <div class="recent-section">
+                                    <div class="section-title">近期打开的应用</div>
+                                    <div class="recent-apps-list" id="recentAppsList">
+                                        <div class="recent-app-item" data-app="xiaohongshu">
+                                            <div class="app-icon-small" style="background: linear-gradient(135deg, #ff2442 0%, #ff1744 100%);">小</div>
+                                            <span class="app-name">小红书</span>
+                                        </div>
+                                        <div class="recent-app-item" data-app="taobao">
+                                            <div class="app-icon-small" style="background: linear-gradient(135deg, #ff6a00 0%, #ee0a24 100%);">淘</div>
+                                            <span class="app-name">淘宝</span>
+                                        </div>
+                                        <div class="recent-app-item" data-app="zhihu">
+                                            <div class="app-icon-small" style="background: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);">知</div>
+                                            <span class="app-name">知乎</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="recent-section">
+                                    <div class="section-title">近期搜索关键词</div>
+                                    <div class="recent-keywords-list" id="recentKeywordsList">
+                                        <div class="keyword-item">火锅推荐</div>
+                                        <div class="keyword-item">iPhone 15</div>
+                                        <div class="keyword-item">旅游攻略</div>
+                                        <div class="keyword-item">学习资料</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 应用首字母内容 -->
+                            <div class="dropdown-content" id="letters-content">
+                                <div class="letters-grid">
+                                    <div class="letter-group" data-letter="A">
+                                        <div class="letter-header">A</div>
+                                        <div class="letter-apps">
+                                            <div class="letter-app-item" data-app="alipay">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #1677ff 0%, #0958d9 100%);">支</div>
+                                                <span>支付宝</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="letter-group" data-letter="B">
+                                        <div class="letter-header">B</div>
+                                        <div class="letter-apps">
+                                            <div class="letter-app-item" data-app="bilibili">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #fb7299 0%, #ff85a1 100%);">B</div>
+                                                <span>哔哩哔哩</span>
+                                            </div>
+                                            <div class="letter-app-item" data-app="baidu">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #3385ff 0%, #1c6cff 100%);">百</div>
+                                                <span>百度</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="letter-group" data-letter="D">
+                                        <div class="letter-header">D</div>
+                                        <div class="letter-apps">
+                                            <div class="letter-app-item" data-app="douyin">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #000000 0%, #333333 100%);">抖</div>
+                                                <span>抖音</span>
+                                            </div>
+                                            <div class="letter-app-item" data-app="dianping">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ffc300 0%, #ffb000 100%);">大</div>
+                                                <span>大众点评</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="letter-group" data-letter="J">
+                                        <div class="letter-header">J</div>
+                                        <div class="letter-apps">
+                                            <div class="letter-app-item" data-app="jd">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #e93323 0%, #d32f2f 100%);">京</div>
+                                                <span>京东</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="letter-group" data-letter="M">
+                                        <div class="letter-header">M</div>
+                                        <div class="letter-apps">
+                                            <div class="letter-app-item" data-app="meituan">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ffc300 0%, #ffb000 100%);">美</div>
+                                                <span>美团</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="letter-group" data-letter="P">
+                                        <div class="letter-header">P</div>
+                                        <div class="letter-apps">
+                                            <div class="letter-app-item" data-app="pinduoduo">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #e02020 0%, #c41e3a 100%);">拼</div>
+                                                <span>拼多多</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="letter-group" data-letter="T">
+                                        <div class="letter-header">T</div>
+                                        <div class="letter-apps">
+                                            <div class="letter-app-item" data-app="taobao">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ff6a00 0%, #ee0a24 100%);">淘</div>
+                                                <span>淘宝</span>
+                                            </div>
+                                            <div class="letter-app-item" data-app="tmall">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #e02020 0%, #c41e3a 100%);">天</div>
+                                                <span>天猫</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="letter-group" data-letter="W">
+                                        <div class="letter-header">W</div>
+                                        <div class="letter-apps">
+                                            <div class="letter-app-item" data-app="weibo">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #e6162d 0%, #c41e3a 100%);">微</div>
+                                                <span>微博</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="letter-group" data-letter="X">
+                                        <div class="letter-header">X</div>
+                                        <div class="letter-apps">
+                                            <div class="letter-app-item" data-app="xiaohongshu">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ff2442 0%, #ff1744 100%);">小</div>
+                                                <span>小红书</span>
+                                            </div>
+                                            <div class="letter-app-item" data-app="xianyu">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ff6a00 0%, #ee0a24 100%);">闲</div>
+                                                <span>闲鱼</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="letter-group" data-letter="Z">
+                                        <div class="letter-header">Z</div>
+                                        <div class="letter-apps">
+                                            <div class="letter-app-item" data-app="zhihu">
+                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);">知</div>
+                                                <span>知乎</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <input type="text" placeholder="输入关键词，选择app搜索" class="app-search-input">
+                    <input type="text" placeholder="输入关键词，然后点击下方应用图标进行搜索" class="app-search-input" id="appSearchInput">
                     <button class="clear-btn" id="app-search-clear-btn" title="清空">×</button>
                 </div>
 
@@ -471,5 +632,6 @@
     <script src="mobile-script.js"></script>
     <script src="ai-chat.js"></script>
     <script src="enhanced-browser-v3.js"></script>
+    <script src="mobile-enhanced-features.js"></script>
 </body>
 </html>
