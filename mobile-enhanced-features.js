@@ -56,17 +56,29 @@ class MobileEnhancedFeatures {
     // 默认图标点击功能
     initSelectedAppIconClick() {
         const selectedAppIcon = document.getElementById('selectedAppIcon');
-        const appLettersDropdown = document.getElementById('appLettersDropdown');
         
-        if (selectedAppIcon && appLettersDropdown) {
+        if (selectedAppIcon) {
             // 使用capture模式确保事件优先处理
             selectedAppIcon.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 e.stopImmediatePropagation();
                 this.hideRecentDropdown(); // 关闭近期搜索下拉菜单
-                this.toggleAppLettersDropdown();
+                this.showAppSearchModal();
             }, true); // 使用capture模式
+        }
+    }
+    
+    // 显示应用搜索模态框
+    showAppSearchModal() {
+        // 确保AppSearchList类已加载
+        if (typeof window.AppSearchList !== 'undefined') {
+            if (!this.appSearchList) {
+                this.appSearchList = window.AppSearchList;
+            }
+            this.appSearchList.show();
+        } else {
+            console.error('AppSearchList class not found. Please ensure app-search-list.js is loaded.');
         }
     }
     
@@ -544,9 +556,9 @@ class MobileEnhancedFeatures {
     }
 }
 
-// 初始化
+// 初始化移动端增强功能
 document.addEventListener('DOMContentLoaded', () => {
-    new MobileEnhancedFeatures();
+    window.mobileEnhancedFeatures = new MobileEnhancedFeatures();
 });
 
 // 导出类供其他模块使用

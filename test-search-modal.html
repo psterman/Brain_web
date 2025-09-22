@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查找弹窗测试</title>
+    <link rel="stylesheet" href="app-search-list.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .test-button {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: #0056CC;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background: white;
+            border-left: 4px solid #007AFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>查找弹窗功能测试</h1>
+    
+    <div class="status">
+        <h3>测试状态：</h3>
+        <div id="testStatus">准备测试...</div>
+    </div>
+    
+    <button class="test-button" onclick="testAppSearchModal()">测试查找弹窗</button>
+    <button class="test-button" onclick="testLetterJump()">测试字母跳转</button>
+    <button class="test-button" onclick="testAppSelection()">测试应用选择</button>
+    
+    <!-- 模拟搜索输入框 -->
+    <div style="margin: 20px 0;">
+        <label for="testSearchInput">搜索关键词：</label>
+        <input type="text" id="testSearchInput" placeholder="输入测试关键词" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+    </div>
+
+    <script src="app-search-database.js"></script>
+    <script src="app-search-list.js"></script>
+    <script>
+        let appSearchList;
+        
+        function updateStatus(message) {
+            document.getElementById('testStatus').innerHTML = message;
+            console.log('测试状态:', message);
+        }
+        
+        function testAppSearchModal() {
+            updateStatus('正在测试查找弹窗...');
+            
+            try {
+                if (typeof AppSearchList === 'undefined') {
+                    updateStatus('❌ 错误：AppSearchList 类未找到');
+                    return;
+                }
+                
+                if (!appSearchList) {
+                    appSearchList = new AppSearchList();
+                    updateStatus('✅ AppSearchList 实例创建成功');
+                }
+                
+                // 模拟搜索输入框
+                if (!document.getElementById('appSearchInput')) {
+                    const mockInput = document.createElement('input');
+                    mockInput.id = 'appSearchInput';
+                    mockInput.style.display = 'none';
+                    document.body.appendChild(mockInput);
+                }
+                
+                appSearchList.show();
+                updateStatus('✅ 查找弹窗显示成功！');
+                
+            } catch (error) {
+                updateStatus('❌ 错误：' + error.message);
+                console.error('测试错误:', error);
+            }
+        }
+        
+        function testLetterJump() {
+            updateStatus('正在测试字母跳转...');
+            
+            if (!appSearchList) {
+                updateStatus('❌ 请先测试查找弹窗');
+                return;
+            }
+            
+            try {
+                // 测试跳转到字母 A
+                appSearchList.scrollToLetter('A');
+                appSearchList.highlightLetter('A');
+                updateStatus('✅ 字母跳转功能正常！跳转到字母 A');
+            } catch (error) {
+                updateStatus('❌ 字母跳转错误：' + error.message);
+                console.error('字母跳转错误:', error);
+            }
+        }
+        
+        function testAppSelection() {
+            updateStatus('正在测试应用选择...');
+            
+            if (!appSearchList) {
+                updateStatus('❌ 请先测试查找弹窗');
+                return;
+            }
+            
+            try {
+                // 设置测试搜索关键词
+                const testInput = document.getElementById('testSearchInput');
+                const mockAppInput = document.getElementById('appSearchInput');
+                if (mockAppInput && testInput.value) {
+                    mockAppInput.value = testInput.value;
+                }
+                
+                // 测试选择支付宝应用
+                appSearchList.selectApp('alipay');
+                updateStatus('✅ 应用选择功能正常！选择了支付宝');
+            } catch (error) {
+                updateStatus('❌ 应用选择错误：' + error.message);
+                console.error('应用选择错误:', error);
+            }
+        }
+        
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStatus('页面加载完成，准备测试...');
+            
+            // 检查依赖
+            if (typeof AppSearchDatabase === 'undefined') {
+                updateStatus('❌ 错误：AppSearchDatabase 类未找到');
+                return;
+            }
+            
+            if (typeof AppSearchList === 'undefined') {
+                updateStatus('❌ 错误：AppSearchList 类未找到');
+                return;
+            }
+            
+            updateStatus('✅ 所有依赖加载成功，可以开始测试');
+        });
+    </script>
+</body>
+</html>

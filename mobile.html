@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -12,8 +13,10 @@
     <link rel="stylesheet" href="mobile-dark-mode.css">
     <link rel="stylesheet" href="mobile-center-fix.css">
     <link rel="stylesheet" href="mobile-app-search.css">
+    <link rel="stylesheet" href="app-search-list.css">
     <link rel="stylesheet" href="mobile-theme-styles.css">
 </head>
+
 <body>
     <!-- 移动端主容器 -->
     <div class="mobile-app">
@@ -126,52 +129,57 @@
                         </div>
                         <button class="action-btn" id="aiModelBtn" title="AI模型">🤖</button>
                     </div>
-                    
+
                     <!-- 浏览器工具栏 -->
                     <div class="browser-toolbar">
                         <button class="tool-btn" id="backBtn" title="后退">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
                             </svg>
                         </button>
                         <button class="tool-btn" id="forwardBtn" title="前进">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                                <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
                             </svg>
                         </button>
                         <button class="tool-btn" id="refreshBtn" title="刷新">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                                <path
+                                    d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
                             </svg>
                         </button>
                         <button class="tool-btn" id="homeBtn" title="主页">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
                             </svg>
                         </button>
                         <button class="tool-btn" id="bookmarkBtn" title="收藏">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+                                <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z" />
                             </svg>
                         </button>
                         <button class="tool-btn" id="bookmarkListBtn" title="收藏夹">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+                                <path
+                                    d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z" />
                             </svg>
                         </button>
                         <button class="tool-btn" id="tabsBtn" title="标签页">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                                <path
+                                    d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
                             </svg>
                         </button>
                         <button class="tool-btn" id="historyBtn" title="历史">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M13,3A9,9 0 0,0 4,12H1L4.89,15.89L4.96,16.03L9,12H6A7,7 0 0,1 13,5A7,7 0 0,1 20,12A7,7 0 0,1 13,19C11.07,19 9.32,18.21 8.06,16.94L6.64,18.36C8.27,20 10.5,21 13,21A9,9 0 0,0 22,12A9,9 0 0,0 13,3M12,8V13L16.28,15.54L17,14.33L13.5,12.25V8H12Z"/>
+                                <path
+                                    d="M13,3A9,9 0 0,0 4,12H1L4.89,15.89L4.96,16.03L9,12H6A7,7 0 0,1 13,5A7,7 0 0,1 20,12A7,7 0 0,1 13,19C11.07,19 9.32,18.21 8.06,16.94L6.64,18.36C8.27,20 10.5,21 13,21A9,9 0 0,0 22,12A9,9 0 0,0 13,3M12,8V13L16.28,15.54L17,14.33L13.5,12.25V8H12Z" />
                             </svg>
                         </button>
                         <button class="tool-btn" id="shareBtn" title="分享">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19C20.92,17.39 19.61,16.08 18,16.08M18,4A1,1 0 0,1 19,5A1,1 0 0,1 18,6A1,1 0 0,1 17,5A1,1 0 0,1 18,4M6,13A1,1 0 0,1 7,12A1,1 0 0,1 6,11A1,1 0 0,1 5,12A1,1 0 0,1 6,13M18,20C17.45,20 17,19.55 17,19C17,18.45 17.45,18 18,18C18.55,18 19,18.45 19,19C19,19.55 18.55,20 18,20Z"/>
+                                <path
+                                    d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19C20.92,17.39 19.61,16.08 18,16.08M18,4A1,1 0 0,1 19,5A1,1 0 0,1 18,6A1,1 0 0,1 17,5A1,1 0 0,1 18,4M6,13A1,1 0 0,1 7,12A1,1 0 0,1 6,11A1,1 0 0,1 5,12A1,1 0 0,1 6,13M18,20C17.45,20 17,19.55 17,19C17,18.45 17.45,18 18,18C18.55,18 19,18.45 19,19C19,19.55 18.55,20 18,20Z" />
                             </svg>
                         </button>
                     </div>
@@ -193,19 +201,19 @@
                         <div class="card-title">助手</div>
                         <div class="card-subtitle">选择助手</div>
                     </div>
-                    
+
                     <div class="feature-card">
                         <div class="card-icon">👥</div>
                         <div class="card-title">身份</div>
                         <div class="card-subtitle">选择身份</div>
                     </div>
-                    
+
                     <div class="feature-card">
                         <div class="card-icon">📋</div>
                         <div class="card-title">回复样式</div>
                         <div class="card-subtitle">选择样式</div>
                     </div>
-                    
+
                     <div class="feature-card">
                         <div class="card-icon">Aa</div>
                         <div class="card-title">文风风格</div>
@@ -237,7 +245,7 @@
                     <div class="search-engines">
                         <div class="section-title">搜索引擎</div>
                         <div class="engine-note">按分类选择</div>
-                        
+
                         <div class="engine-categories">
                             <button class="category-btn active">AI搜索</button>
                             <button class="category-btn">专业搜索</button>
@@ -251,31 +259,31 @@
                                 <div class="engine-name">百度</div>
                                 <div class="engine-check">✓</div>
                             </div>
-                            
+
                             <div class="engine-item">
                                 <div class="engine-icon sogou">$</div>
                                 <div class="engine-name">搜狗</div>
                                 <div class="engine-radio">○</div>
                             </div>
-                            
+
                             <div class="engine-item">
                                 <div class="engine-icon so360">🔍</div>
                                 <div class="engine-name">360搜索</div>
                                 <div class="engine-radio">○</div>
                             </div>
-                            
+
                             <div class="engine-item">
                                 <div class="engine-icon shenma">$</div>
                                 <div class="engine-name">神马搜索</div>
                                 <div class="engine-radio">○</div>
                             </div>
-                            
+
                             <div class="engine-item">
                                 <div class="engine-icon chinaso">C</div>
                                 <div class="engine-name">中国搜索</div>
                                 <div class="engine-radio">○</div>
                             </div>
-                            
+
                             <div class="engine-item">
                                 <div class="engine-icon haosou">H</div>
                                 <div class="engine-name">好搜</div>
@@ -304,34 +312,42 @@
                             <span class="recent-icon">🕒</span>
                         </button>
                         <div class="selected-app-icon" id="selectedAppIcon" data-app="xiaohongshu">
-                            <div class="app-letter" style="background: linear-gradient(135deg, #ff2442 0%, #ff1744 100%); color: white;">小</div>
+                            <div class="app-letter"
+                                style="background: linear-gradient(135deg, #ff2442 0%, #ff1744 100%); color: white;">小
+                            </div>
                         </div>
 
-                        
+
                         <!-- 近期搜索下拉菜单 -->
                         <div class="recent-search-dropdown" id="recentSearchDropdown" style="display: none;">
                             <div class="dropdown-header">近期搜索</div>
-                            
+
                             <!-- 近期搜索内容 -->
                             <div class="dropdown-content active" id="recent-content">
                                 <div class="recent-section">
                                     <div class="section-title">近期打开的应用</div>
                                     <div class="recent-apps-list" id="recentAppsList">
                                         <div class="recent-app-item" data-app="xiaohongshu">
-                                            <div class="app-icon-small" style="background: linear-gradient(135deg, #ff2442 0%, #ff1744 100%);">小</div>
+                                            <div class="app-icon-small"
+                                                style="background: linear-gradient(135deg, #ff2442 0%, #ff1744 100%);">小
+                                            </div>
                                             <span class="app-name">小红书</span>
                                         </div>
                                         <div class="recent-app-item" data-app="taobao">
-                                            <div class="app-icon-small" style="background: linear-gradient(135deg, #ff6a00 0%, #ee0a24 100%);">淘</div>
+                                            <div class="app-icon-small"
+                                                style="background: linear-gradient(135deg, #ff6a00 0%, #ee0a24 100%);">淘
+                                            </div>
                                             <span class="app-name">淘宝</span>
                                         </div>
                                         <div class="recent-app-item" data-app="zhihu">
-                                            <div class="app-icon-small" style="background: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);">知</div>
+                                            <div class="app-icon-small"
+                                                style="background: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);">知
+                                            </div>
                                             <span class="app-name">知乎</span>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="recent-section">
                                     <div class="section-title">近期搜索关键词</div>
                                     <div class="recent-keywords-list" id="recentKeywordsList">
@@ -343,7 +359,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- 应用首字母检索下拉菜单 -->
                         <div class="app-letters-dropdown" id="appLettersDropdown" style="display: none;">
                             <div class="dropdown-header">查找</div>
@@ -353,283 +369,357 @@
                                         <div class="letter-header">A</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="alipay">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #1677ff 0%, #0958d9 100%);">支</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #1677ff 0%, #0958d9 100%);">
+                                                    支</div>
                                                 <span>支付宝</span>
                                             </div>
                                             <div class="letter-app-item" data-app="amap">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #00a6fb 0%, #0582ca 100%);">高</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #00a6fb 0%, #0582ca 100%);">
+                                                    高</div>
                                                 <span>高德地图</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="B">
                                         <div class="letter-header">B</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="baidu">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #3385ff 0%, #1c6cff 100%);">百</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #3385ff 0%, #1c6cff 100%);">
+                                                    百</div>
                                                 <span>百度</span>
                                             </div>
                                             <div class="letter-app-item" data-app="bilibili">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #fb7299 0%, #ff85a1 100%);">B</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #fb7299 0%, #ff85a1 100%);">
+                                                    B</div>
                                                 <span>哔哩哔哩</span>
                                             </div>
                                             <div class="letter-app-item" data-app="baidumap">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #3385ff 0%, #1c6cff 100%);">百</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #3385ff 0%, #1c6cff 100%);">
+                                                    百</div>
                                                 <span>百度地图</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="C">
                                         <div class="letter-header">C</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="ctrip">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #0066cc 0%, #004499 100%);">携</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #0066cc 0%, #004499 100%);">
+                                                    携</div>
                                                 <span>携程旅行</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="D">
                                         <div class="letter-header">D</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="dianping">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ffc300 0%, #ffb000 100%);">大</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #ffc300 0%, #ffb000 100%);">
+                                                    大</div>
                                                 <span>大众点评</span>
                                             </div>
                                             <div class="letter-app-item" data-app="douyin">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #000000 0%, #333333 100%);">抖</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #000000 0%, #333333 100%);">
+                                                    抖</div>
                                                 <span>抖音</span>
                                             </div>
                                             <div class="letter-app-item" data-app="didi">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ff6600 0%, #ff4400 100%);">滴</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #ff6600 0%, #ff4400 100%);">
+                                                    滴</div>
                                                 <span>滴滴出行</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="E">
                                         <div class="letter-header">E</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="eleme">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #0078ff 0%, #0056cc 100%);">饿</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #0078ff 0%, #0056cc 100%);">
+                                                    饿</div>
                                                 <span>饿了么</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="F">
                                         <div class="letter-header">F</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="fliggy">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ff6a00 0%, #ee0a24 100%);">飞</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #ff6a00 0%, #ee0a24 100%);">
+                                                    飞</div>
                                                 <span>飞猪</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="G">
                                         <div class="letter-header">G</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="gaode">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #00a6fb 0%, #0582ca 100%);">高</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #00a6fb 0%, #0582ca 100%);">
+                                                    高</div>
                                                 <span>高德地图</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="H">
                                         <div class="letter-header">H</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="hema">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #00a6fb 0%, #0582ca 100%);">盒</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #00a6fb 0%, #0582ca 100%);">
+                                                    盒</div>
                                                 <span>盒马</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="I">
                                         <div class="letter-header">I</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="iqiyi">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #00be07 0%, #00a006 100%);">爱</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #00be07 0%, #00a006 100%);">
+                                                    爱</div>
                                                 <span>爱奇艺</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="J">
                                         <div class="letter-header">J</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="jd">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #e93323 0%, #d32f2f 100%);">京</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #e93323 0%, #d32f2f 100%);">
+                                                    京</div>
                                                 <span>京东</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="K">
                                         <div class="letter-header">K</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="kuaishou">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ff6600 0%, #ff4400 100%);">快</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #ff6600 0%, #ff4400 100%);">
+                                                    快</div>
                                                 <span>快手</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="M">
                                         <div class="letter-header">M</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="meituan">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ffc300 0%, #ffb000 100%);">美</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #ffc300 0%, #ffb000 100%);">
+                                                    美</div>
                                                 <span>美团</span>
                                             </div>
                                             <div class="letter-app-item" data-app="momo">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ff6b9d 0%, #ff4081 100%);">陌</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #ff6b9d 0%, #ff4081 100%);">
+                                                    陌</div>
                                                 <span>陌陌</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="L">
                                         <div class="letter-header">L</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="lianjia">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #00a6fb 0%, #0582ca 100%);">链</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #00a6fb 0%, #0582ca 100%);">
+                                                    链</div>
                                                 <span>链家</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="N">
                                         <div class="letter-header">N</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="netease">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #e60012 0%, #cc0010 100%);">网</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #e60012 0%, #cc0010 100%);">
+                                                    网</div>
                                                 <span>网易云音乐</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="P">
                                         <div class="letter-header">P</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="pinduoduo">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #e02020 0%, #c41e3a 100%);">拼</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #e02020 0%, #c41e3a 100%);">
+                                                    拼</div>
                                                 <span>拼多多</span>
                                             </div>
                                             <div class="letter-app-item" data-app="pdd">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #e02020 0%, #c41e3a 100%);">拼</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #e02020 0%, #c41e3a 100%);">
+                                                    拼</div>
                                                 <span>拼多多</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="Q">
                                         <div class="letter-header">Q</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="qq">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #12b7f5 0%, #0e9fe5 100%);">Q</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #12b7f5 0%, #0e9fe5 100%);">
+                                                    Q</div>
                                                 <span>QQ</span>
                                             </div>
                                             <div class="letter-app-item" data-app="qqmusic">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #31c27c 0%, #2aa968 100%);">Q</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #31c27c 0%, #2aa968 100%);">
+                                                    Q</div>
                                                 <span>QQ音乐</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="R">
                                         <div class="letter-header">R</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="renren">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #005aa0 0%, #004080 100%);">人</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #005aa0 0%, #004080 100%);">
+                                                    人</div>
                                                 <span>人人网</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="S">
                                         <div class="letter-header">S</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="sina">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #e6162d 0%, #c41e3a 100%);">新</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #e6162d 0%, #c41e3a 100%);">
+                                                    新</div>
                                                 <span>新浪</span>
                                             </div>
                                             <div class="letter-app-item" data-app="suning">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ffc300 0%, #ffb000 100%);">苏</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #ffc300 0%, #ffb000 100%);">
+                                                    苏</div>
                                                 <span>苏宁易购</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="T">
                                         <div class="letter-header">T</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="taobao">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ff6a00 0%, #ee0a24 100%);">淘</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #ff6a00 0%, #ee0a24 100%);">
+                                                    淘</div>
                                                 <span>淘宝</span>
                                             </div>
                                             <div class="letter-app-item" data-app="tmall">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #e02020 0%, #c41e3a 100%);">天</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #e02020 0%, #c41e3a 100%);">
+                                                    天</div>
                                                 <span>天猫</span>
                                             </div>
                                             <div class="letter-app-item" data-app="tencent">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #1aad19 0%, #169917 100%);">腾</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #1aad19 0%, #169917 100%);">
+                                                    腾</div>
                                                 <span>腾讯视频</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="W">
                                         <div class="letter-header">W</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="wechat">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #1aad19 0%, #169917 100%);">微</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #1aad19 0%, #169917 100%);">
+                                                    微</div>
                                                 <span>微信</span>
                                             </div>
                                             <div class="letter-app-item" data-app="weibo">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #e6162d 0%, #c41e3a 100%);">微</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #e6162d 0%, #c41e3a 100%);">
+                                                    微</div>
                                                 <span>微博</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="X">
                                         <div class="letter-header">X</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="xianyu">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ff6a00 0%, #ee0a24 100%);">闲</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #ff6a00 0%, #ee0a24 100%);">
+                                                    闲</div>
                                                 <span>闲鱼</span>
                                             </div>
                                             <div class="letter-app-item" data-app="xiaohongshu">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #ff2442 0%, #ff1744 100%);">小</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #ff2442 0%, #ff1744 100%);">
+                                                    小</div>
                                                 <span>小红书</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="Y">
                                         <div class="letter-header">Y</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="youku">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #00a0e9 0%, #0080c7 100%);">优</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #00a0e9 0%, #0080c7 100%);">
+                                                    优</div>
                                                 <span>优酷</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="letter-group" data-letter="Z">
                                         <div class="letter-header">Z</div>
                                         <div class="letter-apps">
                                             <div class="letter-app-item" data-app="zhihu">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);">知</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);">
+                                                    知</div>
                                                 <span>知乎</span>
                                             </div>
                                             <div class="letter-app-item" data-app="zhifubao">
-                                                <div class="app-icon-mini" style="background: linear-gradient(135deg, #1677ff 0%, #0958d9 100%);">支</div>
+                                                <div class="app-icon-mini"
+                                                    style="background: linear-gradient(135deg, #1677ff 0%, #0958d9 100%);">
+                                                    支</div>
                                                 <span>支付宝</span>
                                             </div>
                                         </div>
@@ -677,7 +767,7 @@
                         <button class="nav-btn" id="forwardBtn" title="前进">▶️</button>
                         <button class="nav-btn" id="refreshBtn" title="刷新">🔄</button>
                     </div>
-                    
+
                     <div class="url-container">
                         <button class="search-engine-btn" id="searchEngineBtn" title="搜索引擎">🔍</button>
                         <input type="text" class="url-input" placeholder="搜索或输入网址" value="https://m.baidu.com">
@@ -688,7 +778,7 @@
                         <button class="ai-model-btn" id="aiModelBtn" title="AI模型">🤖</button>
                     </div>
                 </div>
-                
+
                 <!-- 浏览器工具栏 -->
                 <div class="browser-toolbar">
                     <button class="tool-btn" id="homeBtn" title="主页">🏠</button>
@@ -699,7 +789,7 @@
                     <button class="tool-btn" id="downloadBtn" title="下载">⬇️</button>
                     <button class="tool-btn" id="shareBtn" title="分享">📤</button>
                 </div>
-                
+
                 <!-- 浏览器内容区域 -->
                 <div class="browser-content">
                     <div class="browser-loading" id="browserLoading"></div>
@@ -712,7 +802,7 @@
                 <div class="settings-header">
                     <h2>小组件</h2>
                 </div>
-                
+
                 <div class="settings-content">
                     <div class="setting-item">
                         <div class="setting-icon">🎨</div>
@@ -725,7 +815,7 @@
                             <label for="theme-toggle"></label>
                         </div>
                     </div>
-                    
+
                     <div class="setting-item">
                         <div class="setting-icon">🔔</div>
                         <div class="setting-info">
@@ -734,7 +824,7 @@
                         </div>
                         <div class="setting-arrow">></div>
                     </div>
-                    
+
                     <div class="setting-item">
                         <div class="setting-icon">🔒</div>
                         <div class="setting-info">
@@ -753,22 +843,22 @@
                 <div class="nav-icon">💬</div>
                 <div class="nav-label">AI</div>
             </div>
-            
+
             <div class="nav-item" data-page="browser-page">
                 <div class="nav-icon">🔗</div>
                 <div class="nav-label">浏览</div>
             </div>
-            
+
             <div class="nav-item" data-page="search-page">
                 <div class="nav-icon">🔍</div>
                 <div class="nav-label">搜索</div>
             </div>
-            
+
             <div class="nav-item" data-page="apps-page">
                 <div class="nav-icon">📱</div>
                 <div class="nav-label">应用</div>
             </div>
-            
+
             <div class="nav-item" data-page="settings-page">
                 <div class="nav-icon">⚙️</div>
                 <div class="nav-label">设置</div>
@@ -798,10 +888,13 @@
     <script src="iphone-user-agent.js"></script>
     <script src="mobile-force-optimizer.js"></script>
     <script src="icon-config.js"></script>
+    <script src="app-search-database.js"></script>
+    <script src="app-search-list.js"></script>
     <script src="mobile-app-search.js"></script>
     <script src="mobile-script.js"></script>
     <script src="ai-chat.js"></script>
     <script src="enhanced-browser-v3.js"></script>
     <script src="mobile-enhanced-features.js"></script>
 </body>
+
 </html>
