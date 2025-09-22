@@ -149,21 +149,29 @@
 .app-letters-dropdown {
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 16px;
-    margin-top: 8px;
+    left: -20px;
+    right: -20px;
+    width: calc(100% + 40px);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    margin-top: 12px;
     z-index: 1000;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 8px 25px rgba(0, 0, 0, 0.08);
     /* 确保覆盖分类背景高度 - 分类区域大约400px高度 */
     min-height: 420px;
     max-height: 500px;
     overflow: hidden;
-    animation: dropdownSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: dropdownSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.175);
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] .app-letters-dropdown {
+    background: rgba(28, 28, 30, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
 @keyframes dropdownSlideIn {
@@ -179,19 +187,59 @@
 
 /* 下拉菜单头部 */
 .dropdown-header {
-    padding: 12px 16px;
-    background: rgba(247, 247, 247, 0.8);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
+    padding: 16px 20px;
+    background: rgba(247, 247, 247, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    font-size: 15px;
+    font-weight: 600;
+    color: #1d1d1f;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] .dropdown-header {
+    background: rgba(44, 44, 46, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #f2f2f7;
 }
 
 /* 下拉菜单内容 */
 .dropdown-content {
     padding: 16px;
-    max-height: 320px;
+    max-height: 380px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* 优化下拉菜单滚动条样式 */
+.dropdown-content::-webkit-scrollbar {
+    width: 3px;
+}
+
+.dropdown-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 122, 255, 0.4);
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 122, 255, 0.6);
+}
+
+/* 暗色模式下拉菜单滚动条适配 */
+[data-theme="dark"] .dropdown-content::-webkit-scrollbar-thumb {
+    background: rgba(10, 132, 255, 0.5);
+}
+
+[data-theme="dark"] .dropdown-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(10, 132, 255, 0.7);
 }
 
 /* 字母检索样式 */
@@ -214,10 +262,18 @@
     font-weight: 600;
     color: #007AFF;
     margin-bottom: 12px;
-    padding: 8px 12px;
-    background: rgba(0, 122, 255, 0.1);
-    border-radius: 8px;
+    padding: 10px 14px;
+    background: rgba(0, 122, 255, 0.12);
+    border-radius: 10px;
     border-left: 4px solid #007AFF;
+    letter-spacing: 0.5px;
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] .letter-header {
+    color: #0A84FF;
+    background: rgba(10, 132, 255, 0.15);
+    border-left-color: #0A84FF;
 }
 
 .letter-apps {
@@ -229,17 +285,30 @@
 .letter-app-item {
     display: flex;
     align-items: center;
-    padding: 12px;
-    background: rgba(248, 249, 250, 0.8);
-    border-radius: 12px;
+    padding: 14px;
+    background: rgba(248, 249, 250, 0.9);
+    border-radius: 14px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    gap: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .letter-app-item:hover {
-    background: rgba(0, 122, 255, 0.1);
-    transform: translateX(4px);
+    background: rgba(0, 122, 255, 0.12);
+    transform: translateX(6px) scale(1.02);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.15);
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] .letter-app-item {
+    background: rgba(44, 44, 46, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .letter-app-item:hover {
+    background: rgba(10, 132, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(10, 132, 255, 0.2);
 }
 
 .letter-app-item .app-icon-mini {
@@ -259,13 +328,19 @@
 .letter-app-item span {
     font-size: 16px;
     font-weight: 500;
-    color: #333;
+    color: #1d1d1f;
     /* 确保文字显示完整，不截断 */
     white-space: nowrap;
     overflow: visible;
     text-overflow: unset;
     flex: 1;
     min-width: 0;
+    letter-spacing: 0.2px;
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] .letter-app-item span {
+    color: #f2f2f7;
 }
 
 /* 近期应用下拉列表 */
@@ -322,12 +397,19 @@
 }
 
 .recent-app-item .app-name {
-    font-size: 14px;
+    font-size: 13px;
     color: #333;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100px;
+    max-width: 120px;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+/* 暗色模式最近应用名称适配 */
+[data-theme="dark"] .recent-app-item .app-name {
+    color: #f2f2f7;
 }
 
 /* 空状态样式 */
@@ -354,9 +436,13 @@
     cursor: pointer;
     transition: all 0.3s ease, opacity 0.2s;
     border-radius: 10px;
-    padding: 6px;
+    padding: 8px 4px;
     user-select: none;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80px;
 }
 
 .app-item:hover {
@@ -375,12 +461,13 @@
     position: relative;
     width: 48px;
     height: 48px;
-    margin: 0 auto 6px;
+    margin: 0 auto 8px;
     border-radius: 10px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .app-icon-img {
@@ -405,15 +492,24 @@
 
 .app-name {
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
     color: #333;
     font-weight: 500;
-    line-height: 1.2;
-    max-width: 80px;
+    line-height: 1.1;
+    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    padding: 0 2px;
+    box-sizing: border-box;
+    transition: color 0.3s ease;
+}
+
+/* 暗色模式应用名称适配 */
+[data-theme="dark"] .app-name {
+    color: #f2f2f7;
 }
 
 /* 搜索栏增强 */
@@ -558,6 +654,41 @@
     overflow-y: auto;
     flex-shrink: 0;
     height: 100%;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] .app-categories {
+    background: #2c2c2e;
+    border-right: 1px solid #3a3a3c;
+}
+
+/* 分类滚动条样式 */
+.app-categories::-webkit-scrollbar {
+    width: 3px;
+}
+
+.app-categories::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.app-categories::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.app-categories::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* 暗色模式分类滚动条适配 */
+[data-theme="dark"] .app-categories::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .app-categories::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .apps-content {
@@ -566,6 +697,12 @@
     overflow-y: auto;
     background: white;
     height: 100%;
+    transition: background-color 0.3s ease;
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] .apps-content {
+    background: #1c1c1e;
 }
 
 /* 应用网格响应式 - 确保每行四个图标 */
@@ -578,23 +715,32 @@
     overflow-y: auto;
 }
 
-/* 滚动条样式 */
+/* 优化滚动条样式 */
 .apps-grid::-webkit-scrollbar {
-    width: 4px;
+    width: 3px;
 }
 
 .apps-grid::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 2px;
+    background: transparent;
 }
 
 .apps-grid::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
 }
 
 .apps-grid::-webkit-scrollbar-thumb:hover {
-    background: #a1a1a1;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* 暗色模式滚动条适配 */
+[data-theme="dark"] .apps-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .apps-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
 }
 
 /* 空状态样式已删除 */
@@ -680,9 +826,20 @@
 }
 
 .app-name-small {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     color: #333;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    transition: color 0.3s ease;
+}
+
+/* 暗色模式小尺寸应用名称适配 */
+[data-theme="dark"] .app-name-small {
+    color: #f2f2f7;
 }
 
 .options-buttons {
