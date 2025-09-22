@@ -73,7 +73,7 @@ class MobileAppSearch {
             
             searchInput.addEventListener('input', (e) => {
                 this.searchQuery = e.target.value;
-                this.renderApps();
+                // 不再过滤应用列表，只更新清空按钮状态
                 this.toggleClearButton();
             });
 
@@ -424,12 +424,7 @@ class MobileAppSearch {
             apps = IconConfig.getAppsByCategory(this.currentCategory);
         }
 
-        // 如果有搜索查询，过滤应用
-        if (this.searchQuery) {
-            apps = apps.filter(app => 
-                app.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-            );
-        }
+        // 搜索输入框仅用于关键词搜索，不过滤应用列表
 
         // 生成HTML
         appsGrid.innerHTML = apps.map(app => this.generateAppHTML(app)).join('');

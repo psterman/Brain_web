@@ -23,6 +23,9 @@
     justify-content: flex-start !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
 }
 
 /* AI页面布局优化 */
@@ -221,9 +224,10 @@
 .app-content {
     width: 100% !important;
     margin-top: 44px !important; /* 状态栏高度 */
-    margin-bottom: 80px !important; /* 底部导航高度 */
-    height: calc(100vh - 124px) !important; /* 总高度减去状态栏和底部导航 */
+    margin-bottom: 83px !important; /* 底部导航高度 + 指示器 */
+    height: calc(100vh - 127px) !important; /* 总高度减去状态栏和底部导航 */
     overflow: hidden !important;
+    position: relative !important;
 }
 
 /* 底部指示器调整 */

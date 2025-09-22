@@ -13,6 +13,7 @@ class MobileEnhancedFeatures {
     
     init() {
         this.initThemeToggle();
+        this.initSelectedAppIconClick(); // 优先初始化默认图标点击事件
         this.initRecentSearch();
         this.initAppSelection();
         this.initSearchInput();
@@ -52,33 +53,59 @@ class MobileEnhancedFeatures {
         document.documentElement.setAttribute('data-theme', this.currentTheme);
     }
     
+    // 默认图标点击功能
+    initSelectedAppIconClick() {
+        const selectedAppIcon = document.getElementById('selectedAppIcon');
+        const appLettersDropdown = document.getElementById('appLettersDropdown');
+        
+        if (selectedAppIcon && appLettersDropdown) {
+            // 使用capture模式确保事件优先处理
+            selectedAppIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                this.hideRecentDropdown(); // 关闭近期搜索下拉菜单
+                this.toggleAppLettersDropdown();
+            }, true); // 使用capture模式
+        }
+    }
+    
     // 近期搜索功能
     initRecentSearch() {
         const recentSearchBtn = document.getElementById('recentSearchBtn');
         const recentSearchDropdown = document.getElementById('recentSearchDropdown');
-        const dropdownTabs = document.querySelectorAll('.dropdown-tab');
+        const appLettersBtn = document.getElementById('appLettersBtn');
+        const appLettersDropdown = document.getElementById('appLettersDropdown');
         
         if (recentSearchBtn && recentSearchDropdown) {
-            // 点击按钮显示/隐藏下拉菜单
+            // 点击近期搜索按钮显示/隐藏下拉菜单
             recentSearchBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
+                this.hideAppLettersDropdown(); // 关闭应用首字母下拉菜单
                 this.toggleRecentDropdown();
             });
-            
-            // 点击其他地方关闭下拉菜单
-            document.addEventListener('click', (e) => {
-                if (!recentSearchDropdown.contains(e.target) && !recentSearchBtn.contains(e.target)) {
-                    this.hideRecentDropdown();
-                }
-            });
-            
-            // 标签页切换
-            dropdownTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    this.switchDropdownTab(tab.dataset.tab);
-                });
+        }
+        
+        if (appLettersBtn && appLettersDropdown) {
+            // 点击应用首字母按钮显示/隐藏下拉菜单
+            appLettersBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.hideRecentDropdown(); // 关闭近期搜索下拉菜单
+                this.toggleAppLettersDropdown();
             });
         }
+        
+        
+        // 点击其他地方关闭所有下拉菜单
+        document.addEventListener('click', (e) => {
+            const selectedAppIcon = document.getElementById('selectedAppIcon');
+            if (!recentSearchDropdown?.contains(e.target) && !recentSearchBtn?.contains(e.target) &&
+                !appLettersDropdown?.contains(e.target) && !appLettersBtn?.contains(e.target) &&
+                !selectedAppIcon?.contains(e.target)) {
+                this.hideRecentDropdown();
+                this.hideAppLettersDropdown();
+            }
+        });
     }
     
     toggleRecentDropdown() {
@@ -91,6 +118,21 @@ class MobileEnhancedFeatures {
     
     hideRecentDropdown() {
         const dropdown = document.getElementById('recentSearchDropdown');
+        if (dropdown) {
+            dropdown.style.display = 'none';
+        }
+    }
+    
+    toggleAppLettersDropdown() {
+        const dropdown = document.getElementById('appLettersDropdown');
+        if (dropdown) {
+            const isVisible = dropdown.style.display === 'block';
+            dropdown.style.display = isVisible ? 'none' : 'block';
+        }
+    }
+    
+    hideAppLettersDropdown() {
+        const dropdown = document.getElementById('appLettersDropdown');
         if (dropdown) {
             dropdown.style.display = 'none';
         }
@@ -165,8 +207,15 @@ class MobileEnhancedFeatures {
         // 添加到近期应用
         this.addToRecentApps(appId);
         
-        // 隐藏下拉菜单
+        // 关闭所有下拉菜单
         this.hideRecentDropdown();
+        this.hideAppLettersDropdown();
+        
+        // 显示提示
+        const appConfig = this.getAppConfig(appId);
+        if (appConfig) {
+            this.showToast(`已选择 ${appConfig.name}`);
+        }
         
         // 如果搜索框有内容，执行搜索
         const searchInput = document.getElementById('appSearchInput');

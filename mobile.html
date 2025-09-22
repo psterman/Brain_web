@@ -300,20 +300,20 @@
                 <!-- 顶部搜索框 -->
                 <div class="top-search-bar">
                     <div class="search-icon-container">
-                        <button class="recent-search-btn" id="recentSearchBtn" title="近期搜索和应用首字母">
+                        <button class="recent-search-btn" id="recentSearchBtn" title="近期搜索">
                             <span class="recent-icon">🕒</span>
                         </button>
                         <div class="selected-app-icon" id="selectedAppIcon" data-app="xiaohongshu">
                             <div class="app-letter" style="background: linear-gradient(135deg, #ff2442 0%, #ff1744 100%); color: white;">小</div>
                         </div>
+                        <button class="app-letters-btn" id="appLettersBtn" title="应用首字母检索">
+                            <span class="letters-icon">🔤</span>
+                        </button>
                         <div class="dropdown-arrow">▼</div>
                         
-                        <!-- 近期搜索和应用首字母下拉菜单 -->
+                        <!-- 近期搜索下拉菜单 -->
                         <div class="recent-search-dropdown" id="recentSearchDropdown" style="display: none;">
-                            <div class="dropdown-tabs">
-                                <button class="dropdown-tab active" data-tab="recent">近期搜索</button>
-                                <button class="dropdown-tab" data-tab="letters">应用首字母</button>
-                            </div>
+                            <div class="dropdown-header">近期搜索</div>
                             
                             <!-- 近期搜索内容 -->
                             <div class="dropdown-content active" id="recent-content">
@@ -345,8 +345,11 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!-- 应用首字母内容 -->
+                        </div>
+                        
+                        <!-- 应用首字母检索下拉菜单 -->
+                        <div class="app-letters-dropdown" id="appLettersDropdown" style="display: none;">
+                            <div class="dropdown-header">应用首字母检索</div>
                             <div class="dropdown-content" id="letters-content">
                                 <div class="letters-grid">
                                     <div class="letter-group" data-letter="A">
