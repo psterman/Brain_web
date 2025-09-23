@@ -101,18 +101,18 @@ class MaterialAppsPage {
     }
 
     handleSearch(query) {
-        const lowerQuery = query.toLowerCase().trim();
+        const trimmedQuery = query.trim();
         
-        if (lowerQuery) {
-            this.filteredApps = this.apps.filter(app => 
-                app.name.toLowerCase().includes(lowerQuery) ||
-                app.icon.includes(lowerQuery)
-            );
+        // 搜索框不是用来过滤应用的，而是用户输入搜索关键词
+        // 当用户输入内容时，显示搜索提示
+        if (trimmedQuery) {
+            this.showSearchPreview(trimmedQuery);
         } else {
-            this.filterApps();
+            this.hideSearchPreview();
         }
         
-        this.renderApps();
+        // 保存搜索关键词到输入框
+        this.currentSearchQuery = trimmedQuery;
     }
 
     filterApps() {
@@ -154,26 +154,152 @@ class MaterialAppsPage {
         appItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.launchApp(item);
+                this.launchAppWithSearch(item);
             });
         });
     }
 
-    launchApp(appItem) {
+    launchAppWithSearch(appItem) {
         const appId = appItem.dataset.app;
         const appName = appItem.querySelector('.app-name').textContent;
+        const searchQuery = this.currentSearchQuery || '';
         
         // 添加点击效果
         this.addClickEffect(appItem);
         
         // 显示启动提示
-        this.showToast(`正在打开 ${appName}`);
+        if (searchQuery) {
+            this.showToast(`正在用 ${appName} 搜索: ${searchQuery}`);
+        } else {
+            this.showToast(`正在打开 ${appName}`);
+        }
         
-        // 模拟应用启动
+        // 模拟应用启动和搜索
         setTimeout(() => {
-            console.log(`启动应用: ${appId}`);
-            // 这里可以添加实际的应用启动逻辑
+            if (searchQuery) {
+                console.log(`在 ${appName} 中搜索: ${searchQuery}`);
+                // 这里可以添加实际的搜索逻辑
+                this.performSearch(appId, searchQuery);
+            } else {
+                console.log(`启动应用: ${appId}`);
+                // 这里可以添加实际的应用启动逻辑
+            }
         }, 300);
+    }
+
+    performSearch(appId, query) {
+        // 根据不同应用执行不同的搜索逻辑
+        const searchUrls = {
+            'taobao': `https://s.taobao.com/search?q=${encodeURIComponent(query)}`,
+            'jd': `https://search.jd.com/Search?keyword=${encodeURIComponent(query)}`,
+            'baidu': `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`,
+            'zhihu': `https://www.zhihu.com/search?q=${encodeURIComponent(query)}`,
+            'weibo': `https://s.weibo.com/weibo?q=${encodeURIComponent(query)}`,
+            'bilibili': `https://search.bilibili.com/all?keyword=${encodeURIComponent(query)}`,
+            'douyin': `https://www.douyin.com/search/${encodeURIComponent(query)}`,
+            'xiaohongshu': `https://www.xiaohongshu.com/search_result?keyword=${encodeURIComponent(query)}`
+        };
+        
+        const searchUrl = searchUrls[appId];
+        if (searchUrl) {
+            // 在新标签页中打开搜索结果
+            window.open(searchUrl, '_blank');
+        }
+        
+        // 保存到搜索历史
+        this.addToSearchHistory(query, appId);
+    }
+
+    addToSearchHistory(query, appId) {
+        try {
+            let history = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+            const historyItem = {
+                query: query,
+                appId: appId,
+                timestamp: Date.now()
+            };
+            
+            // 避免重复，移除相同的搜索记录
+            history = history.filter(item => !(item.query === query && item.appId === appId));
+            
+            // 添加到开头
+            history.unshift(historyItem);
+            
+            // 只保留最近20条记录
+            history = history.slice(0, 20);
+            
+            localStorage.setItem('searchHistory', JSON.stringify(history));
+            
+            // 更新搜索建议
+            this.updateSearchSuggestions();
+        } catch (e) {
+            console.warn('无法保存搜索历史:', e);
+        }
+    }
+
+    showSearchPreview(query) {
+        // 显示搜索预览，提示用户点击应用进行搜索
+        const appsGrid = document.querySelector('.apps-grid');
+        if (appsGrid) {
+            // 在应用网格上方显示搜索提示
+            let searchPreview = document.querySelector('.search-preview');
+            if (!searchPreview) {
+                searchPreview = document.createElement('div');
+                searchPreview.className = 'search-preview';
+                searchPreview.style.cssText = `
+                    background: #e3f2fd;
+                    padding: 12px 16px;
+                    margin-bottom: 16px;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    color: #1976d2;
+                    text-align: center;
+                `;
+                appsGrid.parentNode.insertBefore(searchPreview, appsGrid);
+            }
+            
+            searchPreview.innerHTML = `
+                <div>🔍 搜索关键词: <strong>${query}</strong></div>
+                <div style="font-size: 12px; margin-top: 4px; opacity: 0.8;">点击下方应用图标进行搜索</div>
+            `;
+            searchPreview.style.display = 'block';
+        }
+    }
+
+    hideSearchPreview() {
+        const searchPreview = document.querySelector('.search-preview');
+        if (searchPreview) {
+            searchPreview.style.display = 'none';
+        }
+    }
+
+    updateSearchSuggestions() {
+        // 更新搜索建议列表
+        try {
+            const history = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+            const recentKeywords = [...new Set(history.map(item => item.query))].slice(0, 8);
+            
+            const keywordsList = document.getElementById('recentKeywordsList');
+            if (keywordsList && recentKeywords.length > 0) {
+                keywordsList.innerHTML = recentKeywords.map(keyword => 
+                    `<div class="keyword-item" data-keyword="${keyword}">${keyword}</div>`
+                ).join('');
+                
+                // 添加关键词点击事件
+                keywordsList.querySelectorAll('.keyword-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const keyword = item.dataset.keyword;
+                        const searchInput = document.querySelector('.app-search-input');
+                        if (searchInput) {
+                            searchInput.value = keyword;
+                            this.handleSearch(keyword);
+                        }
+                    });
+                });
+            }
+        } catch (e) {
+            console.warn('无法更新搜索建议:', e);
+        }
     }
 
     showSearchSuggestions() {
