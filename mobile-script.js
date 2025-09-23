@@ -97,7 +97,7 @@ class MobileApp {
         // 更新导航状态
         this.updateNavigation(pageId);
         
-        // 显示新页面（苹果风格动画）
+        // 显示新页面（快速动画）
         setTimeout(() => {
             const newPageElement = document.getElementById(`${pageId}-page`);
             if (newPageElement) {
@@ -109,7 +109,7 @@ class MobileApp {
             
             // 触发页面特定的初始化
             this.initializePage(pageId);
-        }, 100);
+        }, 50);
     }
 
     updateNavigation(activePageId) {

@@ -85,7 +85,7 @@ body {
     overflow: hidden;
 }
 
-/* 页面容器 */
+/* 页面容器 - 优化动画速度 */
 .page {
     position: absolute;
     top: 0;
@@ -94,7 +94,7 @@ body {
     height: 100%;
     background: white;
     transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     opacity: 0;
@@ -112,10 +112,10 @@ body {
     opacity: 1;
     visibility: visible;
     z-index: 10;
-    animation: slideInFromRight 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    animation: slideInFromRight 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* 苹果风格滑动动画 */
+/* 快速滑动动画 */
 @keyframes slideInFromRight {
     0% {
         transform: translateX(100%);
@@ -139,7 +139,7 @@ body {
 }
 
 .page.slide-out {
-    animation: slideOutToLeft 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    animation: slideOutToLeft 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* 页面内容布局优化 */

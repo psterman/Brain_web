@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="browser-page-styles.css">
     <link rel="stylesheet" href="mobile-dark-mode.css">
     <link rel="stylesheet" href="mobile-center-fix.css">
+    <link rel="stylesheet" href="mobile-page-center.css">
+    <link rel="stylesheet" href="mobile-apps-material.css">
+    <link rel="stylesheet" href="mobile-performance-fix.css">
     <link rel="stylesheet" href="mobile-app-search.css">
     <link rel="stylesheet" href="app-search-list.css">
     <link rel="stylesheet" href="mobile-theme-styles.css">
@@ -20,8 +23,10 @@
 <body>
     <!-- 移动端主容器 -->
     <div class="mobile-app">
-        <!-- 状态栏 -->
-        <div class="status-bar">
+        <!-- 手机屏幕内容区域 -->
+        <div class="mobile-screen">
+            <!-- 状态栏 -->
+            <div class="status-bar">
             <div class="status-left">
                 <span class="time">15:42</span>
                 <button class="device-toggle" id="deviceToggle" title="切换到PC端">
@@ -32,16 +37,13 @@
                 <button class="theme-toggle" id="themeToggle" title="切换主题">
                     <span class="theme-icon">🌙</span>
                 </button>
-                <span class="signal-dots">••••</span>
-                <span class="wifi-icon">📶</span>
-                <span class="battery">100</span>
             </div>
         </div>
 
-        <!-- 主要内容区域 -->
-        <div class="app-content">
-            <!-- AI聊天页面 -->
-            <div class="page active" id="ai-page">
+                <!-- 主要内容区域 -->
+                <div class="app-content">
+                    <!-- AI聊天页面 -->
+                    <div class="page active" id="ai-page">
                 <!-- AI模型选择器 -->
                 <div class="ai-selector">
                     <div class="ai-model-tabs">
@@ -892,6 +894,8 @@
     <script src="app-search-list.js"></script>
     <script src="mobile-app-search.js"></script>
     <script src="mobile-script.js"></script>
+    <script src="mobile-search-tabs.js"></script>
+    <script src="mobile-apps-structure.js"></script>
     <script src="ai-chat.js"></script>
     <script src="enhanced-browser-v3.js"></script>
     <script src="mobile-enhanced-features.js"></script>

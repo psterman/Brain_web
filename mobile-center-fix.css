@@ -1,385 +1,453 @@
-/* 移动端页面居中修复 - 完全重写 */
+/* 移动端完美居中布局系统 */
 
-/* 移动端主容器居中 */
-.mobile-app {
-    width: 100vw !important;
-    height: 100vh !important;
-    max-width: 414px !important;
-    margin: 0 auto !important;
-    position: relative !important;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* 确保页面在视口中居中 */
+/* HTML和Body基础设置 */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Body - 浏览器窗口居中容器 */
 body {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    min-height: 100vh !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #f0f0f0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    position: relative;
 }
 
-/* 页面容器基础样式重置 */
-.page {
-    width: 100% !important;
-    height: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    justify-content: flex-start !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    transform: translateX(100%) !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-    z-index: 1 !important;
+/* 手机模拟器外框 - 在浏览器中居中 */
+.mobile-app {
+    /* 手机尺寸 */
+    width: 375px;
+    height: 812px;
+    max-width: 375px;
+    max-height: 812px;
+    
+    /* 居中定位 */
+    position: relative;
+    margin: 0 auto;
+    
+    /* 手机外观 */
+    background: #000;
+    border-radius: 40px;
+    padding: 8px;
+    box-shadow: 
+        0 0 0 2px #333,
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    
+    /* 防止变形 */
+    flex-shrink: 0;
+    overflow: hidden;
+    
+    /* 硬件加速 */
+    transform: translateZ(0);
+    will-change: transform;
 }
 
-/* 激活页面样式 */
-.page.active {
-    transform: translateX(0) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    z-index: 10 !important;
+/* 手机屏幕内容区域 */
+.mobile-screen {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-/* 页面切换动画优化 */
-@keyframes slideInFromRight {
-    0% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideOutToLeft {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-}
-
-/* AI页面布局优化 */
-#ai-page {
-    padding: 0 !important;
-    gap: 0 !important;
-}
-
-#ai-page .ai-selector {
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 15px 20px !important;
-    flex-shrink: 0 !important;
-}
-
-#ai-page .chat-container {
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 20px !important;
-    flex: 1 !important;
-    min-height: 0 !important;
-}
-
-#ai-page .chat-input-container {
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 15px 20px !important;
-    flex-shrink: 0 !important;
-}
-
-/* 浏览器页面布局优化 */
-#browser-page {
-    padding: 0 !important;
-}
-
-#browser-page .browser-header {
-    width: 100% !important;
-    margin: 0 !important;
-    flex-shrink: 0 !important;
-}
-
-#browser-page .browser-content {
-    width: 100% !important;
-    margin: 0 !important;
-    flex: 1 !important;
-    min-height: 0 !important;
-}
-
-/* 搜索页面布局优化 */
-#search-page {
-    padding: 0 !important;
-    gap: 0 !important;
-}
-
-#search-page .search-header {
-    width: 100% !important;
-    margin: 0 !important;
-    flex-shrink: 0 !important;
-}
-
-#search-page .search-config {
-    width: 100% !important;
-    margin: 0 !important;
-    flex: 1 !important;
-    overflow-y: auto !important;
-}
-
-/* 应用页面布局优化 */
-#apps-page {
-    padding: 0 !important;
-    gap: 0 !important;
-}
-
-#apps-page .apps-header {
-    width: 100% !important;
-    margin: 0 !important;
-    flex-shrink: 0 !important;
-}
-
-#apps-page .apps-layout {
-    width: 100% !important;
-    margin: 0 !important;
-    flex: 1 !important;
-    min-height: 0 !important;
-}
-
-/* 设置页面布局优化 */
-#settings-page {
-    padding: 0 !important;
-    gap: 0 !important;
-}
-
-#settings-page .settings-header {
-    width: 100% !important;
-    margin: 0 !important;
-    flex-shrink: 0 !important;
-}
-
-#settings-page .settings-content {
-    width: 100% !important;
-    margin: 0 !important;
-    flex: 1 !important;
-    overflow-y: auto !important;
-}
-
-/* 聊天消息区域优化 */
-.chat-messages {
-    width: 100% !important;
-    padding: 20px 0 !important;
-    margin: 0 !important;
-    flex: 1 !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-}
-
-/* 消息样式优化 */
-.message {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-bottom: 15px !important;
-    padding: 0 !important;
-}
-
-/* 下拉菜单定位修复 - 防止页面位移 */
-.search-icon-container {
-    position: relative !important;
-    z-index: 1000 !important;
-}
-
-.recent-search-dropdown,
-.app-letters-dropdown {
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 1001 !important;
-    margin-top: 8px !important;
-    /* 确保不影响页面流布局 */
-    transform: translateZ(0) !important;
-    will-change: transform !important;
-}
-
-/* 确保顶部搜索栏容器不被下拉菜单影响 */
-.top-search-bar {
-    position: relative !important;
-    z-index: 999 !important;
-    /* 防止下拉菜单影响布局 */
-    contain: layout !important;
-}
-
-/* 应用页面主体容器定位修复 */
-#apps-page .apps-layout {
-    position: relative !important;
-    z-index: 1 !important;
-}
-
-.message.user-message {
-    align-self: flex-end !important;
-}
-
-.message.ai-message {
-    align-self: flex-start !important;
-}
-
-/* 输入区域优化 */
-.input-wrapper {
-    width: 100% !important;
-    margin: 0 !important;
-}
-
-.message-input {
-    width: 100% !important;
-    flex: 1 !important;
-}
-
-/* 应用网格布局优化 */
-.apps-grid {
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.app-item {
-    width: 100% !important;
-    margin: 0 !important;
-}
-
-/* 搜索引擎网格优化 */
-.engine-grid {
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.engine-item {
-    width: 100% !important;
-    margin: 0 !important;
-}
-
-/* 设置项目优化 */
-.setting-item {
-    width: 100% !important;
-    margin: 0 0 12px 0 !important;
-}
-
-/* 底部导航固定 */
-.bottom-nav {
-    width: 100% !important;
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    max-width: 414px !important;
-    z-index: 1000 !important;
-}
-
-/* 状态栏固定 */
+/* 状态栏 */
 .status-bar {
-    width: 100% !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    max-width: 414px !important;
-    z-index: 1000 !important;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.02);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
+    z-index: 100;
+    flex-shrink: 0;
 }
 
-/* 主内容区域调整 */
+/* 主要内容区域 - 在手机屏幕内居中 */
 .app-content {
-    width: 100% !important;
-    margin-top: 44px !important; /* 状态栏高度 */
-    margin-bottom: 83px !important; /* 底部导航高度 + 指示器 */
-    height: calc(100vh - 127px) !important; /* 总高度减去状态栏和底部导航 */
-    overflow: hidden !important;
-    position: relative !important;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-/* 底部指示器调整 */
-.home-indicator {
-    position: fixed !important;
-    bottom: 8px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    z-index: 1001 !important;
+/* 页面容器 - 确保内容居中 */
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* 页面内容居中 */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    /* 确保滚动区域正确 */
+    -webkit-overflow-scrolling: touch;
 }
 
-/* 响应式调整 */
+/* 激活的页面 */
+.page.active {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 10;
+}
+
+/* 页面内容区域居中 */
+.page-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100%;
+}
+
+/* AI聊天页面特殊布局 */
+#ai-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.ai-selector {
+    flex-shrink: 0;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.ai-model-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 5px 0;
+}
+
+.ai-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.05);
+    min-width: 70px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ai-tab.active {
+    background: #007AFF;
+    color: white;
+}
+
+/* 聊天区域 */
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chat-input-area {
+    flex-shrink: 0;
+    padding: 15px 0 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* 搜索页面布局 */
+#search-page .page-content {
+    padding: 0;
+}
+
+.search-header {
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.search-config {
+    flex: 1;
+    padding: 0 20px;
+    overflow-y: auto;
+}
+
+.config-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 15px 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    margin: 0 -20px 20px;
+}
+
+.config-tab {
+    flex: 1;
+    padding: 10px 8px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.config-tab.active {
+    background: #007AFF;
+    color: white;
+}
+
+/* 搜索引擎网格 */
+.engine-grid, .app-grid, .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.engine-item, .app-item, .ai-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.engine-item.selected, .app-item.selected, .ai-item.selected {
+    border-color: #007AFF;
+    background: rgba(0, 122, 255, 0.1);
+}
+
+/* 应用页面布局 */
+#apps-page .page-content {
+    padding: 0;
+}
+
+.apps-header {
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.top-search-bar {
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* 设置页面布局 */
+#settings-page .page-content {
+    padding: 20px;
+}
+
+.settings-section {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.setting-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-item:active {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* 底部导航栏 */
+.bottom-nav {
+    height: 80px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 60px;
+}
+
+.nav-item.active {
+    background: rgba(0, 122, 255, 0.1);
+    color: #007AFF;
+}
+
+.nav-icon {
+    font-size: 20px;
+}
+
+.nav-label {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* 响应式适配 */
 @media (max-width: 414px) {
     .mobile-app {
-        max-width: 100vw !important;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        padding: 0;
+        box-shadow: none;
     }
     
-    .status-bar,
-    .bottom-nav {
-        max-width: 100vw !important;
+    .mobile-screen {
+        border-radius: 0;
     }
 }
 
-/* PC端查看时的居中效果 */
-@media (min-width: 768px) {
+/* 横屏适配 */
+@media (orientation: landscape) and (max-height: 500px) {
+    .mobile-app {
+        width: 100vw;
+        height: 100vh;
+        max-width: none;
+        max-height: none;
+        border-radius: 0;
+        padding: 0;
+    }
+    
+    .mobile-screen {
+        border-radius: 0;
+    }
+    
+    .status-bar {
+        height: 30px;
+    }
+    
+    .bottom-nav {
+        height: 60px;
+        padding: 5px 0 10px;
+    }
+}
+
+/* 暗色模式 */
+@media (prefers-color-scheme: dark) {
     body {
-        background: #f0f0f0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        min-height: 100vh !important;
-        margin: 0 !important;
-        padding: 20px !important;
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     }
     
     .mobile-app {
-        position: relative !important;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
-        border-radius: 20px !important;
-        overflow: hidden !important;
+        background: #1a1a1a;
+        box-shadow: 
+            0 0 0 2px #444,
+            0 8px 32px rgba(0, 0, 0, 0.5),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+    
+    .mobile-screen {
+        background: #000;
+    }
+    
+    .page {
+        background: #000;
+        color: #fff;
     }
 }
 
-/* 修复可能的布局问题 */
-* {
-    box-sizing: border-box !important;
+/* 性能优化 */
+.mobile-app,
+.page,
+.nav-item,
+.config-tab,
+.engine-item,
+.app-item,
+.ai-item {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
 }
 
-.page * {
-    max-width: 100% !important;
+/* 滚动优化 */
+.page,
+.chat-messages,
+.search-config {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
 }
 
-/* 确保所有内容都在可视区域内 */
-.page > * {
-    width: 100% !important;
-    flex-shrink: 0 !important;
-}
-
-/* 滚动区域优化 */
-.page {
-    scroll-behavior: smooth !important;
-}
-
-/* 防止内容溢出 */
-.chat-container,
-.apps-content,
-.search-config,
-.settings-content {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
+/* 防止文本选择 */
+.mobile-app {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
 }
