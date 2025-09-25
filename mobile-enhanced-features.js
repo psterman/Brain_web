@@ -39,18 +39,25 @@ class MobileEnhancedFeatures {
     
     applyTheme() {
         const body = document.body;
+        const html = document.documentElement;
         const themeIcon = document.querySelector('.theme-icon');
         
         if (this.currentTheme === 'dark') {
             body.classList.add('dark-theme');
+            html.setAttribute('data-theme', 'dark');
             if (themeIcon) themeIcon.textContent = '☀️';
         } else {
             body.classList.remove('dark-theme');
+            html.setAttribute('data-theme', 'light');
             if (themeIcon) themeIcon.textContent = '🌙';
         }
         
-        // 更新CSS变量
-        document.documentElement.setAttribute('data-theme', this.currentTheme);
+        // 强制重新渲染以确保样式生效
+        setTimeout(() => {
+            body.style.display = 'none';
+            body.offsetHeight; // 触发重排
+            body.style.display = '';
+        }, 10);
     }
     
     // 默认图标点击功能

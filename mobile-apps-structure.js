@@ -85,17 +85,30 @@ class MaterialAppsPage {
 
     setupSearch() {
         const searchInput = document.querySelector('.app-search-input');
+        const recentSearchBtn = document.getElementById('recentSearchBtn');
+        
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
                 this.handleSearch(e.target.value);
             });
             
+            // 移除自动弹出搜索建议，避免闪现问题
             searchInput.addEventListener('focus', () => {
-                this.showSearchSuggestions();
+                // 不自动显示搜索建议
             });
             
             searchInput.addEventListener('blur', () => {
-                setTimeout(() => this.hideSearchSuggestions(), 200);
+                // 延迟隐藏，给用户时间点击下拉菜单
+                setTimeout(() => this.hideSearchSuggestions(), 300);
+            });
+        }
+        
+        // 修复近期搜索按钮点击问题
+        if (recentSearchBtn) {
+            recentSearchBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleSearchSuggestions();
             });
         }
     }
@@ -103,7 +116,6 @@ class MaterialAppsPage {
     handleSearch(query) {
         const trimmedQuery = query.trim();
         
-        // 搜索框不是用来过滤应用的，而是用户输入搜索关键词
         // 当用户输入内容时，显示搜索提示
         if (trimmedQuery) {
             this.showSearchPreview(trimmedQuery);
@@ -111,7 +123,7 @@ class MaterialAppsPage {
             this.hideSearchPreview();
         }
         
-        // 保存搜索关键词到输入框
+        // 保存当前搜索关键词
         this.currentSearchQuery = trimmedQuery;
     }
 
@@ -162,29 +174,64 @@ class MaterialAppsPage {
     launchAppWithSearch(appItem) {
         const appId = appItem.dataset.app;
         const appName = appItem.querySelector('.app-name').textContent;
-        const searchQuery = this.currentSearchQuery || '';
+        const searchInput = document.querySelector('.app-search-input');
+        const searchQuery = searchInput ? searchInput.value.trim() : '';
         
         // 添加点击效果
         this.addClickEffect(appItem);
         
-        // 显示启动提示
+        // 根据是否有搜索内容决定行为
         if (searchQuery) {
+            // 有搜索内容：跳转到搜索结果页面
             this.showToast(`正在用 ${appName} 搜索: ${searchQuery}`);
-        } else {
-            this.showToast(`正在打开 ${appName}`);
-        }
-        
-        // 模拟应用启动和搜索
-        setTimeout(() => {
-            if (searchQuery) {
-                console.log(`在 ${appName} 中搜索: ${searchQuery}`);
-                // 这里可以添加实际的搜索逻辑
+            setTimeout(() => {
                 this.performSearch(appId, searchQuery);
-            } else {
-                console.log(`启动应用: ${appId}`);
-                // 这里可以添加实际的应用启动逻辑
-            }
-        }, 300);
+            }, 500);
+        } else {
+            // 无搜索内容：直接打开应用
+            this.showToast(`正在打开 ${appName}`);
+            setTimeout(() => {
+                this.launchApp(appId, appName);
+            }, 500);
+        }
+    }
+
+    launchApp(appId, appName) {
+        // 应用默认页面URL映射
+        const appUrls = {
+            'taobao': 'https://www.taobao.com',
+            'jd': 'https://www.jd.com',
+            'pinduoduo': 'https://www.pinduoduo.com',
+            'tmall': 'https://www.tmall.com',
+            'wechat': 'https://web.wechat.com',
+            'qq': 'https://im.qq.com',
+            'weibo': 'https://weibo.com',
+            'xiaohongshu': 'https://www.xiaohongshu.com',
+            'douyin': 'https://www.douyin.com',
+            'bilibili': 'https://www.bilibili.com',
+            'youku': 'https://www.youku.com',
+            'iqiyi': 'https://www.iqiyi.com',
+            'meituan': 'https://www.meituan.com',
+            'eleme': 'https://www.ele.me',
+            'didi': 'https://www.didiglobal.com',
+            'alipay': 'https://www.alipay.com',
+            'amap': 'https://www.amap.com',
+            'baidumap': 'https://map.baidu.com',
+            'netease': 'https://music.163.com',
+            'qqmusic': 'https://y.qq.com',
+            'zhihu': 'https://www.zhihu.com',
+            'baidu': 'https://www.baidu.com'
+        };
+        
+        const appUrl = appUrls[appId];
+        if (appUrl) {
+            // 在新标签页中打开应用
+            window.open(appUrl, '_blank');
+            console.log(`打开应用: ${appName} - ${appUrl}`);
+        } else {
+            console.log(`启动应用: ${appId}`);
+            // 这里可以添加其他应用启动逻辑
+        }
     }
 
     performSearch(appId, query) {
@@ -302,10 +349,24 @@ class MaterialAppsPage {
         }
     }
 
+    toggleSearchSuggestions() {
+        const dropdown = document.querySelector('.recent-search-dropdown');
+        if (dropdown) {
+            const isVisible = dropdown.style.display === 'block';
+            if (isVisible) {
+                this.hideSearchSuggestions();
+            } else {
+                this.showSearchSuggestions();
+            }
+        }
+    }
+
     showSearchSuggestions() {
         const dropdown = document.querySelector('.recent-search-dropdown');
         if (dropdown) {
             dropdown.style.display = 'block';
+            // 更新搜索建议内容
+            this.updateSearchSuggestions();
         }
     }
 

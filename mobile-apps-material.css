@@ -166,7 +166,7 @@
     flex: 1 !important;
     background: #fafafa !important;
     overflow-y: auto !important;
-    padding: 16px !important;
+    padding: 12px 16px !important;
 }
 
 .apps-grid-container::-webkit-scrollbar {
@@ -186,8 +186,19 @@
 .apps-grid {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
-    gap: 16px !important;
+    gap: 12px !important;
     padding: 0 !important;
+}
+
+/* 统一所有分类的应用网格间距 */
+.apps-grid.category-shopping,
+.apps-grid.category-social,
+.apps-grid.category-video,
+.apps-grid.category-music,
+.apps-grid.category-life,
+.apps-grid.category-map,
+.apps-grid.category-tools {
+    gap: 12px !important;
 }
 
 /* 应用项目卡片 */

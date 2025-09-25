@@ -1,0 +1,112 @@
+/* 应用图标替换功能样式 */
+
+/* 默认应用图标选中状态 */
+.selected-app-icon.app-selected {
+    border: 2px solid #2196F3 !important;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2) !important;
+    transform: scale(1.05) !important;
+}
+
+/* 默认应用图标动画效果 */
+.selected-app-icon {
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+}
+
+.selected-app-icon:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 应用选择提示 */
+.app-selection-hint {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 1000;
+}
+
+.selected-app-icon:hover .app-selection-hint {
+    opacity: 1;
+}
+
+/* 应用网格项目点击效果优化 */
+.app-item {
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+    position: relative !important;
+}
+
+.app-item:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.app-item:active {
+    transform: scale(0.95) !important;
+}
+
+/* 应用选择成功提示 */
+.app-item.selected-feedback {
+    animation: selectedPulse 0.6s ease-out;
+}
+
+@keyframes selectedPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(33, 150, 243, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
+    }
+}
+
+/* 近期搜索下拉菜单优化 */
+.recent-search-dropdown {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    min-width: 200px !important;
+    max-width: 300px !important;
+    z-index: 1000 !important;
+    overflow: hidden !important;
+}
+
+.recent-search-dropdown .keyword-item {
+    padding: 12px 16px !important;
+    cursor: pointer !important;
+    border-bottom: 1px solid #f5f5f5 !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.recent-search-dropdown .keyword-item:hover {
+    background-color: #f5f5f5 !important;
+}
+
+.recent-search-dropdown .keyword-item:last-child {
+    border-bottom: none !important;
+}
+
+/* 搜索框容器相对定位 */
+.search-icon-container {
+    position: relative !important;
+}

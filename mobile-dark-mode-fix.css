@@ -1,0 +1,701 @@
+/* 移动端暗色模式修复 - 统一各个tab的颜色适配 */
+
+/* 暗色模式基础变量 */
+:root {
+    --dark-bg-primary: #000000;
+    --dark-bg-secondary: #1c1c1e;
+    --dark-bg-tertiary: #2c2c2e;
+    --dark-bg-quaternary: #3a3a3c;
+    --dark-text-primary: #ffffff;
+    --dark-text-secondary: #ebebf5;
+    --dark-text-tertiary: #ebebf599;
+    --dark-accent-green: #30d158;
+    --dark-accent-green-hover: #32d74b;
+    --dark-accent-green-light: rgba(48, 209, 88, 0.2);
+    --dark-separator: #38383a;
+}
+
+/* 统一暗色模式选择器 - 使用更高优先级 */
+body.dark-theme,
+[data-theme="dark"] {
+    
+    /* AI页面 - AI模型选择tab */
+    .ai-tab {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-secondary) !important;
+        border: 1px solid var(--dark-separator) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .ai-tab:hover {
+        background: var(--dark-bg-quaternary) !important;
+        color: var(--dark-text-primary) !important;
+    }
+    
+    .ai-tab.active {
+        background: var(--dark-accent-green) !important;
+        color: white !important;
+        border-color: var(--dark-accent-green) !important;
+        box-shadow: 0 0 0 2px rgba(48, 209, 88, 0.3) !important;
+    }
+    
+    /* 搜索页面 - 配置tab */
+    .config-tab {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-secondary) !important;
+        border: 1px solid var(--dark-separator) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .config-tab:hover {
+        background: var(--dark-bg-quaternary) !important;
+        color: var(--dark-text-primary) !important;
+    }
+    
+    .config-tab.active {
+        background: var(--dark-accent-green) !important;
+        color: white !important;
+        border-color: var(--dark-accent-green) !important;
+        box-shadow: 0 0 0 2px rgba(48, 209, 88, 0.3) !important;
+    }
+    
+    /* 应用页面 - 分类tab */
+    .category-item {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-secondary) !important;
+        border: 1px solid var(--dark-separator) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .category-item:hover {
+        background: var(--dark-bg-quaternary) !important;
+        color: var(--dark-text-primary) !important;
+    }
+    
+    .category-item.active {
+        background: var(--dark-accent-green) !important;
+        color: white !important;
+        border-color: var(--dark-accent-green) !important;
+        box-shadow: 0 0 0 2px rgba(48, 209, 88, 0.3) !important;
+    }
+    
+    .category-item.starred {
+        background: rgba(255, 204, 0, 0.15) !important;
+        color: #ffcc00 !important;
+        border-color: rgba(255, 204, 0, 0.3) !important;
+    }
+    
+    .category-item.starred.active {
+        background: var(--dark-accent-blue) !important;
+        color: white !important;
+        border-color: var(--dark-accent-blue) !important;
+    }
+    
+    /* 底部导航 - 导航tab */
+    .nav-item {
+        color: var(--dark-text-tertiary) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .nav-item:hover {
+        background: rgba(48, 209, 88, 0.1) !important;
+        color: var(--dark-text-secondary) !important;
+    }
+    
+    .nav-item.active {
+        background: var(--dark-accent-green-light) !important;
+        color: var(--dark-accent-green) !important;
+        border-radius: 12px !important;
+    }
+    
+    .nav-item.active .nav-icon {
+        color: var(--dark-accent-green) !important;
+        transform: scale(1.1) !important;
+    }
+    
+    .nav-item.active .nav-label {
+        color: var(--dark-accent-green) !important;
+        font-weight: 600 !important;
+    }
+    
+    /* 搜索引擎选择 - 引擎分类按钮 */
+    .category-btn {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-secondary) !important;
+        border: 1px solid var(--dark-separator) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .category-btn:hover {
+        background: var(--dark-bg-quaternary) !important;
+        color: var(--dark-text-primary) !important;
+    }
+    
+    .category-btn.active,
+    .category-btn.selected {
+        background: var(--dark-accent-green) !important;
+        color: white !important;
+        border-color: var(--dark-accent-green) !important;
+        box-shadow: 0 0 0 2px rgba(48, 209, 88, 0.3) !important;
+    }
+    
+    /* 搜索引擎项目 */
+    .engine-item {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 2px solid var(--dark-separator) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .engine-item:hover {
+        background: var(--dark-bg-quaternary) !important;
+        border-color: rgba(48, 209, 88, 0.5) !important;
+    }
+    
+    .engine-item.selected {
+        background: var(--dark-accent-green-light) !important;
+        border-color: var(--dark-accent-green) !important;
+        box-shadow: 0 0 0 2px rgba(48, 209, 88, 0.3) !important;
+    }
+    
+    .engine-name {
+        color: var(--dark-text-primary) !important;
+    }
+    
+    .engine-check {
+        color: var(--dark-accent-green) !important;
+    }
+    
+    .engine-radio {
+        color: var(--dark-text-tertiary) !important;
+    }
+    
+    /* 应用项目 */
+    .app-item {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .app-item:hover {
+        background: var(--dark-bg-quaternary) !important;
+        border-color: rgba(48, 209, 88, 0.5) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+    }
+    
+    .app-name {
+        color: var(--dark-text-primary) !important;
+    }
+    
+    /* 设置项目 */
+    .setting-item {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .setting-item:hover {
+        background: var(--dark-bg-quaternary) !important;
+        border-color: rgba(48, 209, 88, 0.5) !important;
+    }
+    
+    .setting-title {
+        color: var(--dark-text-primary) !important;
+    }
+    
+    .setting-desc {
+        color: var(--dark-text-tertiary) !important;
+    }
+    
+    /* 页面背景 */
+    .page {
+        background: var(--dark-bg-primary) !important;
+        color: var(--dark-text-primary) !important;
+    }
+    
+    /* 页面头部 - 高优先级修复 */
+    #apps-page .apps-header,
+    .apps-header,
+    .search-header,
+    .settings-header {
+        background: var(--dark-bg-secondary) !important;
+        color: var(--dark-text-primary) !important;
+        border-bottom: 1px solid var(--dark-separator) !important;
+    }
+    
+    #apps-page .apps-header h2,
+    .apps-header h2,
+    .search-header h2,
+    .settings-header h2 {
+        color: var(--dark-text-primary) !important;
+    }
+    
+    /* 搜索栏 - 高优先级修复 */
+    #apps-page .top-search-bar,
+    .top-search-bar {
+        background: var(--dark-bg-secondary) !important;
+        border-bottom: 1px solid var(--dark-separator) !important;
+    }
+    
+    /* 搜索图标容器 */
+    #apps-page .search-icon-container,
+    .search-icon-container {
+        background: transparent !important;
+    }
+    
+    /* 搜索输入框 - 高优先级修复 */
+    #apps-page .app-search-input,
+    .app-search-input {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    #apps-page .app-search-input::placeholder,
+    .app-search-input::placeholder {
+        color: var(--dark-text-tertiary) !important;
+    }
+    
+    #apps-page .app-search-input:focus,
+    .app-search-input:focus {
+        border-color: var(--dark-accent-green) !important;
+        box-shadow: 0 0 0 2px rgba(48, 209, 88, 0.3) !important;
+        background: var(--dark-bg-tertiary) !important;
+    }
+    
+    /* 搜索相关按钮 */
+    #apps-page .recent-search-btn,
+    .recent-search-btn {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    #apps-page .recent-search-btn:hover,
+    .recent-search-btn:hover {
+        background: var(--dark-bg-quaternary) !important;
+        border-color: var(--dark-accent-green) !important;
+    }
+    
+    /* 选中的应用图标 */
+    #apps-page .selected-app-icon,
+    .selected-app-icon {
+        background: var(--dark-bg-tertiary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    /* 清空按钮 */
+    #apps-page .clear-btn,
+    .top-search-bar .clear-btn {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-secondary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    #apps-page .clear-btn:hover,
+    .top-search-bar .clear-btn:hover {
+        background: var(--dark-bg-quaternary) !important;
+        color: var(--dark-text-primary) !important;
+    }
+    
+    /* 分类侧边栏 */
+    .app-categories {
+        background: var(--dark-bg-secondary) !important;
+        border-right: 1px solid var(--dark-separator) !important;
+    }
+    
+    /* 应用网格容器 */
+    .apps-content {
+        background: var(--dark-bg-primary) !important;
+    }
+    
+    /* 搜索配置区域 */
+    .search-config {
+        background: var(--dark-bg-secondary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    .config-tabs {
+        background: var(--dark-bg-tertiary) !important;
+        border-bottom: 1px solid var(--dark-separator) !important;
+    }
+    
+    /* 聊天相关 */
+    .ai-selector {
+        background: var(--dark-bg-secondary) !important;
+        border-bottom: 1px solid var(--dark-separator) !important;
+    }
+    
+    .ai-model-tabs {
+        background: var(--dark-bg-tertiary) !important;
+    }
+    
+    .chat-container {
+        background: var(--dark-bg-primary) !important;
+    }
+    
+    .chat-input-container {
+        background: var(--dark-bg-secondary) !important;
+        border-top: 1px solid var(--dark-separator) !important;
+    }
+    
+    .message-input {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    .message-input::placeholder {
+        color: var(--dark-text-tertiary) !important;
+    }
+    
+    /* 浏览器相关 */
+    .browser-header {
+        background: var(--dark-bg-secondary) !important;
+        border-bottom: 1px solid var(--dark-separator) !important;
+    }
+    
+    .url-bar {
+        background: var(--dark-bg-tertiary) !important;
+    }
+    
+    .url-input {
+        background: var(--dark-bg-primary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    .url-input::placeholder {
+        color: var(--dark-text-tertiary) !important;
+    }
+    
+    .browser-toolbar {
+        background: var(--dark-bg-secondary) !important;
+        border-top: 1px solid var(--dark-separator) !important;
+    }
+    
+    .tool-btn {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    .tool-btn:hover {
+        background: var(--dark-accent-green) !important;
+        color: white !important;
+    }
+    
+    /* 底部导航 */
+    .bottom-nav {
+        background: var(--dark-bg-secondary) !important;
+        border-top: 1px solid var(--dark-separator) !important;
+    }
+    
+    /* 状态栏 */
+    .status-bar {
+        background: rgba(0, 0, 0, 0.8) !important;
+        color: var(--dark-text-primary) !important;
+    }
+    
+    .device-toggle {
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    .device-toggle:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    /* 模态框 */
+    .modal-content {
+        background: var(--dark-bg-secondary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    .modal-header {
+        background: var(--dark-bg-tertiary) !important;
+        border-bottom: 1px solid var(--dark-separator) !important;
+    }
+    
+    /* 按钮统一样式 */
+    .save-btn,
+    .test-btn,
+    .sync-btn,
+    .weight-btn,
+    .help-btn {
+        background: var(--dark-accent-green) !important;
+        color: white !important;
+        border: 1px solid var(--dark-accent-green) !important;
+    }
+    
+    .save-btn:hover,
+    .test-btn:hover,
+    .sync-btn:hover,
+    .weight-btn:hover,
+    .help-btn:hover {
+        background: var(--dark-accent-green-hover) !important;
+        border-color: var(--dark-accent-green-hover) !important;
+    }
+    
+    /* 输入框统一样式 */
+    input[type="text"],
+    input[type="password"],
+    textarea {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    textarea:focus {
+        border-color: var(--dark-accent-green) !important;
+        box-shadow: 0 0 0 2px rgba(48, 209, 88, 0.3) !important;
+    }
+    
+    input[type="text"]::placeholder,
+    input[type="password"]::placeholder,
+    textarea::placeholder {
+        color: var(--dark-text-tertiary) !important;
+    }
+}
+
+    /* 小组件页面特殊修复 */
+    .widget-tab,
+    .widget-button,
+    .widget-item {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-secondary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    .widget-tab.active,
+    .widget-button.active,
+    .widget-item.active {
+        background: var(--dark-accent-green) !important;
+        color: white !important;
+        border-color: var(--dark-accent-green) !important;
+    }
+    
+    /* 搜索引擎选择器修复 */
+    .search-engine-selector {
+        background: var(--dark-bg-secondary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    .search-engine-item {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    .search-engine-item.selected,
+    .search-engine-item:hover {
+        background: var(--dark-accent-green-light) !important;
+        border-color: var(--dark-accent-green) !important;
+    }
+    
+    /* AI模型选择器修复 */
+    .ai-model-selector {
+        background: var(--dark-bg-secondary) !important;
+        border-bottom: 1px solid var(--dark-separator) !important;
+    }
+    
+    .ai-model-tab {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-secondary) !important;
+        border: 1px solid var(--dark-separator) !important;
+        border-radius: 8px !important;
+        margin: 0 4px !important;
+    }
+    
+    .ai-model-tab:hover {
+        background: var(--dark-bg-quaternary) !important;
+        color: var(--dark-text-primary) !important;
+    }
+    
+    .ai-model-tab.active {
+        background: var(--dark-accent-green) !important;
+        color: white !important;
+        border-color: var(--dark-accent-green) !important;
+    }
+    
+    /* 聊天消息修复 */
+    .chat-message {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    .chat-message.user {
+        background: var(--dark-accent-green-light) !important;
+        border-color: var(--dark-accent-green) !important;
+    }
+    
+    .chat-message.assistant {
+        background: var(--dark-bg-secondary) !important;
+    }
+    
+    /* 应用搜索相关修复 */
+    .recent-search-btn {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    .recent-search-btn:hover {
+        background: var(--dark-bg-quaternary) !important;
+        border-color: var(--dark-accent-green) !important;
+    }
+    
+    .selected-app-icon {
+        background: var(--dark-bg-tertiary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    /* 下拉菜单修复 */
+    .dropdown-menu,
+    .recent-search-dropdown,
+    .app-letters-dropdown {
+        background: var(--dark-bg-secondary) !important;
+        border: 1px solid var(--dark-separator) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+    }
+    
+    .dropdown-tab {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-secondary) !important;
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    .dropdown-tab.active {
+        background: var(--dark-accent-green) !important;
+        color: white !important;
+        border-color: var(--dark-accent-green) !important;
+    }
+    
+    .dropdown-item,
+    .recent-app-item,
+    .letter-app-item,
+    .keyword-item {
+        background: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border-bottom: 1px solid var(--dark-separator) !important;
+    }
+    
+    .dropdown-item:hover,
+    .recent-app-item:hover,
+    .letter-app-item:hover,
+    .keyword-item:hover {
+        background: var(--dark-bg-quaternary) !important;
+        color: var(--dark-accent-green) !important;
+    }
+    
+    /* 应用图标修复 */
+    .app-icon-small {
+        border: 1px solid var(--dark-separator) !important;
+    }
+    
+    /* 搜索提示修复 */
+    .search-hint-overlay {
+        background: rgba(0, 0, 0, 0.8) !important;
+        color: var(--dark-text-primary) !important;
+    }
+    
+    .hint-text {
+        color: var(--dark-accent-green) !important;
+    }
+    
+    /* 页面标题修复 */
+    .page-title,
+    .section-title {
+        color: var(--dark-text-primary) !important;
+    }
+    
+    /* 分隔线修复 */
+    .divider,
+    .separator {
+        background: var(--dark-separator) !important;
+        border-color: var(--dark-separator) !important;
+    }
+    
+    /* 加载状态修复 */
+    .loading-spinner {
+        border-color: var(--dark-separator) !important;
+        border-top-color: var(--dark-accent-green) !important;
+    }
+    
+    /* 错误状态修复 */
+    .error-message {
+        background: rgba(255, 59, 48, 0.1) !important;
+        color: #ff453a !important;
+        border: 1px solid rgba(255, 59, 48, 0.3) !important;
+    }
+    
+    /* 成功状态修复 */
+    .success-message {
+        background: var(--dark-accent-green-light) !important;
+        color: var(--dark-accent-green) !important;
+        border: 1px solid var(--dark-accent-green) !important;
+    }
+}
+
+/* 特殊元素的高优先级修复 */
+body.dark-theme .ai-tab.active,
+body.dark-theme .config-tab.active,
+body.dark-theme .category-item.active,
+[data-theme="dark"] .ai-tab.active,
+[data-theme="dark"] .config-tab.active,
+[data-theme="dark"] .category-item.active {
+    background: var(--dark-accent-green) !important;
+    color: white !important;
+    border-color: var(--dark-accent-green) !important;
+}
+
+/* 确保在系统暗色模式下也生效 */
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]):not(.light-theme) .ai-tab.active,
+    body:not([data-theme="light"]):not(.light-theme) .config-tab.active,
+    body:not([data-theme="light"]):not(.light-theme) .category-item.active,
+    body:not([data-theme="light"]):not(.light-theme) .nav-item.active {
+        background: var(--dark-accent-green) !important;
+        color: white !important;
+    }
+    
+    body:not([data-theme="light"]):not(.light-theme) .nav-item.active .nav-icon,
+    body:not([data-theme="light"]):not(.light-theme) .nav-item.active .nav-label {
+        color: var(--dark-accent-green) !important;
+    }
+}
+
+/* 动画和过渡效果 */
+body.dark-theme * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* 滚动条暗色模式 */
+body.dark-theme ::-webkit-scrollbar,
+[data-theme="dark"] ::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+body.dark-theme ::-webkit-scrollbar-track,
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: var(--dark-bg-tertiary) !important;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb,
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--dark-text-tertiary) !important;
+    border-radius: 3px !important;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb:hover,
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-text-secondary) !important;
+}

@@ -1,0 +1,165 @@
+/* 应用页面暗色模式强制覆盖 - 修复白色区域问题 */
+
+/* 针对应用页面的特殊修复，使用最高优先级 */
+body.dark-theme #apps-page .apps-header,
+[data-theme="dark"] #apps-page .apps-header {
+    background: #1c1c1e !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #38383a !important;
+}
+
+body.dark-theme #apps-page .apps-header h2,
+[data-theme="dark"] #apps-page .apps-header h2 {
+    color: #ffffff !important;
+}
+
+body.dark-theme #apps-page .top-search-bar,
+[data-theme="dark"] #apps-page .top-search-bar {
+    background: #1c1c1e !important;
+    border-bottom: 1px solid #38383a !important;
+}
+
+body.dark-theme #apps-page .search-icon-container,
+[data-theme="dark"] #apps-page .search-icon-container {
+    background: transparent !important;
+}
+
+body.dark-theme #apps-page .app-search-input,
+[data-theme="dark"] #apps-page .app-search-input {
+    background: #2c2c2e !important;
+    color: #ffffff !important;
+    border: 1px solid #38383a !important;
+}
+
+body.dark-theme #apps-page .app-search-input::placeholder,
+[data-theme="dark"] #apps-page .app-search-input::placeholder {
+    color: #ebebf599 !important;
+}
+
+body.dark-theme #apps-page .app-search-input:focus,
+[data-theme="dark"] #apps-page .app-search-input:focus {
+    border-color: #30d158 !important;
+    box-shadow: 0 0 0 2px rgba(48, 209, 88, 0.3) !important;
+    background: #2c2c2e !important;
+}
+
+body.dark-theme #apps-page .recent-search-btn,
+[data-theme="dark"] #apps-page .recent-search-btn {
+    background: #2c2c2e !important;
+    color: #ffffff !important;
+    border: 1px solid #38383a !important;
+}
+
+body.dark-theme #apps-page .recent-search-btn:hover,
+[data-theme="dark"] #apps-page .recent-search-btn:hover {
+    background: #3a3a3c !important;
+    border-color: #30d158 !important;
+}
+
+body.dark-theme #apps-page .selected-app-icon,
+[data-theme="dark"] #apps-page .selected-app-icon {
+    background: #2c2c2e !important;
+    border: 1px solid #38383a !important;
+}
+
+body.dark-theme #apps-page .clear-btn,
+[data-theme="dark"] #apps-page .clear-btn {
+    background: #2c2c2e !important;
+    color: #ebebf5 !important;
+    border: 1px solid #38383a !important;
+}
+
+body.dark-theme #apps-page .clear-btn:hover,
+[data-theme="dark"] #apps-page .clear-btn:hover {
+    background: #3a3a3c !important;
+    color: #ffffff !important;
+}
+
+/* 应用分类侧边栏 */
+body.dark-theme #apps-page .app-categories-sidebar,
+[data-theme="dark"] #apps-page .app-categories-sidebar {
+    background: #1c1c1e !important;
+    border-right: 1px solid #38383a !important;
+}
+
+body.dark-theme #apps-page .app-categories,
+[data-theme="dark"] #apps-page .app-categories {
+    background: #1c1c1e !important;
+    border-right: 1px solid #38383a !important;
+}
+
+/* 应用网格容器 */
+body.dark-theme #apps-page .apps-grid-container,
+[data-theme="dark"] #apps-page .apps-grid-container {
+    background: #000000 !important;
+}
+
+body.dark-theme #apps-page .apps-content,
+[data-theme="dark"] #apps-page .apps-content {
+    background: #000000 !important;
+}
+
+/* 页面内容区域 */
+body.dark-theme #apps-page .page-content,
+[data-theme="dark"] #apps-page .page-content {
+    background: #000000 !important;
+}
+
+/* 确保整个应用页面背景正确 */
+body.dark-theme #apps-page,
+[data-theme="dark"] #apps-page {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* 下拉菜单修复 */
+body.dark-theme #apps-page .recent-search-dropdown,
+[data-theme="dark"] #apps-page .recent-search-dropdown {
+    background: #1c1c1e !important;
+    border: 1px solid #38383a !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+body.dark-theme #apps-page .app-letters-dropdown,
+[data-theme="dark"] #apps-page .app-letters-dropdown {
+    background: #1c1c1e !important;
+    border: 1px solid #38383a !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+body.dark-theme #apps-page .dropdown-tab,
+[data-theme="dark"] #apps-page .dropdown-tab {
+    background: #2c2c2e !important;
+    color: #ebebf5 !important;
+    border: 1px solid #38383a !important;
+}
+
+body.dark-theme #apps-page .dropdown-tab.active,
+[data-theme="dark"] #apps-page .dropdown-tab.active {
+    background: #30d158 !important;
+    color: white !important;
+    border-color: #30d158 !important;
+}
+
+/* 系统暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) #apps-page .apps-header {
+        background: #1c1c1e !important;
+        color: #ffffff !important;
+    }
+    
+    body:not([data-theme="light"]) #apps-page .top-search-bar {
+        background: #1c1c1e !important;
+    }
+    
+    body:not([data-theme="light"]) #apps-page .app-search-input {
+        background: #2c2c2e !important;
+        color: #ffffff !important;
+        border: 1px solid #38383a !important;
+    }
+    
+    body:not([data-theme="light"]) #apps-page {
+        background: #000000 !important;
+        color: #ffffff !important;
+    }
+}

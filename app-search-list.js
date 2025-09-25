@@ -12,6 +12,7 @@ class AppSearchList {
         this.createSearchListModal();
         this.bindEvents();
         this.loadApps();
+        this.loadSelectedApp();
     }
 
     // 创建搜索列表模态框
@@ -242,34 +243,106 @@ class AppSearchList {
         // 隐藏模态框
         this.hide();
         
-        // 获取当前搜索输入框的内容
-        const searchInput = document.getElementById('appSearchInput');
-        let keyword = '';
-        
-        if (searchInput && searchInput.value.trim()) {
-            keyword = searchInput.value.trim();
-        } else {
-            // 如果没有输入关键词，提示用户输入
-            this.showToast(`请在搜索框中输入要搜索的内容`);
-            if (searchInput) {
-                searchInput.focus();
-            }
-            return;
-        }
-        
-        // 调用现有的搜索功能
-         if (window.mobileEnhancedFeatures && typeof window.mobileEnhancedFeatures.performAppSearch === 'function') {
-             window.mobileEnhancedFeatures.performAppSearch(appData.id, keyword);
-         } else {
-             // 备用方案：直接跳转到搜索URL
-             this.performDirectSearch(appData, keyword);
-         }
+        // 替换默认应用图标
+        this.replaceDefaultAppIcon(appData);
         
         // 显示提示
-        this.showToast(`正在打开 ${appData.name} 搜索"${keyword}"`);
+    this.showToast(`已选择 ${appData.name}`);
     }
     
-    // 直接搜索的备用方案
+    // 替换默认应用图标
+    replaceDefaultAppIcon(appData) {
+        // 找到搜索框旁边的默认app图标
+        const defaultAppIcon = document.querySelector('.selected-app-icon') || 
+                              document.getElementById('selectedAppIcon');
+
+        if (defaultAppIcon && appData) {
+            // 生成应用图标的字母和样式
+            const appLetter = appData.name.charAt(0).toUpperCase();
+            const appLetterStyle = this.generateAppIconStyle(appData);
+
+            // 更新默认图标的显示
+            defaultAppIcon.innerHTML = `
+                <div class="app-letter" style="${appLetterStyle}">${appLetter}</div>
+            `;
+
+            // 保存选中的应用信息
+            defaultAppIcon.dataset.selectedApp = appData.id || appData.key;
+            defaultAppIcon.dataset.selectedAppName = appData.name;
+
+            // 添加选中状态的样式
+            defaultAppIcon.classList.add('app-selected');
+
+            // 保存到本地存储
+            this.saveSelectedApp(appData, appLetter, appLetterStyle);
+
+            console.log(`默认应用已更换为: ${appData.name} (${appData.id || appData.key})`);
+        }
+    }
+    
+    // 生成应用图标样式
+    generateAppIconStyle(appData) {
+        // 根据应用名称生成颜色
+        const colors = [
+            '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
+            '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'
+        ];
+        
+        let hash = 0;
+        for (let i = 0; i < appData.name.length; i++) {
+            hash = appData.name.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const colorIndex = Math.abs(hash) % colors.length;
+        const backgroundColor = colors[colorIndex];
+        
+        return `background: ${backgroundColor}; color: white; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 50%; font-weight: bold; font-size: 14px;`;
+    }
+    
+    // 保存选中的应用到本地存储
+    saveSelectedApp(appData, appLetter, appLetterStyle) {
+        try {
+            const selectedAppInfo = {
+                id: appData.id || appData.key,
+                name: appData.name,
+                letter: appLetter,
+                style: appLetterStyle,
+                timestamp: Date.now()
+            };
+            localStorage.setItem('selectedApp', JSON.stringify(selectedAppInfo));
+        } catch (error) {
+             console.warn('Failed to save selected app to localStorage:', error);
+         }
+     }
+     
+     // 从本地存储加载选中的应用
+     loadSelectedApp() {
+         try {
+             const savedApp = localStorage.getItem('selectedApp');
+             if (savedApp) {
+                 const appInfo = JSON.parse(savedApp);
+                 const defaultAppIcon = document.querySelector('.selected-app-icon') || 
+                                       document.getElementById('selectedAppIcon');
+                 
+                 if (defaultAppIcon && appInfo) {
+                     // 恢复图标显示
+                     defaultAppIcon.innerHTML = `
+                         <div class="app-letter" style="${appInfo.style}">${appInfo.letter}</div>
+                     `;
+                     
+                     // 恢复数据属性
+                     defaultAppIcon.dataset.selectedApp = appInfo.id;
+                     defaultAppIcon.dataset.selectedAppName = appInfo.name;
+                     defaultAppIcon.classList.add('app-selected');
+                     
+                     console.log(`已恢复默认应用: ${appInfo.name} (${appInfo.id})`);
+                 }
+             }
+         } catch (error) {
+             console.warn('Failed to load selected app from localStorage:', error);
+         }
+     }
+     
+     // 直接搜索的备用方案
     performDirectSearch(appData, keyword) {
         if (appData.searchUrl) {
             const searchUrl = appData.searchUrl.replace('{keyword}', encodeURIComponent(keyword));

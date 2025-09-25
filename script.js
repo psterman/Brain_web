@@ -7,7 +7,29 @@ const themeIcon = document.querySelector('.theme-icon');
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
     body.setAttribute('data-theme', savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // 添加/移除dark-theme类以兼容旧样式
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-theme');
+    } else {
+        body.classList.remove('dark-theme');
+    }
+    
     updateThemeIcon(savedTheme);
+} else {
+    // 检测系统主题偏好
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        body.setAttribute('data-theme', 'dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+        body.classList.add('dark-theme');
+        updateThemeIcon('dark');
+    } else {
+        body.setAttribute('data-theme', 'light');
+        document.documentElement.setAttribute('data-theme', 'light');
+        body.classList.remove('dark-theme');
+        updateThemeIcon('light');
+    }
 }
 
 // 主题切换事件
@@ -15,9 +37,26 @@ themeToggle.addEventListener('click', () => {
     const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     
+    // 统一设置主题
     body.setAttribute('data-theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    
+    // 添加/移除dark-theme类以兼容旧样式
+    if (newTheme === 'dark') {
+        body.classList.add('dark-theme');
+    } else {
+        body.classList.remove('dark-theme');
+    }
+    
     localStorage.setItem('theme', newTheme);
     updateThemeIcon(newTheme);
+    
+    // 强制重新渲染
+    setTimeout(() => {
+        body.style.display = 'none';
+        body.offsetHeight;
+        body.style.display = '';
+    }, 10);
 });
 
 // 更新主题图标

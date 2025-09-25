@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图标替换演示</title>
+    <link rel="stylesheet" href="app-search-list.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .demo-container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .demo-title {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .icon-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        .selected-app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+        .selected-app-icon:hover {
+            transform: scale(1.05);
+        }
+        .selected-app-icon.app-selected {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .icon-label {
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+        }
+        .demo-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .demo-button:active {
+            transform: translateY(0);
+        }
+        .status-message {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .instruction {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">🎯 图标替换演示</h1>
+        
+        <div class="instruction">
+            <strong>使用说明：</strong><br>
+            1. 点击下方按钮打开应用选择器<br>
+            2. 选择任意应用图标<br>
+            3. 观察默认图标的变化
+        </div>
+        
+        <div class="icon-display">
+            <div class="selected-app-icon" id="selectedAppIcon">
+                默
+            </div>
+            <div class="icon-label">默认应用图标</div>
+        </div>
+        
+        <button class="demo-button" onclick="openAppSelector()">
+            🔍 打开应用选择器
+        </button>
+        
+        <button class="demo-button" onclick="testQuickReplace()">
+            ⚡ 快速测试（支付宝）
+        </button>
+        
+        <button class="demo-button" onclick="resetIcon()">
+            🔄 重置图标
+        </button>
+        
+        <div id="statusMessage"></div>
+    </div>
+
+    <!-- 引入依赖文件 -->
+    <script src="app-search-database.js"></script>
+    <script src="app-search-list.js"></script>
+
+    <script>
+        function showMessage(text, type = 'info') {
+            const messageDiv = document.getElementById('statusMessage');
+            messageDiv.innerHTML = `<div class="status-message ${type}">${text}</div>`;
+            
+            // 3秒后自动清除消息
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 3000);
+        }
+
+        function openAppSelector() {
+            try {
+                if (window.AppSearchList) {
+                    window.AppSearchList.show();
+                    showMessage('✅ 应用选择器已打开！请选择一个应用来替换默认图标。', 'success');
+                } else {
+                    showMessage('❌ 错误：AppSearchList 未加载', 'error');
+                }
+            } catch (error) {
+                showMessage('❌ 错误：' + error.message, 'error');
+            }
+        }
+
+        function testQuickReplace() {
+            try {
+                if (window.AppSearchList && window.AppSearchDB) {
+                    const alipayApp = window.AppSearchDB.getApp('alipay');
+                    if (alipayApp) {
+                        window.AppSearchList.replaceDefaultAppIcon(alipayApp);
+                        showMessage('✅ 成功替换为支付宝图标！', 'success');
+                    } else {
+                        showMessage('❌ 找不到支付宝应用数据', 'error');
+                    }
+                } else {
+                    showMessage('❌ 依赖未完全加载', 'error');
+                }
+            } catch (error) {
+                showMessage('❌ 错误：' + error.message, 'error');
+            }
+        }
+
+        function resetIcon() {
+            try {
+                const defaultIcon = document.getElementById('selectedAppIcon');
+                if (defaultIcon) {
+                    defaultIcon.innerHTML = '默';
+                    defaultIcon.classList.remove('app-selected');
+                    defaultIcon.style.background = '#e9ecef';
+                    defaultIcon.style.color = '#6c757d';
+                    delete defaultIcon.dataset.selectedApp;
+                    delete defaultIcon.dataset.selectedAppName;
+                    localStorage.removeItem('selectedApp');
+                    showMessage('✅ 图标已重置为默认状态', 'success');
+                }
+            } catch (error) {
+                showMessage('❌ 重置失败：' + error.message, 'error');
+            }
+        }
+
+        // 页面加载完成后的初始化
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (window.AppSearchDB && window.AppSearchList) {
+                    showMessage('🎉 系统已就绪，可以开始测试图标替换功能！', 'success');
+                    
+                    // 为默认图标添加点击事件
+                    const defaultIcon = document.getElementById('selectedAppIcon');
+                    if (defaultIcon) {
+                        defaultIcon.addEventListener('click', openAppSelector);
+                    }
+                } else {
+                    showMessage('⚠️ 部分依赖未加载，请刷新页面重试', 'error');
+                }
+            }, 500);
+        });
+
+        // 监听应用选择事件（如果有的话）
+        document.addEventListener('appSelected', function(event) {
+            if (event.detail && event.detail.appName) {
+                showMessage(`✅ 已选择 ${event.detail.appName}！`, 'success');
+            }
+        });
+    </script>
+</body>
+</html>
