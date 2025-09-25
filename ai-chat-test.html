@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI对话框功能测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-theme {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .test-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.dark-theme .test-container {
+            background: #2c2c2c;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .test-header {
+            background: #007AFF;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .theme-toggle-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .theme-toggle-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .ai-selector {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        body.dark-theme .ai-selector {
+            border-bottom-color: #3a3a3a;
+        }
+
+        .ai-model-tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .ai-tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .ai-tab.active {
+            background: #007AFF;
+            color: white;
+        }
+
+        body.dark-theme .ai-tab {
+            background: #3a3a3a;
+            color: #ffffff;
+        }
+
+        body.dark-theme .ai-tab.active {
+            background: #007AFF;
+        }
+
+        .chat-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .message.user-message {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .message.user-message .message-avatar {
+            background: #007AFF;
+            color: white;
+        }
+
+        body.dark-theme .message-avatar {
+            background: #3a3a3a;
+        }
+
+        .message-content {
+            flex: 1;
+            max-width: 70%;
+        }
+
+        .message-text {
+            background: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 18px;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .message.user-message .message-text {
+            background: #007AFF;
+            color: white;
+        }
+
+        body.dark-theme .message-text {
+            background: #3a3a3a;
+            color: #ffffff;
+        }
+
+        .message-time {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .test-status {
+            padding: 10px 20px;
+            background: #e8f5e8;
+            border-left: 4px solid #4CAF50;
+            margin: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        body.dark-theme .test-status {
+            background: #1a3a1a;
+            color: #4CAF50;
+        }
+
+        .test-buttons {
+            padding: 10px 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .test-btn {
+            padding: 8px 16px;
+            background: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .test-btn:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .test-btn.secondary {
+            background: #6c757d;
+        }
+
+        .test-btn.secondary:hover {
+            background: #545b62;
+        }
+    </style>
+    
+    <!-- 引入原有的CSS文件 -->
+    <link rel="stylesheet" href="ai-chat-input-wechat-style.css">
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <span>AI对话框功能测试</span>
+            <button class="theme-toggle-btn" onclick="toggleTestTheme()">🌙</button>
+        </div>
+
+        <!-- AI模型选择器 -->
+        <div class="ai-selector">
+            <div class="ai-model-tabs">
+                <div class="ai-tab active" data-model="deepseek">
+                    <div class="ai-tab-avatar">🧠</div>
+                    <span>DeepSeek</span>
+                </div>
+                <div class="ai-tab" data-model="kimi">
+                    <div class="ai-tab-avatar">🤖</div>
+                    <span>Kimi</span>
+                </div>
+                <div class="ai-tab" data-model="zhipu">
+                    <div class="ai-tab-avatar">💭</div>
+                    <span>智谱清言</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 聊天区域 -->
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <!-- 欢迎消息 -->
+                <div class="message ai-message">
+                    <div class="message-avatar">🧠</div>
+                    <div class="message-content">
+                        <div class="message-text">你好！我是DeepSeek，有什么可以帮助你的吗？</div>
+                        <div class="message-time">刚刚</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 测试状态 -->
+        <div class="test-status" id="testStatus">
+            ✅ 输入框和发送按钮已加载，可以开始测试
+        </div>
+
+        <!-- 测试按钮 -->
+        <div class="test-buttons">
+            <button class="test-btn" onclick="testSendMessage()">测试发送消息</button>
+            <button class="test-btn secondary" onclick="testThemeSwitch()">测试主题切换</button>
+            <button class="test-btn secondary" onclick="testModelSwitch()">测试模型切换</button>
+            <button class="test-btn secondary" onclick="clearChat()">清空对话</button>
+        </div>
+
+        <!-- 输入区域 -->
+        <div class="chat-input-container">
+            <div class="input-wrapper">
+                <input type="text" id="messageInput" placeholder="输入消息..." class="message-input">
+                <button id="sendButton" class="send-button">
+                    <span class="send-icon">📤</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let messageCount = 0;
+        let currentModel = 'deepseek';
+        
+        const models = {
+            deepseek: { name: 'DeepSeek', avatar: '🧠' },
+            kimi: { name: 'Kimi', avatar: '🤖' },
+            zhipu: { name: '智谱清言', avatar: '💭' }
+        };
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            updateTestStatus('✅ 页面加载完成，所有功能已就绪');
+        });
+
+        function setupEventListeners() {
+            // 发送按钮事件
+            const sendButton = document.getElementById('sendButton');
+            const messageInput = document.getElementById('messageInput');
+            
+            if (sendButton) {
+                sendButton.addEventListener('click', sendMessage);
+            }
+            
+            if (messageInput) {
+                messageInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+            }
+
+            // AI模型切换
+            document.querySelectorAll('.ai-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const model = this.dataset.model;
+                    switchModel(model);
+                });
+            });
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            
+            if (!message) {
+                updateTestStatus('❌ 请输入消息内容');
+                return;
+            }
+
+            // 添加用户消息
+            addMessage(message, 'user');
+            messageInput.value = '';
+
+            // 模拟AI回复
+            setTimeout(() => {
+                const responses = [
+                    '这是一个很有趣的问题！',
+                    '我理解您的意思，让我来帮您分析一下。',
+                    '根据我的理解，这个问题可以这样看...',
+                    '这确实是一个值得思考的话题。',
+                    '让我为您提供一些建议...'
+                ];
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                addMessage(randomResponse, 'ai');
+                updateTestStatus('✅ 消息发送成功，AI已回复');
+            }, 1000);
+
+            updateTestStatus('⏳ 正在发送消息...');
+        }
+
+        function addMessage(content, type) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}-message`;
+            
+            const currentTime = new Date().toLocaleTimeString('zh-CN', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+
+            const avatar = type === 'user' ? '👤' : models[currentModel].avatar;
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${avatar}</div>
+                <div class="message-content">
+                    <div class="message-text">${content}</div>
+                    <div class="message-time">${currentTime}</div>
+                </div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            messageCount++;
+        }
+
+        function switchModel(model) {
+            currentModel = model;
+            
+            // 更新UI
+            document.querySelectorAll('.ai-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-model="${model}"]`).classList.add('active');
+            
+            // 添加切换消息
+            addMessage(`已切换到${models[model].name}`, 'ai');
+            updateTestStatus(`✅ 已切换到${models[model].name}模型`);
+        }
+
+        function testSendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            messageInput.value = '这是一条测试消息';
+            sendMessage();
+        }
+
+        function testThemeSwitch() {
+            toggleTestTheme();
+            updateTestStatus('✅ 主题切换测试完成');
+        }
+
+        function testModelSwitch() {
+            const models = ['deepseek', 'kimi', 'zhipu'];
+            const currentIndex = models.indexOf(currentModel);
+            const nextModel = models[(currentIndex + 1) % models.length];
+            switchModel(nextModel);
+        }
+
+        function clearChat() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML = `
+                <div class="message ai-message">
+                    <div class="message-avatar">${models[currentModel].avatar}</div>
+                    <div class="message-content">
+                        <div class="message-text">你好！我是${models[currentModel].name}，有什么可以帮助你的吗？</div>
+                        <div class="message-time">刚刚</div>
+                    </div>
+                </div>
+            `;
+            messageCount = 0;
+            updateTestStatus('✅ 对话已清空');
+        }
+
+        function toggleTestTheme() {
+            const body = document.body;
+            const themeBtn = document.querySelector('.theme-toggle-btn');
+            
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                themeBtn.textContent = '🌙';
+            } else {
+                body.classList.add('dark-theme');
+                themeBtn.textContent = '☀️';
+            }
+        }
+
+        function updateTestStatus(message) {
+            const testStatus = document.getElementById('testStatus');
+            testStatus.textContent = message;
+            
+            // 3秒后恢复默认状态
+            setTimeout(() => {
+                if (testStatus.textContent === message) {
+                    testStatus.textContent = '✅ 输入框和发送按钮工作正常';
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -170,7 +170,7 @@ class AIChatSystem {
         this.scrollToBottom();
     }
     
-    // 创建消息元素
+    // 创建消息元素 - 微信风格
     createMessageElement(message, model) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${message.type}-message`;
@@ -182,17 +182,26 @@ class AIChatSystem {
         const content = document.createElement('div');
         content.className = 'message-content';
         
+        // 创建消息文本容器
+        const messageText = document.createElement('div');
+        messageText.className = 'message-text';
+        
         // 处理markdown格式
         const formattedContent = this.formatMarkdown(message.content);
-        content.innerHTML = formattedContent;
+        messageText.innerHTML = formattedContent;
         
+        // 创建时间戳
         const timestamp = document.createElement('div');
-        timestamp.className = 'message-timestamp';
+        timestamp.className = 'message-time';
         timestamp.textContent = message.timestamp;
         
+        // 组装消息内容
+        content.appendChild(messageText);
+        content.appendChild(timestamp);
+        
+        // 组装完整消息
         messageDiv.appendChild(avatar);
         messageDiv.appendChild(content);
-        messageDiv.appendChild(timestamp);
         
         return messageDiv;
     }

@@ -1,0 +1,227 @@
+/* 搜索页面和AI页面暗色模式白色区域修复 */
+
+/* 搜索页面暗色模式修复 */
+body.dark-theme .search-config,
+body[data-theme="dark"] .search-config {
+    background-color: var(--dark-bg-secondary) !important;
+    color: var(--dark-text-primary) !important;
+}
+
+/* 搜索引擎选择区域 */
+body.dark-theme .search-engines,
+body[data-theme="dark"] .search-engines {
+    background-color: var(--dark-bg-secondary) !important;
+    color: var(--dark-text-primary) !important;
+    border: 1px solid var(--dark-border) !important;
+    border-radius: 12px !important;
+}
+
+/* 引擎网格容器 */
+body.dark-theme .engine-grid,
+body[data-theme="dark"] .engine-grid {
+    background-color: var(--dark-bg-secondary) !important;
+}
+
+/* 引擎分类按钮区域 */
+body.dark-theme .engine-categories,
+body[data-theme="dark"] .engine-categories {
+    background-color: transparent !important;
+}
+
+/* 分类按钮样式 */
+body.dark-theme .category-btn,
+body[data-theme="dark"] .category-btn {
+    background-color: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-secondary) !important;
+    border: 1px solid var(--dark-border) !important;
+}
+
+/* 激活状态的分类按钮 */
+body.dark-theme .category-btn.active,
+body.dark-theme .category-btn.selected,
+body[data-theme="dark"] .category-btn.active,
+body[data-theme="dark"] .category-btn.selected {
+    background-color: var(--dark-accent-green) !important;
+    color: white !important;
+    border-color: var(--dark-accent-green) !important;
+}
+
+/* 引擎项目 */
+body.dark-theme .engine-item,
+body[data-theme="dark"] .engine-item {
+    background-color: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-primary) !important;
+    border: 1px solid var(--dark-border) !important;
+}
+
+/* 选中的引擎项目 */
+body.dark-theme .engine-item.selected,
+body[data-theme="dark"] .engine-item.selected {
+    background-color: var(--dark-bg-tertiary) !important;
+    border-color: var(--dark-accent-green) !important;
+    box-shadow: 0 0 0 2px rgba(48, 209, 88, 0.2) !important;
+}
+
+/* 引擎名称 */
+body.dark-theme .engine-name,
+body[data-theme="dark"] .engine-name {
+    color: var(--dark-text-primary) !important;
+}
+
+/* 配置说明 */
+body.dark-theme .config-note,
+body.dark-theme .engine-note,
+body[data-theme="dark"] .config-note,
+body[data-theme="dark"] .engine-note {
+    color: var(--dark-text-secondary) !important;
+    background-color: var(--dark-bg-tertiary) !important;
+    border: 1px solid var(--dark-border) !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
+}
+
+/* AI页面暗色模式修复 */
+body.dark-theme .ai-selector,
+body[data-theme="dark"] .ai-selector {
+    background-color: var(--dark-bg-secondary) !important;
+    color: var(--dark-text-primary) !important;
+}
+
+/* AI模型选择器上方区域 */
+body.dark-theme .ai-page .page-header,
+body.dark-theme .ai-page .ai-header,
+body[data-theme="dark"] .ai-page .page-header,
+body[data-theme="dark"] .ai-page .ai-header {
+    background-color: var(--dark-bg-primary) !important;
+    color: var(--dark-text-primary) !important;
+}
+
+/* AI模型标签页 */
+body.dark-theme .ai-model-tabs,
+body[data-theme="dark"] .ai-model-tabs {
+    background-color: var(--dark-bg-secondary) !important;
+    border-bottom: 1px solid var(--dark-border) !important;
+}
+
+/* AI模型选择按钮 */
+body.dark-theme .ai-model-btn,
+body[data-theme="dark"] .ai-model-btn {
+    background-color: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-secondary) !important;
+    border: 1px solid var(--dark-border) !important;
+}
+
+/* 激活的AI模型按钮 */
+body.dark-theme .ai-model-btn.active,
+body[data-theme="dark"] .ai-model-btn.active {
+    background-color: var(--dark-accent-green) !important;
+    color: white !important;
+    border-color: var(--dark-accent-green) !important;
+}
+
+/* 聊天区域 */
+body.dark-theme .chat-container,
+body.dark-theme .chat-messages,
+body[data-theme="dark"] .chat-container,
+body[data-theme="dark"] .chat-messages {
+    background-color: var(--dark-bg-primary) !important;
+}
+
+/* 聊天消息 */
+body.dark-theme .message,
+body[data-theme="dark"] .message {
+    background-color: var(--dark-bg-secondary) !important;
+    color: var(--dark-text-primary) !important;
+    border: 1px solid var(--dark-border) !important;
+}
+
+/* 用户消息 */
+body.dark-theme .message.user,
+body[data-theme="dark"] .message.user {
+    background-color: var(--dark-accent-green) !important;
+    color: white !important;
+}
+
+/* 输入框区域 */
+body.dark-theme .chat-input-container,
+body[data-theme="dark"] .chat-input-container {
+    background-color: var(--dark-bg-secondary) !important;
+    border-top: 1px solid var(--dark-border) !important;
+}
+
+/* 聊天输入框 */
+body.dark-theme .chat-input,
+body[data-theme="dark"] .chat-input {
+    background-color: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-primary) !important;
+    border: 1px solid var(--dark-border) !important;
+}
+
+/* 发送按钮 */
+body.dark-theme .send-btn,
+body[data-theme="dark"] .send-btn {
+    background-color: var(--dark-accent-green) !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* 修复所有可能的白色背景容器 */
+body.dark-theme .page,
+body.dark-theme .page-content,
+body.dark-theme .content-area,
+body[data-theme="dark"] .page,
+body[data-theme="dark"] .page-content,
+body[data-theme="dark"] .content-area {
+    background-color: var(--dark-bg-primary) !important;
+    color: var(--dark-text-primary) !important;
+}
+
+/* 系统暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) .search-config {
+        background-color: var(--dark-bg-secondary) !important;
+        color: var(--dark-text-primary) !important;
+    }
+    
+    body:not([data-theme="light"]) .search-engines {
+        background-color: var(--dark-bg-secondary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-border) !important;
+        border-radius: 12px !important;
+    }
+    
+    body:not([data-theme="light"]) .engine-grid {
+        background-color: var(--dark-bg-secondary) !important;
+    }
+    
+    body:not([data-theme="light"]) .category-btn {
+        background-color: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-secondary) !important;
+        border: 1px solid var(--dark-border) !important;
+    }
+    
+    body:not([data-theme="light"]) .category-btn.active,
+    body:not([data-theme="light"]) .category-btn.selected {
+        background-color: var(--dark-accent-green) !important;
+        color: white !important;
+        border-color: var(--dark-accent-green) !important;
+    }
+    
+    body:not([data-theme="light"]) .engine-item {
+        background-color: var(--dark-bg-tertiary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-border) !important;
+    }
+    
+    body:not([data-theme="light"]) .ai-selector {
+        background-color: var(--dark-bg-secondary) !important;
+        color: var(--dark-text-primary) !important;
+    }
+    
+    body:not([data-theme="light"]) .page,
+    body:not([data-theme="light"]) .page-content,
+    body:not([data-theme="light"]) .content-area {
+        background-color: var(--dark-bg-primary) !important;
+        color: var(--dark-text-primary) !important;
+    }
+}

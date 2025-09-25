@@ -1,0 +1,230 @@
+/* AI聊天输入框 - 微信风格设计 */
+
+/* 基础输入容器 */
+.chat-input-container {
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #f7f7f7;
+    border-top: 1px solid #e5e5e5;
+    padding: 8px 16px 8px 16px;
+    /* 为底部导航栏留出空间 */
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 60px));
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* 输入框包装器 */
+.input-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* 输入框样式 */
+.message-input {
+    flex: 1;
+    min-height: 36px;
+    max-height: 120px;
+    background: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #333;
+    resize: none;
+    outline: none;
+    transition: all 0.2s ease;
+    word-wrap: break-word;
+    overflow-y: auto;
+}
+
+.message-input:focus {
+    border-color: #07c160;
+    box-shadow: 0 0 0 2px rgba(7, 193, 96, 0.1);
+}
+
+.message-input::placeholder {
+    color: #999;
+    font-size: 16px;
+}
+
+/* 发送按钮样式 */
+.send-button {
+    width: 36px;
+    height: 36px;
+    background: #07c160;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.send-button:hover {
+    background: #06ad56;
+    transform: scale(1.05);
+}
+
+.send-button:active {
+    background: #059748;
+    transform: scale(0.95);
+}
+
+.send-button:disabled {
+    background: #c8c8c8;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.send-icon {
+    font-size: 16px;
+    color: white;
+    line-height: 1;
+}
+
+/* 聊天容器调整，为固定输入框留出空间 */
+.chat-container {
+    padding-bottom: 80px !important;
+    overflow-y: auto;
+}
+
+.chat-messages {
+    padding-bottom: 20px;
+}
+
+/* 暗色模式样式 */
+body.dark-theme .chat-input-container,
+body[data-theme="dark"] .chat-input-container {
+    background: #2c2c2c;
+    border-top-color: #3a3a3a;
+}
+
+body.dark-theme .message-input,
+body[data-theme="dark"] .message-input {
+    background: #3a3a3a;
+    border-color: #4a4a4a;
+    color: #ffffff;
+}
+
+body.dark-theme .message-input:focus,
+body[data-theme="dark"] .message-input:focus {
+    border-color: #07c160;
+    box-shadow: 0 0 0 2px rgba(7, 193, 96, 0.2);
+}
+
+body.dark-theme .message-input::placeholder,
+body[data-theme="dark"] .message-input::placeholder {
+    color: #888;
+}
+
+body.dark-theme .send-button,
+body[data-theme="dark"] .send-button {
+    background: #07c160;
+}
+
+body.dark-theme .send-button:hover,
+body[data-theme="dark"] .send-button:hover {
+    background: #06ad56;
+}
+
+body.dark-theme .send-button:active,
+body[data-theme="dark"] .send-button:active {
+    background: #059748;
+}
+
+body.dark-theme .send-button:disabled,
+body[data-theme="dark"] .send-button:disabled {
+    background: #4a4a4a;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .chat-input-container {
+        padding: 6px 12px 6px 12px;
+        padding-bottom: calc(6px + env(safe-area-inset-bottom, 60px));
+    }
+    
+    .input-wrapper {
+        gap: 6px;
+    }
+    
+    .message-input {
+        font-size: 16px; /* 防止iOS缩放 */
+        padding: 6px 10px;
+        min-height: 32px;
+    }
+    
+    .send-button {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .send-icon {
+        font-size: 14px;
+    }
+}
+
+/* 输入框聚焦时的动画效果 */
+.message-input:focus {
+    animation: inputFocus 0.3s ease;
+}
+
+@keyframes inputFocus {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 发送按钮点击动画 */
+.send-button.sending {
+    animation: sendPulse 0.6s ease;
+}
+
+@keyframes sendPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(7, 193, 96, 0.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 修复AI页面布局 */
+#ai-page {
+    padding-bottom: 100px !important;
+}
+
+#ai-page .chat-input-container {
+    position: fixed !important;
+    bottom: 60px; /* 为底部导航栏留出空间 */
+    left: 0;
+    right: 0;
+    margin: 0;
+    max-width: none;
+    width: 100%;
+}
+
+/* 确保输入框在所有页面中都可见 */
+.page.active .chat-input-container {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}

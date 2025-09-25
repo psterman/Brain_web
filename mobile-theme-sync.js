@@ -17,6 +17,12 @@ class MobileThemeSync {
     }
     
     observeThemeChanges() {
+        // 确保DOM已加载
+        if (!document.body || !document.documentElement) {
+            setTimeout(() => this.observeThemeChanges(), 100);
+            return;
+        }
+        
         // 监听body的data-theme属性变化
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
@@ -28,15 +34,19 @@ class MobileThemeSync {
             });
         });
         
-        observer.observe(document.body, {
-            attributes: true,
-            attributeFilter: ['data-theme', 'class']
-        });
-        
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ['data-theme', 'class']
-        });
+        try {
+            observer.observe(document.body, {
+                attributes: true,
+                attributeFilter: ['data-theme', 'class']
+            });
+            
+            observer.observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: ['data-theme', 'class']
+            });
+        } catch (error) {
+            console.warn('Theme observer setup failed:', error);
+        }
     }
     
     observeSystemTheme() {

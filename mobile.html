@@ -23,7 +23,19 @@
     <link rel="stylesheet" href="mobile-dark-mode-fix.css">
     <link rel="stylesheet" href="mobile-apps-dark-override.css">
     <link rel="stylesheet" href="mobile-apps-spacing-fix.css">
+    <link rel="stylesheet" href="mobile-search-ai-dark-fix.css">
+    <link rel="stylesheet" href="mobile-chat-message-dark-fix.css">
     
+    <!-- 布局修复 - 必须在最后加载以覆盖冲突样式 -->
+    <link rel="stylesheet" href="mobile-layout-fix.css">
+    
+    <!-- 暗色模式完整修复 - 最后加载以确保优先级 -->
+    <link rel="stylesheet" href="mobile-dark-mode-complete-fix.css">
+    <link rel="stylesheet" href="ai-chat-input-wechat-style.css">
+    
+    <!-- AI聊天微信风格 - 最新设计 -->
+    <link rel="stylesheet" href="mobile-ai-wechat-style.css">
+</head>    
     <!-- 主题同步脚本 - 需要在其他脚本之前加载 -->
     <script src="mobile-theme-sync.js"></script>
 </head>
@@ -908,6 +920,9 @@
     <script src="ai-chat.js"></script>
     <script src="enhanced-browser-v3.js"></script>
     <script src="mobile-enhanced-features.js"></script>
+    
+    <!-- 页面切换优化 - 防止暗色模式白色漏光 -->
+    <script src="mobile-page-transition-fix.js"></script>
 </body>
 
 </html>

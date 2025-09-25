@@ -1,0 +1,174 @@
+/* 移动端布局修复 - 解决空白区域和偏移问题 */
+
+/* 重置body的强制居中样式 */
+body {
+    display: block !important;
+    justify-content: unset !important;
+    align-items: unset !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: auto !important; /* 允许滚动 */
+    background: #f0f0f0 !important;
+}
+
+/* 修复mobile-app容器的尺寸和定位 */
+.mobile-app {
+    width: 375px !important;
+    height: 812px !important;
+    max-width: 375px !important;
+    max-height: 812px !important;
+    margin: 20px auto !important; /* 上下留白，左右居中 */
+    position: relative !important;
+    display: block !important;
+    flex-direction: unset !important;
+    justify-content: unset !important;
+    align-items: unset !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) !important;
+    /* 保持硬件加速 */
+    transform: translateZ(0) !important;
+    will-change: transform !important;
+    backface-visibility: hidden !important;
+}
+
+/* 确保mobile-screen正常显示 */
+.mobile-screen {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 32px !important;
+    background: #fff !important;
+}
+
+/* 修复页面内容的居中问题 */
+.page {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important; /* 不强制居中 */
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    /* 页面切换动画 */
+    transform: translateX(100%) translateZ(0) !important;
+    will-change: transform, opacity !important;
+    backface-visibility: hidden !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.page.active {
+    transform: translateX(0) translateZ(0) !important;
+}
+
+/* 修复搜索页面布局 */
+#search-page {
+    padding: 0 !important;
+}
+
+#search-page .search-container {
+    width: 100% !important;
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+}
+
+/* 修复AI页面布局 */
+#ai-page {
+    padding: 0 !important;
+}
+
+#ai-page .ai-selector {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 15px 20px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+#ai-page .chat-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    padding: 0 20px !important;
+}
+
+/* 修复浏览器页面布局 */
+#browser-page {
+    padding: 0 !important;
+}
+
+#browser-page .browser-container {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* 确保底部导航栏正常显示 */
+.bottom-nav {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 80px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    z-index: 1000 !important;
+}
+
+/* 修复状态栏 */
+.status-bar {
+    position: relative !important;
+    width: 100% !important;
+    height: 44px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 20px !important;
+    background: transparent !important;
+    z-index: 1001 !important;
+}
+
+/* 防止内容被底部导航遮挡 */
+.page-content {
+    padding-bottom: 100px !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 414px) {
+    .mobile-app {
+        width: 100vw !important;
+        height: 100vh !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+    }
+    
+    .mobile-screen {
+        border-radius: 0 !important;
+    }
+}
+
+/* 暗色主题适配 */
+[data-theme="dark"] body {
+    background: #1a1a1a !important;
+}
+
+[data-theme="dark"] .mobile-app {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1) !important;
+}

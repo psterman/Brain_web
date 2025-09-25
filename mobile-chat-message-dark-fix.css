@@ -1,0 +1,248 @@
+/* AI聊天消息暗色模式强制修复 - 最高优先级 */
+
+/* 聊天容器基础修复 */
+body.dark-theme #ai-page,
+body[data-theme="dark"] #ai-page {
+    background-color: var(--dark-bg-primary) !important;
+}
+
+body.dark-theme .chat-container,
+body.dark-theme .chat-messages,
+body[data-theme="dark"] .chat-container,
+body[data-theme="dark"] .chat-messages {
+    background-color: var(--dark-bg-primary) !important;
+}
+
+/* AI消息样式 - 强制覆盖所有可能的选择器 */
+body.dark-theme .message,
+body.dark-theme .ai-message,
+body.dark-theme .message.ai-message,
+body.dark-theme .message-content,
+body.dark-theme .message-text,
+body.dark-theme .message-bubble,
+body[data-theme="dark"] .message,
+body[data-theme="dark"] .ai-message,
+body[data-theme="dark"] .message.ai-message,
+body[data-theme="dark"] .message-content,
+body[data-theme="dark"] .message-text,
+body[data-theme="dark"] .message-bubble {
+    background-color: var(--dark-bg-secondary) !important;
+    background: var(--dark-bg-secondary) !important;
+    color: var(--dark-text-primary) !important;
+    border: 1px solid var(--dark-border) !important;
+    border-radius: 12px !important;
+}
+
+/* 用户消息样式 - 绿色主题 */
+body.dark-theme .message.user,
+body.dark-theme .user-message,
+body.dark-theme .message.user-message,
+body.dark-theme .message.user .message-content,
+body.dark-theme .message.user .message-text,
+body.dark-theme .message.user .message-bubble,
+body.dark-theme .user-message .message-content,
+body.dark-theme .user-message .message-text,
+body.dark-theme .user-message .message-bubble,
+body[data-theme="dark"] .message.user,
+body[data-theme="dark"] .user-message,
+body[data-theme="dark"] .message.user-message,
+body[data-theme="dark"] .message.user .message-content,
+body[data-theme="dark"] .message.user .message-text,
+body[data-theme="dark"] .message.user .message-bubble,
+body[data-theme="dark"] .user-message .message-content,
+body[data-theme="dark"] .user-message .message-text,
+body[data-theme="dark"] .user-message .message-bubble {
+    background-color: var(--dark-accent-green) !important;
+    background: var(--dark-accent-green) !important;
+    color: white !important;
+    border: 1px solid var(--dark-accent-green) !important;
+}
+
+/* AI助手消息样式 */
+body.dark-theme .message.assistant,
+body.dark-theme .message.ai,
+body.dark-theme .ai-message,
+body.dark-theme .message.assistant .message-content,
+body.dark-theme .message.assistant .message-text,
+body.dark-theme .message.assistant .message-bubble,
+body.dark-theme .ai-message .message-content,
+body.dark-theme .ai-message .message-text,
+body.dark-theme .ai-message .message-bubble,
+body[data-theme="dark"] .message.assistant,
+body[data-theme="dark"] .message.ai,
+body[data-theme="dark"] .ai-message,
+body[data-theme="dark"] .message.assistant .message-content,
+body[data-theme="dark"] .message.assistant .message-text,
+body[data-theme="dark"] .message.assistant .message-bubble,
+body[data-theme="dark"] .ai-message .message-content,
+body[data-theme="dark"] .ai-message .message-text,
+body[data-theme="dark"] .ai-message .message-bubble {
+    background-color: var(--dark-bg-secondary) !important;
+    background: var(--dark-bg-secondary) !important;
+    color: var(--dark-text-primary) !important;
+    border: 1px solid var(--dark-border) !important;
+}
+
+/* 消息时间戳 */
+body.dark-theme .message-time,
+body[data-theme="dark"] .message-time {
+    color: var(--dark-text-secondary) !important;
+}
+
+/* 消息头像 */
+body.dark-theme .message-avatar,
+body[data-theme="dark"] .message-avatar {
+    background-color: var(--dark-bg-tertiary) !important;
+    border: 1px solid var(--dark-border) !important;
+}
+
+/* 聊天输入区域完整修复 */
+body.dark-theme .chat-input-container,
+body.dark-theme .message-input-container,
+body.dark-theme .input-wrapper,
+body[data-theme="dark"] .chat-input-container,
+body[data-theme="dark"] .message-input-container,
+body[data-theme="dark"] .input-wrapper {
+    background-color: var(--dark-bg-primary) !important;
+    border: none !important;
+    border-top: 1px solid var(--dark-border) !important;
+    box-shadow: none !important;
+}
+
+/* 消息输入框 */
+body.dark-theme .message-input,
+body.dark-theme .chat-input,
+body[data-theme="dark"] .message-input,
+body[data-theme="dark"] .chat-input {
+    background-color: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-primary) !important;
+    border: 1px solid var(--dark-border) !important;
+    border-radius: 20px !important;
+}
+
+body.dark-theme .message-input::placeholder,
+body.dark-theme .chat-input::placeholder,
+body[data-theme="dark"] .message-input::placeholder,
+body[data-theme="dark"] .chat-input::placeholder {
+    color: var(--dark-text-secondary) !important;
+}
+
+/* 发送按钮 */
+body.dark-theme .send-btn,
+body.dark-theme .send-button,
+body.dark-theme .message-send-btn,
+body[data-theme="dark"] .send-btn,
+body[data-theme="dark"] .send-button,
+body[data-theme="dark"] .message-send-btn {
+    background-color: var(--dark-accent-green) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+}
+
+/* 发送按钮图标 */
+body.dark-theme .send-icon,
+body[data-theme="dark"] .send-icon {
+    color: white !important;
+}
+
+/* API配置按钮 */
+body.dark-theme .api-config-btn,
+body[data-theme="dark"] .api-config-btn {
+    background-color: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-secondary) !important;
+    border: 1px solid var(--dark-border) !important;
+}
+
+/* AI模型选择器区域完整修复 */
+body.dark-theme .ai-selector,
+body.dark-theme .ai-model-tabs,
+body[data-theme="dark"] .ai-selector,
+body[data-theme="dark"] .ai-model-tabs {
+    background-color: var(--dark-bg-primary) !important;
+    color: var(--dark-text-primary) !important;
+    border: none !important;
+}
+
+/* AI模型选择器上方区域修复 */
+body.dark-theme .ai-page .ai-header,
+body.dark-theme .ai-page .page-header,
+body.dark-theme .ai-page .ai-selector-header,
+body[data-theme="dark"] .ai-page .ai-header,
+body[data-theme="dark"] .ai-page .page-header,
+body[data-theme="dark"] .ai-page .ai-selector-header {
+    background-color: var(--dark-bg-primary) !important;
+    color: var(--dark-text-primary) !important;
+}
+
+/* AI标签页按钮 */
+body.dark-theme .ai-tab,
+body[data-theme="dark"] .ai-tab {
+    background-color: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-secondary) !important;
+    border: 1px solid var(--dark-border) !important;
+}
+
+/* 激活的AI标签页 */
+body.dark-theme .ai-tab.active,
+body[data-theme="dark"] .ai-tab.active {
+    background-color: var(--dark-accent-green) !important;
+    color: white !important;
+    border-color: var(--dark-accent-green) !important;
+}
+
+/* AI标签页头像 */
+body.dark-theme .ai-tab-avatar,
+body[data-theme="dark"] .ai-tab-avatar {
+    background-color: transparent !important;
+}
+
+/* 强制覆盖所有可能的白色背景 */
+body.dark-theme #ai-page *[style*="background: white"],
+body.dark-theme #ai-page *[style*="background: #fff"],
+body.dark-theme #ai-page *[style*="background-color: white"],
+body.dark-theme #ai-page *[style*="background-color: #fff"],
+body.dark-theme #ai-page *[style*="background: #f0f0f0"],
+body.dark-theme #ai-page *[style*="background-color: #f0f0f0"],
+body[data-theme="dark"] #ai-page *[style*="background: white"],
+body[data-theme="dark"] #ai-page *[style*="background: #fff"],
+body[data-theme="dark"] #ai-page *[style*="background-color: white"],
+body[data-theme="dark"] #ai-page *[style*="background-color: #fff"],
+body[data-theme="dark"] #ai-page *[style*="background: #f0f0f0"],
+body[data-theme="dark"] #ai-page *[style*="background-color: #f0f0f0"] {
+    background-color: var(--dark-bg-secondary) !important;
+    background: var(--dark-bg-secondary) !important;
+    color: var(--dark-text-primary) !important;
+}
+
+/* 强制覆盖所有可能的黑色文字在白色背景上的情况 */
+body.dark-theme #ai-page *[style*="color: black"],
+body.dark-theme #ai-page *[style*="color: #000"],
+body[data-theme="dark"] #ai-page *[style*="color: black"],
+body[data-theme="dark"] #ai-page *[style*="color: #000"] {
+    color: var(--dark-text-primary) !important;
+}
+
+/* 系统暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) .message,
+    body:not([data-theme="light"]) .ai-message,
+    body:not([data-theme="light"]) .message.ai-message,
+    body:not([data-theme="light"]) .message-content,
+    body:not([data-theme="light"]) .message-text,
+    body:not([data-theme="light"]) .message-bubble {
+        background-color: var(--dark-bg-secondary) !important;
+        background: var(--dark-bg-secondary) !important;
+        color: var(--dark-text-primary) !important;
+        border: 1px solid var(--dark-border) !important;
+    }
+    
+    body:not([data-theme="light"]) .message.user,
+    body:not([data-theme="light"]) .user-message,
+    body:not([data-theme="light"]) .message.user-message {
+        background-color: var(--dark-accent-green) !important;
+        background: var(--dark-accent-green) !important;
+        color: white !important;
+        border: 1px solid var(--dark-accent-green) !important;
+    }
+}

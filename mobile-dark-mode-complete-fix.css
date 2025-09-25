@@ -1,0 +1,388 @@
+/* 移动端暗色模式完整修复 */
+
+/* 基础页面和容器背景修复 */
+body[data-theme="dark"],
+body.dark-theme {
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+/* 应用内容区域背景修复 */
+body[data-theme="dark"] .app-content,
+body.dark-theme .app-content {
+    background: #1a1a1a !important;
+}
+
+/* 页面容器背景修复 */
+body[data-theme="dark"] .page,
+body.dark-theme .page {
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+/* AI页面标题栏修复 */
+body[data-theme="dark"] #ai-page .ai-selector,
+body.dark-theme #ai-page .ai-selector {
+    background: #2c2c2c !important;
+    border: 1px solid #3a3a3a;
+}
+
+body[data-theme="dark"] #ai-page .ai-model-tabs,
+body.dark-theme #ai-page .ai-model-tabs {
+    background: #3a3a3a !important;
+}
+
+body[data-theme="dark"] #ai-page .ai-tab,
+body.dark-theme #ai-page .ai-tab {
+    background: transparent !important;
+    color: #cccccc !important;
+}
+
+body[data-theme="dark"] #ai-page .ai-tab.active,
+body.dark-theme #ai-page .ai-tab.active {
+    background: #007AFF !important;
+    color: #ffffff !important;
+}
+
+body[data-theme="dark"] #ai-page .api-config-btn,
+body.dark-theme #ai-page .api-config-btn {
+    background: #3a3a3a !important;
+    color: #ffffff !important;
+    border: 1px solid #4a4a4a;
+}
+
+/* 设置页面（小组件页面）标题栏修复 */
+body[data-theme="dark"] #settings-page,
+body.dark-theme #settings-page {
+    background: #1a1a1a !important;
+}
+
+body[data-theme="dark"] #settings-page .settings-header,
+body.dark-theme #settings-page .settings-header {
+    background: #2c2c2c !important;
+    border: 1px solid #3a3a3a;
+}
+
+body[data-theme="dark"] #settings-page .settings-header h2,
+body.dark-theme #settings-page .settings-header h2 {
+    color: #ffffff !important;
+}
+
+body[data-theme="dark"] #settings-page .settings-content,
+body.dark-theme #settings-page .settings-content {
+    background: #2c2c2c !important;
+    border: 1px solid #3a3a3a;
+}
+
+/* 小组件配置页面（搜索页面）标题栏修复 */
+body[data-theme="dark"] #search-page,
+body.dark-theme #search-page {
+    background: #1a1a1a !important;
+}
+
+body[data-theme="dark"] #search-page .search-header,
+body.dark-theme #search-page .search-header {
+    background: #2c2c2c !important;
+    border: 1px solid #3a3a3a !important;
+    border-bottom: 1px solid #3a3a3a !important;
+}
+
+body[data-theme="dark"] #search-page .search-header h2,
+body.dark-theme #search-page .search-header h2 {
+    color: #ffffff !important;
+}
+
+body[data-theme="dark"] .search-header,
+body.dark-theme .search-header {
+    background: #2c2c2c !important;
+    border: 1px solid #3a3a3a !important;
+    border-bottom: 1px solid #3a3a3a !important;
+}
+
+body[data-theme="dark"] .search-header h2,
+body.dark-theme .search-header h2 {
+    color: #ffffff !important;
+}
+
+/* 浏览器页面背景修复 */
+body[data-theme="dark"] #browser-page,
+body.dark-theme #browser-page {
+    background: #1a1a1a !important;
+}
+
+body[data-theme="dark"] #browser-page .browser-header,
+body.dark-theme #browser-page .browser-header {
+    background: #2c2c2c !important;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+/* 应用页面背景修复 */
+body[data-theme="dark"] #apps-page,
+body.dark-theme #apps-page {
+    background: #1a1a1a !important;
+}
+
+/* 页面切换时的过渡效果修复 */
+body[data-theme="dark"] .page.active,
+body.dark-theme .page.active {
+    background: #1a1a1a !important;
+}
+
+/* 防止页面切换时的白色闪烁 */
+body[data-theme="dark"] .page:not(.active),
+body.dark-theme .page:not(.active) {
+    background: #1a1a1a !important;
+}
+
+/* 底部导航栏背景修复 */
+body[data-theme="dark"] .bottom-nav,
+body.dark-theme .bottom-nav {
+    background: #2c2c2c !important;
+    border-top: 1px solid #3a3a3a;
+}
+
+body[data-theme="dark"] .nav-item,
+body.dark-theme .nav-item {
+    color: #cccccc !important;
+}
+
+body[data-theme="dark"] .nav-item.active,
+body.dark-theme .nav-item.active {
+    color: #007AFF !important;
+}
+
+/* 设置项背景修复 */
+body[data-theme="dark"] .setting-item,
+body.dark-theme .setting-item {
+    background: transparent !important;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+body[data-theme="dark"] .setting-item:last-child,
+body.dark-theme .setting-item:last-child {
+    border-bottom: none;
+}
+
+body[data-theme="dark"] .setting-title,
+body.dark-theme .setting-title {
+    color: #ffffff !important;
+}
+
+body[data-theme="dark"] .setting-desc,
+body.dark-theme .setting-desc {
+    color: #cccccc !important;
+}
+
+body[data-theme="dark"] .setting-arrow,
+body.dark-theme .setting-arrow {
+    color: #666666 !important;
+}
+
+/* 主题切换开关样式修复 */
+body[data-theme="dark"] .setting-toggle input[type="checkbox"],
+body.dark-theme .setting-toggle input[type="checkbox"] {
+    background: #3a3a3a !important;
+    border: 1px solid #4a4a4a;
+}
+
+body[data-theme="dark"] .setting-toggle input[type="checkbox"]:checked,
+body.dark-theme .setting-toggle input[type="checkbox"]:checked {
+    background: #007AFF !important;
+}
+
+/* 确保所有模态框和弹窗也使用暗色背景 */
+body[data-theme="dark"] .modal,
+body.dark-theme .modal {
+    background: rgba(0, 0, 0, 0.8) !important;
+}
+
+body[data-theme="dark"] .modal-content,
+body.dark-theme .modal-content {
+    background: #2c2c2c !important;
+    border: 1px solid #3a3a3a;
+    color: #ffffff !important;
+}
+
+/* 输入框和按钮的暗色模式修复 */
+body[data-theme="dark"] input,
+body[data-theme="dark"] textarea,
+body[data-theme="dark"] select,
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+    background: #3a3a3a !important;
+    border: 1px solid #4a4a4a !important;
+    color: #ffffff !important;
+}
+
+body[data-theme="dark"] button,
+body.dark-theme button {
+    background: #3a3a3a !important;
+    border: 1px solid #4a4a4a !important;
+    color: #ffffff !important;
+}
+
+body[data-theme="dark"] button:hover,
+body.dark-theme button:hover {
+    background: #4a4a4a !important;
+}
+
+/* 滚动条样式修复 */
+body[data-theme="dark"] ::-webkit-scrollbar,
+body.dark-theme ::-webkit-scrollbar {
+    width: 6px;
+    background: #2c2c2c;
+}
+
+body[data-theme="dark"] ::-webkit-scrollbar-thumb,
+body.dark-theme ::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 3px;
+}
+
+body[data-theme="dark"] ::-webkit-scrollbar-thumb:hover,
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5a;
+}
+
+/* 确保页面切换动画期间不会出现白色背景 */
+.page {
+    transition: transform 0.3s ease, opacity 0.3s ease !important;
+    background: inherit !important;
+}
+
+body[data-theme="dark"] .page,
+body.dark-theme .page {
+    background: #1a1a1a !important;
+}
+
+/* 修复可能的白色间隙 */
+body[data-theme="dark"] *,
+body.dark-theme * {
+    border-color: #3a3a3a !important;
+}
+
+/* 确保所有文本在暗色模式下可见 */
+body[data-theme="dark"] h1,
+body[data-theme="dark"] h2,
+body[data-theme="dark"] h3,
+body[data-theme="dark"] h4,
+body[data-theme="dark"] h5,
+body[data-theme="dark"] h6,
+body[data-theme="dark"] p,
+body[data-theme="dark"] span,
+body[data-theme="dark"] div,
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6,
+body.dark-theme p,
+body.dark-theme span,
+body.dark-theme div {
+    color: inherit !important;
+}
+
+/* 特殊元素的颜色修复 */
+body[data-theme="dark"] .text-primary,
+body.dark-theme .text-primary {
+    color: #ffffff !important;
+}
+
+body[data-theme="dark"] .text-secondary,
+body.dark-theme .text-secondary {
+    color: #cccccc !important;
+}
+
+body[data-theme="dark"] .bg-primary,
+body.dark-theme .bg-primary {
+    background: #1a1a1a !important;
+}
+
+body[data-theme="dark"] .bg-secondary,
+body.dark-theme .bg-secondary {
+    background: #2c2c2c !important;
+}
+
+/* 页面圆角修复 - 消除白色漏光 */
+body[data-theme="dark"] .page,
+body.dark-theme .page {
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    background: #1a1a1a !important;
+}
+
+/* 确保页面容器没有圆角造成的白色间隙 */
+body[data-theme="dark"] .page::before,
+body[data-theme="dark"] .page::after,
+body.dark-theme .page::before,
+body.dark-theme .page::after {
+    display: none !important;
+}
+
+/* 移除可能导致白色漏光的圆角 */
+body[data-theme="dark"] .page > *,
+body.dark-theme .page > * {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+/* 确保页面顶部区域没有圆角 */
+body[data-theme="dark"] .page > *:first-child,
+body.dark-theme .page > *:first-child {
+    border-radius: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* 修复可能的容器圆角问题 */
+body[data-theme="dark"] .app-content,
+body.dark-theme .app-content {
+    border-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+/* 确保所有页面内容区域都没有顶部圆角 */
+body[data-theme="dark"] #ai-page,
+body[data-theme="dark"] #browser-page,
+body[data-theme="dark"] #search-page,
+body[data-theme="dark"] #apps-page,
+body[data-theme="dark"] #settings-page,
+body.dark-theme #ai-page,
+body.dark-theme #browser-page,
+body.dark-theme #search-page,
+body.dark-theme #apps-page,
+body.dark-theme #settings-page {
+    border-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    overflow: hidden !important;
+}
+
+/* 修复页面内第一个元素的圆角 */
+body[data-theme="dark"] .ai-selector,
+body[data-theme="dark"] .search-header,
+body[data-theme="dark"] .settings-header,
+body[data-theme="dark"] .browser-header,
+body[data-theme="dark"] .apps-header,
+body.dark-theme .ai-selector,
+body.dark-theme .search-header,
+body.dark-theme .settings-header,
+body.dark-theme .browser-header,
+body.dark-theme .apps-header {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* 确保页面切换时不会出现白色边缘 */
+body[data-theme="dark"] .page.active,
+body[data-theme="dark"] .page:not(.active),
+body.dark-theme .page.active,
+body.dark-theme .page:not(.active) {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
