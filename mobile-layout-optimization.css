@@ -1,0 +1,626 @@
+/* 移动端布局优化 - iOS风格完善版 */
+
+/* AI页面布局优化 - 防止覆盖和错位 */
+#ai-page {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+}
+
+.ai-selector {
+    flex-shrink: 0 !important;
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+.chat-container {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    min-height: 0 !important;
+}
+
+.chat-messages {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    padding: 16px !important;
+    scroll-behavior: smooth !important;
+}
+
+.chat-input-container {
+    flex-shrink: 0 !important;
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+/* 浏览器页面 - 元素居中整洁 */
+#browser-page {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+}
+
+.browser-address-bar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 0.5px solid var(--ios-separator) !important;
+    padding: 12px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-shrink: 0 !important;
+}
+
+.address-controls {
+    display: flex !important;
+    gap: 8px !important;
+}
+
+.address-controls .nav-btn {
+    background: var(--ios-bg-quaternary) !important;
+    border: none !important;
+    border-radius: var(--ios-radius-small) !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.address-controls .nav-btn:hover {
+    background: var(--ios-bg-tertiary) !important;
+    transform: scale(1.05) !important;
+}
+
+.url-container {
+    flex: 1 !important;
+    background: var(--ios-bg-quaternary) !important;
+    border-radius: var(--ios-radius-xlarge) !important;
+    padding: 8px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.url-input {
+    flex: 1 !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    font-size: 16px !important;
+    color: var(--ios-text-primary) !important;
+}
+
+.url-input::placeholder {
+    color: var(--ios-text-tertiary) !important;
+}
+
+.search-engine-btn,
+.ai-model-btn,
+.url-action-btn {
+    background: transparent !important;
+    border: none !important;
+    padding: 4px !important;
+    border-radius: var(--ios-radius-small) !important;
+    font-size: 14px !important;
+    color: var(--ios-text-secondary) !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.search-engine-btn:hover,
+.ai-model-btn:hover,
+.url-action-btn:hover {
+    background: var(--ios-bg-tertiary) !important;
+    transform: scale(1.1) !important;
+}
+
+.browser-toolbar {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 0.5px solid var(--ios-separator) !important;
+    padding: 8px 16px !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+}
+
+.tool-btn {
+    background: transparent !important;
+    border: none !important;
+    border-radius: var(--ios-radius-medium) !important;
+    padding: 8px 12px !important;
+    font-size: 18px !important;
+    color: var(--ios-text-secondary) !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2px !important;
+}
+
+.tool-btn:hover {
+    background: var(--ios-bg-quaternary) !important;
+    transform: scale(1.05) !important;
+}
+
+.browser-content {
+    flex: 1 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.browser-content iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+}
+
+/* 搜索页面 - 有条理的排布，间隔均等 */
+#search-page {
+    padding: 0 !important;
+    overflow-y: auto !important;
+}
+
+.search-header {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 0.5px solid var(--ios-separator) !important;
+    padding: 16px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.search-header h2 {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: var(--ios-text-primary) !important;
+    margin: 0 !important;
+}
+
+.header-actions {
+    display: flex !important;
+    gap: 8px !important;
+}
+
+.sync-btn,
+.weight-btn,
+.help-btn {
+    background: var(--ios-bg-quaternary) !important;
+    border: none !important;
+    border-radius: var(--ios-radius-medium) !important;
+    padding: 8px 12px !important;
+    font-size: 14px !important;
+    color: var(--ios-text-secondary) !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.sync-btn:hover,
+.weight-btn:hover,
+.help-btn:hover {
+    background: var(--ios-bg-tertiary) !important;
+    transform: scale(1.05) !important;
+}
+
+.search-config {
+    margin: 16px !important;
+    padding: 0 !important;
+}
+
+.config-tabs {
+    padding: 16px 16px 0 16px !important;
+    margin-bottom: 0 !important;
+}
+
+.search-engines {
+    padding: 20px !important;
+}
+
+.section-title {
+    margin-bottom: 12px !important;
+}
+
+.engine-note {
+    margin-bottom: 24px !important;
+}
+
+.engine-categories {
+    margin-bottom: 24px !important;
+    justify-content: center !important;
+}
+
+.engine-grid {
+    gap: 16px !important;
+    margin-bottom: 20px !important;
+}
+
+.config-note {
+    margin-top: 20px !important;
+    padding: 12px 16px !important;
+    background: var(--ios-bg-quaternary) !important;
+    border-radius: var(--ios-radius-medium) !important;
+    text-align: center !important;
+    font-size: 14px !important;
+    color: var(--ios-text-secondary) !important;
+    border: none !important;
+}
+
+/* 应用页面 - 自适应布局优化 */
+#apps-page {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+}
+
+.apps-header {
+    flex-shrink: 0 !important;
+}
+
+.top-search-bar {
+    flex-shrink: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.apps-layout {
+    flex: 1 !important;
+    overflow: hidden !important;
+    padding: 0 16px 16px 16px !important;
+}
+
+.categories-and-apps {
+    display: flex !important;
+    gap: 16px !important;
+    height: 100% !important;
+}
+
+.app-categories {
+    width: 90px !important;
+    flex-shrink: 0 !important;
+    background: white !important;
+    border-radius: var(--ios-radius-large) !important;
+    padding: 16px 8px !important;
+    box-shadow: var(--ios-shadow-light) !important;
+    border: 0.5px solid var(--ios-separator) !important;
+    overflow-y: auto !important;
+}
+
+.category-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+.category-item {
+    background: transparent !important;
+    border: none !important;
+    border-radius: var(--ios-radius-medium) !important;
+    padding: 10px 6px !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    color: var(--ios-text-secondary) !important;
+    text-align: center !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    width: 100% !important;
+    min-height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1.2 !important;
+}
+
+.category-item.active {
+    background: var(--ios-green) !important;
+    color: white !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 2px 8px rgba(52, 199, 89, 0.3) !important;
+}
+
+.category-item:hover {
+    background: var(--ios-bg-quaternary) !important;
+}
+
+.apps-content {
+    flex: 1 !important;
+    overflow-y: auto !important;
+}
+
+.apps-grid {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)) !important;
+    gap: 16px !important;
+    padding: 16px !important;
+    justify-items: center !important;
+}
+
+.app-item {
+    width: 90px !important;
+    padding: 8px 4px !important;
+}
+
+.app-icon {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 13px !important;
+    margin: 0 auto 8px auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 24px !important;
+}
+
+.app-name {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    hyphens: auto !important;
+    text-align: center !important;
+    height: auto !important;
+    min-height: 32px !important; /* 确保4个字以上的名称完整显示 */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    color: var(--ios-text-primary) !important;
+    font-weight: 500 !important;
+}
+
+/* 设置页面优化 */
+#settings-page {
+    padding: 0 !important;
+    overflow-y: auto !important;
+}
+
+.settings-header {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 0.5px solid var(--ios-separator) !important;
+    padding: 16px !important;
+}
+
+.settings-header h2 {
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    color: var(--ios-text-primary) !important;
+    margin: 0 !important;
+}
+
+.settings-content {
+    padding: 16px !important;
+}
+
+.setting-item {
+    background: white !important;
+    border-radius: var(--ios-radius-large) !important;
+    padding: 16px !important;
+    margin-bottom: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    box-shadow: var(--ios-shadow-light) !important;
+    border: 0.5px solid var(--ios-separator) !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.setting-item:hover {
+    transform: scale(1.01) !important;
+    box-shadow: var(--ios-shadow-medium) !important;
+}
+
+.setting-icon {
+    font-size: 24px !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: var(--ios-bg-quaternary) !important;
+    border-radius: var(--ios-radius-small) !important;
+}
+
+.setting-info {
+    flex: 1 !important;
+}
+
+.setting-title {
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    color: var(--ios-text-primary) !important;
+    margin-bottom: 2px !important;
+}
+
+.setting-desc {
+    font-size: 14px !important;
+    color: var(--ios-text-secondary) !important;
+}
+
+/* 主题切换开关 - iOS风格 */
+.setting-toggle {
+    position: relative !important;
+}
+
+.setting-toggle input[type="checkbox"] {
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.setting-toggle label {
+    display: block !important;
+    width: 52px !important;
+    height: 32px !important;
+    background: #E5E5EA !important;
+    border-radius: 16px !important;
+    position: relative !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.setting-toggle label::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 2px !important;
+    left: 2px !important;
+    width: 28px !important;
+    height: 28px !important;
+    background: white !important;
+    border-radius: 50% !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.setting-toggle input[type="checkbox"]:checked + label {
+    background: var(--ios-green) !important;
+}
+
+.setting-toggle input[type="checkbox"]:checked + label::after {
+    transform: translateX(20px) !important;
+}
+
+/* 隐藏不需要的设置项 */
+.setting-item:has(.setting-title:contains("通知设置")),
+.setting-item:has(.setting-title:contains("隐私设置")) {
+    display: none !important;
+}
+
+/* 更精确的选择器来隐藏特定设置项 */
+.setting-item:nth-child(2),
+.setting-item:nth-child(3) {
+    display: none !important;
+}
+
+/* 只保留主题设置 */
+.settings-content .setting-item:first-child {
+    display: flex !important;
+}
+
+/* 暗色模式适配 */
+body.dark-theme .browser-address-bar,
+body.dark-theme .browser-toolbar,
+body.dark-theme .search-header,
+body.dark-theme .settings-header,
+body[data-theme="dark"] .browser-address-bar,
+body[data-theme="dark"] .browser-toolbar,
+body[data-theme="dark"] .search-header,
+body[data-theme="dark"] .settings-header {
+    background: rgba(28, 28, 30, 0.95) !important;
+    border-bottom-color: var(--ios-dark-separator) !important;
+}
+
+body.dark-theme .url-container,
+body.dark-theme .address-controls .nav-btn,
+body.dark-theme .sync-btn,
+body.dark-theme .weight-btn,
+body.dark-theme .help-btn,
+body[data-theme="dark"] .url-container,
+body[data-theme="dark"] .address-controls .nav-btn,
+body[data-theme="dark"] .sync-btn,
+body[data-theme="dark"] .weight-btn,
+body[data-theme="dark"] .help-btn {
+    background: var(--ios-dark-bg-tertiary) !important;
+}
+
+body.dark-theme .url-input,
+body[data-theme="dark"] .url-input {
+    color: var(--ios-dark-text-primary) !important;
+}
+
+body.dark-theme .url-input::placeholder,
+body[data-theme="dark"] .url-input::placeholder {
+    color: var(--ios-dark-text-tertiary) !important;
+}
+
+body.dark-theme .app-categories,
+body.dark-theme .setting-item,
+body[data-theme="dark"] .app-categories,
+body[data-theme="dark"] .setting-item {
+    background: var(--ios-dark-bg-secondary) !important;
+    border-color: var(--ios-dark-separator) !important;
+}
+
+body.dark-theme .setting-toggle label,
+body[data-theme="dark"] .setting-toggle label {
+    background: #39393D !important;
+}
+
+body.dark-theme .setting-toggle label::after,
+body[data-theme="dark"] .setting-toggle label::after {
+    background: #48484A !important;
+}
+
+body.dark-theme .setting-toggle input[type="checkbox"]:checked + label::after,
+body[data-theme="dark"] .setting-toggle input[type="checkbox"]:checked + label::after {
+    background: white !important;
+}
+
+/* 响应式优化 */
+@media (max-width: 480px) {
+    .categories-and-apps {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    .app-categories {
+        width: 100% !important;
+        height: auto !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+    }
+    
+    .category-list {
+        flex-direction: row !important;
+        gap: 8px !important;
+        padding: 0 8px !important;
+    }
+    
+    .category-item {
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        min-width: 80px !important;
+    }
+    
+    .apps-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+/* 滚动条优化 */
+.chat-messages::-webkit-scrollbar,
+.apps-content::-webkit-scrollbar,
+.app-categories::-webkit-scrollbar {
+    width: 2px !important;
+}
+
+.chat-messages::-webkit-scrollbar-track,
+.apps-content::-webkit-scrollbar-track,
+.app-categories::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.chat-messages::-webkit-scrollbar-thumb,
+.apps-content::-webkit-scrollbar-thumb,
+.app-categories::-webkit-scrollbar-thumb {
+    background: var(--ios-separator) !important;
+    border-radius: 1px !important;
+}
+
+body.dark-theme .chat-messages::-webkit-scrollbar-thumb,
+body.dark-theme .apps-content::-webkit-scrollbar-thumb,
+body.dark-theme .app-categories::-webkit-scrollbar-thumb,
+body[data-theme="dark"] .chat-messages::-webkit-scrollbar-thumb,
+body[data-theme="dark"] .apps-content::-webkit-scrollbar-thumb,
+body[data-theme="dark"] .app-categories::-webkit-scrollbar-thumb {
+    background: var(--ios-dark-separator) !important;
+}

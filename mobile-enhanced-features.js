@@ -17,20 +17,19 @@ class MobileEnhancedFeatures {
         this.initRecentSearch();
         this.initAppSelection();
         this.initSearchInput();
-        this.applyTheme();
+        // applyTheme已移至mobile-theme-sync.js统一管理
         this.loadRecentData();
     }
     
-    // 主题切换功能
+    // 主题切换功能已移至mobile-theme-sync.js统一管理
     initThemeToggle() {
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                this.toggleTheme();
-            });
-        }
+        // 主题切换功能已移至mobile-theme-sync.js统一管理
+        // 这里不再处理主题切换，避免冲突
+        console.log('Theme toggle handled by mobile-theme-sync.js');
     }
     
+    // 已禁用，由mobile-theme-sync.js统一管理
+    /*
     toggleTheme() {
         this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
         localStorage.setItem('theme', this.currentTheme);
@@ -59,6 +58,7 @@ class MobileEnhancedFeatures {
             body.style.display = '';
         }, 10);
     }
+    */
     
     // 默认图标点击功能
     initSelectedAppIconClick() {

@@ -1,0 +1,159 @@
+/* AI页面居中修复 - DeepSeek、Kimi、智谱清言选项居中，对话框居中 */
+
+/* AI页面主容器 */
+#ai-page {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    background: #f7f7f7 !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+/* AI模型选择器 - 居中显示 */
+.ai-selector {
+    width: 100% !important;
+    background: white !important;
+    border-bottom: 1px solid #e5e5e5 !important;
+    padding: 16px !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+}
+
+/* AI模型标签容器 - 居中排列 */
+.ai-model-tabs {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex: 1 !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+}
+
+/* AI标签项 - 均匀分布 */
+.ai-tab {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 12px 8px !important;
+    background: #f8f9fa !important;
+    border: 2px solid transparent !important;
+    border-radius: 12px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-align: center !important;
+    min-height: 70px !important;
+    max-width: 90px !important;
+}
+
+.ai-tab.active {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+    color: white !important;
+    border-color: #007bff !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3) !important;
+}
+
+/* 输入区域容器 - 居中固定在底部 */
+.chat-input-container {
+    position: fixed !important;
+    bottom: 80px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100% !important;
+    max-width: 414px !important;
+    background: white !important;
+    border-top: 1px solid #e5e5e5 !important;
+    padding: 12px 16px !important;
+    z-index: 1000 !important;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* 输入框包装器 - 居中 */
+.input-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+}
+
+/* 消息输入框 - 微信风格 */
+.message-input {
+    flex: 1 !important;
+    height: 40px !important;
+    border: 1px solid #d9d9d9 !important;
+    border-radius: 20px !important;
+    padding: 0 16px !important;
+    font-size: 16px !important;
+    background: #f8f8f8 !important;
+    outline: none !important;
+    transition: all 0.2s ease !important;
+    color: #333 !important;
+}
+
+.message-input:focus {
+    border-color: #07c160 !important;
+    background: white !important;
+    box-shadow: 0 0 0 2px rgba(7, 193, 96, 0.2) !important;
+}
+
+/* 发送按钮 - 微信风格 */
+.send-button {
+    width: 40px !important;
+    height: 40px !important;
+    border: none !important;
+    border-radius: 20px !important;
+    background: linear-gradient(135deg, #07c160 0%, #06ad56 100%) !important;
+    color: white !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+    flex-shrink: 0 !important;
+}
+
+/* 暗色模式适配 */
+body.dark-theme #ai-page,
+[data-theme="dark"] #ai-page {
+    background: #000000 !important;
+}
+
+body.dark-theme .ai-selector,
+[data-theme="dark"] .ai-selector {
+    background: #1c1c1e !important;
+    border-bottom-color: #38383a !important;
+}
+
+body.dark-theme .ai-tab,
+[data-theme="dark"] .ai-tab {
+    background: #2c2c2e !important;
+    color: #ffffff !important;
+    border-color: #48484a !important;
+}
+
+body.dark-theme .chat-input-container,
+[data-theme="dark"] .chat-input-container {
+    background: #1c1c1e !important;
+    border-top-color: #38383a !important;
+}
+
+body.dark-theme .message-input,
+[data-theme="dark"] .message-input {
+    background: #2c2c2e !important;
+    border-color: #48484a !important;
+    color: #ffffff !important;
+}

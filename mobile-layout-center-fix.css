@@ -1,0 +1,131 @@
+/* 移动端布局居中修复 - 解决页面偏移问题 */
+
+/* 全局重置和居中 */
+* {
+    box-sizing: border-box !important;
+}
+
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+}
+
+/* 移动端主容器 - 确保居中 */
+.mobile-app {
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #000 !important;
+    overflow: hidden !important;
+}
+
+/* 手机屏幕容器 - 居中显示 */
+.mobile-screen {
+    width: 100% !important;
+    max-width: 414px !important;
+    height: 100vh !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    background: #ffffff !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-shadow: none !important;
+}
+
+/* 状态栏 - 固定在顶部 */
+.status-bar {
+    width: 100% !important;
+    height: 44px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 20px !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    flex-shrink: 0 !important;
+}
+
+/* 主要内容区域 - 填充剩余空间 */
+.app-content {
+    flex: 1 !important;
+    width: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: #f8f9fa !important;
+}
+
+/* 页面容器 - 确保居中 */
+.page {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: none !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    background: #f8f9fa !important;
+}
+
+.page.active {
+    display: flex !important;
+}
+
+/* 底部导航 - 固定在底部 */
+.bottom-nav {
+    width: 100% !important;
+    height: 80px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 1000 !important;
+    flex-shrink: 0 !important;
+    padding: 0 !important;
+}
+
+/* 暗色模式适配 */
+body.dark-theme .mobile-screen,
+[data-theme="dark"] .mobile-screen {
+    background: #000000 !important;
+}
+
+body.dark-theme .status-bar,
+[data-theme="dark"] .status-bar {
+    background: rgba(28, 28, 30, 0.95) !important;
+    color: #ffffff !important;
+}
+
+body.dark-theme .bottom-nav,
+[data-theme="dark"] .bottom-nav {
+    background: rgba(28, 28, 30, 0.95) !important;
+    border-top-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-theme .app-content,
+body.dark-theme .page,
+[data-theme="dark"] .app-content,
+[data-theme="dark"] .page {
+    background: #000000 !important;
+}

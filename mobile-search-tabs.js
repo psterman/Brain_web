@@ -45,42 +45,51 @@ class MobileSearchTabs {
         this.addClickEffect(activeTab);
     }
 
-    // 显示标签页内容
+    // 显示标签页内容 - 修复为真正的标签页切换
     showTabContent(tabIndex) {
-        const searchEngines = document.querySelector('.search-engines');
-        const appSelection = document.querySelector('.app-selection');
-        const aiAssistant = document.querySelector('.ai-assistant');
+        // 获取所有标签页内容容器
+        const tabContents = document.querySelectorAll('.tab-content');
         
-        // 隐藏所有内容
-        if (searchEngines) searchEngines.style.display = 'none';
-        if (appSelection) appSelection.style.display = 'none';
-        if (aiAssistant) aiAssistant.style.display = 'none';
+        // 隐藏所有标签页内容
+        tabContents.forEach(content => {
+            content.classList.remove('active');
+            content.style.display = 'none';
+        });
         
+        // 显示对应的标签页内容
+        let targetTabId = '';
         switch (tabIndex) {
             case 0: // 搜索引擎
-                if (searchEngines) {
-                    searchEngines.style.display = 'block';
-                    this.currentTab = 'search-engines';
-                }
+                targetTabId = 'search-engines-tab';
+                this.currentTab = 'search-engines';
                 break;
             case 1: // 应用选择
-                this.showAppSelection();
+                targetTabId = 'app-selection-tab';
                 this.currentTab = 'app-selection';
+                this.ensureAppSelectionContent();
                 break;
             case 2: // AI助手
-                this.showAIAssistant();
+                targetTabId = 'ai-assistant-tab';
                 this.currentTab = 'ai-assistant';
+                this.ensureAIAssistantContent();
                 break;
+        }
+        
+        // 显示目标标签页
+        const targetTab = document.getElementById(targetTabId);
+        if (targetTab) {
+            targetTab.classList.add('active');
+            targetTab.style.display = 'block';
         }
     }
 
-    // 显示应用选择内容
-    showAppSelection() {
-        let appSelection = document.querySelector('.app-selection');
-        if (!appSelection) {
-            appSelection = document.createElement('div');
-            appSelection.className = 'app-selection';
-            appSelection.innerHTML = `
+    // 确保应用选择内容存在
+    ensureAppSelectionContent() {
+        const appSelectionTab = document.getElementById('app-selection-tab');
+        if (appSelectionTab && !appSelectionTab.querySelector('.app-selection')) {
+            const appSelectionContent = document.createElement('div');
+            appSelectionContent.className = 'app-selection';
+            appSelectionContent.innerHTML = `
                 <div class="section-title">应用选择</div>
                 <div class="app-note">选择常用应用进行快速搜索</div>
                 
@@ -119,21 +128,20 @@ class MobileSearchTabs {
                     最多选择6个应用，至少保留2个
                 </div>
             `;
-            document.querySelector('.search-config').appendChild(appSelection);
+            appSelectionTab.appendChild(appSelectionContent);
             
             // 设置应用选择事件
-            this.setupAppSelection(appSelection);
+            this.setupAppSelection(appSelectionContent);
         }
-        appSelection.style.display = 'block';
     }
 
-    // 显示AI助手内容
-    showAIAssistant() {
-        let aiAssistant = document.querySelector('.ai-assistant');
-        if (!aiAssistant) {
-            aiAssistant = document.createElement('div');
-            aiAssistant.className = 'ai-assistant';
-            aiAssistant.innerHTML = `
+    // 确保AI助手内容存在
+    ensureAIAssistantContent() {
+        const aiAssistantTab = document.getElementById('ai-assistant-tab');
+        if (aiAssistantTab && !aiAssistantTab.querySelector('.ai-assistant')) {
+            const aiAssistantContent = document.createElement('div');
+            aiAssistantContent.className = 'ai-assistant';
+            aiAssistantContent.innerHTML = `
                 <div class="section-title">AI助手</div>
                 <div class="ai-note">选择默认AI助手</div>
                 
@@ -165,12 +173,11 @@ class MobileSearchTabs {
                     选择一个默认AI助手
                 </div>
             `;
-            document.querySelector('.search-config').appendChild(aiAssistant);
+            aiAssistantTab.appendChild(aiAssistantContent);
             
             // 设置AI助手选择事件
-            this.setupAISelection(aiAssistant);
+            this.setupAISelection(aiAssistantContent);
         }
-        aiAssistant.style.display = 'block';
     }
 
     // 设置搜索引擎分类

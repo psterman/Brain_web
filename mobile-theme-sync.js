@@ -14,6 +14,31 @@ class MobileThemeSync {
         
         // 监听系统主题变化
         this.observeSystemTheme();
+        
+        // 绑定主题切换按钮
+        this.bindThemeToggles();
+    }
+    
+    bindThemeToggles() {
+        // 状态栏主题切换按钮
+        const statusThemeToggle = document.getElementById('themeToggle');
+        if (statusThemeToggle) {
+            statusThemeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleTheme();
+            });
+        }
+
+        // 设置页面主题切换开关
+        const settingsThemeToggle = document.getElementById('theme-toggle');
+        if (settingsThemeToggle) {
+            settingsThemeToggle.addEventListener('change', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggleTheme();
+            });
+        }
     }
     
     observeThemeChanges() {
@@ -23,24 +48,46 @@ class MobileThemeSync {
             return;
         }
         
+        // 防止重复创建observer
+        if (this.observer) {
+            this.observer.disconnect();
+        }
+        
+        // 防抖处理，避免频繁触发
+        let debounceTimer = null;
+        
         // 监听body的data-theme属性变化
-        const observer = new MutationObserver((mutations) => {
+        this.observer = new MutationObserver((mutations) => {
+            // 防止在同步主题时触发无限循环
+            if (this.isSyncing) {
+                return;
+            }
+            
+            let shouldSync = false;
             mutations.forEach((mutation) => {
                 if (mutation.type === 'attributes' && 
                     (mutation.attributeName === 'data-theme' || 
                      mutation.attributeName === 'class')) {
-                    this.syncTheme();
+                    shouldSync = true;
                 }
             });
+            
+            if (shouldSync) {
+                // 防抖处理
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    this.syncTheme();
+                }, 50);
+            }
         });
         
         try {
-            observer.observe(document.body, {
+            this.observer.observe(document.body, {
                 attributes: true,
                 attributeFilter: ['data-theme', 'class']
             });
             
-            observer.observe(document.documentElement, {
+            this.observer.observe(document.documentElement, {
                 attributes: true,
                 attributeFilter: ['data-theme', 'class']
             });
@@ -63,20 +110,40 @@ class MobileThemeSync {
     }
     
     syncTheme() {
-        const bodyTheme = document.body.getAttribute('data-theme');
-        const htmlTheme = document.documentElement.getAttribute('data-theme');
-        const hasDarkClass = document.body.classList.contains('dark-theme');
-        
-        // 确定当前主题
-        let currentTheme = bodyTheme || htmlTheme || (hasDarkClass ? 'dark' : 'light');
-        
-        // 如果没有明确的主题设置，检查localStorage
-        if (!currentTheme || currentTheme === 'null') {
-            currentTheme = localStorage.getItem('theme') || 'light';
+        // 防止重复同步
+        if (this.isSyncing) {
+            return;
         }
         
-        // 应用主题
-        this.applyTheme(currentTheme);
+        // 确保DOM已加载
+        if (!document.body || !document.documentElement) {
+            setTimeout(() => this.syncTheme(), 100);
+            return;
+        }
+        
+        this.isSyncing = true;
+        
+        try {
+            const bodyTheme = document.body.getAttribute('data-theme');
+            const htmlTheme = document.documentElement.getAttribute('data-theme');
+            const hasDarkClass = document.body.classList.contains('dark-theme');
+            
+            // 确定当前主题
+            let currentTheme = bodyTheme || htmlTheme || (hasDarkClass ? 'dark' : 'light');
+            
+            // 如果没有明确的主题设置，检查localStorage
+            if (!currentTheme || currentTheme === 'null') {
+                currentTheme = localStorage.getItem('theme') || 'light';
+            }
+            
+            // 应用主题
+            this.applyTheme(currentTheme);
+        } finally {
+            // 延迟重置标志，确保所有相关操作完成
+            setTimeout(() => {
+                this.isSyncing = false;
+            }, 100);
+        }
     }
     
     applyTheme(theme) {
@@ -96,6 +163,9 @@ class MobileThemeSync {
             html.classList.remove('dark-theme');
         }
         
+        // 更新主题图标
+        this.updateThemeIcon(theme);
+        
         // 更新所有tab的状态
         this.updateTabStates();
         
@@ -105,48 +175,81 @@ class MobileThemeSync {
         }));
     }
     
+    updateThemeIcon(theme) {
+        const themeIcon = document.querySelector('.theme-icon');
+        if (themeIcon) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+        
+        // 更新设置页面的开关状态
+        const themeToggleSwitch = document.getElementById('theme-toggle');
+        if (themeToggleSwitch) {
+            themeToggleSwitch.checked = theme === 'dark';
+        }
+    }
+    
     updateTabStates() {
-        // 强制更新所有激活状态的tab
-        const activeTabs = document.querySelectorAll(
-            '.ai-tab.active, .config-tab.active, .category-item.active, .nav-item.active'
-        );
-        
-        activeTabs.forEach(tab => {
-            // 触发重绘
-            tab.style.display = 'none';
-            tab.offsetHeight; // 强制重排
-            tab.style.display = '';
-        });
-        
-        // 更新导航图标颜色
-        const activeNavItems = document.querySelectorAll('.nav-item.active');
-        activeNavItems.forEach(item => {
-            const icon = item.querySelector('.nav-icon');
-            const label = item.querySelector('.nav-label');
+        // 使用requestAnimationFrame优化性能
+        requestAnimationFrame(() => {
+            // 更新所有激活状态的tab
+            const activeTabs = document.querySelectorAll(
+                '.ai-tab.active, .config-tab.active, .category-item.active, .nav-item.active'
+            );
             
-            if (icon) {
-                icon.style.display = 'none';
-                icon.offsetHeight;
-                icon.style.display = '';
-            }
+            activeTabs.forEach(tab => {
+                // 使用CSS类切换而不是强制重排
+                tab.classList.add('theme-updating');
+                setTimeout(() => {
+                    tab.classList.remove('theme-updating');
+                }, 10);
+            });
             
-            if (label) {
-                label.style.display = 'none';
-                label.offsetHeight;
-                label.style.display = '';
-            }
+            // 更新导航图标颜色
+            const activeNavItems = document.querySelectorAll('.nav-item.active');
+            activeNavItems.forEach(item => {
+                const icon = item.querySelector('.nav-icon');
+                const label = item.querySelector('.nav-label');
+                
+                if (icon) {
+                    icon.classList.add('theme-updating');
+                    setTimeout(() => {
+                        icon.classList.remove('theme-updating');
+                    }, 10);
+                }
+                
+                if (label) {
+                    label.classList.add('theme-updating');
+                    setTimeout(() => {
+                        label.classList.remove('theme-updating');
+                    }, 10);
+                }
+            });
         });
     }
     
     // 公共方法：切换主题
     toggleTheme() {
-        const currentTheme = document.body.getAttribute('data-theme') || 'light';
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        // 防止重复点击
+        if (this.isToggling || this.isSyncing) {
+            return;
+        }
         
-        localStorage.setItem('theme', newTheme);
-        this.applyTheme(newTheme);
+        this.isToggling = true;
         
-        return newTheme;
+        try {
+            const currentTheme = document.body.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            localStorage.setItem('theme', newTheme);
+            this.applyTheme(newTheme);
+            
+            return newTheme;
+        } finally {
+            // 延迟重置标志
+            setTimeout(() => {
+                this.isToggling = false;
+            }, 300);
+        }
     }
     
     // 公共方法：获取当前主题

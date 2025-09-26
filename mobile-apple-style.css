@@ -1,0 +1,670 @@
+/* 苹果风格设计系统 - iOS风格界面重设计 */
+
+/* 苹果设计系统变量 */
+:root {
+    /* 苹果色彩系统 */
+    --ios-blue: #007AFF;
+    --ios-green: #34C759;
+    --ios-orange: #FF9500;
+    --ios-red: #FF3B30;
+    --ios-purple: #AF52DE;
+    --ios-pink: #FF2D92;
+    --ios-yellow: #FFCC00;
+    --ios-teal: #5AC8FA;
+    
+    /* 背景色系 */
+    --ios-bg-primary: #F2F2F7;
+    --ios-bg-secondary: #FFFFFF;
+    --ios-bg-tertiary: rgba(255, 255, 255, 0.8);
+    --ios-bg-quaternary: rgba(116, 116, 128, 0.08);
+    
+    /* 暗色模式背景 */
+    --ios-dark-bg-primary: #000000;
+    --ios-dark-bg-secondary: #1C1C1E;
+    --ios-dark-bg-tertiary: #2C2C2E;
+    --ios-dark-bg-quaternary: #3A3A3C;
+    
+    /* 文字颜色 */
+    --ios-text-primary: #000000;
+    --ios-text-secondary: #3C3C43;
+    --ios-text-tertiary: #3C3C4399;
+    --ios-text-quaternary: #3C3C434D;
+    
+    /* 暗色模式文字 */
+    --ios-dark-text-primary: #FFFFFF;
+    --ios-dark-text-secondary: #EBEBF5;
+    --ios-dark-text-tertiary: #EBEBF599;
+    --ios-dark-text-quaternary: #EBEBF54D;
+    
+    /* 分割线 */
+    --ios-separator: rgba(60, 60, 67, 0.29);
+    --ios-dark-separator: rgba(84, 84, 88, 0.65);
+    
+    /* 阴影 */
+    --ios-shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --ios-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --ios-shadow-heavy: 0 8px 25px rgba(0, 0, 0, 0.2);
+    
+    /* 圆角 */
+    --ios-radius-small: 8px;
+    --ios-radius-medium: 12px;
+    --ios-radius-large: 16px;
+    --ios-radius-xlarge: 20px;
+}
+
+/* 全局重置 - 苹果风格 */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif !important;
+    background-color: var(--ios-bg-primary) !important;
+    color: var(--ios-text-primary) !important;
+    line-height: 1.4 !important;
+}
+
+/* 主容器 - iOS风格 */
+.mobile-container {
+    background: linear-gradient(135deg, var(--ios-bg-primary) 0%, var(--ios-bg-secondary) 100%) !important;
+    border-radius: var(--ios-radius-xlarge) !important;
+    box-shadow: var(--ios-shadow-heavy) !important;
+    overflow: hidden !important;
+}
+
+/* 页面容器 */
+.page {
+    background-color: var(--ios-bg-primary) !important;
+    border-radius: 0 !important;
+}
+
+/* 底部导航 - iOS风格重设计 */
+.bottom-nav {
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-top: 0.5px solid var(--ios-separator) !important;
+    border-radius: 0 !important;
+    padding: 8px 0 34px 0 !important; /* 适配iPhone安全区域 */
+    box-shadow: 0 -1px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+.nav-item {
+    background: none !important;
+    border: none !important;
+    border-radius: var(--ios-radius-medium) !important;
+    padding: 8px 12px !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    color: var(--ios-text-secondary) !important;
+}
+
+.nav-item.active {
+    background-color: var(--ios-green) !important;
+    color: white !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 2px 8px rgba(52, 199, 89, 0.3) !important;
+}
+
+.nav-item:hover {
+    background-color: var(--ios-bg-quaternary) !important;
+    transform: scale(1.02) !important;
+}
+
+.nav-icon {
+    font-size: 22px !important;
+    margin-bottom: 2px !important;
+}
+
+.nav-text {
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.1px !important;
+}
+
+/* AI页面 - iOS风格 */
+.ai-selector {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-radius: var(--ios-radius-large) !important;
+    margin: 16px !important;
+    padding: 16px !important;
+    box-shadow: var(--ios-shadow-medium) !important;
+    border: 0.5px solid var(--ios-separator) !important;
+}
+
+.ai-model-tabs {
+    background: var(--ios-bg-quaternary) !important;
+    border-radius: var(--ios-radius-medium) !important;
+    padding: 4px !important;
+    display: flex !important;
+    gap: 4px !important;
+}
+
+.ai-tab {
+    background: transparent !important;
+    border: none !important;
+    border-radius: var(--ios-radius-small) !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: var(--ios-text-secondary) !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+.ai-tab.active {
+    background: white !important;
+    color: var(--ios-green) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    transform: scale(1.02) !important;
+}
+
+.ai-tab-avatar {
+    font-size: 16px !important;
+}
+
+/* 聊天区域 - iOS风格 */
+.chat-container {
+    background: transparent !important;
+    padding: 0 16px !important;
+}
+
+.chat-messages {
+    background: transparent !important;
+    padding: 16px 0 !important;
+}
+
+.message {
+    margin-bottom: 16px !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    gap: 8px !important;
+}
+
+.message.ai-message {
+    justify-content: flex-start !important;
+}
+
+.message.user-message,
+.message.user {
+    justify-content: flex-end !important;
+}
+
+.message-content {
+    max-width: 75% !important;
+    padding: 12px 16px !important;
+    border-radius: var(--ios-radius-large) !important;
+    position: relative !important;
+}
+
+.message.ai-message .message-content {
+    background: white !important;
+    color: var(--ios-text-primary) !important;
+    border-bottom-left-radius: 6px !important;
+    box-shadow: var(--ios-shadow-light) !important;
+    border: 0.5px solid var(--ios-separator) !important;
+}
+
+.message.user-message .message-content,
+.message.user .message-content {
+    background: var(--ios-green) !important;
+    color: white !important;
+    border-bottom-right-radius: 6px !important;
+    box-shadow: 0 1px 3px rgba(52, 199, 89, 0.3) !important;
+}
+
+.message-text {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.message-time {
+    font-size: 12px !important;
+    color: var(--ios-text-tertiary) !important;
+    margin-top: 4px !important;
+    text-align: center !important;
+}
+
+.message-avatar {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 14px !important;
+    background: var(--ios-bg-quaternary) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+}
+
+/* 输入区域 - iOS风格 */
+.chat-input-container {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-top: 0.5px solid var(--ios-separator) !important;
+    padding: 12px 16px 34px 16px !important; /* 适配安全区域 */
+}
+
+.input-wrapper {
+    background: var(--ios-bg-quaternary) !important;
+    border-radius: var(--ios-radius-xlarge) !important;
+    padding: 8px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    border: none !important;
+}
+
+.message-input {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    font-size: 16px !important;
+    color: var(--ios-text-primary) !important;
+    flex: 1 !important;
+    padding: 8px 0 !important;
+}
+
+.message-input::placeholder {
+    color: var(--ios-text-tertiary) !important;
+}
+
+.send-button {
+    background: var(--ios-green) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    box-shadow: 0 1px 3px rgba(52, 199, 89, 0.3) !important;
+}
+
+.send-button:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 0 2px 8px rgba(52, 199, 89, 0.4) !important;
+}
+
+.send-button:active {
+    transform: scale(0.95) !important;
+}
+
+.send-icon {
+    color: white !important;
+    font-size: 16px !important;
+}
+
+/* 搜索页面 - iOS风格 */
+.search-config {
+    background: white !important;
+    border-radius: var(--ios-radius-large) !important;
+    margin: 16px !important;
+    box-shadow: var(--ios-shadow-medium) !important;
+    border: 0.5px solid var(--ios-separator) !important;
+    overflow: hidden !important;
+}
+
+.config-tabs {
+    background: var(--ios-bg-primary) !important;
+    padding: 16px !important;
+    display: flex !important;
+    gap: 8px !important;
+}
+
+.config-tab {
+    background: var(--ios-bg-quaternary) !important;
+    border: none !important;
+    border-radius: var(--ios-radius-medium) !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: var(--ios-text-secondary) !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    flex: 1 !important;
+}
+
+.config-tab.active {
+    background: var(--ios-green) !important;
+    color: white !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 2px 8px rgba(52, 199, 89, 0.3) !important;
+}
+
+.search-engines {
+    padding: 20px !important;
+    background: white !important;
+}
+
+.section-title {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: var(--ios-text-primary) !important;
+    margin-bottom: 8px !important;
+}
+
+.engine-note {
+    font-size: 14px !important;
+    color: var(--ios-text-secondary) !important;
+    margin-bottom: 20px !important;
+}
+
+.engine-categories {
+    display: flex !important;
+    gap: 8px !important;
+    margin-bottom: 20px !important;
+    flex-wrap: wrap !important;
+}
+
+.category-btn {
+    background: var(--ios-bg-quaternary) !important;
+    border: none !important;
+    border-radius: var(--ios-radius-xlarge) !important;
+    padding: 8px 16px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--ios-text-secondary) !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.category-btn.active,
+.category-btn.selected {
+    background: var(--ios-green) !important;
+    color: white !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 2px 8px rgba(52, 199, 89, 0.3) !important;
+}
+
+.engine-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+}
+
+.engine-item {
+    background: var(--ios-bg-primary) !important;
+    border: 0.5px solid var(--ios-separator) !important;
+    border-radius: var(--ios-radius-medium) !important;
+    padding: 16px !important;
+    text-align: center !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    position: relative !important;
+}
+
+.engine-item.selected {
+    border-color: var(--ios-green) !important;
+    background: rgba(52, 199, 89, 0.1) !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 2px 8px rgba(52, 199, 89, 0.2) !important;
+}
+
+.engine-item:hover {
+    transform: scale(1.02) !important;
+    box-shadow: var(--ios-shadow-light) !important;
+}
+
+.engine-icon {
+    font-size: 24px !important;
+    margin-bottom: 8px !important;
+    display: block !important;
+}
+
+.engine-name {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--ios-text-primary) !important;
+}
+
+.engine-check {
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    color: var(--ios-green) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+
+/* 应用页面 - iOS风格 */
+.apps-header {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 0.5px solid var(--ios-separator) !important;
+    padding: 16px !important;
+}
+
+.apps-header h2 {
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    color: var(--ios-text-primary) !important;
+    margin: 0 !important;
+}
+
+.top-search-bar {
+    background: white !important;
+    border-radius: var(--ios-radius-large) !important;
+    margin: 16px !important;
+    padding: 16px !important;
+    box-shadow: var(--ios-shadow-medium) !important;
+    border: 0.5px solid var(--ios-separator) !important;
+}
+
+.apps-content {
+    padding: 0 16px 16px 16px !important;
+}
+
+.category-sidebar {
+    background: white !important;
+    border-radius: var(--ios-radius-large) !important;
+    padding: 16px !important;
+    margin-bottom: 16px !important;
+    box-shadow: var(--ios-shadow-light) !important;
+    border: 0.5px solid var(--ios-separator) !important;
+}
+
+.category-item {
+    background: transparent !important;
+    border: none !important;
+    border-radius: var(--ios-radius-medium) !important;
+    padding: 12px 16px !important;
+    margin-bottom: 4px !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    color: var(--ios-text-secondary) !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    text-align: left !important;
+    width: 100% !important;
+}
+
+.category-item.active {
+    background: var(--ios-green) !important;
+    color: white !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 2px 8px rgba(52, 199, 89, 0.3) !important;
+}
+
+.category-item:hover {
+    background: var(--ios-bg-quaternary) !important;
+}
+
+.apps-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 16px !important;
+    background: white !important;
+    border-radius: var(--ios-radius-large) !important;
+    padding: 20px !important;
+    box-shadow: var(--ios-shadow-light) !important;
+    border: 0.5px solid var(--ios-separator) !important;
+}
+
+.app-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    padding: 8px !important;
+    border-radius: var(--ios-radius-medium) !important;
+}
+
+.app-item:hover {
+    transform: scale(1.05) !important;
+    background: var(--ios-bg-quaternary) !important;
+}
+
+.app-icon {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 13px !important; /* iOS应用图标圆角 */
+    margin-bottom: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.app-item:hover .app-icon {
+    transform: scale(1.1) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.app-name {
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    color: var(--ios-text-primary) !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+}
+
+/* 暗色模式适配 */
+body.dark-theme,
+body[data-theme="dark"] {
+    background-color: var(--ios-dark-bg-primary) !important;
+    color: var(--ios-dark-text-primary) !important;
+}
+
+body.dark-theme .bottom-nav,
+body[data-theme="dark"] .bottom-nav {
+    background: rgba(28, 28, 30, 0.9) !important;
+    border-top-color: var(--ios-dark-separator) !important;
+}
+
+body.dark-theme .nav-item,
+body[data-theme="dark"] .nav-item {
+    color: var(--ios-dark-text-secondary) !important;
+}
+
+body.dark-theme .nav-item:hover,
+body[data-theme="dark"] .nav-item:hover {
+    background-color: rgba(58, 58, 60, 0.5) !important;
+}
+
+body.dark-theme .ai-selector,
+body.dark-theme .search-config,
+body.dark-theme .top-search-bar,
+body.dark-theme .category-sidebar,
+body.dark-theme .apps-grid,
+body[data-theme="dark"] .ai-selector,
+body[data-theme="dark"] .search-config,
+body[data-theme="dark"] .top-search-bar,
+body[data-theme="dark"] .category-sidebar,
+body[data-theme="dark"] .apps-grid {
+    background: var(--ios-dark-bg-secondary) !important;
+    border-color: var(--ios-dark-separator) !important;
+}
+
+body.dark-theme .ai-model-tabs,
+body[data-theme="dark"] .ai-model-tabs {
+    background: var(--ios-dark-bg-tertiary) !important;
+}
+
+body.dark-theme .ai-tab.active,
+body[data-theme="dark"] .ai-tab.active {
+    background: var(--ios-dark-bg-quaternary) !important;
+    color: var(--ios-green) !important;
+}
+
+body.dark-theme .message.ai-message .message-content,
+body[data-theme="dark"] .message.ai-message .message-content {
+    background: var(--ios-dark-bg-secondary) !important;
+    color: var(--ios-dark-text-primary) !important;
+    border-color: var(--ios-dark-separator) !important;
+}
+
+body.dark-theme .chat-input-container,
+body[data-theme="dark"] .chat-input-container {
+    background: rgba(28, 28, 30, 0.9) !important;
+    border-top-color: var(--ios-dark-separator) !important;
+}
+
+body.dark-theme .input-wrapper,
+body[data-theme="dark"] .input-wrapper {
+    background: var(--ios-dark-bg-tertiary) !important;
+}
+
+body.dark-theme .message-input,
+body[data-theme="dark"] .message-input {
+    color: var(--ios-dark-text-primary) !important;
+}
+
+body.dark-theme .message-input::placeholder,
+body[data-theme="dark"] .message-input::placeholder {
+    color: var(--ios-dark-text-tertiary) !important;
+}
+
+/* 系统暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+        background-color: var(--ios-dark-bg-primary) !important;
+        color: var(--ios-dark-text-primary) !important;
+    }
+    
+    body:not([data-theme="light"]) .bottom-nav {
+        background: rgba(28, 28, 30, 0.9) !important;
+        border-top-color: var(--ios-dark-separator) !important;
+    }
+    
+    body:not([data-theme="light"]) .ai-selector,
+    body:not([data-theme="light"]) .search-config,
+    body:not([data-theme="light"]) .apps-grid {
+        background: var(--ios-dark-bg-secondary) !important;
+        border-color: var(--ios-dark-separator) !important;
+    }
+}
+
+/* 动画增强 */
+@keyframes iosSpring {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.nav-item.active,
+.ai-tab.active,
+.config-tab.active,
+.category-btn.active,
+.category-item.active {
+    animation: iosSpring 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* 触摸反馈 */
+.nav-item:active,
+.ai-tab:active,
+.config-tab:active,
+.category-btn:active,
+.category-item:active,
+.engine-item:active,
+.app-item:active {
+    transform: scale(0.95) !important;
+    transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}

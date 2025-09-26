@@ -1,0 +1,271 @@
+/* AI聊天页面输入框修复 - 微信风格 */
+
+/* AI页面主容器 */
+#ai-page {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    background: #f7f7f7 !important;
+}
+
+/* AI模型选择器 */
+.ai-selector {
+    background: white !important;
+    border-bottom: 1px solid #e5e5e5 !important;
+    padding: 12px 16px !important;
+    flex-shrink: 0 !important;
+}
+
+/* 聊天容器 */
+.chat-container {
+    flex: 1 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* 聊天消息区域 */
+.chat-messages {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    padding: 16px !important;
+    background: #f7f7f7 !important;
+}
+
+/* 输入区域容器 - 固定在底部 */
+.chat-input-container {
+    position: fixed !important;
+    bottom: 80px !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: white !important;
+    border-top: 1px solid #e5e5e5 !important;
+    padding: 12px 16px !important;
+    z-index: 1000 !important;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 输入框包装器 */
+.input-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    max-width: 100% !important;
+}
+
+/* 消息输入框 - 微信风格 */
+.message-input {
+    flex: 1 !important;
+    height: 40px !important;
+    border: 1px solid #d9d9d9 !important;
+    border-radius: 20px !important;
+    padding: 0 16px !important;
+    font-size: 16px !important;
+    background: #f8f8f8 !important;
+    outline: none !important;
+    transition: all 0.2s ease !important;
+    color: #333 !important;
+}
+
+.message-input:focus {
+    border-color: #07c160 !important;
+    background: white !important;
+    box-shadow: 0 0 0 2px rgba(7, 193, 96, 0.2) !important;
+}
+
+.message-input::placeholder {
+    color: #999 !important;
+    font-size: 16px !important;
+}
+
+/* 发送按钮 - 微信风格 */
+.send-button {
+    width: 40px !important;
+    height: 40px !important;
+    border: none !important;
+    border-radius: 20px !important;
+    background: linear-gradient(135deg, #07c160 0%, #06ad56 100%) !important;
+    color: white !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+    flex-shrink: 0 !important;
+}
+
+.send-button:hover {
+    background: linear-gradient(135deg, #06ad56 0%, #059c4f 100%) !important;
+    transform: scale(1.05) !important;
+}
+
+.send-button:active {
+    transform: scale(0.95) !important;
+}
+
+.send-button:disabled {
+    background: #d9d9d9 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+/* 发送图标 */
+.send-icon {
+    font-size: 16px !important;
+    line-height: 1 !important;
+}
+
+/* 消息气泡样式 */
+.message {
+    display: flex !important;
+    margin-bottom: 16px !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+}
+
+.message.user-message {
+    flex-direction: row-reverse !important;
+}
+
+.message-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 20px !important;
+    background: #07c160 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 18px !important;
+    flex-shrink: 0 !important;
+}
+
+.message.user-message .message-avatar {
+    background: #1989fa !important;
+}
+
+.message-content {
+    max-width: 70% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+.message-text {
+    background: white !important;
+    padding: 12px 16px !important;
+    border-radius: 18px !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    color: #333 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    word-wrap: break-word !important;
+}
+
+.message.user-message .message-text {
+    background: #07c160 !important;
+    color: white !important;
+}
+
+.message-time {
+    font-size: 12px !important;
+    color: #999 !important;
+    text-align: center !important;
+    margin-top: 4px !important;
+}
+
+/* 暗色模式适配 */
+body.dark-theme #ai-page,
+[data-theme="dark"] #ai-page {
+    background: #000000 !important;
+}
+
+body.dark-theme .ai-selector,
+[data-theme="dark"] .ai-selector {
+    background: #1c1c1e !important;
+    border-bottom-color: #38383a !important;
+}
+
+body.dark-theme .chat-messages,
+[data-theme="dark"] .chat-messages {
+    background: #000000 !important;
+}
+
+body.dark-theme .chat-input-container,
+[data-theme="dark"] .chat-input-container {
+    background: #1c1c1e !important;
+    border-top-color: #38383a !important;
+}
+
+body.dark-theme .message-input,
+[data-theme="dark"] .message-input {
+    background: #2c2c2e !important;
+    border-color: #48484a !important;
+    color: #ffffff !important;
+}
+
+body.dark-theme .message-input:focus,
+[data-theme="dark"] .message-input:focus {
+    background: #3a3a3c !important;
+    border-color: #30d158 !important;
+    box-shadow: 0 0 0 2px rgba(48, 209, 88, 0.2) !important;
+}
+
+body.dark-theme .message-input::placeholder,
+[data-theme="dark"] .message-input::placeholder {
+    color: #8e8e93 !important;
+}
+
+body.dark-theme .message-text,
+[data-theme="dark"] .message-text {
+    background: #2c2c2e !important;
+    color: #ffffff !important;
+}
+
+body.dark-theme .message.user-message .message-text,
+[data-theme="dark"] .message.user-message .message-text {
+    background: #30d158 !important;
+    color: #000000 !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 375px) {
+    .chat-input-container {
+        padding: 10px 12px !important;
+    }
+    
+    .message-input {
+        height: 36px !important;
+        font-size: 15px !important;
+        padding: 0 14px !important;
+    }
+    
+    .send-button {
+        width: 36px !important;
+        height: 36px !important;
+    }
+    
+    .send-icon {
+        font-size: 14px !important;
+    }
+}
+
+@media (min-width: 414px) {
+    .chat-input-container {
+        padding: 14px 20px !important;
+    }
+    
+    .message-input {
+        height: 44px !important;
+        font-size: 17px !important;
+        padding: 0 18px !important;
+    }
+    
+    .send-button {
+        width: 44px !important;
+        height: 44px !important;
+    }
+    
+    .send-icon {
+        font-size: 18px !important;
+    }
+}

@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="mobile-apps-spacing-fix.css">
     <link rel="stylesheet" href="mobile-search-ai-dark-fix.css">
     <link rel="stylesheet" href="mobile-chat-message-dark-fix.css">
+    <link rel="stylesheet" href="mobile-apple-style.css">
+    <link rel="stylesheet" href="mobile-layout-optimization.css">
     
     <!-- 布局修复 - 必须在最后加载以覆盖冲突样式 -->
     <link rel="stylesheet" href="mobile-layout-fix.css">
@@ -35,9 +37,24 @@
     
     <!-- AI聊天微信风格 - 最新设计 -->
     <link rel="stylesheet" href="mobile-ai-wechat-style.css">
-</head>    
-    <!-- 主题同步脚本 - 需要在其他脚本之前加载 -->
-    <script src="mobile-theme-sync.js"></script>
+    
+    <!-- 应用页面布局修复 - 解决图标太小和分类标签太宽的问题 -->
+    <link rel="stylesheet" href="mobile-apps-layout-fix.css">
+    
+    <!-- 搜索页面标签页修复样式 -->
+    <link rel="stylesheet" href="mobile-search-tabs-fix.css">
+    
+    <!-- AI聊天页面输入框修复 - 微信风格 -->
+    <link rel="stylesheet" href="mobile-ai-chat-input-fix.css">
+    
+    <!-- 应用页面网格布局修复 - 每行3个图标，完整显示文字 -->
+    <link rel="stylesheet" href="mobile-apps-grid-fix.css">
+    
+    <!-- 移动端布局居中修复 - 解决页面偏移问题 -->
+    <link rel="stylesheet" href="mobile-layout-center-fix.css">
+    
+    <!-- AI页面居中修复 - DeepSeek、Kimi、智谱清言选项居中，对话框居中 -->
+    <link rel="stylesheet" href="mobile-ai-center-fix.css">
 </head>
 
 <body>
@@ -259,64 +276,77 @@
                 <!-- 搜索引擎选择 -->
                 <div class="search-config">
                     <div class="config-tabs">
-                        <button class="config-tab active">🔍 搜索引擎</button>
-                        <button class="config-tab">📱 应用选择</button>
-                        <button class="config-tab">🧠 AI助手</button>
+                        <button class="config-tab active" data-tab="search-engines">🔍 搜索引擎</button>
+                        <button class="config-tab" data-tab="app-selection">📱 应用选择</button>
+                        <button class="config-tab" data-tab="ai-assistant">🧠 AI助手</button>
                     </div>
 
-                    <div class="search-engines">
-                        <div class="section-title">搜索引擎</div>
-                        <div class="engine-note">按分类选择</div>
+                    <!-- 搜索引擎标签页 -->
+                    <div class="tab-content active" id="search-engines-tab">
+                        <div class="search-engines">
+                            <div class="section-title">搜索引擎</div>
+                            <div class="engine-note">按分类选择</div>
 
-                        <div class="engine-categories">
-                            <button class="category-btn active">AI搜索</button>
-                            <button class="category-btn">专业搜索</button>
-                            <button class="category-btn selected">国内搜索</button>
-                            <button class="category-btn">国际搜索</button>
+                            <div class="engine-categories">
+                                <button class="category-btn active">AI搜索</button>
+                                <button class="category-btn">专业搜索</button>
+                                <button class="category-btn selected">国内搜索</button>
+                                <button class="category-btn">国际搜索</button>
+                            </div>
+
+                            <div class="engine-grid">
+                                <div class="engine-item selected">
+                                    <div class="engine-icon baidu">🔍</div>
+                                    <div class="engine-name">百度</div>
+                                    <div class="engine-check">✓</div>
+                                </div>
+
+                                <div class="engine-item">
+                                    <div class="engine-icon sogou">$</div>
+                                    <div class="engine-name">搜狗</div>
+                                    <div class="engine-radio">○</div>
+                                </div>
+
+                                <div class="engine-item">
+                                    <div class="engine-icon so360">🔍</div>
+                                    <div class="engine-name">360搜索</div>
+                                    <div class="engine-radio">○</div>
+                                </div>
+
+                                <div class="engine-item">
+                                    <div class="engine-icon shenma">$</div>
+                                    <div class="engine-name">神马搜索</div>
+                                    <div class="engine-radio">○</div>
+                                </div>
+
+                                <div class="engine-item">
+                                    <div class="engine-icon chinaso">C</div>
+                                    <div class="engine-name">中国搜索</div>
+                                    <div class="engine-radio">○</div>
+                                </div>
+
+                                <div class="engine-item">
+                                    <div class="engine-icon haosou">H</div>
+                                    <div class="engine-name">好搜</div>
+                                    <div class="engine-radio">○</div>
+                                </div>
+                            </div>
+
+                            <div class="config-note">
+                                <span class="note-icon">ℹ️</span>
+                                最多选择4个搜索引擎，至少保留1个
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="engine-grid">
-                            <div class="engine-item selected">
-                                <div class="engine-icon baidu">🔍</div>
-                                <div class="engine-name">百度</div>
-                                <div class="engine-check">✓</div>
-                            </div>
+                    <!-- 应用选择标签页 -->
+                    <div class="tab-content" id="app-selection-tab" style="display: none;">
+                        <!-- 内容将通过JavaScript动态生成 -->
+                    </div>
 
-                            <div class="engine-item">
-                                <div class="engine-icon sogou">$</div>
-                                <div class="engine-name">搜狗</div>
-                                <div class="engine-radio">○</div>
-                            </div>
-
-                            <div class="engine-item">
-                                <div class="engine-icon so360">🔍</div>
-                                <div class="engine-name">360搜索</div>
-                                <div class="engine-radio">○</div>
-                            </div>
-
-                            <div class="engine-item">
-                                <div class="engine-icon shenma">$</div>
-                                <div class="engine-name">神马搜索</div>
-                                <div class="engine-radio">○</div>
-                            </div>
-
-                            <div class="engine-item">
-                                <div class="engine-icon chinaso">C</div>
-                                <div class="engine-name">中国搜索</div>
-                                <div class="engine-radio">○</div>
-                            </div>
-
-                            <div class="engine-item">
-                                <div class="engine-icon haosou">H</div>
-                                <div class="engine-name">好搜</div>
-                                <div class="engine-radio">○</div>
-                            </div>
-                        </div>
-
-                        <div class="config-note">
-                            <span class="note-icon">ℹ️</span>
-                            最多选择4个搜索引擎，至少保留1个
-                        </div>
+                    <!-- AI助手标签页 -->
+                    <div class="tab-content" id="ai-assistant-tab" style="display: none;">
+                        <!-- 内容将通过JavaScript动态生成 -->
                     </div>
                 </div>
             </div>
@@ -838,23 +868,7 @@
                         </div>
                     </div>
 
-                    <div class="setting-item">
-                        <div class="setting-icon">🔔</div>
-                        <div class="setting-info">
-                            <div class="setting-title">通知设置</div>
-                            <div class="setting-desc">管理推送通知</div>
-                        </div>
-                        <div class="setting-arrow">></div>
-                    </div>
 
-                    <div class="setting-item">
-                        <div class="setting-icon">🔒</div>
-                        <div class="setting-info">
-                            <div class="setting-title">隐私设置</div>
-                            <div class="setting-desc">数据与隐私</div>
-                        </div>
-                        <div class="setting-arrow">></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -920,6 +934,9 @@
     <script src="ai-chat.js"></script>
     <script src="enhanced-browser-v3.js"></script>
     <script src="mobile-enhanced-features.js"></script>
+    
+    <!-- 主题控制脚本 - 稳定版本 -->
+    <script src="mobile-theme-control-stable.js"></script>
     
     <!-- 页面切换优化 - 防止暗色模式白色漏光 -->
     <script src="mobile-page-transition-fix.js"></script>
