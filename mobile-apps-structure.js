@@ -166,8 +166,9 @@ class MaterialAppsPage {
         appItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 this.launchAppWithSearch(item);
-            });
+            }, { capture: true });
         });
     }
 

@@ -1,0 +1,206 @@
+/* 主题强制刷新样式 - 确保主题切换立即生效 */
+
+/* 强制所有元素立即响应主题变化 */
+* {
+    transition: background-color 0.1s ease, color 0.1s ease, border-color 0.1s ease !important;
+}
+
+/* 确保body和html的主题类优先级最高 */
+html.dark-theme,
+body.dark-theme,
+html[data-theme="dark"],
+body[data-theme="dark"] {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+html.light-theme,
+body.light-theme,
+html[data-theme="light"],
+body[data-theme="light"] {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* 移动端容器强制主题应用 */
+html.dark-theme .mobile-screen,
+body.dark-theme .mobile-screen,
+html[data-theme="dark"] .mobile-screen,
+body[data-theme="dark"] .mobile-screen {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+html.light-theme .mobile-screen,
+body.light-theme .mobile-screen,
+html[data-theme="light"] .mobile-screen,
+body[data-theme="light"] .mobile-screen {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* 状态栏强制主题应用 */
+html.dark-theme .status-bar,
+body.dark-theme .status-bar,
+html[data-theme="dark"] .status-bar,
+body[data-theme="dark"] .status-bar {
+    background: rgba(28, 28, 30, 0.95) !important;
+    color: #ffffff !important;
+}
+
+html.light-theme .status-bar,
+body.light-theme .status-bar,
+html[data-theme="light"] .status-bar,
+body[data-theme="light"] .status-bar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #000000 !important;
+}
+
+/* 页面内容强制主题应用 */
+html.dark-theme .app-content,
+html.dark-theme .page,
+body.dark-theme .app-content,
+body.dark-theme .page,
+html[data-theme="dark"] .app-content,
+html[data-theme="dark"] .page,
+body[data-theme="dark"] .app-content,
+body[data-theme="dark"] .page {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+html.light-theme .app-content,
+html.light-theme .page,
+body.light-theme .app-content,
+body.light-theme .page,
+html[data-theme="light"] .app-content,
+html[data-theme="light"] .page,
+body[data-theme="light"] .app-content,
+body[data-theme="light"] .page {
+    background-color: #f8f9fa !important;
+    color: #000000 !important;
+}
+
+/* 底部导航强制主题应用 */
+html.dark-theme .bottom-nav,
+body.dark-theme .bottom-nav,
+html[data-theme="dark"] .bottom-nav,
+body[data-theme="dark"] .bottom-nav {
+    background: rgba(28, 28, 30, 0.95) !important;
+    border-top-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+html.light-theme .bottom-nav,
+body.light-theme .bottom-nav,
+html[data-theme="light"] .bottom-nav,
+body[data-theme="light"] .bottom-nav {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-top-color: rgba(0, 0, 0, 0.1) !important;
+    color: #000000 !important;
+}
+
+/* AI页面强制主题应用 */
+html.dark-theme #ai-page,
+body.dark-theme #ai-page,
+html[data-theme="dark"] #ai-page,
+body[data-theme="dark"] #ai-page {
+    background-color: #000000 !important;
+}
+
+html.light-theme #ai-page,
+body.light-theme #ai-page,
+html[data-theme="light"] #ai-page,
+body[data-theme="light"] #ai-page {
+    background-color: #f7f7f7 !important;
+}
+
+/* AI选择器强制主题应用 */
+html.dark-theme .ai-selector,
+body.dark-theme .ai-selector,
+html[data-theme="dark"] .ai-selector,
+body[data-theme="dark"] .ai-selector {
+    background: #1c1c1e !important;
+    border-bottom-color: #38383a !important;
+    color: #ffffff !important;
+}
+
+html.light-theme .ai-selector,
+body.light-theme .ai-selector,
+html[data-theme="light"] .ai-selector,
+body[data-theme="light"] .ai-selector {
+    background: white !important;
+    border-bottom-color: #e5e5e5 !important;
+    color: #000000 !important;
+}
+
+/* AI标签强制主题应用 */
+html.dark-theme .ai-tab,
+body.dark-theme .ai-tab,
+html[data-theme="dark"] .ai-tab,
+body[data-theme="dark"] .ai-tab {
+    background: #2c2c2e !important;
+    color: #ffffff !important;
+    border-color: #48484a !important;
+}
+
+html.light-theme .ai-tab,
+body.light-theme .ai-tab,
+html[data-theme="light"] .ai-tab,
+body[data-theme="light"] .ai-tab {
+    background: #f8f9fa !important;
+    color: #000000 !important;
+    border-color: transparent !important;
+}
+
+/* 输入框强制主题应用 */
+html.dark-theme .chat-input-container,
+body.dark-theme .chat-input-container,
+html[data-theme="dark"] .chat-input-container,
+body[data-theme="dark"] .chat-input-container {
+    background: #1c1c1e !important;
+    border-top-color: #38383a !important;
+}
+
+html.light-theme .chat-input-container,
+body.light-theme .chat-input-container,
+html[data-theme="light"] .chat-input-container,
+body[data-theme="light"] .chat-input-container {
+    background: white !important;
+    border-top-color: #e5e5e5 !important;
+}
+
+html.dark-theme .message-input,
+body.dark-theme .message-input,
+html[data-theme="dark"] .message-input,
+body[data-theme="dark"] .message-input {
+    background: #2c2c2e !important;
+    border-color: #48484a !important;
+    color: #ffffff !important;
+}
+
+html.light-theme .message-input,
+body.light-theme .message-input,
+html[data-theme="light"] .message-input,
+body[data-theme="light"] .message-input {
+    background: #f8f8f8 !important;
+    border-color: #d9d9d9 !important;
+    color: #333 !important;
+}
+
+/* 强制重新渲染动画 */
+@keyframes forceRefresh {
+    0% { opacity: 0.99; }
+    100% { opacity: 1; }
+}
+
+html.dark-theme *,
+body.dark-theme *,
+html[data-theme="dark"] *,
+body[data-theme="dark"] *,
+html.light-theme *,
+body.light-theme *,
+html[data-theme="light"] *,
+body[data-theme="light"] * {
+    animation: forceRefresh 0.01s ease;
+}

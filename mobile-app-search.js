@@ -39,12 +39,14 @@ class MobileAppSearch {
             }
         });
 
-        // 应用点击事件
+        // 应用点击事件（阻止冒泡，交由统一委托处理）
         document.addEventListener('click', (e) => {
-            if (e.target.closest('.app-item')) {
-                this.handleAppClick(e.target.closest('.app-item'));
+            const appEl = e.target.closest('.app-item');
+            if (appEl) {
+                e.stopPropagation();
+                this.handleAppClick(appEl);
             }
-        });
+        }, { capture: true });
 
         // 应用长按事件（显示更多选项）
         let longPressTimer;
@@ -438,11 +440,7 @@ class MobileAppSearch {
         const firstLetter = app.name.charAt(0).toUpperCase();
         
         return `
-            <div class="app-item" data-app-key="${app.key}" data-app-name="${app.name}" title="${app.name}" 
-                 onclick="handleAppClick('${app.name}')"
-                 ontouchstart="handleAppTouchStart(event, '${app.name}')"
-                 ontouchend="handleAppTouchEnd(event)"
-                 ontouchmove="handleAppTouchMove(event)">
+            <div class="app-item" data-app-key="${app.key}" data-app-name="${app.name}" title="${app.name}">
                 <div class="app-icon" style="background: ${app.gradient};">
                     <div class="app-letter">${firstLetter}</div>
                 </div>

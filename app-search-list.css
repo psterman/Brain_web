@@ -327,6 +327,130 @@
     }
 }
 
+/* 手动暗色模式适配 - 支持 body.dark-theme 和 [data-theme="dark"] */
+body.dark-theme .app-search-modal,
+body[data-theme="dark"] .app-search-modal {
+    --bg-color: #1a1a1a !important;
+    --header-bg: #2a2a2a !important;
+    --text-color: #ffffff !important;
+    --text-secondary: #cccccc !important;
+    --border-color: #333333 !important;
+    --close-btn-bg: #333333 !important;
+    --close-btn-hover: #444444 !important;
+    --index-bg: #2a2a2a !important;
+    --index-text: #cccccc !important;
+    --index-hover: #1976d2 !important;
+    --index-hover-text: #ffffff !important;
+    --section-bg: #2a2a2a !important;
+    --section-header: #cccccc !important;
+    --item-border: #333333 !important;
+    --item-hover: #2a2a2a !important;
+    --item-active: #1976d2 !important;
+    --arrow-color: #666666 !important;
+    --arrow-hover: #999999 !important;
+    --scrollbar-thumb: #555555 !important;
+    --scrollbar-thumb-hover: #777777 !important;
+}
+
+/* 强制覆盖暗色模式下的背景和文字颜色 */
+body.dark-theme .search-modal-content,
+body[data-theme="dark"] .search-modal-content {
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+body.dark-theme .search-modal-header,
+body[data-theme="dark"] .search-modal-header {
+    background: #2a2a2a !important;
+    border-bottom-color: #333333 !important;
+}
+
+body.dark-theme .search-modal-header h3,
+body[data-theme="dark"] .search-modal-header h3 {
+    color: #ffffff !important;
+}
+
+body.dark-theme .close-search-modal,
+body[data-theme="dark"] .close-search-modal {
+    background: #333333 !important;
+    color: #ffffff !important;
+}
+
+body.dark-theme .close-search-modal:hover,
+body[data-theme="dark"] .close-search-modal:hover {
+    background: #444444 !important;
+}
+
+body.dark-theme .letter-index,
+body[data-theme="dark"] .letter-index {
+    background: #2a2a2a !important;
+    border-right-color: #333333 !important;
+}
+
+body.dark-theme .letter-index-item,
+body[data-theme="dark"] .letter-index-item {
+    color: #cccccc !important;
+}
+
+body.dark-theme .letter-index-item:hover,
+body[data-theme="dark"] .letter-index-item:hover {
+    background: #1976d2 !important;
+    color: #ffffff !important;
+}
+
+body.dark-theme .letter-index-item.active,
+body[data-theme="dark"] .letter-index-item.active {
+    background: #007bff !important;
+    color: #ffffff !important;
+}
+
+body.dark-theme .letter-header,
+body[data-theme="dark"] .letter-header {
+    background: #2a2a2a !important;
+    color: #cccccc !important;
+    border-bottom-color: #333333 !important;
+}
+
+body.dark-theme .letter-apps,
+body[data-theme="dark"] .letter-apps {
+    background: #1a1a1a !important;
+}
+
+body.dark-theme .app-list-item,
+body[data-theme="dark"] .app-list-item {
+    border-bottom-color: #333333 !important;
+}
+
+body.dark-theme .app-list-item:hover,
+body[data-theme="dark"] .app-list-item:hover {
+    background: #2a2a2a !important;
+}
+
+body.dark-theme .app-list-item:active,
+body[data-theme="dark"] .app-list-item:active {
+    background: #1976d2 !important;
+}
+
+body.dark-theme .app-list-name,
+body[data-theme="dark"] .app-list-name {
+    color: #ffffff !important;
+}
+
+body.dark-theme .app-list-category,
+body[data-theme="dark"] .app-list-category {
+    color: #cccccc !important;
+}
+
+body.dark-theme .app-list-arrow,
+body[data-theme="dark"] .app-list-arrow {
+    color: #666666 !important;
+}
+
+body.dark-theme .app-list-item:hover .app-list-arrow,
+body[data-theme="dark"] .app-list-item:hover .app-list-arrow {
+    color: #999999 !important;
+}
+
 /* 响应式设计 */
 @media (max-width: 480px) {
     .search-modal-content {

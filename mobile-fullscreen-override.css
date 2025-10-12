@@ -1,0 +1,94 @@
+/* 移动端全屏覆盖样式 - 保证手机画面占满屏幕 */
+
+/* 基础视口与滚动控制 */
+html, body {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* 使用动态视口单位以适配移动浏览器地址栏变化 */
+@supports (height: 100dvh) {
+  html, body {
+    min-height: 100dvh !important;
+  }
+}
+
+/* 主容器占满屏幕，不使用模拟器边框 */
+.mobile-app {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  overflow: hidden !important;
+}
+
+@supports (height: 100dvh) {
+  .mobile-app {
+    height: 100dvh !important;
+  }
+}
+
+/* 屏幕容器填满主容器，移除圆角与限制宽度 */
+.mobile-screen {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* 主要内容区域填充剩余空间 */
+.app-content {
+  flex: 1 !important;
+  width: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* 页面容器全屏覆盖 */
+.page {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  display: none !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+.page.active {
+  display: flex !important;
+}
+
+/* 底部导航固定在底部 */
+.bottom-nav {
+  width: 100% !important;
+  height: 80px !important;
+  position: sticky !important;
+  bottom: 0 !important;
+}
+
+/* 暗色模式基础适配 */
+body.dark-theme .mobile-screen,
+body[data-theme="dark"] .mobile-screen {
+  background: #000000 !important;
+}

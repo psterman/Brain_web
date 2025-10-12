@@ -11,6 +11,7 @@ class AppsInteractionFix {
         this.fixAppClickResponse();
         this.preventDropdownFlicker();
         this.loadSelectedApp(); // 加载保存的默认应用
+        this.bindSearchInput(); // 绑定输入框按回车搜索
     }
 
     // 修复近期搜索按钮
@@ -113,43 +114,52 @@ class AppsInteractionFix {
         }
     }
 
-    // 修复应用点击响应
+    // 修复应用点击响应（兼容多个容器）
     fixAppClickResponse() {
-        // 使用事件委托处理应用点击
-        const appsGrid = document.getElementById('appsGrid');
-        if (appsGrid) {
-            appsGrid.addEventListener('click', (e) => {
-                const appItem = e.target.closest('.app-item');
+        // 支持旧/新网格ID
+        const appsGrid = document.getElementById('appsGrid') || document.getElementById('apps-grid');
+        const lettersContent = document.getElementById('letters-content');
+        const recentAppsList = document.getElementById('recentAppsList');
+
+        const bindContainer = (container) => {
+            if (!container) return;
+            container.addEventListener('click', (e) => {
+                const appItem = e.target.closest('.app-item, .letter-app-item, .recent-app-item');
                 if (appItem) {
                     e.preventDefault();
+                    e.stopPropagation();
                     this.handleAppClick(appItem);
                 }
-            });
-        }
+            }, { capture: true });
+        };
+
+        bindContainer(appsGrid);
+        bindContainer(lettersContent);
+        bindContainer(recentAppsList);
     }
 
     handleAppClick(appItem) {
-        const appId = appItem.dataset.app;
-        const appName = appItem.querySelector('.app-name').textContent;
+        const appId = appItem.dataset.app || appItem.dataset.appKey;
+        const nameEl = appItem.querySelector('.app-name') || appItem.querySelector('span');
+        const appName = (appItem.dataset.appName || (nameEl ? nameEl.textContent : '') || appId || '').trim();
         const searchInput = document.querySelector('.app-search-input');
         const searchQuery = searchInput ? searchInput.value.trim() : '';
 
         // 添加点击效果
         this.addClickEffect(appItem);
 
-        // 根据是否有搜索内容决定行为
+        // 始终更新左侧选中图标与占位文案
+        this.replaceDefaultAppIcon(appId, appName, appItem);
+
         if (searchQuery) {
-            // 有搜索内容：跳转到搜索结果页面
+            // 输入框已有文字：立刻用所选应用搜索
             this.showToast(`正在用 ${appName} 搜索: ${searchQuery}`);
             setTimeout(() => {
                 this.performSearch(appId, searchQuery, appName);
-            }, 300);
+            }, 250);
         } else {
-            // 无搜索内容：替换默认app图标
-            this.showToast(`已选择 ${appName}`);
-            setTimeout(() => {
-                this.replaceDefaultAppIcon(appId, appName, appItem);
-            }, 300);
+            // 输入框无文字：提示并等待用户输入后按回车
+            this.showToast(`已选择 ${appName}，请输入关键词后按回车搜索`);
         }
     }
 
@@ -158,11 +168,13 @@ class AppsInteractionFix {
         // 找到搜索框旁边的默认app图标
         const defaultAppIcon = document.querySelector('.selected-app-icon');
 
-        if (defaultAppIcon && clickedAppItem) {
-            // 获取点击的应用图标信息
-            const appLetter = clickedAppItem.querySelector('.app-letter');
-            const appLetterText = appLetter ? appLetter.textContent : appName.charAt(0);
-            const appLetterStyle = appLetter ? appLetter.getAttribute('style') : '';
+        if (defaultAppIcon && clickedAppItem && appId) {
+            // 获取点击的应用图标信息（兼容不同结构）
+            const letterEl = clickedAppItem.querySelector('.app-letter')
+                || clickedAppItem.querySelector('.app-icon-mini')
+                || clickedAppItem.querySelector('.app-icon-small');
+            const appLetterText = letterEl ? (letterEl.textContent || '').trim().slice(0, 1) : (appName || '').charAt(0);
+            const appLetterStyle = letterEl ? (letterEl.getAttribute('style') || '') : '';
 
             // 更新默认图标的显示
             defaultAppIcon.innerHTML = `
@@ -179,8 +191,8 @@ class AppsInteractionFix {
             // 保存到本地存储
             this.saveSelectedApp(appId, appName, appLetterText, appLetterStyle);
 
-            // 显示成功提示
-            this.showToast(`已设置 ${appName} 为默认应用`);
+            // 同步占位文案
+            this.updateInputPlaceholder(appName);
 
             console.log(`默认应用已更换为: ${appName} (${appId})`);
         }
@@ -217,10 +229,80 @@ class AppsInteractionFix {
                     defaultAppIcon.dataset.selectedApp = appData.appId;
                     defaultAppIcon.dataset.selectedAppName = appData.appName;
                     defaultAppIcon.classList.add('app-selected');
+                    this.updateInputPlaceholder(appData.appName);
                 }
             }
         } catch (e) {
             console.warn('无法加载保存的应用:', e);
+        }
+    }
+
+    // 绑定输入框按回车搜索
+    bindSearchInput() {
+        const input = document.getElementById('appSearchInput') || document.querySelector('.app-search-input');
+        if (!input) return;
+
+        // 防止重复绑定，替换节点
+        const newInput = input.cloneNode(true);
+        input.parentNode.replaceChild(newInput, input);
+
+        newInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const query = (newInput.value || '').trim();
+                if (!query) return;
+                const selected = this.getSelectedAppInfo();
+                if (selected.appId) {
+                    this.showToast(`正在用 ${selected.appName} 搜索: ${query}`);
+                    setTimeout(() => {
+                        this.performSearch(selected.appId, query, selected.appName);
+                    }, 150);
+                } else {
+                    this.showToast('请先选择一个应用');
+                }
+            }
+        });
+
+        // 清空按钮恢复默认占位
+        const clearBtn = document.getElementById('app-search-clear-btn');
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                newInput.value = '';
+                const selected = this.getSelectedAppInfo();
+                this.updateInputPlaceholder(selected.appName);
+            });
+        }
+    }
+
+    // 获取当前选中的应用信息
+    getSelectedAppInfo() {
+        const icon = document.querySelector('.selected-app-icon');
+        let appId = icon ? icon.dataset.selectedApp : '';
+        let appName = icon ? icon.dataset.selectedAppName : '';
+
+        if (!appId) {
+            try {
+                const savedApp = localStorage.getItem('selectedDefaultApp');
+                if (savedApp) {
+                    const appData = JSON.parse(savedApp);
+                    appId = appData.appId;
+                    appName = appData.appName;
+                }
+            } catch (e) {
+                // ignore
+            }
+        }
+        return { appId, appName };
+    }
+
+    // 同步输入框占位文案
+    updateInputPlaceholder(appName) {
+        const input = document.getElementById('appSearchInput') || document.querySelector('.app-search-input');
+        if (input) {
+            if (appName) {
+                input.placeholder = `在 ${appName} 搜索，按回车执行`;
+            } else {
+                input.placeholder = '输入关键词，然后点击下方应用图标进行搜索';
+            }
         }
     }
 
