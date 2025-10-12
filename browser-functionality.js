@@ -181,7 +181,7 @@ class BrowserManager {
         }
         
         // URL输入框
-        const urlInput = document.querySelector('.url-input');
+        const urlInput = document.querySelector('#browser-page .url-input');
         if (urlInput) {
             urlInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
@@ -807,7 +807,7 @@ class BrowserManager {
     
     // 更新URL栏
     updateUrlBar() {
-        const urlInput = document.querySelector('.url-input');
+        const urlInput = document.querySelector('#browser-page .url-input');
         if (urlInput) {
             urlInput.value = this.currentUrl;
         }
@@ -903,7 +903,7 @@ class BrowserManager {
     async pasteFromClipboard() {
         try {
             const text = await navigator.clipboard.readText();
-            const urlInput = document.querySelector('.url-input');
+            const urlInput = document.querySelector('#browser-page .url-input');
             if (urlInput) {
                 urlInput.value = text;
                 urlInput.focus();
@@ -916,7 +916,7 @@ class BrowserManager {
     
     // 清空输入框
     clearUrlInput() {
-        const urlInput = document.querySelector('.url-input');
+        const urlInput = document.querySelector('#browser-page .url-input');
         if (urlInput) {
             urlInput.value = '';
             urlInput.focus();
@@ -1257,7 +1257,7 @@ class BrowserManager {
      
      // 初始化长按功能
      initLongPressFeature() {
-         const browserContent = document.querySelector('.browser-content');
+         const browserContent = document.querySelector('#browser-page .browser-content');
          if (!browserContent) return;
          
          let longPressTimer = null;

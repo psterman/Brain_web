@@ -29,12 +29,9 @@ class MobileApp {
         navItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
-                const pageId = item.dataset.page;
-                if (pageId) {
-                    const simplifiedPageId = pageId.replace('-page', '');
-                    if (simplifiedPageId !== this.currentPage) {
-                        this.showPage(simplifiedPageId);
-                    }
+                const targetPage = item.dataset.page;
+                if (targetPage) {
+                    this.showPage(targetPage);
                 }
             });
         });
@@ -77,45 +74,61 @@ class MobileApp {
         }
     }
 
-    showPage(pageId) {
-        if (this.isTransitioning || pageId === this.currentPage) return;
-        
+    showPage(pageIdOrElementId) {
+        if (this.isTransitioning) return;
+
+        // 目标元素ID与页面Key的解析
+        const isFullId = typeof pageIdOrElementId === 'string' && pageIdOrElementId.includes('-page');
+        const targetElementId = isFullId ? pageIdOrElementId : `${pageIdOrElementId}-page`;
+        const normalizedPageKey = isFullId ? pageIdOrElementId.split('-page')[0] : pageIdOrElementId;
+
+        // 如果目标页面已经激活则跳过
+        const activeElement = document.querySelector('.page.active');
+        if (activeElement && activeElement.id === targetElementId) return;
+
         this.isTransitioning = true;
-        
+
         // 添加滑出动画到当前页面
-        const currentPageElement = document.getElementById(`${this.currentPage}-page`);
+        const currentPageElement = activeElement || document.getElementById(`${this.currentPage}-page`) || document.getElementById(`${this.currentPage}-page-demo`);
         if (currentPageElement && currentPageElement.classList.contains('active')) {
             currentPageElement.classList.add('slide-out');
         }
-        
-        // 隐藏所有页面
+
+        // 隐藏所有页面并移除过渡类
         const allPages = document.querySelectorAll('.page');
         allPages.forEach(page => {
             page.classList.remove('active', 'slide-out');
+            // 确保非激活页面不可见，避免过渡优化脚本残留样式影响
+            page.style.display = 'none';
         });
-        
-        // 更新导航状态
-        this.updateNavigation(pageId);
-        
+
+        // 更新导航状态（支持完整ID）
+        this.updateNavigation(targetElementId);
+
         // 显示新页面（快速动画）
         setTimeout(() => {
-            const newPageElement = document.getElementById(`${pageId}-page`);
+            const newPageElement = document.getElementById(targetElementId);
             if (newPageElement) {
                 newPageElement.classList.add('active');
+                // 强制显示激活页面，覆盖任何display:none残留
+                newPageElement.style.display = 'block';
             }
-            
-            this.currentPage = pageId;
+
+            this.currentPage = normalizedPageKey;
             this.isTransitioning = false;
-            
+
             // 触发页面特定的初始化
-            this.initializePage(pageId);
+            this.initializePage(normalizedPageKey);
         }, 50);
     }
 
     updateNavigation(activePageId) {
         const navItems = document.querySelectorAll('.nav-item');
         navItems.forEach(item => {
-            if (item.dataset.page === `${activePageId}-page`) {
+            const target = typeof activePageId === 'string' && activePageId.includes('-page')
+                ? activePageId
+                : `${activePageId}-page`;
+            if (item.dataset.page === target) {
                 item.classList.add('active');
             } else {
                 item.classList.remove('active');
@@ -551,11 +564,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 初始化键盘事件
     app.handleKeyboard();
-    
-    // 防止页面滚动
-    document.body.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-    }, { passive: false });
     
     // 隐藏地址栏（移动端）
     setTimeout(() => {

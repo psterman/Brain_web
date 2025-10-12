@@ -172,7 +172,7 @@ class EnhancedBrowserManager {
         this.addTabsButton();
         
         // URL输入框
-        const urlInput = document.querySelector('.url-input');
+        const urlInput = document.querySelector('#browser-page .url-input');
         if (urlInput) {
             urlInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
@@ -229,7 +229,7 @@ class EnhancedBrowserManager {
     
     // 设置手势操作
     setupGestures() {
-        const browserContent = document.querySelector('.browser-content');
+        const browserContent = document.querySelector('#browser-page .browser-content');
         if (!browserContent) return;
         
         let startX, startY, startTime;
@@ -698,7 +698,7 @@ class EnhancedBrowserManager {
         const tab = this.getCurrentTab();
         if (!tab) return;
         
-        const urlInput = document.querySelector('.url-input');
+        const urlInput = document.querySelector('#browser-page .url-input');
         if (urlInput) {
             urlInput.value = tab.url;
         }

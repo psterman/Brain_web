@@ -14,7 +14,8 @@ class MobileForceOptimizer {
     
     // 设置iframe移动端优化
     setupIframeOptimization() {
-        const iframe = document.getElementById('browserFrame');
+        // 优先使用正式浏览页iframe，若不存在则回退到演示版
+        const iframe = document.getElementById('browserFrame') || document.getElementById('browserFrameDemo');
         if (!iframe) return;
         
         // 监听iframe加载完成
@@ -35,6 +36,20 @@ class MobileForceOptimizer {
             // 通过代理方式设置User-Agent
             const originalSrc = iframe.src;
             
+            // 显式跳过本地与同源地址，避免将 localhost 重写为 m.localhost
+            if (originalSrc) {
+                try {
+                    const srcHost = new URL(originalSrc).hostname;
+                    const pageHost = window.location.hostname;
+                    if (srcHost === 'localhost' || srcHost === '127.0.0.1' || srcHost === '::1' || srcHost === pageHost) {
+                        return; // 不进行移动端重写
+                    }
+                } catch (e) {
+                    // 非法URL或相对路径，直接跳过
+                    return;
+                }
+            }
+            
             // 创建一个代理URL，强制移动端访问
             if (originalSrc && !originalSrc.includes('about:blank')) {
                 const mobileUrl = this.convertToMobileUrl(originalSrc);
@@ -52,6 +67,13 @@ class MobileForceOptimizer {
         try {
             const urlObj = new URL(url);
             const hostname = urlObj.hostname;
+            
+            // 开发环境与本地资源不做移动端重写
+            const currentHost = window.location.hostname;
+            const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1';
+            if (isLocalHost || hostname === currentHost || urlObj.protocol === 'blob:' || urlObj.protocol === 'data:') {
+                return url;
+            }
             
             // 移动端URL映射表
             const mobileMapping = {

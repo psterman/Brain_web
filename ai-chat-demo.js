@@ -243,6 +243,12 @@ function initAIChatDemo() {
     const aiChatSubmit = document.getElementById('aiChatSubmit');
     const aiResponsesContainer = document.getElementById('aiResponsesContainer');
     
+    // 元素存在性判断，避免初始化报错
+    if (!aiChatInput || !aiChatSubmit || !aiResponsesContainer) {
+        console.warn('AI聊天演示初始化失败：aiChatInput/aiChatSubmit/aiResponsesContainer 未找到');
+        return;
+    }
+    
     // 设置随机的示例问题作为占位符
     aiChatInput.placeholder = `试试问: "${getRandomSampleQuestion()}"`;
     
@@ -272,7 +278,12 @@ function initAIChatDemo() {
 
 // 处理聊天提交
 function handleChatSubmit(inputElement, responsesContainer) {
-    const query = inputElement.value.trim();
+    // 健壮性判断，避免空元素导致报错
+    if (!inputElement || !responsesContainer) {
+        console.warn('聊天提交失败：缺少输入框或响应容器');
+        return;
+    }
+    const query = (inputElement.value || '').trim();
     if (!query) return;
     
     // 清空输入框
@@ -548,8 +559,13 @@ function initAIChatChips() {
 setTimeout(() => {
     // 自动填充一个问题
     const aiChatInput = document.getElementById('aiChatInput');
+    const aiChatSubmit = document.getElementById('aiChatSubmit');
+    if (!aiChatInput || !aiChatSubmit) {
+        console.warn('自动演示跳过：AI聊天输入或提交按钮不存在');
+        return;
+    }
     aiChatInput.value = "人工智能会如何改变我们的未来？";
     
     // 自动点击提交按钮
-    document.getElementById('aiChatSubmit').click();
+    aiChatSubmit.click();
 }, 3000);

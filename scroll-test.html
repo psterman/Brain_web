@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>滚动测试页</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: auto;
+      min-height: 100vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: #f7f7f7;
+    }
+    .header {
+      position: sticky;
+      top: 0;
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e9ecef;
+      padding: 12px 16px;
+      font-weight: 600;
+      z-index: 10;
+    }
+    .section {
+      padding: 16px;
+      margin: 12px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .block {
+      height: 800px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      margin-bottom: 16px;
+    }
+    .footer {
+      padding: 24px;
+      text-align: center;
+      color: #666;
+    }
+  </style>
+  <script>
+    // 测试触摸滚动与点击交互
+    document.addEventListener('DOMContentLoaded', () => {
+      const info = document.getElementById('info');
+      let count = 0;
+      document.body.addEventListener('click', () => {
+        count++;
+        info.textContent = `已点击 ${count} 次`;
+      });
+    });
+  </script>
+  </head>
+<body>
+  <div class="header">本地滚动测试页（支持触摸滚动）</div>
+  <div class="section">
+    <p id="info">点击以测试事件响应。</p>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <p>底部文本：应当可以滚动到这里。</p>
+  </div>
+  <div class="footer">结束</div>
+</body>
+</html>

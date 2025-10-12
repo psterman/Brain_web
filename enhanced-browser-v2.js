@@ -181,7 +181,7 @@ class EnhancedBrowserManagerV2 {
         this.addTabsButton();
         
         // URL输入框
-        const urlInput = document.querySelector('.url-input');
+        const urlInput = document.querySelector('#browser-page .url-input');
         if (urlInput) {
             urlInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
@@ -242,7 +242,7 @@ class EnhancedBrowserManagerV2 {
     
     // 设置长按功能
     setupLongPress() {
-        const browserContent = document.querySelector('.browser-content');
+        const browserContent = document.querySelector('#browser-page .browser-content');
         if (!browserContent) return;
         
         let touchStartTime;
@@ -438,7 +438,7 @@ class EnhancedBrowserManagerV2 {
     
     // 设置手势操作
     setupGestures() {
-        const browserContent = document.querySelector('.browser-content');
+        const browserContent = document.querySelector('#browser-page .browser-content');
         if (!browserContent) return;
         
         let startX, startY, startTime;
@@ -927,7 +927,7 @@ class EnhancedBrowserManagerV2 {
         const tab = this.getCurrentTab();
         if (!tab) return;
         
-        const urlInput = document.querySelector('.url-input');
+        const urlInput = document.querySelector('#browser-page .url-input');
         if (urlInput) {
             urlInput.value = tab.url;
         }

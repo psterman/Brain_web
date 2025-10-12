@@ -58,31 +58,31 @@ class EnhancedBrowserManagerV3 {
     setupUrlInputEnhancements() {
         // 等待DOM加载完成后再设置
         setTimeout(() => {
-            const urlContainer = document.querySelector('.url-container');
+            const urlContainer = document.querySelector('#browser-page-demo .url-container') || document.querySelector('#browser-page .url-container');
             if (!urlContainer) return;
             
             // 检查是否已经添加了按钮
             if (urlContainer.querySelector('.url-action-buttons')) return;
             
-            const urlInput = document.querySelector('.url-input');
+            const urlInput = document.querySelector('#browser-page-demo .url-input') || document.querySelector('#browser-page .url-input');
             if (!urlInput) return;
             
             // 监听输入框变化，控制清空按钮显示
             urlInput.addEventListener('input', () => {
-                const clearBtn = document.querySelector('.clear-btn');
+                const clearBtn = document.querySelector('#browser-page-demo .clear-btn') || document.querySelector('#browser-page .clear-btn');
                 if (clearBtn) {
                     clearBtn.style.display = urlInput.value ? 'flex' : 'none';
                 }
             });
             
             // 粘贴按钮事件
-            const pasteBtn = document.querySelector('.paste-btn');
+            const pasteBtn = document.querySelector('#browser-page-demo .paste-btn') || document.querySelector('#browser-page .paste-btn');
             if (pasteBtn) {
                 pasteBtn.addEventListener('click', () => this.pasteToUrlInput());
             }
             
             // 清空按钮事件
-            const clearBtn = document.querySelector('.clear-btn');
+            const clearBtn = document.querySelector('#browser-page-demo .clear-btn') || document.querySelector('#browser-page .clear-btn');
             if (clearBtn) {
                 clearBtn.addEventListener('click', () => this.clearUrlInput());
                 // 初始状态
@@ -95,7 +95,7 @@ class EnhancedBrowserManagerV3 {
     async pasteToUrlInput() {
         try {
             const text = await navigator.clipboard.readText();
-            const urlInput = document.querySelector('.url-input');
+            const urlInput = document.querySelector('#browser-page-demo .url-input') || document.querySelector('#browser-page .url-input');
             if (urlInput && text) {
                 urlInput.value = text;
                 urlInput.focus();
@@ -111,7 +111,7 @@ class EnhancedBrowserManagerV3 {
     
     // 清空URL输入框
     clearUrlInput() {
-        const urlInput = document.querySelector('.url-input');
+        const urlInput = document.querySelector('#browser-page-demo .url-input') || document.querySelector('#browser-page .url-input');
         if (urlInput) {
             urlInput.value = '';
             urlInput.focus();
@@ -220,7 +220,7 @@ class EnhancedBrowserManagerV3 {
     // 绑定事件
     bindEvents() {
         // 搜索引擎按钮
-        const searchEngineBtn = document.getElementById('searchEngineBtn');
+        const searchEngineBtn = document.getElementById('searchEngineBtnDemo') || document.getElementById('searchEngineBtn');
         if (searchEngineBtn) {
             searchEngineBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -229,7 +229,7 @@ class EnhancedBrowserManagerV3 {
         }
         
         // AI模型按钮
-        const aiModelBtn = document.getElementById('aiModelBtn');
+        const aiModelBtn = document.getElementById('aiModelBtnDemo') || document.getElementById('aiModelBtn');
         if (aiModelBtn) {
             aiModelBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -238,21 +238,21 @@ class EnhancedBrowserManagerV3 {
         }
         
         // 导航按钮 - 使用iOS风格图标
-        document.getElementById('backBtn')?.addEventListener('click', () => this.goBack());
-        document.getElementById('forwardBtn')?.addEventListener('click', () => this.goForward());
-        document.getElementById('refreshBtn')?.addEventListener('click', () => this.refresh());
-        document.getElementById('homeBtn')?.addEventListener('click', () => this.goHome());
-        document.getElementById('bookmarkBtn')?.addEventListener('click', () => this.toggleBookmark());
-        document.getElementById('bookmarkListBtn')?.addEventListener('click', () => this.showBookmarks());
-        document.getElementById('historyBtn')?.addEventListener('click', () => this.showHistory());
-        document.getElementById('shareBtn')?.addEventListener('click', () => this.shareUrl());
-        document.getElementById('downloadBtn')?.addEventListener('click', () => this.showDownloadManager());
+        (document.getElementById('backBtnDemo') || document.getElementById('backBtn'))?.addEventListener('click', () => this.goBack());
+        (document.getElementById('forwardBtnDemo') || document.getElementById('forwardBtn'))?.addEventListener('click', () => this.goForward());
+        (document.getElementById('refreshBtnDemo') || document.getElementById('refreshBtn'))?.addEventListener('click', () => this.refresh());
+        (document.getElementById('homeBtnDemo') || document.getElementById('homeBtn'))?.addEventListener('click', () => this.goHome());
+        (document.getElementById('bookmarkBtnDemo') || document.getElementById('bookmarkBtn'))?.addEventListener('click', () => this.toggleBookmark());
+        (document.getElementById('bookmarkListBtnDemo') || document.getElementById('bookmarkListBtn'))?.addEventListener('click', () => this.showBookmarks());
+        (document.getElementById('historyBtnDemo') || document.getElementById('historyBtn'))?.addEventListener('click', () => this.showHistory());
+        (document.getElementById('shareBtnDemo') || document.getElementById('shareBtn'))?.addEventListener('click', () => this.shareUrl());
+        (document.getElementById('downloadBtnDemo') || document.getElementById('downloadBtn'))?.addEventListener('click', () => this.showDownloadManager());
         
         // 添加多标签页按钮
         this.addTabsButton();
         
         // URL输入框
-        const urlInput = document.querySelector('.url-input');
+        const urlInput = document.querySelector('#browser-page-demo .url-input') || document.querySelector('#browser-page .url-input') || document.querySelector('.url-input');
         if (urlInput) {
             urlInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
@@ -266,7 +266,7 @@ class EnhancedBrowserManagerV3 {
         }
         
         // iframe加载事件
-        const iframe = document.getElementById('browserFrame');
+        const iframe = document.getElementById('browserFrameDemo') || document.getElementById('browserFrame');
         if (iframe) {
             iframe.addEventListener('load', () => {
                 this.hideLoading();
@@ -290,7 +290,7 @@ class EnhancedBrowserManagerV3 {
     
     // 添加标签页管理按钮
     addTabsButton() {
-        const toolbar = document.querySelector('.browser-toolbar');
+        const toolbar = document.querySelector('#browser-page-demo .browser-toolbar') || document.querySelector('#browser-page .browser-toolbar') || document.querySelector('.browser-toolbar');
         if (!toolbar) return;
         
         // 检查是否已经添加了标签页按钮
@@ -304,7 +304,7 @@ class EnhancedBrowserManagerV3 {
         tabsBtn.addEventListener('click', () => this.showTabsManager());
         
         // 插入到分享按钮之前
-        const shareBtn = document.getElementById('shareBtn');
+        const shareBtn = document.getElementById('shareBtnDemo') || document.getElementById('shareBtn');
         if (shareBtn) {
             toolbar.insertBefore(tabsBtn, shareBtn);
         } else {
@@ -314,7 +314,7 @@ class EnhancedBrowserManagerV3 {
     
     // 设置长按功能
     setupLongPress() {
-        const browserContent = document.querySelector('.browser-content');
+        const browserContent = document.querySelector('#browser-page-demo .browser-content') || document.querySelector('#browser-page .browser-content');
         if (!browserContent) return;
         
         let touchStartTime;
@@ -1057,6 +1057,16 @@ class EnhancedBrowserManagerV3 {
     // 更新工具栏图标为iOS风格
     updateToolbarIcons() {
         const iconMap = {
+            'backBtnDemo': '◀️',
+            'forwardBtnDemo': '▶️',
+            'refreshBtnDemo': '🔄',
+            'homeBtnDemo': '🏠',
+            'bookmarkBtnDemo': '⭐',
+            'bookmarkListBtnDemo': '📚',
+            'historyBtnDemo': '🕒',
+            'shareBtnDemo': '📤',
+            'downloadBtnDemo': '⬇️',
+            // 回退到非Demo ID
             'backBtn': '◀️',
             'forwardBtn': '▶️',
             'refreshBtn': '🔄',
@@ -1077,7 +1087,7 @@ class EnhancedBrowserManagerV3 {
     }
     
     updateSearchEngineButton() {
-        const btn = document.getElementById('searchEngineBtn');
+        const btn = document.getElementById('searchEngineBtnDemo') || document.getElementById('searchEngineBtn');
         if (btn) {
             const engine = this.searchEngines[this.currentSearchEngine];
             btn.innerHTML = engine.icon;
@@ -1086,7 +1096,7 @@ class EnhancedBrowserManagerV3 {
     }
     
     updateAiModelButton() {
-        const btn = document.getElementById('aiModelBtn');
+        const btn = document.getElementById('aiModelBtnDemo') || document.getElementById('aiModelBtn');
         if (btn) {
             const model = this.aiModels[this.currentAiModel];
             btn.innerHTML = model.icon;
@@ -1098,8 +1108,8 @@ class EnhancedBrowserManagerV3 {
         const tab = this.getCurrentTab();
         if (!tab) return;
         
-        const backBtn = document.getElementById('backBtn');
-        const forwardBtn = document.getElementById('forwardBtn');
+        const backBtn = document.getElementById('backBtnDemo') || document.getElementById('backBtn');
+        const forwardBtn = document.getElementById('forwardBtnDemo') || document.getElementById('forwardBtn');
         
         if (backBtn) {
             backBtn.disabled = tab.historyIndex <= 0;
@@ -1116,7 +1126,7 @@ class EnhancedBrowserManagerV3 {
         const tab = this.getCurrentTab();
         if (!tab) return;
         
-        const bookmarkBtn = document.getElementById('bookmarkBtn');
+        const bookmarkBtn = document.getElementById('bookmarkBtnDemo') || document.getElementById('bookmarkBtn');
         if (bookmarkBtn) {
             const isBookmarked = this.isBookmarked(tab.url);
             bookmarkBtn.style.color = isBookmarked ? '#FFD700' : '';
@@ -1128,7 +1138,7 @@ class EnhancedBrowserManagerV3 {
         const tab = this.getCurrentTab();
         if (!tab) return;
         
-        const urlInput = document.querySelector('.url-input');
+        const urlInput = document.querySelector('#browser-page-demo .url-input') || document.querySelector('#browser-page .url-input') || document.querySelector('.url-input');
         if (urlInput) {
             urlInput.value = tab.url;
         }
@@ -1136,7 +1146,7 @@ class EnhancedBrowserManagerV3 {
     
     updateTabsUI() {
         // 更新标签页按钮显示
-        const tabsBtn = document.getElementById('tabsBtn');
+        const tabsBtn = document.getElementById('tabsBtnDemo') || document.getElementById('tabsBtn');
         if (tabsBtn) {
             tabsBtn.innerHTML = `📄<span class="tab-count">${this.tabs.length}</span>`;
         }

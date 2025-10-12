@@ -42,10 +42,28 @@ function initPhoneTabs() {
 function switchPhoneTab(tabId) {
     console.log(`切换到标签页: ${tabId}`);
     
-    // 验证tabId是否有效 - 更新为实际的tab ID
-    const validTabs = ['search-tab', 'chat-tab', 'discover-tab', 'profile-tab'];
-    if (!validTabs.includes(tabId)) {
-        console.error(`无效的标签页ID: ${tabId}`);
+    // 兼容与容错：支持两套标签ID，并基于DOM存在性进行验证
+    const resolveTabContentId = (id) => {
+        // 直接命中：#<id>
+        if (document.getElementById(id)) return id;
+        // 内容容器约定：#<id>-content
+        const contentVariant = `${id}-content`;
+        if (document.getElementById(contentVariant)) return contentVariant;
+        // 老版映射（如果存在旧结构）
+        const legacyMap = {
+            'search-tab': 'search-tab',
+            'chat-tab': 'chat-tab',
+            'discover-tab': 'discover-tab',
+            'profile-tab': 'profile-tab'
+        };
+        const mapped = legacyMap[id];
+        if (mapped && document.getElementById(mapped)) return mapped;
+        return null;
+    };
+
+    const contentId = resolveTabContentId(tabId);
+    if (!contentId) {
+        console.warn(`未找到标签内容容器: ${tabId}`);
         return;
     }
     
@@ -71,7 +89,7 @@ function switchPhoneTab(tabId) {
                 content.style.filter = '';
             });
             
-            // 显示新内容
+            // 显示新内容（根据解析到的内容ID）
             showNewTabContent(tabId);
         }, 150);
     } else {
@@ -87,8 +105,16 @@ function switchPhoneTab(tabId) {
 // 显示新tab内容的函数
 function showNewTabContent(tabId) {
     
+    // 解析可用的内容容器ID：优先 #<tabId>-content，其次 #<tabId>
+    const candidateContentId = (() => {
+        const bySuffix = document.getElementById(`${tabId}-content`);
+        if (bySuffix) return `${tabId}-content`;
+        if (document.getElementById(tabId)) return tabId;
+        return null;
+    })();
+
     // 显示当前选中的tab内容
-    const currentTabContent = document.getElementById(tabId);
+    const currentTabContent = candidateContentId ? document.getElementById(candidateContentId) : null;
     if (currentTabContent) {
         currentTabContent.style.display = 'block';
         currentTabContent.classList.add('active');

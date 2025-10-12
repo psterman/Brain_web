@@ -1,0 +1,65 @@
+/* 最终覆盖样式：确保AI页全屏与暗色模式底部导航文字可见 */
+
+/* AI 页面强制全屏与滚动行为 */
+#ai-page {
+  height: 100dvh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+#ai-page .chat-container {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+#ai-page .chat-messages {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* 暗色模式下底部导航文字与图标可见性修复 */
+[data-theme="dark"] .bottom-nav .nav-label,
+body.dark-theme .bottom-nav .nav-label {
+  color: var(--dark-text-primary, #ffffff) !important;
+  opacity: 1 !important;
+}
+
+[data-theme="dark"] .bottom-nav .nav-icon,
+body.dark-theme .bottom-nav .nav-icon {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+[data-theme="dark"] .bottom-nav .nav-item.active .nav-label,
+body.dark-theme .bottom-nav .nav-item.active .nav-label {
+  color: #ffffff !important;
+}
+
+/* 防御性：确保浏览器内容触摸滚动不被禁用 */
+#browser-page .browser-content {
+  touch-action: auto !important;
+  overflow: visible !important;
+  -webkit-overflow-scrolling: touch !important;
+  pointer-events: auto !important;
+}
+
+/* 防止加载遮罩拦截触摸与点击，保证下层可滚动 */
+.browser-loading {
+  pointer-events: none !important;
+}
+
+/* 强化 iframe 内滚动体验（iOS） */
+#browserFrame {
+  -webkit-overflow-scrolling: touch !important;
+  overflow: auto !important;
+  touch-action: pan-y !important;
+}
+
+/* 浏览页容器允许垂直触控滚动手势 */
+#browser-page {
+  touch-action: pan-y !important;
+}

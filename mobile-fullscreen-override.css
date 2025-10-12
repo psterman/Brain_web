@@ -92,3 +92,102 @@ body.dark-theme .mobile-screen,
 body[data-theme="dark"] .mobile-screen {
   background: #000000 !important;
 }
+
+/* 应用页全屏布局与响应网格 */
+#apps-page {
+  padding: 0 !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+}
+
+#apps-page .apps-header {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 12px 16px !important;
+  border-bottom: 0.5px solid var(--ios-separator, #e9ecef) !important;
+}
+
+#apps-page .apps-layout {
+  width: 100% !important;
+  max-width: none !important;
+  flex: 1 !important;
+  padding: 0 !important;
+}
+
+#apps-page .categories-and-apps {
+  height: 100% !important;
+  gap: 0 !important;
+}
+
+#apps-page .app-categories {
+  width: 84px !important;
+  padding: 8px 0 !important;
+}
+
+#apps-page .apps-content {
+  flex: 1 !important;
+  overflow-y: auto !important;
+}
+
+#apps-page .apps-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  padding: 12px !important;
+  justify-items: center !important;
+}
+
+#apps-page .app-item {
+  width: 100% !important;
+  max-width: 110px !important;
+}
+
+@media (min-width: 430px) {
+  #apps-page .apps-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+/* 搜索/小组件标签页全屏自适应布局 */
+#search-page {
+  padding: 0 !important;
+}
+
+#search-page .search-header {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 12px 16px !important;
+}
+
+#search-page .search-config {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 12px !important;
+  align-items: stretch !important;
+  overflow-y: auto !important;
+}
+
+#search-page .config-tabs {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+#search-page .search-engines,
+#search-page .app-selection,
+#search-page .ai-assistant {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+#search-page .app-grid,
+#search-page .ai-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 12px !important;
+}
+
+@media (min-width: 430px) {
+  #search-page .app-grid,
+  #search-page .ai-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
