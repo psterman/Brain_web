@@ -63,3 +63,206 @@ body.dark-theme .bottom-nav .nav-item.active .nav-label {
 #browser-page {
   touch-action: pan-y !important;
 }
+
+/* AI 微信布局对齐与容器修复（覆盖居中冲突） */
+#ai-page.page {
+  align-items: stretch !important; /* 仅AI页不强制居中 */
+}
+
+#ai-page .ai-selector {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 20 !important;
+  width: 100% !important; /* 背景全宽不偏左 */
+  left: 0 !important;
+  right: 0 !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+#ai-page .ai-model-tabs {
+  margin: 0 auto !important; /* 基础居中 */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: none !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding: 6px 0 !important;
+}
+
+/* Tabs 容器全屏背景铺满，避免左右偏移 */
+#ai-page .ai-selector {
+  width: 100vw !important;
+  margin: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* 单个 Tab 适配移动端点击面积与横向滚动 */
+#ai-page .ai-tab {
+  flex: 0 0 auto !important;
+  min-width: 84px !important;
+  padding: 6px 12px !important;
+  border-radius: 16px !important;
+}
+
+/* 隐藏横向滚动条（iOS/Android） */
+#ai-page .ai-model-tabs::-webkit-scrollbar { display: none !important; }
+#ai-page .ai-model-tabs { scrollbar-width: none !important; }
+
+#ai-page .chat-container {
+  padding: 0 !important; /* 取消额外左右内边距，避免消息区变窄 */
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+#ai-page .chat-messages {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important; /* 默认左侧对齐 */
+  gap: 12px !important;
+  padding: 12px !important; /* 均衡内边距，避免视觉偏移 */
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding-bottom: calc(72px + env(safe-area-inset-bottom)) !important; /* 避免与底部导航重叠 */
+}
+
+#ai-page .message {
+  max-width: 85% !important;
+}
+
+#ai-page .message.ai-message {
+  align-self: flex-start !important; /* AI消息靠左 */
+}
+
+#ai-page .message.user-message {
+  align-self: flex-end !important; /* 用户消息靠右 */
+}
+
+#ai-page .chat-input-container {
+  position: sticky !important;
+  bottom: 0 !important;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom)) !important; /* 安全区与对齐 */
+  background: var(--bg-secondary, #fff) !important;
+  border-top: 1px solid var(--border-color, #e9ecef) !important;
+}
+
+/* 输入框对齐与尺寸修复 */
+#ai-page .input-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+#ai-page .message-input {
+  height: 44px !important;
+  line-height: 44px !important;
+  padding: 0 14px !important;
+  border-radius: 22px !important;
+  box-sizing: border-box !important;
+}
+
+#ai-page .send-button {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 对话气泡微信风格优化 */
+#ai-page .message.ai-message .message-text {
+  background: #ffffff !important;
+  color: var(--text-primary, #1a1a1a) !important;
+  border: 1px solid var(--border-color, #e5e7eb) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06) !important;
+}
+
+#ai-page .message.user-message .message-text {
+  background: #95ec69 !important; /* 微信绿 */
+  color: #0b3d02 !important;
+  border: none !important;
+  border-radius: 18px !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+}
+
+#ai-page .message-time {
+  color: var(--text-secondary, #6b7280) !important;
+  font-size: 12px !important;
+}
+
+/* 布局统一：拉伸容器避免居中导致背景偏左 */
+#ai-page {
+  align-items: stretch !important;
+}
+
+/* 输入栏背景与宽度修复：确保全屏等宽且不偏左 */
+#ai-page .chat-input-container {
+  max-width: none !important;
+  width: 100vw !important;
+  margin: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+/* 输入内容区域居中，不影响外层背景全宽 */
+#ai-page .input-wrapper {
+  width: 100% !important;
+  max-width: 720px !important; /* 视觉舒适的内容宽度上限 */
+  margin: 0 auto !important;
+}
+
+/* 头像位置：始终在气泡外侧并与气泡留间距 */
+#ai-page .message {
+  align-items: flex-start !important;
+  gap: 8px !important;
+}
+#ai-page .message .message-avatar {
+  flex-shrink: 0 !important;
+  margin-top: 2px !important;
+}
+#ai-page .message.ai-message .message-avatar { margin-right: 8px !important; }
+#ai-page .message.user-message .message-avatar { margin-left: 8px !important; }
+
+/* 气泡最大宽度优化，防止挤压头像 */
+#ai-page .message .message-content {
+  max-width: 75% !important;
+}
+
+/* 暗色模式修复：AI气泡不再白底，文本高对比 */
+body[data-theme="dark"] #ai-page .message.ai-message .message-text,
+body.dark-theme #ai-page .message.ai-message .message-text {
+  background: #2c2c2c !important;
+  color: #ffffff !important;
+  border-color: #444 !important;
+}
+
+/* 暗色模式修复：用户气泡文本改为白色，确保可读 */
+body[data-theme="dark"] #ai-page .message.user-message .message-text,
+body.dark-theme #ai-page .message.user-message .message-text {
+  color: #ffffff !important;
+}
+
+/* 暗色模式下输入栏与输入框可读性修复 */
+body[data-theme="dark"] #ai-page .chat-input-container,
+body.dark-theme #ai-page .chat-input-container {
+  background: #2c2c2c !important;
+  border-top-color: #3a3a3a !important;
+}
+body[data-theme="dark"] #ai-page .input-wrapper,
+body.dark-theme #ai-page .input-wrapper {
+  background: #3a3a3a !important;
+}
+body[data-theme="dark"] #ai-page .message-input,
+body.dark-theme #ai-page .message-input {
+  background: #3a3a3a !important;
+  color: #ffffff !important;
+  border-color: #4a4a4a !important;
+}
