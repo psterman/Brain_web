@@ -1,0 +1,333 @@
+/* AI切换区域 - 苹果风格设计 */
+
+/* AI选择器容器 - 苹果风格 */
+#ai-page .ai-selector {
+  /* 固定在顶部 */
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  
+  /* 全宽布局 */
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  
+  /* 苹果风格内边距 */
+  padding: 16px 20px 12px !important;
+  
+  /* 苹果风格背景 */
+  background: rgba(248, 248, 248, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  
+  /* 苹果风格分割线 */
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1) !important;
+  
+  /* 布局 */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  
+  /* 防止收缩 */
+  flex-shrink: 0 !important;
+}
+
+/* AI模型标签容器 - 苹果分段控制器风格 */
+#ai-page .ai-model-tabs {
+  /* 苹果分段控制器背景 */
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-radius: 12px !important;
+  padding: 4px !important;
+  
+  /* 布局 */
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+  
+  /* 尺寸 */
+  flex: 1 !important;
+  max-width: 320px !important;
+  height: 40px !important;
+  
+  /* 苹果风格阴影 */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  
+  /* 过渡动画 */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  
+  /* 禁用滚动 */
+  overflow: visible !important;
+}
+
+/* AI标签项 - 苹果分段控制器按钮风格 */
+#ai-page .ai-tab {
+  /* 布局 */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  
+  /* 尺寸 */
+  flex: 1 !important;
+  height: 32px !important;
+  min-width: 0 !important;
+  
+  /* 苹果风格样式 */
+  border-radius: 8px !important;
+  background: transparent !important;
+  border: none !important;
+  
+  /* 字体 */
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  color: #666 !important;
+  
+  /* 交互 */
+  cursor: pointer !important;
+  user-select: none !important;
+  
+  /* 苹果风格过渡 */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  
+  /* 重置 */
+  margin: 0 !important;
+  padding: 0 8px !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+
+/* 激活状态的AI标签 - 苹果选中效果 */
+#ai-page .ai-tab.active {
+  /* 苹果白色选中背景 */
+  background: white !important;
+  color: #333 !important;
+  
+  /* 苹果风格阴影 */
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.06) !important;
+  
+  /* 轻微缩放效果 */
+  transform: scale(1.02) !important;
+}
+
+/* 悬停效果 */
+#ai-page .ai-tab:not(.active):hover {
+  background: rgba(0, 0, 0, 0.03) !important;
+  color: #333 !important;
+  transform: scale(1.01) !important;
+}
+
+/* 按下效果 */
+#ai-page .ai-tab:active {
+  transform: scale(0.98) !important;
+  transition: transform 0.1s ease !important;
+}
+
+/* AI标签头像 - 苹果风格 */
+#ai-page .ai-tab-avatar {
+  font-size: 16px !important;
+  line-height: 1 !important;
+  filter: grayscale(0.3) !important;
+  transition: filter 0.3s ease !important;
+}
+
+#ai-page .ai-tab.active .ai-tab-avatar {
+  filter: grayscale(0) !important;
+}
+
+/* AI标签文字 */
+#ai-page .ai-tab span {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* API配置按钮 - 苹果风格 */
+#ai-page .api-config-btn {
+  /* 尺寸 */
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  
+  /* 苹果风格样式 */
+  border-radius: 12px !important;
+  background: rgba(0, 0, 0, 0.05) !important;
+  border: none !important;
+  
+  /* 字体 */
+  font-size: 18px !important;
+  color: #666 !important;
+  
+  /* 布局 */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  /* 交互 */
+  cursor: pointer !important;
+  
+  /* 苹果风格过渡 */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  
+  /* 防止收缩 */
+  flex-shrink: 0 !important;
+  
+  /* 重置 */
+  margin: 0 !important;
+  margin-left: 16px !important;
+  padding: 0 !important;
+  outline: none !important;
+}
+
+#ai-page .api-config-btn:hover {
+  background: rgba(0, 0, 0, 0.08) !important;
+  transform: scale(1.05) !important;
+}
+
+#ai-page .api-config-btn:active {
+  transform: scale(0.95) !important;
+  transition: transform 0.1s ease !important;
+}
+
+/* 切换动画效果 */
+@keyframes appleSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+#ai-page .ai-tab.active {
+  animation: appleSlideIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* 暗色模式适配 */
+@media (prefers-color-scheme: dark) {
+  #ai-page .ai-selector {
+    background: rgba(28, 28, 30, 0.95) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  #ai-page .ai-model-tabs {
+    background: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  #ai-page .ai-tab {
+    color: #ccc !important;
+  }
+  
+  #ai-page .ai-tab.active {
+    background: rgba(44, 44, 46, 1) !important;
+    color: white !important;
+    box-shadow: 
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  #ai-page .ai-tab:not(.active):hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: white !important;
+  }
+  
+  #ai-page .api-config-btn {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ccc !important;
+  }
+  
+  #ai-page .api-config-btn:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+  }
+}
+
+/* 响应式适配 */
+@media (max-width: 375px) {
+  #ai-page .ai-selector {
+    padding: 12px 16px 10px !important;
+  }
+  
+  #ai-page .ai-model-tabs {
+    max-width: 280px !important;
+    height: 36px !important;
+  }
+  
+  #ai-page .ai-tab {
+    height: 28px !important;
+    padding: 0 6px !important;
+  }
+  
+  #ai-page .ai-tab span {
+    font-size: 13px !important;
+  }
+  
+  #ai-page .ai-tab-avatar {
+    font-size: 14px !important;
+  }
+  
+  #ai-page .api-config-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    margin-left: 12px !important;
+    font-size: 16px !important;
+  }
+}
+
+@media (min-width: 414px) {
+  #ai-page .ai-selector {
+    padding: 18px 24px 14px !important;
+  }
+  
+  #ai-page .ai-model-tabs {
+    max-width: 360px !important;
+    height: 44px !important;
+  }
+  
+  #ai-page .ai-tab {
+    height: 36px !important;
+    padding: 0 12px !important;
+  }
+  
+  #ai-page .ai-tab span {
+    font-size: 15px !important;
+  }
+  
+  #ai-page .ai-tab-avatar {
+    font-size: 18px !important;
+  }
+  
+  #ai-page .api-config-btn {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    margin-left: 20px !important;
+    font-size: 20px !important;
+  }
+}
+
+/* 确保苹果风格在所有情况下生效 */
+body #ai-page .ai-selector,
+html #ai-page .ai-selector,
+.mobile-app #ai-page .ai-selector,
+.mobile-screen #ai-page .ai-selector {
+  background: rgba(248, 248, 248, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+body #ai-page .ai-model-tabs,
+html #ai-page .ai-model-tabs,
+.mobile-app #ai-page .ai-model-tabs,
+.mobile-screen #ai-page .ai-model-tabs {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-radius: 12px !important;
+  overflow: visible !important;
+}

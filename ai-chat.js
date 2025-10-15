@@ -1,13 +1,27 @@
 // AI聊天系统 - 增强版
 class AIChatSystem {
     constructor() {
-        this.currentModel = 'deepseek';
+        this.currentModel = 'freeline';
         this.apiKeys = this.loadApiKeys();
         this.chatHistory = {};
         this.isTyping = false;
         
         // AI模型配置
         this.aiModels = {
+            freeline: {
+                name: '免费专线',
+                avatar: '⚡',
+                apiUrl: 'https://818233.xyz/',
+                welcomeMessage: '你好！我是免费专线AI，无需API密钥即可为您服务！',
+                isFree: true,
+                mockResponses: [
+                    '这是一个很有趣的问题！让我来为你分析一下...',
+                    '根据我的理解，这个问题可以从以下几个角度来看：',
+                    '我认为这个话题值得深入探讨。首先...',
+                    '这确实是一个复杂的问题，需要综合考虑多个因素。',
+                    '让我为你提供一个详细的解答...'
+                ]
+            },
             deepseek: {
                 name: 'DeepSeek',
                 avatar: '🧠',
@@ -304,8 +318,8 @@ class AIChatSystem {
             // 自动滚动到底部
             this.scrollToBottom();
             
-            // 控制显示速度
-            await new Promise(resolve => setTimeout(resolve, 30));
+            // 控制显示速度（优化为更快的打字效果）
+            await new Promise(resolve => setTimeout(resolve, 8));
         }
         
         // 最终更新聊天历史
@@ -316,7 +330,21 @@ class AIChatSystem {
     scrollToBottom() {
         const chatMessages = document.getElementById('chatMessages');
         if (chatMessages) {
+            // 立即滚动
             chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // 延迟滚动确保内容已渲染
+            setTimeout(() => {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 10);
+            
+            // 使用smooth滚动作为备选
+            setTimeout(() => {
+                chatMessages.scrollTo({
+                    top: chatMessages.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, 50);
         }
     }
     
@@ -360,6 +388,16 @@ class AIChatSystem {
     
     // 获取AI回复
     async getAIResponse(message) {
+        // 免费专线特殊处理
+        if (this.currentModel === 'freeline') {
+            try {
+                return await this.callFreelineAPI(message);
+            } catch (error) {
+                console.warn('免费专线API调用失败，使用模拟回复:', error);
+                return this.getMockResponse(message);
+            }
+        }
+        
         const apiKey = this.apiKeys[this.currentModel];
         
         // 如果有API密钥，尝试真实API调用
@@ -373,6 +411,213 @@ class AIChatSystem {
         
         // 使用模拟回复
         return this.getMockResponse(message);
+    }
+    
+    // 免费专线网页内容获取
+    async callFreelineAPI(message) {
+        // 处理特殊字符：空格用+替换，+用++替换，/用//替换
+        let encodedMessage = message.replace(/\+/g, '++').replace(/\//g, '//').replace(/\s+/g, '+');
+        
+        // 构建请求URL
+        const webUrl = `https://818233.xyz/${encodedMessage}`;
+        
+        console.log('免费专线网页访问:', webUrl);
+        
+        // 尝试多种方法获取网页内容
+        const corsProxies = [
+            'https://api.allorigins.win/get?url=',
+            'https://corsproxy.io/?',
+            'https://cors-anywhere.herokuapp.com/',
+            'https://thingproxy.freeboard.io/fetch/'
+        ];
+        
+        for (let i = 0; i < corsProxies.length; i++) {
+            const proxy = corsProxies[i];
+            try {
+                console.log(`尝试代理 ${i + 1}:`, proxy);
+                
+                let proxyUrl;
+                if (proxy.includes('allorigins')) {
+                    proxyUrl = `${proxy}${encodeURIComponent(webUrl)}`;
+                } else {
+                    proxyUrl = `${proxy}${webUrl}`;
+                }
+                
+                const response = await fetch(proxyUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15'
+                    }
+                });
+                
+                console.log(`代理 ${i + 1} 响应状态:`, response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`代理请求失败: ${response.status}`);
+                }
+                
+                let htmlContent;
+                if (proxy.includes('allorigins')) {
+                    const data = await response.json();
+                    htmlContent = data.contents;
+                } else {
+                    htmlContent = await response.text();
+                }
+                
+                console.log('获取到的网页内容:', htmlContent.substring(0, 200) + '...');
+                
+                // 解析HTML内容，提取AI回答
+                const aiResponse = this.parseWebResponse(htmlContent);
+                
+                if (!aiResponse || aiResponse.trim().length === 0) {
+                    throw new Error('网页未返回有效内容');
+                }
+                
+                return aiResponse;
+                
+            } catch (error) {
+                console.warn(`代理 ${i + 1} 失败:`, error.message);
+                
+                // 如果是最后一个代理也失败了，尝试直接访问
+                if (i === corsProxies.length - 1) {
+                    try {
+                        console.log('尝试直接访问...');
+                        const directResponse = await fetch(webUrl, {
+                            method: 'GET',
+                            mode: 'no-cors'
+                        });
+                        
+                        // no-cors模式下无法读取响应内容，所以提供备用方案
+                        return `🤖 **免费专线回复**\n\n您的问题："${message}"\n\n由于网络限制，无法直接获取AI回答内容。\n\n📱 **解决方案：**\n1. 请手动访问：${webUrl}\n2. 或者尝试使用其他AI模型\n\n💡 **提示：** 免费专线服务可能需要特殊的网络环境才能正常访问。`;
+                        
+                    } catch (directError) {
+                        console.error('直接访问也失败:', directError);
+                        throw new Error(`免费专线暂时无法访问，请稍后重试。\n\n手动访问链接：${webUrl}`);
+                    }
+                }
+            }
+        }
+    }
+    
+    // 解析网页响应内容
+    parseWebResponse(htmlContent) {
+        try {
+            // 创建临时DOM解析器
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlContent, 'text/html');
+            
+            // 尝试多种方式提取内容
+            let content = '';
+            
+            // 方法1: 查找body中的文本内容
+            const bodyElement = doc.querySelector('body');
+            if (bodyElement) {
+                content = bodyElement.textContent || bodyElement.innerText || '';
+            }
+            
+            // 方法2: 如果body为空，尝试获取整个文档的文本
+            if (!content.trim()) {
+                content = doc.documentElement.textContent || doc.documentElement.innerText || '';
+            }
+            
+            // 方法3: 如果仍为空，尝试直接从HTML中提取
+            if (!content.trim()) {
+                // 移除HTML标签，保留文本内容
+                content = htmlContent.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, ' ');
+            }
+            
+            // 高级内容清理和格式化
+            content = this.formatAIResponse(content);
+            
+            console.log('解析后的AI回答:', content.substring(0, 200) + '...');
+            
+            return content;
+            
+        } catch (error) {
+            console.error('解析网页内容失败:', error);
+            // 如果解析失败，返回原始HTML内容（去除标签）
+            const fallbackContent = htmlContent.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, ' ').trim();
+            return this.formatAIResponse(fallbackContent);
+        }
+    }
+    
+    // 格式化AI回答内容
+    formatAIResponse(rawContent) {
+        if (!rawContent) return '';
+        
+        let content = rawContent;
+        
+        // 1. 解码HTML实体
+        const htmlEntities = {
+            '&amp;': '&',
+            '&lt;': '<',
+            '&gt;': '>',
+            '&quot;': '"',
+            '&#39;': "'",
+            '&nbsp;': ' ',
+            '&hellip;': '...',
+            '&mdash;': '—',
+            '&ndash;': '–'
+        };
+        
+        for (const [entity, char] of Object.entries(htmlEntities)) {
+            content = content.replace(new RegExp(entity, 'g'), char);
+        }
+        
+        // 2. 清理多余的空白字符
+        content = content
+            .replace(/\r\n/g, '\n')  // 统一换行符
+            .replace(/\r/g, '\n')    // 统一换行符
+            .replace(/\t/g, ' ')     // 制表符转空格
+            .replace(/[ \u00A0]+/g, ' ')  // 多个空格和不间断空格合并
+            .replace(/\n\s*\n\s*\n/g, '\n\n')  // 多个连续换行合并为两个
+            .trim();
+        
+        // 3. 移除常见的网页元素文本和广告后缀
+        const unwantedPatterns = [
+            /^(<!DOCTYPE|<html|<head|<meta|<title|<link|<script|<style)/i,
+            /^(Loading|Please wait|Error|404|403|500)/i,
+            /^(Copyright|©|All rights reserved)/i,
+            /^(Privacy Policy|Terms of Service|Cookie Policy)/i
+        ];
+        
+        for (const pattern of unwantedPatterns) {
+            if (pattern.test(content)) {
+                content = content.replace(pattern, '').trim();
+            }
+        }
+        
+        // 4. 去除广告后缀（LLM from URL相关内容）
+        const adSuffixPatterns = [
+            /-{10,}[\s\S]*?LLM from URL[\s\S]*?-{10,}/gi,
+            /LLM from URL[\s\S]*?A free AI chat completion service directly from URL/gi,
+            /LLM from URL[\s\S]*?free AI chat completion service/gi,
+            /A free AI chat completion service directly from URL/gi,
+            /-{5,}[\s\S]*?https:\/\/818233\.xyz[\s\S]*?-{5,}/gi,
+            /\n\s*-{5,}\s*\n[\s\S]*?LLM[\s\S]*?-{5,}\s*$/gi
+        ];
+        
+        for (const pattern of adSuffixPatterns) {
+            content = content.replace(pattern, '').trim();
+        }
+        
+        // 5. 如果内容太短，可能是错误信息
+        if (content.length < 10) {
+            return '免费专线暂时无法获取回答，请稍后重试。';
+        }
+        
+        // 6. 如果内容太长，截取合理长度
+        if (content.length > 2000) {
+            content = content.substring(0, 2000) + '...\n\n[回答内容较长，已截取部分显示]';
+        }
+        
+        // 7. 确保内容以合适的标点结尾
+        if (content && !/[.!?。！？]$/.test(content.trim())) {
+            content = content.trim() + '。';
+        }
+        
+        return content;
     }
     
     // 真实API调用
@@ -448,6 +693,7 @@ class AIChatSystem {
     // 获取模型名称
     getModelName() {
         const modelNames = {
+            freeline: 'freeline-ai',
             deepseek: 'deepseek-chat',
             kimi: 'moonshot-v1-8k',
             zhipu: 'glm-4'
