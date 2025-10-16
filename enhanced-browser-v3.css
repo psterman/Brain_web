@@ -101,6 +101,16 @@
     -webkit-backdrop-filter: blur(30px) !important;
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+    color: #1c1c1e !important;
+}
+
+/* 暗色模式下的iOS风格下拉列表 */
+body.dark-theme .ios-style,
+body[data-theme="dark"] .ios-style {
+    background: rgba(28, 28, 30, 0.95) !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* 居中显示的下拉列表 */
@@ -115,6 +125,106 @@
     z-index: 10000 !important;
     border-radius: 20px !important;
     animation: iosModalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* 列表内容样式 */
+.list-content {
+    padding: 0 !important;
+    max-height: 60vh !important;
+    overflow-y: auto !important;
+}
+
+.list-item {
+    display: flex !important;
+    align-items: center !important;
+    padding: 16px 20px !important;
+    cursor: pointer !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    transition: background-color 0.2s ease !important;
+    color: #1c1c1e !important;
+}
+
+.list-item:hover {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.list-item.active {
+    background-color: rgba(0, 122, 255, 0.1) !important;
+    color: #007AFF !important;
+}
+
+/* 暗色模式下的列表项 */
+body.dark-theme .list-item,
+body[data-theme="dark"] .list-item {
+    color: white !important;
+    border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+body.dark-theme .list-item:hover,
+body[data-theme="dark"] .list-item:hover {
+    background-color: rgba(0, 122, 255, 0.2) !important;
+}
+
+body.dark-theme .list-item.active,
+body[data-theme="dark"] .list-item.active {
+    background-color: rgba(0, 122, 255, 0.2) !important;
+    color: #64d2ff !important;
+}
+
+.list-item:last-child {
+    border-bottom: none !important;
+}
+
+.item-icon {
+    font-size: 20px !important;
+    margin-right: 12px !important;
+    width: 24px !important;
+    text-align: center !important;
+}
+
+.item-name {
+    flex: 1 !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    color: inherit !important;
+}
+
+.item-check {
+    color: #007AFF !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+
+/* 暗色模式下的项目名称和检查标记 */
+body.dark-theme .item-name,
+body[data-theme="dark"] .item-name {
+    color: white !important;
+}
+
+body.dark-theme .item-check,
+body[data-theme="dark"] .item-check {
+    color: #64d2ff !important;
+}
+
+/* 列表头部暗色模式支持 */
+body.dark-theme .list-header,
+body[data-theme="dark"] .list-header {
+    color: white !important;
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-theme .list-header .close-btn,
+body[data-theme="dark"] .list-header .close-btn {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-theme .list-header .close-btn:hover,
+body[data-theme="dark"] .list-header .close-btn:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
 }
 
 @keyframes iosModalSlideIn {
@@ -122,6 +232,7 @@
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.8);
     }
+
     to {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
@@ -146,7 +257,8 @@
     align-items: center;
 }
 
-.new-tab-btn, .new-tab-btn-large {
+.new-tab-btn,
+.new-tab-btn-large {
     background: #007AFF;
     color: white;
     border: none;
@@ -162,7 +274,8 @@
     transition: all 0.2s ease;
 }
 
-.new-tab-btn:hover, .new-tab-btn-large:hover {
+.new-tab-btn:hover,
+.new-tab-btn-large:hover {
     background: #0056b3;
     transform: scale(1.1);
 }
@@ -859,36 +972,197 @@
     overflow-y: auto;
 }
 
-/* 历史记录项 - iOS风格 */
-.history-item {
-    padding: 16px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    cursor: pointer;
-    transition: background 0.2s ease;
+/* 历史记录样式 - iOS风格 */
+.history-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(248, 248, 248, 0.95);
+    gap: 12px;
+}
+
+.history-search-container {
+    flex: 1;
+    position: relative;
+    max-width: 200px;
+}
+
+.history-search-input {
+    width: 100%;
+    padding: 8px 32px 8px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    margin-bottom: 4px;
+    font-size: 14px;
+    background: white;
+    transition: all 0.2s ease;
+}
+
+.history-search-input:focus {
+    outline: none;
+    border-color: #007AFF;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.history-search-clear {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #8e8e93;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.history-search-clear:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #1c1c1e;
+}
+
+.clear-all-history-btn {
+    background: rgba(255, 59, 48, 0.1);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    color: #ff3b30;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.clear-all-history-btn:hover {
+    background: rgba(255, 59, 48, 0.2);
+    transform: scale(1.02);
+}
+
+.clear-all-history-btn:active {
+    transform: scale(0.98);
+}
+
+.history-list {
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.history-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: background 0.2s ease;
+    position: relative;
 }
 
 .history-item:hover {
-    background: rgba(0, 122, 255, 0.08);
+    background: rgba(0, 122, 255, 0.05);
 }
 
 .history-item.active {
-    background: rgba(0, 122, 255, 0.12);
-    border-left: 3px solid #007AFF;
+    background: rgba(0, 122, 255, 0.1);
+}
+
+.history-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #007AFF;
+}
+
+.history-content {
+    flex: 1;
+    cursor: pointer;
+    min-width: 0;
+}
+
+.history-title {
+    font-size: 16px;
+    color: #1c1c1e;
+    margin-bottom: 4px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .history-url {
-    font-size: 15px;
-    color: #1c1c1e;
-    margin-bottom: 6px;
+    font-size: 13px;
+    color: #8e8e93;
+    margin-bottom: 4px;
     word-break: break-all;
-    font-weight: 500;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .history-time {
-    font-size: 13px;
+    font-size: 12px;
+    color: #c7c7cc;
+    font-weight: 400;
+}
+
+.delete-history-btn {
+    background: rgba(255, 59, 48, 0.1);
+    border: none;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    color: #ff3b30;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 12px;
+    flex-shrink: 0;
+}
+
+.delete-history-btn:hover {
+    background: rgba(255, 59, 48, 0.2);
+    transform: scale(1.1);
+}
+
+.delete-history-btn:active {
+    transform: scale(0.9);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
     color: #8e8e93;
+    font-size: 16px;
+}
+
+.no-search-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: #8e8e93;
+    display: none;
+}
+
+.no-results-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    opacity: 0.6;
+}
+
+.no-results-text {
+    font-size: 16px;
+    font-weight: 500;
 }
 
 /* 响应式优化 */
@@ -896,27 +1170,27 @@
     .centered-list {
         width: 95vw !important;
     }
-    
+
     .tabs-manager-large {
         width: 95vw !important;
     }
-    
+
     .bookmarks-list-fixed {
         width: 95vw !important;
     }
-    
+
     .download-manager {
         width: 95vw !important;
     }
-    
+
     .context-menu.ios-style {
         min-width: 200px;
     }
-    
+
     .url-action-buttons {
         gap: 2px;
     }
-    
+
     .url-action-btn {
         width: 28px;
         height: 28px;
@@ -976,6 +1250,7 @@
     0% {
         transform: translateX(-100%);
     }
+
     100% {
         transform: translateX(100%);
     }
@@ -1004,113 +1279,142 @@
         color: white !important;
         border-color: rgba(255, 255, 255, 0.1) !important;
     }
-    
+
     .list-header {
         color: white;
         border-bottom-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .item-name {
         color: white;
     }
-    
+
     .list-item {
         border-bottom-color: rgba(255, 255, 255, 0.05);
     }
-    
+
     .list-item:hover {
         background: rgba(0, 122, 255, 0.2);
     }
-    
+
     .tab-large-card {
         background: #1c1c1e;
         color: white;
     }
-    
+
     .tab-card-title-large {
         color: white;
     }
-    
+
     .tab-card-url-large {
         color: #8e8e93;
     }
-    
+
     .bookmark-item-enhanced {
         background: rgba(255, 255, 255, 0.05);
         border-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .bookmark-title-enhanced {
         color: white;
     }
-    
+
     .bookmark-url-enhanced {
         color: #8e8e93;
     }
-    
+
     .download-item {
         background: rgba(255, 255, 255, 0.05);
         border-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .download-name {
         color: white;
     }
-    
+
     .context-menu.ios-style {
         background: rgba(28, 28, 30, 0.95);
         border-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .context-text {
         color: white;
     }
-    
+
     .modal-content {
         background: rgba(28, 28, 30, 0.95) !important;
         color: white !important;
         border-color: rgba(255, 255, 255, 0.1) !important;
     }
-    
+
     .modal-header {
         border-bottom-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .modal-header h3 {
         color: white;
     }
-    
+
     .history-item {
         border-bottom-color: rgba(255, 255, 255, 0.05);
     }
-    
+
     .history-item:hover {
         background: rgba(0, 122, 255, 0.2);
     }
-    
+
     .history-url {
         color: white;
     }
-    
+
     .history-time {
         color: #8e8e93;
     }
-    
+
+    .history-search-input {
+        background: rgba(28, 28, 30, 0.9);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+
+    .history-search-input::placeholder {
+        color: #8e8e93;
+    }
+
+    .history-search-input:focus {
+        border-color: #0A84FF;
+        box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.2);
+        background: rgba(28, 28, 30, 1);
+    }
+
+    .history-search-clear {
+        color: #8e8e93;
+    }
+
+    .history-search-clear:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    .no-search-results {
+        color: #8e8e93;
+    }
+
     .url-action-btn {
         background: rgba(0, 122, 255, 0.2);
         color: #64d2ff;
     }
-    
+
     .url-action-btn:hover {
         background: rgba(0, 122, 255, 0.3);
     }
-    
+
     /* 清空按钮暗色模式 */
     .clear-btn {
         background: rgba(0, 122, 255, 0.2);
         color: #64d2ff;
     }
-    
+
     .clear-btn:hover {
         background: rgba(0, 122, 255, 0.3);
     }
@@ -1250,44 +1554,44 @@
         background: #000000;
         color: white;
     }
-    
+
     .apps-tab-header {
         background: rgba(28, 28, 30, 0.8);
         border-bottom-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .apps-tab-title {
         color: white;
     }
-    
+
     .apps-search-input {
         background: rgba(28, 28, 30, 0.9);
         border-color: rgba(255, 255, 255, 0.2);
         color: white;
     }
-    
+
     .apps-search-input::placeholder {
         color: #8e8e93;
     }
-    
+
     .apps-search-input:focus {
         border-color: #0A84FF;
         box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.2);
         background: rgba(28, 28, 30, 1);
     }
-    
+
     .apps-search-icon {
         color: #8e8e93;
     }
-    
+
     .apps-grid {
         background: #000000;
     }
-    
+
     .app-item:hover {
         background: rgba(10, 132, 255, 0.1);
     }
-    
+
     .app-name {
         color: white;
     }
@@ -1396,6 +1700,7 @@
         opacity: 0;
         transform: translateY(-10px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -1603,92 +1908,92 @@
         border-color: rgba(255, 255, 255, 0.2);
         color: #8e8e93;
     }
-    
+
     .theme-toggle {
         background: rgba(10, 132, 255, 0.2);
         color: #64d2ff;
     }
-    
+
     .theme-toggle:hover {
         background: rgba(10, 132, 255, 0.3);
     }
-    
+
     .recent-search-btn {
         background: rgba(10, 132, 255, 0.2);
         color: #64d2ff;
     }
-    
+
     .recent-search-btn:hover {
         background: rgba(10, 132, 255, 0.3);
     }
-    
+
     .recent-search-dropdown {
         background: rgba(28, 28, 30, 0.95);
         border-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .dropdown-tabs {
         background: rgba(44, 44, 46, 0.8);
         border-bottom-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .dropdown-tab {
         color: #8e8e93;
     }
-    
+
     .dropdown-tab.active {
         color: #64d2ff;
         background: rgba(10, 132, 255, 0.2);
     }
-    
+
     .dropdown-tab:hover {
         background: rgba(10, 132, 255, 0.1);
     }
-    
+
     .section-title {
         color: #8e8e93;
     }
-    
+
     .recent-app-item {
         background: rgba(255, 255, 255, 0.05);
         border-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .recent-app-item:hover {
         background: rgba(10, 132, 255, 0.2);
     }
-    
+
     .recent-app-item .app-name {
         color: white;
     }
-    
+
     .keyword-item {
         background: rgba(10, 132, 255, 0.2);
         color: #64d2ff;
     }
-    
+
     .keyword-item:hover {
         background: rgba(10, 132, 255, 0.3);
     }
-    
+
     .letter-group {
         border-bottom-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .letter-header {
         color: #64d2ff;
         background: rgba(10, 132, 255, 0.2);
     }
-    
+
     .letter-app-item {
         background: rgba(255, 255, 255, 0.05);
         border-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .letter-app-item:hover {
         background: rgba(10, 132, 255, 0.2);
     }
-    
+
     .letter-app-item span {
         color: white;
     }
@@ -1716,7 +2021,7 @@
     .dropdown-content::-webkit-scrollbar-thumb {
         background: rgba(255, 255, 255, 0.2);
     }
-    
+
     .dropdown-content::-webkit-scrollbar-thumb:hover {
         background: rgba(255, 255, 255, 0.3);
     }
@@ -1737,6 +2042,7 @@
 
 /* 触摸优化 */
 @media (hover: none) and (pointer: coarse) {
+
     .list-item:hover,
     .bookmark-item-fixed:hover,
     .download-item:hover,
@@ -1744,7 +2050,7 @@
     .history-item:hover {
         background: initial;
     }
-    
+
     .list-item:active,
     .bookmark-item-fixed:active,
     .download-item:active,
@@ -1806,6 +2112,7 @@
         opacity: 0;
         transform: scale(0.8);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -1813,9 +2120,12 @@
 }
 
 @keyframes searchIconPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.2);
     }
@@ -1850,7 +2160,7 @@
     transition: opacity 0.3s ease;
 }
 
-.app-search-input:not(:placeholder-shown) + .search-status-indicator {
+.app-search-input:not(:placeholder-shown)+.search-status-indicator {
     opacity: 1;
 }
 

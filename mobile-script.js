@@ -8,7 +8,7 @@ class MobileApp {
         this.touchEndX = 0;
         this.touchEndY = 0;
         this.minSwipeDistance = 50;
-        
+
         this.init();
     }
 
@@ -19,7 +19,7 @@ class MobileApp {
         this.setupDeviceToggle();
         this.initializePages();
         this.setupTimeSync();
-        
+
         // 设置初始页面
         this.showPage('ai');
     }
@@ -58,12 +58,12 @@ class MobileApp {
     handleSwipe() {
         const deltaX = this.touchEndX - this.touchStartX;
         const deltaY = this.touchEndY - this.touchStartY;
-        
+
         // 检查是否为有效的水平滑动
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > this.minSwipeDistance) {
             const pages = ['ai', 'browser', 'search', 'apps', 'settings'];
             const currentIndex = pages.indexOf(this.currentPage);
-            
+
             if (deltaX > 0 && currentIndex > 0) {
                 // 向右滑动，显示上一页
                 this.showPage(pages[currentIndex - 1]);
@@ -161,24 +161,24 @@ class MobileApp {
         const chatInput = document.querySelector('.chat-input');
         const inputActions = document.querySelectorAll('.input-action');
         const aiItems = document.querySelectorAll('.ai-item');
-        
+
         if (chatInput) {
             chatInput.addEventListener('focus', () => {
                 chatInput.parentElement.style.borderColor = '#007bff';
             });
-            
+
             chatInput.addEventListener('blur', () => {
                 chatInput.parentElement.style.borderColor = 'transparent';
             });
         }
-        
+
         inputActions.forEach(action => {
             action.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.handleInputAction(action.textContent.trim());
             });
         });
-        
+
         aiItems.forEach(item => {
             item.addEventListener('click', () => {
                 this.selectAIAssistant(item);
@@ -188,42 +188,111 @@ class MobileApp {
 
     initializeBrowserPage() {
         // 浏览器页面交互逻辑
-        const urlInput = document.querySelector('.url-input');
-        const navBtns = document.querySelectorAll('.nav-btn');
-        const toolBtns = document.querySelectorAll('.tool-btn');
-        const featureCards = document.querySelectorAll('.feature-card');
-        
-        if (urlInput) {
-            urlInput.addEventListener('focus', () => {
-                urlInput.parentElement.style.backgroundColor = '#ffffff';
-                urlInput.parentElement.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+        console.log('初始化浏览页面');
+
+        // 等待DOM完全加载
+        setTimeout(() => {
+            const urlInput = document.querySelector('#browser-page .url-input') || document.querySelector('#browser-page-demo .url-input');
+            const navBtns = document.querySelectorAll('#browser-page .nav-btn, #browser-page .search-engine-btn, #browser-page .ai-model-btn, #browser-page-demo .nav-btn, #browser-page-demo .search-engine-btn, #browser-page-demo .ai-model-btn');
+            const toolBtns = document.querySelectorAll('#browser-page .tool-btn, #browser-page-demo .tool-btn');
+            const urlActionBtns = document.querySelectorAll('#browser-page .url-action-btn, #browser-page-demo .url-action-btn');
+            const featureCards = document.querySelectorAll('#browser-page .feature-card, #browser-page-demo .feature-card');
+
+            console.log('找到的元素:', {
+                urlInput: !!urlInput,
+                navBtns: navBtns.length,
+                toolBtns: toolBtns.length,
+                urlActionBtns: urlActionBtns.length,
+                featureCards: featureCards.length
             });
-            
-            urlInput.addEventListener('blur', () => {
-                urlInput.parentElement.style.backgroundColor = '#f8f9fa';
-                urlInput.parentElement.style.boxShadow = 'none';
+
+            if (urlInput) {
+                urlInput.addEventListener('focus', () => {
+                    urlInput.parentElement.style.backgroundColor = '#ffffff';
+                    urlInput.parentElement.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+                });
+
+                urlInput.addEventListener('blur', () => {
+                    urlInput.parentElement.style.backgroundColor = '#f8f9fa';
+                    urlInput.parentElement.style.boxShadow = 'none';
+                });
+            }
+
+            navBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('导航按钮被点击:', btn.id, btn.textContent.trim());
+                    // 根据按钮ID或内容判断功能
+                    const btnId = btn.id;
+                    const btnContent = btn.textContent.trim();
+
+                    if (btnId === 'backBtnDemo' || btnId === 'backBtn') {
+                        this.handleBrowserNavigation('←');
+                    } else if (btnId === 'forwardBtnDemo' || btnId === 'forwardBtn') {
+                        this.handleBrowserNavigation('→');
+                    } else if (btnId === 'refreshBtnDemo' || btnId === 'refreshBtn') {
+                        this.handleBrowserNavigation('↻');
+                    } else if (btnId === 'searchEngineBtnDemo' || btnId === 'searchEngineBtn') {
+                        this.handleBrowserNavigation('🔍');
+                    } else if (btnId === 'aiModelBtnDemo' || btnId === 'aiModelBtn') {
+                        this.handleBrowserNavigation('🤖');
+                    } else if (btnId === 'homeBtnDemo' || btnId === 'homeBtn') {
+                        this.handleBrowserNavigation('🏠');
+                    } else {
+                        // 回退到内容判断
+                        this.handleBrowserNavigation(btnContent);
+                    }
+                });
             });
-        }
-        
-        navBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.handleBrowserNavigation(btn.textContent.trim());
+
+            toolBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('工具按钮被点击:', btn.id, btn.textContent.trim());
+                    // 根据按钮ID或内容判断功能
+                    const btnId = btn.id;
+                    const btnContent = btn.textContent.trim();
+
+                    if (btnId === 'bookmarkBtnDemo' || btnId === 'bookmarkBtn') {
+                        this.handleBrowserTool('⭐');
+                    } else if (btnId === 'bookmarkListBtnDemo' || btnId === 'bookmarkListBtn') {
+                        this.handleBrowserTool('📚');
+                    } else if (btnId === 'tabsBtnDemo' || btnId === 'tabsBtn') {
+                        this.handleBrowserTool('📄');
+                    } else if (btnId === 'historyBtnDemo' || btnId === 'historyBtn') {
+                        this.handleBrowserTool('🕒');
+                    } else if (btnId === 'downloadBtnDemo' || btnId === 'downloadBtn') {
+                        this.handleBrowserTool('⬇️');
+                    } else if (btnId === 'shareBtnDemo' || btnId === 'shareBtn') {
+                        this.handleBrowserTool('📤');
+                    } else {
+                        // 回退到内容判断
+                        this.handleBrowserTool(btnContent);
+                    }
+                });
             });
-        });
-        
-        toolBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.handleBrowserTool(btn.textContent.trim());
+
+            urlActionBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('URL操作按钮被点击:', btn.id, btn.title);
+                    const btnId = btn.id;
+                    const btnTitle = btn.title;
+
+                    if (btnId === 'pasteBtnDemo' || btnId === 'pasteBtn' || btnTitle === '粘贴') {
+                        this.handlePasteAction();
+                    } else if (btnId === 'clearBtnDemo' || btnId === 'clearBtn' || btnTitle === '清空') {
+                        this.handleClearAction();
+                    }
+                });
             });
-        });
-        
-        featureCards.forEach(card => {
-            card.addEventListener('click', () => {
-                this.handleFeatureCard(card);
+
+            featureCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    this.handleFeatureCard(card);
+                });
             });
-        });
+        }, 100); // 延迟100ms确保DOM完全加载
     }
 
     initializeSearchPage() {
@@ -231,19 +300,19 @@ class MobileApp {
         const configTabs = document.querySelectorAll('.config-tab');
         const categoryBtns = document.querySelectorAll('.category-btn');
         const engineItems = document.querySelectorAll('.engine-item');
-        
+
         configTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 this.switchConfigTab(tab);
             });
         });
-        
+
         categoryBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 this.switchEngineCategory(btn);
             });
         });
-        
+
         engineItems.forEach(item => {
             item.addEventListener('click', () => {
                 this.toggleSearchEngine(item);
@@ -256,19 +325,19 @@ class MobileApp {
         const searchInput = document.querySelector('.app-search-input');
         const categoryItems = document.querySelectorAll('.category-item');
         const appItems = document.querySelectorAll('.app-item');
-        
+
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
                 this.filterApps(e.target.value);
             });
         }
-        
+
         categoryItems.forEach(item => {
             item.addEventListener('click', () => {
                 this.switchAppCategory(item);
             });
         });
-        
+
         appItems.forEach(item => {
             item.addEventListener('click', () => {
                 this.launchApp(item);
@@ -280,13 +349,13 @@ class MobileApp {
         // 设置页面交互逻辑
         const settingItems = document.querySelectorAll('.setting-item');
         const toggles = document.querySelectorAll('.setting-toggle input');
-        
+
         settingItems.forEach(item => {
             item.addEventListener('click', () => {
                 this.handleSettingItem(item);
             });
         });
-        
+
         toggles.forEach(toggle => {
             toggle.addEventListener('change', (e) => {
                 this.handleToggleChange(toggle, e.target.checked);
@@ -341,10 +410,10 @@ class MobileApp {
         document.querySelectorAll('.ai-item').forEach(ai => {
             ai.classList.remove('selected');
         });
-        
+
         // 添加选中状态
         item.classList.add('selected');
-        
+
         // 显示选中反馈
         this.showToast('已选择 ' + item.querySelector('.ai-name').textContent);
     }
@@ -360,11 +429,84 @@ class MobileApp {
             case '↻':
                 this.browserRefresh();
                 break;
+            case '🔍':
+                // 搜索引擎按钮
+                if (window.browserManager && typeof window.browserManager.showSearchEngines === 'function') {
+                    window.browserManager.showSearchEngines();
+                } else if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.showSearchEngines === 'function') {
+                    window.enhancedBrowserV3.showSearchEngines();
+                } else {
+                    this.showToast('搜索引擎功能');
+                }
+                break;
+            case '🤖':
+                // AI模型按钮
+                if (window.browserManager && typeof window.browserManager.showAiModels === 'function') {
+                    window.browserManager.showAiModels();
+                } else if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.showAiModels === 'function') {
+                    window.enhancedBrowserV3.showAiModels();
+                } else {
+                    this.showToast('AI模型功能');
+                }
+                break;
+            case '🏠':
+                // 主页按钮
+                if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.goHome === 'function') {
+                    window.enhancedBrowserV3.goHome();
+                } else {
+                    this.showToast('主页功能');
+                }
+                break;
         }
     }
 
     handleBrowserTool(tool) {
-        this.showToast(`${tool} 功能`);
+        // 根据按钮内容判断功能
+        if (tool.includes('收藏夹') || tool.includes('📚')) {
+            // 调用增强浏览器的收藏夹功能
+            if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.showBookmarks === 'function') {
+                window.enhancedBrowserV3.showBookmarks();
+            } else {
+                this.showToast('收藏夹功能');
+            }
+        } else if (tool.includes('收藏') || tool.includes('⭐')) {
+            // 调用增强浏览器的收藏功能
+            if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.toggleBookmark === 'function') {
+                window.enhancedBrowserV3.toggleBookmark();
+            } else {
+                this.showToast('收藏功能');
+            }
+        } else if (tool.includes('标签页') || tool.includes('📄')) {
+            // 调用增强浏览器的标签页功能
+            if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.showTabsManager === 'function') {
+                window.enhancedBrowserV3.showTabsManager();
+            } else {
+                this.showToast('标签页功能');
+            }
+        } else if (tool.includes('历史') || tool.includes('🕒')) {
+            // 调用增强浏览器的历史功能
+            if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.showHistory === 'function') {
+                window.enhancedBrowserV3.showHistory();
+            } else {
+                this.showToast('历史功能');
+            }
+        } else if (tool.includes('分享') || tool.includes('📤')) {
+            // 调用增强浏览器的分享功能
+            if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.shareUrl === 'function') {
+                window.enhancedBrowserV3.shareUrl();
+            } else {
+                this.showToast('分享功能');
+            }
+        } else if (tool.includes('下载') || tool.includes('⬇️')) {
+            // 调用增强浏览器的下载功能
+            if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.showDownloadManager === 'function') {
+                window.enhancedBrowserV3.showDownloadManager();
+            } else {
+                this.showToast('下载功能');
+            }
+        } else {
+            this.showToast(`${tool} 功能`);
+        }
     }
 
     handleFeatureCard(card) {
@@ -415,7 +557,7 @@ class MobileApp {
     launchApp(item) {
         const appName = item.querySelector('.app-name').textContent;
         this.showToast(`启动 ${appName}`);
-        
+
         // 添加启动动画
         item.style.transform = 'scale(0.9)';
         setTimeout(() => {
@@ -463,15 +605,61 @@ class MobileApp {
     }
 
     browserGoBack() {
-        this.showToast('返回上一页');
+        // 调用增强浏览器的后退功能
+        if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.goBack === 'function') {
+            window.enhancedBrowserV3.goBack();
+        } else {
+            this.showToast('返回上一页');
+        }
     }
 
     browserGoForward() {
-        this.showToast('前进下一页');
+        // 调用增强浏览器的前进功能
+        if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.goForward === 'function') {
+            window.enhancedBrowserV3.goForward();
+        } else {
+            this.showToast('前进下一页');
+        }
     }
 
     browserRefresh() {
-        this.showToast('刷新页面');
+        // 调用增强浏览器的刷新功能
+        if (window.enhancedBrowserV3 && typeof window.enhancedBrowserV3.refresh === 'function') {
+            window.enhancedBrowserV3.refresh();
+        } else {
+            this.showToast('刷新页面');
+        }
+    }
+
+    // 处理粘贴操作
+    async handlePasteAction() {
+        try {
+            const text = await navigator.clipboard.readText();
+            const urlInput = document.querySelector('#browser-page-demo .url-input') || document.querySelector('#browser-page .url-input');
+            if (urlInput && text) {
+                urlInput.value = text;
+                urlInput.focus();
+                this.showToast('已粘贴内容');
+
+                // 触发输入事件以更新清空按钮状态
+                urlInput.dispatchEvent(new Event('input'));
+            }
+        } catch (err) {
+            this.showToast('粘贴失败，请手动粘贴');
+        }
+    }
+
+    // 处理清空操作
+    handleClearAction() {
+        const urlInput = document.querySelector('#browser-page-demo .url-input') || document.querySelector('#browser-page .url-input');
+        if (urlInput) {
+            urlInput.value = '';
+            urlInput.focus();
+            this.showToast('已清空输入框');
+
+            // 触发输入事件以更新清空按钮状态
+            urlInput.dispatchEvent(new Event('input'));
+        }
     }
 
     showToast(message) {
@@ -497,10 +685,10 @@ class MobileApp {
             `;
             document.body.appendChild(toast);
         }
-        
+
         toast.textContent = message;
         toast.style.opacity = '1';
-        
+
         clearTimeout(this.toastTimer);
         this.toastTimer = setTimeout(() => {
             toast.style.opacity = '0';
@@ -511,7 +699,7 @@ class MobileApp {
     handleResize() {
         const width = window.innerWidth;
         const container = document.querySelector('.mobile-app');
-        
+
         if (width > 768) {
             container.classList.add('tablet-mode');
         } else {
@@ -527,7 +715,7 @@ class MobileApp {
             this.updateTime();
         }, 1000);
     }
-    
+
     // 更新时间显示
     updateTime() {
         const timeElement = document.querySelector('.time');
@@ -546,7 +734,7 @@ class MobileApp {
             if (e.key === 'Escape') {
                 this.showPage('ai');
             }
-            
+
             // 移除数字键快速切换功能，避免用户误操作
             // 用户可以通过导航栏或滑动手势切换页面
         });
@@ -556,15 +744,15 @@ class MobileApp {
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', () => {
     const app = new MobileApp();
-    
+
     // 监听窗口大小变化
     window.addEventListener('resize', () => {
         app.handleResize();
     });
-    
+
     // 初始化键盘事件
     app.handleKeyboard();
-    
+
     // 隐藏地址栏（移动端）
     setTimeout(() => {
         window.scrollTo(0, 1);

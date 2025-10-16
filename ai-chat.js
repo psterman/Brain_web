@@ -222,15 +222,39 @@ class AIChatSystem {
     
     // 格式化Markdown内容
     formatMarkdown(text) {
+        if (!text) return '';
+        
         // 基本的markdown格式化
-        return text
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // 粗体
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')              // 斜体
-            .replace(/`(.*?)`/g, '<code>$1</code>')            // 行内代码
-            .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>') // 代码块
-            .replace(/\n/g, '<br>')                            // 换行
-            .replace(/^- (.*$)/gim, '<li>$1</li>')             // 列表项
-            .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');        // 包装列表
+        let formatted = text
+            // 代码块处理（必须在其他处理之前）
+            .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+            // 行内代码
+            .replace(/`([^`]+)`/g, '<code>$1</code>')
+            // 粗体
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            // 斜体
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            // 标题处理
+            .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+            .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+            .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+            // 列表项
+            .replace(/^[\s]*[-*+] (.*$)/gim, '<li>$1</li>')
+            .replace(/^[\s]*\d+\. (.*$)/gim, '<li>$1</li>')
+            // 段落处理：双换行转为段落分隔
+            .replace(/\n\n/g, '</p><p>')
+            // 单换行转为<br>
+            .replace(/\n/g, '<br>');
+        
+        // 包装列表
+        formatted = formatted.replace(/(<li>.*?<\/li>)/gs, '<ul>$1</ul>');
+        
+        // 包装段落（如果有段落分隔符）
+        if (formatted.includes('</p><p>')) {
+            formatted = '<p>' + formatted + '</p>';
+        }
+        
+        return formatted;
     }
     
     // 发送消息
@@ -306,21 +330,31 @@ class AIChatSystem {
         
         const contentElement = messageElement.querySelector('.message-content');
         
-        // 逐字显示效果
+        // 逐字显示效果（优化版本）
         let currentText = '';
         const words = response.split('');
         
         for (let i = 0; i < words.length; i++) {
             currentText += words[i];
             aiMessage.content = currentText;
-            contentElement.innerHTML = this.formatMarkdown(currentText);
             
-            // 自动滚动到底部
-            this.scrollToBottom();
+            // 更新显示内容
+            const messageTextElement = contentElement.querySelector('.message-text');
+            if (messageTextElement) {
+                messageTextElement.innerHTML = this.formatMarkdown(currentText);
+            }
             
-            // 控制显示速度（优化为更快的打字效果）
-            await new Promise(resolve => setTimeout(resolve, 8));
+            // 每10个字符滚动一次，减少滚动频率
+            if (i % 10 === 0) {
+                this.scrollToBottom();
+            }
+            
+            // 控制显示速度（进一步优化为更快的打字效果）
+            await new Promise(resolve => setTimeout(resolve, 3));
         }
+        
+        // 最后确保滚动到底部
+        this.scrollToBottom();
         
         // 最终更新聊天历史
         this.chatHistory[this.currentModel][this.chatHistory[this.currentModel].length - 1] = aiMessage;
@@ -558,20 +592,24 @@ class AIChatSystem {
             '&nbsp;': ' ',
             '&hellip;': '...',
             '&mdash;': '—',
-            '&ndash;': '–'
+            '&ndash;': '–',
+            '&copy;': '©',
+            '&reg;': '®',
+            '&trade;': '™'
         };
         
         for (const [entity, char] of Object.entries(htmlEntities)) {
             content = content.replace(new RegExp(entity, 'g'), char);
         }
         
-        // 2. 清理多余的空白字符
+        // 2. 清理多余的空白字符和格式化段落
         content = content
             .replace(/\r\n/g, '\n')  // 统一换行符
             .replace(/\r/g, '\n')    // 统一换行符
             .replace(/\t/g, ' ')     // 制表符转空格
             .replace(/[ \u00A0]+/g, ' ')  // 多个空格和不间断空格合并
-            .replace(/\n\s*\n\s*\n/g, '\n\n')  // 多个连续换行合并为两个
+            .replace(/\n\s*\n\s*\n+/g, '\n\n')  // 多个连续换行合并为两个
+            .replace(/^\s+|\s+$/gm, '')  // 去除每行首尾空格
             .trim();
         
         // 3. 移除常见的网页元素文本和广告后缀
@@ -588,31 +626,50 @@ class AIChatSystem {
             }
         }
         
-        // 4. 去除广告后缀（LLM from URL相关内容）
+        // 4. 去除广告后缀和无用内容
         const adSuffixPatterns = [
             /-{10,}[\s\S]*?LLM from URL[\s\S]*?-{10,}/gi,
             /LLM from URL[\s\S]*?A free AI chat completion service directly from URL/gi,
             /LLM from URL[\s\S]*?free AI chat completion service/gi,
             /A free AI chat completion service directly from URL/gi,
             /-{5,}[\s\S]*?https:\/\/818233\.xyz[\s\S]*?-{5,}/gi,
-            /\n\s*-{5,}\s*\n[\s\S]*?LLM[\s\S]*?-{5,}\s*$/gi
+            /\n\s*-{5,}\s*\n[\s\S]*?LLM[\s\S]*?-{5,}\s*$/gi,
+            // 去除常见的网页导航和页脚内容
+            /^(Home|About|Contact|Privacy|Terms|FAQ|Help|Support|Login|Register)$/gim,
+            /^(首页|关于|联系|隐私|条款|帮助|支持|登录|注册)$/gim,
+            // 去除JavaScript错误信息
+            /^(Uncaught|TypeError|ReferenceError|SyntaxError)/gim,
+            // 去除HTML注释
+            /<!--[\s\S]*?-->/g
         ];
         
         for (const pattern of adSuffixPatterns) {
             content = content.replace(pattern, '').trim();
         }
         
-        // 5. 如果内容太短，可能是错误信息
+        // 5. 智能段落分割和格式化
+        content = content
+            // 在句号、问号、感叹号后添加适当的换行
+            .replace(/([。！？])\s*([^。！？\s])/g, '$1\n\n$2')
+            // 处理编号列表
+            .replace(/(\d+[\.、])\s*/g, '\n$1 ')
+            // 处理项目符号
+            .replace(/([•·▪▫])\s*/g, '\n$1 ')
+            // 清理多余的空行
+            .replace(/\n{3,}/g, '\n\n')
+            .trim();
+        
+        // 6. 如果内容太短，可能是错误信息
         if (content.length < 10) {
             return '免费专线暂时无法获取回答，请稍后重试。';
         }
         
-        // 6. 如果内容太长，截取合理长度
+        // 7. 如果内容太长，截取合理长度
         if (content.length > 2000) {
             content = content.substring(0, 2000) + '...\n\n[回答内容较长，已截取部分显示]';
         }
         
-        // 7. 确保内容以合适的标点结尾
+        // 8. 确保内容以合适的标点结尾
         if (content && !/[.!?。！？]$/.test(content.trim())) {
             content = content.trim() + '。';
         }

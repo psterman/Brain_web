@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>浏览页面功能测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .test-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .test-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .test-button:hover {
+            background: #0056CC;
+        }
+
+        .test-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .test-result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .success {
+            color: #28a745;
+        }
+
+        .error {
+            color: #dc3545;
+        }
+
+        .info {
+            color: #17a2b8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <h1>浏览页面功能测试</h1>
+
+        <div class="test-section">
+            <div class="test-title">1. 按钮点击测试</div>
+            <button class="test-button" id="testSearchEngineBtn">测试搜索引擎按钮</button>
+            <button class="test-button" id="testAiModelBtn">测试AI模型按钮</button>
+            <button class="test-button" id="testPasteBtn">测试粘贴按钮</button>
+            <button class="test-button" id="testClearBtn">测试清空按钮</button>
+            <div class="test-result" id="buttonTestResult">等待测试...</div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">2. 输入框测试</div>
+            <input type="text" class="test-input" id="testInput" placeholder="测试输入框" value="https://www.baidu.com">
+            <div class="test-result" id="inputTestResult">等待测试...</div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">3. 剪贴板测试</div>
+            <button class="test-button" id="testClipboardBtn">测试剪贴板读取</button>
+            <div class="test-result" id="clipboardTestResult">等待测试...</div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">4. 控制台日志</div>
+            <div class="test-result" id="consoleLog">等待日志...</div>
+        </div>
+    </div>
+
+    <script>
+        // 重写console.log来显示在页面上
+        const originalLog = console.log;
+        const originalWarn = console.warn;
+        const originalError = console.error;
+
+        const logContainer = document.getElementById('consoleLog');
+
+        function addLog(message, type = 'info') {
+            const logEntry = document.createElement('div');
+            logEntry.className = type;
+            logEntry.textContent = new Date().toLocaleTimeString() + ': ' + message;
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        console.log = function (...args) {
+            originalLog.apply(console, args);
+            addLog(args.join(' '), 'info');
+        };
+
+        console.warn = function (...args) {
+            originalWarn.apply(console, args);
+            addLog(args.join(' '), 'error');
+        };
+
+        console.error = function (...args) {
+            originalError.apply(console, args);
+            addLog(args.join(' '), 'error');
+        };
+
+        // 测试函数
+        function testButtonClick(buttonId, testName) {
+            const button = document.getElementById(buttonId);
+            if (button) {
+                button.click();
+                document.getElementById('buttonTestResult').innerHTML +=
+                    `<div class="success">✓ ${testName} 按钮点击成功</div>`;
+            } else {
+                document.getElementById('buttonTestResult').innerHTML +=
+                    `<div class="error">✗ ${testName} 按钮未找到</div>`;
+            }
+        }
+
+        function testClipboard() {
+            if (navigator.clipboard && navigator.clipboard.readText) {
+                navigator.clipboard.readText().then(text => {
+                    document.getElementById('clipboardTestResult').innerHTML =
+                        `<div class="success">✓ 剪贴板读取成功: "${text}"</div>`;
+                }).catch(err => {
+                    document.getElementById('clipboardTestResult').innerHTML =
+                        `<div class="error">✗ 剪贴板读取失败: ${err.message}</div>`;
+                });
+            } else {
+                document.getElementById('clipboardTestResult').innerHTML =
+                    `<div class="error">✗ 浏览器不支持剪贴板API</div>`;
+            }
+        }
+
+        // 页面加载完成后执行测试
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('测试页面加载完成');
+
+            // 测试按钮点击
+            document.getElementById('testSearchEngineBtn').addEventListener('click', () => {
+                testButtonClick('testSearchEngineBtn', '搜索引擎');
+            });
+
+            document.getElementById('testAiModelBtn').addEventListener('click', () => {
+                testButtonClick('testAiModelBtn', 'AI模型');
+            });
+
+            document.getElementById('testPasteBtn').addEventListener('click', () => {
+                testButtonClick('testPasteBtn', '粘贴');
+            });
+
+            document.getElementById('testClearBtn').addEventListener('click', () => {
+                testButtonClick('testClearBtn', '清空');
+            });
+
+            document.getElementById('testClipboardBtn').addEventListener('click', testClipboard);
+
+            // 测试输入框
+            const testInput = document.getElementById('testInput');
+            testInput.addEventListener('input', () => {
+                document.getElementById('inputTestResult').innerHTML =
+                    `<div class="info">输入内容: "${testInput.value}"</div>`;
+            });
+
+            console.log('所有测试事件已绑定');
+        });
+    </script>
+</body>
+
+</html>
